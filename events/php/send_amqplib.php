@@ -12,7 +12,9 @@ $channel->set_ack_handler(
 );
 
 $channel->confirm_select();
-$msg = new AMQPMessage((string) time());
+$msg = new AMQPMessage((string) time(), [
+    'delivery_mode' => AMQPMessage::DELIVERY_MODE_PERSISTENT,
+]);
 $channel->basic_publish($msg, 'articles');
 $channel->wait_for_pending_acks();
 $channel->close();
