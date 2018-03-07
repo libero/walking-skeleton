@@ -23,3 +23,4 @@ while (!$exit) {
     echo "Waiting for new message", PHP_EOL;
     $channel->wait();
 }
+echo "Graceful shutdown", PHP_EOL;
