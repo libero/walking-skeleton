@@ -5,7 +5,7 @@ import pika
 from setup_pika import (
     ARTICLE_EXCHANGE_NAME,
     DASHBOARD_QUEUE_NAME,
-    PERSISTENT,
+    DELIVERY_MODE_PERSISTENT,
     get_channel
 )
 
@@ -33,5 +33,5 @@ if __name__ == '__main__':
             channel.basic_publish(exchange=ARTICLE_EXCHANGE_NAME,
                                   routing_key=DASHBOARD_QUEUE_NAME,
                                   body=msg,
-                                  properties=pika.BasicProperties(delivery_mode=PERSISTENT))
+                                  properties=pika.BasicProperties(delivery_mode=DELIVERY_MODE_PERSISTENT))
             time.sleep(1)

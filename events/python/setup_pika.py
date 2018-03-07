@@ -7,7 +7,7 @@ from pika.adapters.blocking_connection import BlockingChannel
 
 ARTICLE_EXCHANGE_NAME = 'articles'
 DASHBOARD_QUEUE_NAME = 'dashboard'
-PERSISTENT = 2
+DELIVERY_MODE_PERSISTENT = 2
 
 HOST = 'localhost'
 PORT = 5672
