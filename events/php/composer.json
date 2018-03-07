@@ -4,7 +4,8 @@
     "type": "project",
     "require": {
         "enqueue/enqueue": "^0.8.23",
-        "enqueue/amqp-lib": "*"
+        "enqueue/amqp-lib": "*",
+        "php-amqplib/php-amqplib": "*"
     },
     "license": "MIT"
 }
