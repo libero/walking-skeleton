@@ -9,6 +9,7 @@ from setup_pika import (
 def message_handler(channel: pika.channel.Channel, method: pika.spec.Basic.Deliver,
                     properties: pika.spec.BasicProperties, body: str) -> None:
     print(f'[x] Received: {body}')
+    channel.basic_ack(method.delivery_tag)
 
 
 if __name__ == '__main__':
