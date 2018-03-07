@@ -23,6 +23,7 @@ if __name__ == '__main__':
 
         # bind queue to exchange, will skip if already bound
         channel.queue_bind(exchange=ARTICLE_EXCHANGE_NAME, queue=DASHBOARD_QUEUE_NAME)
+        # set publisher message confirmation flag to True
         channel.confirm_delivery()
 
         while True:
