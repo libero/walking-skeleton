@@ -11,8 +11,10 @@ DELIVERY_MODE_PERSISTENT = 2
 
 HOST = 'localhost'
 PORT = 5672
+PASSWORD = 'guest'
+USER = 'guest'
 
-CREDENTIALS = pika.PlainCredentials('guest', 'guest')
+CREDENTIALS = pika.PlainCredentials(USER, PASSWORD)
 PARAMS = pika.ConnectionParameters(host=HOST, credentials=CREDENTIALS)
 
 
