@@ -30,7 +30,7 @@ Use RabbitMQ and the following features:
 Use the following libraries for the supported programming languages:
 
 - PHP: [amqplib](https://github.com/php-amqplib/php-amqplib)
-- Python: ?
+- Python: [pika](https://github.com/pika/pika)
 
 ## Consequences
 
