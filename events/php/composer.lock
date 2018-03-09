@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "7a0c07bf21e7cbf7be016e45e2165ace",
+    "content-hash": "853f6dbd42ca442ae2521ddb44cf54eb",
     "packages": [
         {
             "name": "enqueue/amqp-lib",
