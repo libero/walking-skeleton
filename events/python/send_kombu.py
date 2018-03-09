@@ -34,7 +34,6 @@ if __name__ == '__main__':
                 producer.publish(
                     body=msg,
                     delivery_mode=DELIVERY_MODE_PERSISTENT,
-                    routing_key=DASHBOARD_QUEUE_NAME,
                     retry=True,
                     retry_policy={
                         'interval_start': 0,  # First retry immediately,
