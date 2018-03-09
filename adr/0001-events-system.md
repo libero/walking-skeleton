@@ -10,7 +10,7 @@ Proposed
 
 In a service-based architecture, each service needs to update its data by importing it from another service.
 
-A many-to-many mesh of remote calls can quickly create a tight network of dependencies between services.
+A many-to-many mesh of remote calls can quickly create a tight network of dependencies between services. Services should be able to be isolated from each other for ease of testing and experimentation.
 
 Portability across cloud providers and hosting services, and easy of deployment, are key concerns for any middleware used by services to communicate.
 
@@ -32,10 +32,12 @@ Use the following libraries for the supported programming languages:
 - PHP: [amqplib](https://github.com/php-amqplib/php-amqplib)
 - Python: [pika](https://github.com/pika/pika)
 
+For each supported programming language, build event bus SDKs wrapping the libraries and providing null or testing adapters.
+
 ## Consequences
 
 RabbitMQ is a dependency for most of the projects to produce or consume events, but it can be provided as a Docker container.
 
-Event bus SDKs wrapping the libraries should be provided to services for each supported programming language, to make integration easy.
+The test suite of a project should be able to run without a dependency on RabbitMQ.
 
 High-availability of the events middleware is an operational issue that requires RabbitMQ clustering.
