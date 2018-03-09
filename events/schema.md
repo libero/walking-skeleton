@@ -18,7 +18,8 @@ The schema is based on JSON (and can be modelled with JSON Schema if necessary).
         ... 
     },
     "correlationId": {
-        "session": "journal-page",
+        "service": "journal",
+        "name": "page",
         "identifier": "e4c1829b8249fee0e201bec4589b2aa1b394960f",
     },
 }
