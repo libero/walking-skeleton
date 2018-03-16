@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://libero.pub">
+
+    <define name="libero.article.content" combine="interleave">
+        <optional>
+            <element name="abstract">
+                <ref name="libero.abstract.content"/>
+            </element>
+        </optional>
+    </define>
+
+    <define name="libero.abstract.content">
+        <ref name="libero.attrib.id"/>
+        <ref name="libero.blocks.model"/>
+    </define>
+
+</grammar>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+    datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+
+    <define name="libero.blocks.paragraph">
+        <element name="p">
+            <ref name="libero.text.model"/>
+        </element>
+    </define>
+
+    <define name="libero.blocks.class">
+        <choice>
+            <ref name="libero.blocks.paragraph"/>
+        </choice>
+    </define>
+
+    <define name="libero.blocks.model">
+        <oneOrMore>
+            <ref name="libero.blocks.class"/>
+        </oneOrMore>
+    </define>
+
+</grammar>

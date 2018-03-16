@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+    datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+
+    <define name="libero.types.doi">
+        <data type="string">
+            <param name="pattern">10[.][0-9]{4,}[^\s&quot;/&lt;&gt;]*/[^\s&quot;]+</param>
+        </data>
+    </define>
+
+    <define name="libero.types.id">
+        <data type="string">
+            <param name="pattern">[A-Za-z0-9\-._]+</param>
+        </data>
+    </define>
+
+</grammar>

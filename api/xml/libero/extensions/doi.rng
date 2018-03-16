@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://libero.pub">
+
+    <define name="libero.article.content" combine="interleave">
+        <optional>
+            <element name="doi">
+                <ref name="libero.doi.content"/>
+            </element>
+        </optional>
+    </define>
+
+    <define name="libero.attrib.id" combine="interleave">
+        <optional>
+            <attribute name="doi">
+                <ref name="libero.types.doi"/>
+            </attribute>
+        </optional>
+    </define>
+
+    <define name="libero.doi.content">
+        <ref name="libero.types.doi"/>
+    </define>
+
+</grammar>

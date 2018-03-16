@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<?xml-model href="../article.rng"?>
+
+<article xmlns="http://libero.pub" xmlns:elife="http://elifesciences.org" xml:lang="en">
+
+    <id>00569</id>
+    <doi>10.7554/eLife.00569</doi>
+    <title>The genome sequence of the colonial chordate, <elife:genome>Botryllus
+            schlosseri</elife:genome></title>
+    <abstract id="abstract" doi="10.7554/eLife.00569.001">
+        <p><i>Botryllus schlosseri</i> is a colonial urochordate that follows the chordate plan of
+            development following sexual reproduction, but invokes a stem cell-mediated budding
+            program during subsequent rounds of asexual reproduction. As urochordates are considered
+            to be the closest living invertebrate relatives of vertebrates, they are ideal subjects
+            for whole genome sequence analyses. Using a novel method for high-throughput sequencing
+            of eukaryotic genomes, we sequenced and assembled 580 Mbp of the <i>B. schlosseri</i>
+            genome. The genome assembly is comprised of nearly 14,000 intron-containing predicted
+            genes, and 13,500 intron-less predicted genes, 40% of which could be confidently
+            parceled into 13 (of 16 haploid) chromosomes. A comparison of homologous genes between
+                <i>B. schlosseri</i> and other diverse taxonomic groups revealed genomic events
+            underlying the evolution of vertebrates and lymphoid-mediated immunity. The <i>B.
+                schlosseri</i> genome is a community resource for studying alternative modes of
+            reproduction, natural transplantation reactions, and stem cell-mediated
+            regeneration.</p>
+    </abstract>
+    <elife:digest id="digest" doi="10.7554/eLife.00569.002">
+        <elife:p>The tunicates are an evolutionary group that includes species such as sea squirts
+            and sea tulips. Their name comes from the structure known as a ‘tunic’ that surrounds
+            their sac-like bodies. As marine filter feeders, tunicates obtain nutrients by straining
+            food particles from water, and they can live either alone or in colonies depending on
+            the species. Charles Darwin suggested that tunicates may be the key to understanding the
+            evolution of vertebrates, and indeed today they are regarded as the closest living
+            relatives of this group.</elife:p>
+        <p>Colonial tunicates can reproduce either sexually, or asexually by budding. Compatible
+            colonies have the ability to recognize one another and to fuse their blood vessels to
+            form a single organism, whereas incompatible colonies reject one another and remain
+            separate. This recognition process bears some resemblance to the rejection of foreign
+            organ transplants in mammals.</p>
+        <p>Here, Voskoboynik and co-workers present the first genome sequence of a colonial
+            tunicate, <i>Botryllus schlosseri.</i> They used a novel sequencing approach that
+            significantly increased the length of a DNA molecule that can be determined by
+            next-generation sequencing, and allowed large DNA repeat regions to be easily resolved.
+            In total, they sequenced 580 million base pairs of DNA, which they estimate contains
+            roughly 27,000 genes.</p>
+        <p>By comparing the <i>B. schlosseri</i> genome with those of a number of vertebrates,
+            Voskoboynik et al. identified multiple <i>B. schlosseri</i> genes that also participate
+            in the development and functioning of the vertebrate eye, heart, and auditory system, as
+            well as others that may have contributed to the evolution of the immune system and of
+            blood cells. The genome of <i>B. schlosseri</i> thus provides an important new tool for
+            studying the genetic basis of the evolution of vertebrates.</p>
+    </elife:digest>
+
+</article>
