@@ -17,11 +17,11 @@ The schema is based on JSON (and can be modelled with JSON Schema if necessary).
     "data": {
         ... 
     },
-    "correlationId": {
-        "service": "journal",
-        "name": "page",
-        "identifier": "e4c1829b8249fee0e201bec4589b2aa1b394960f",
-    },
+    #"correlationId": {
+    #    "service": "journal",
+    #    "name": "page",
+    #    "identifier": "e4c1829b8249fee0e201bec4589b2aa1b394960f",
+    #},
 }
 ```
 
@@ -30,4 +30,4 @@ The schema is based on JSON (and can be modelled with JSON Schema if necessary).
 - `aggregate` identifies the unit of consistency that has produced the event: article run in the bot, article version in the articles, store podcast episode in journal-cms, an article's set of metrics in metrics, a single profile in profiles. All three information are required to uniquely identify it: `service`, `name`, `identifier`.
 - `type` describes what the event is about so that they can be grouped or recognized.
 - `data` is opaque here, and can contain anything as long as it follows naming conventions. Events with the same `type` should usually follow the same schema.
-- `correlationId` can be used to track events across services, grouping them by the kind of session that originated them. Could be an article run during ingestion, or a journal page creating a profile.
+- `correlationId` can be used to track events across services, grouping them by the kind of session that originated them. Could be an article run during ingestion, or a journal page creating a profile. It is optional at this time.
