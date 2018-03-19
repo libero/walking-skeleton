@@ -1,0 +1,11 @@
+{
+    "name": "elife/libero-events-php",
+    "description": "Demonstrations of events usage from a PHP application",
+    "type": "project",
+    "require": {
+        "enqueue/enqueue": "^0.8.23",
+        "enqueue/amqp-lib": "^0.8.23",
+        "php-amqplib/php-amqplib": "^2.0"
+    },
+    "license": "MIT"
+}
