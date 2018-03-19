@@ -25,7 +25,7 @@ The schema is based on JSON (and can be modelled with JSON Schema if necessary).
 }
 ```
 
-- `eventId` is unique for all events.
+- `eventId` is unique for all events. It is a UUID version 1 generated with time and a node identifier.
 - `date` identifies when the event has happened (then it can get published, consumed, etc).
 - `aggregate` identifies the unit of consistency that has produced the event: article run in the bot, article version in the articles, store podcast episode in journal-cms, an article's set of metrics in metrics, a single profile in profiles. All three information are required to uniquely identify it: `service`, `name`, `identifier`.
 - `type` describes what the event is about so that they can be grouped or recognized.
