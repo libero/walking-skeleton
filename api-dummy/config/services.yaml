@@ -1,0 +1,15 @@
+services:
+    _defaults:
+        autoconfigure: true
+        autowire: true
+        bind:
+            $dataPath: '%kernel.project_dir%/data'
+        public: false
+
+    Libero\ApiDummy\:
+        resource: '../src/*'
+        exclude: '../src/{Kernel.php}'
+
+    Libero\ApiDummy\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']

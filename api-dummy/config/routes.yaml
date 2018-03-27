@@ -1,0 +1,6 @@
+article:
+    path: /articles/{id}/{version}
+    controller: Libero\ApiDummy\Controller\ArticleController
+    requirements:
+        id: '[A-Za-z0-9\-._]+'
+        version: '[1-9][0-9]*|latest'
