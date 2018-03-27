@@ -427,23 +427,25 @@
                 <asset>
                     <label>Figure 2.</label>
                     <image id="fig2">
-                        <!--<caption>
                         <title>Variance of coordination in the centralized and the decentralized
                             system.</title>
-                        <p>Note: In the centralized system, each agent conveys its number to a
-                            central-coordinator. The central-coordinator orders the agents on a line
-                            segment. In the decentralized system, at each time step, pairs of neighbouring
-                            agents are randomly selected. Within each pair, agents share information about
-                            each other&#x2019;s numbers. If the agent on the left reports a number greater
-                            than the agent on the right, the agents swap positions, otherwise the agents
-                            remain in their present positions. Agents make errors in communicating their
-                            numbers, i.e. with some probability an agent conveys an incorrect number.
-                            Coordination is the negative mean of the absolute value of the differences
-                            between the numbers of agents and the numbers of their respective locations. The
-                            sum of these differences is divided by the total number of agents and multiplied
-                            by negative one to measure coordination. Zero indicates perfect coordination,
-                            lower values of C indicate lesser coordination.</p>
-                    </caption>-->
+                        <caption>
+                            <p>Note: In the centralized system, each agent conveys its number to a
+                                central-coordinator. The central-coordinator orders the agents on a
+                                line segment. In the decentralized system, at each time step, pairs
+                                of neighbouring agents are randomly selected. Within each pair,
+                                agents share information about each other&#x2019;s numbers. If the
+                                agent on the left reports a number greater than the agent on the
+                                right, the agents swap positions, otherwise the agents remain in
+                                their present positions. Agents make errors in communicating their
+                                numbers, i.e. with some probability an agent conveys an incorrect
+                                number. Coordination is the negative mean of the absolute value of
+                                the differences between the numbers of agents and the numbers of
+                                their respective locations. The sum of these differences is divided
+                                by the total number of agents and multiplied by negative one to
+                                measure coordination. Zero indicates perfect coordination, lower
+                                values of C indicate lesser coordination.</p>
+                        </caption>
                         <source height="1" width="1" media-type="application/postscript"
                             >http://www.microsimulation.org/IJM/fig2</source>
                     </image>
