@@ -41,6 +41,6 @@ final class ArticleController
         $availableLanguages = array_map('basename', array_map('dirname', glob("{$articleVersionPath}/*/{$part}.xml")));
         $language = $request->getPreferredLanguage($availableLanguages);
 
-        return new BinaryFileResponse("{$articleVersionPath}/{$language}/{$part}.xml");
+        return new BinaryFileResponse("{$articleVersionPath}/{$language}/{$part}.xml", Response::HTTP_OK, ['Content-Language' => $language]);
     }
 }
