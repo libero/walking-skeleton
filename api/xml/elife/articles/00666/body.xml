@@ -1043,19 +1043,19 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td background-color="blue">Vam7p</td>
-                                            <td background-color="green">2 × 10<sup>3</sup></td>
-                                            <td background-color="orange">30 × 10<sup>4</sup></td>
-                                            <td background-color="yellow">6.5 × 10<sup>4</sup></td>
+                                            <td elife:background-color="blue">Vam7p</td>
+                                            <td elife:background-color="green">2 × 10<sup>3</sup></td>
+                                            <td elife:background-color="orange">30 × 10<sup>4</sup></td>
+                                            <td elife:background-color="yellow">6.5 × 10<sup>4</sup></td>
                                             <td>
                                                 <a href="#bib12">DeLano, 2002</a>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td background-color="purple">Vam3p</td>
-                                            <td background-color="red">2 × 10<sup>3</sup></td>
-                                            <td background-color="pink">11 × 10<sup>4</sup></td>
-                                            <td background-color="grey">22 × 10<sup>4</sup></td>
+                                            <td elife:background-color="purple">Vam3p</td>
+                                            <td elife:background-color="red">2 × 10<sup>3</sup></td>
+                                            <td elife:background-color="pink">11 × 10<sup>4</sup></td>
+                                            <td elife:background-color="grey">22 × 10<sup>4</sup></td>
                                             <td>
                                                 <a href="#bib13">Department of Education and Morgan,
                                                   2016</a>

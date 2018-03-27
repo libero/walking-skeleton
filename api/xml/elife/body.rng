@@ -17,7 +17,7 @@
     <include href="../libero/extensions/youtube.rng"/>
 
     <define name="libero.blocks.table.cell.base" combine="choice">
-        <attribute name="background-color">
+        <attribute name="background-color" ns="http://elifesciences.org">
             <choice>
                 <value>blue</value>
                 <value>green</value>
