@@ -1,0 +1,571 @@
+<?xml version="1.0" ?>
+<?xml-model href="../../references.rng"?>
+
+<references xmlns="http://libero.pub" xmlns:csl="http://purl.org/net/xbiblio/csl">
+
+    <csl:reference id="bib1" type="article-journal">
+        <csl:contributor type="author">
+            <csl:family>Acemoglu</csl:family>
+            <csl:given>D</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Aghion</csl:family>
+            <csl:given>P</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Lelarge</csl:family>
+            <csl:given>C</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Van Reenen</csl:family>
+            <csl:given>J</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Zilibotti</csl:family>
+            <csl:given>F</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2007"/>
+        </csl:date>
+        <csl:variable type="DOI">10.1162/qjec.2007.122.4.1759</csl:variable>
+        <csl:variable type="title">Technology, information, and the decentralization of the firm </csl:variable>
+        <csl:variable type="container-title">The Quarterly Journal of Economics</csl:variable>
+        <csl:variable type="volume">122</csl:variable>
+        <csl:variable type="page">1759-1799</csl:variable>
+    </csl:reference>
+    <csl:reference id="bib2" type="article-journal">
+        <csl:contributor type="author">
+            <csl:family>Almeida</csl:family>
+            <csl:given>H</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Ferreira</csl:family>
+            <csl:given>D</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2002"/>
+        </csl:date>
+        <csl:variable type="title">Democracy and the variability of economic performance </csl:variable>
+        <csl:variable type="container-title">Economics and Politics</csl:variable>
+        <csl:variable type="volume">14</csl:variable>
+        <csl:variable type="page-first">225</csl:variable>
+        <csl:variable type="page">225-257</csl:variable>
+        <csl:variable type="DOI">10.1111/1468-0343.00107</csl:variable>
+    </csl:reference>
+    <csl:reference id="bib3" type="article-journal">
+        <csl:contributor type="author">
+            <csl:family>Alonso</csl:family>
+            <csl:given>R</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Dessein</csl:family>
+            <csl:given>W</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Matouschek</csl:family>
+            <csl:given>N</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2008"/>
+        </csl:date>
+        <csl:variable type="title">When does coordination require centralization?</csl:variable>
+        <csl:variable type="container-title">American Economic Review</csl:variable>
+        <csl:variable type="volume">98</csl:variable>
+        <csl:variable type="page">145-179</csl:variable>
+        <csl:variable type="page-first">145</csl:variable>
+        <csl:variable type="DOI">10.1257/aer.98.1.145</csl:variable>
+    </csl:reference>
+    <csl:reference id="bib4" type="paper-conference">
+        <csl:contributor type="author">
+            <csl:family>Axtell</csl:family>
+            <csl:given>R</csl:given>
+        </csl:contributor>
+        <csl:contributor type="editor">
+            <csl:family>Terano</csl:family>
+            <csl:given>Takao</csl:given>
+        </csl:contributor>
+        <csl:contributor type="editor">
+            <csl:family>Deguchi</csl:family>
+            <csl:given>Hiroshi</csl:given>
+        </csl:contributor>
+        <csl:contributor type="editor">
+            <csl:family>Takadama</csl:family>
+            <csl:given>Keiki</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2003"/>
+        </csl:date>
+        <csl:variable type="title">Economics as distributed computation</csl:variable>
+        <csl:variable type="container-title">Meeting the Challenge of Social Problems via
+            Agent-Based Simulation </csl:variable>
+        <csl:variable type="page">3-23</csl:variable>
+        <csl:variable type="page-first">3</csl:variable>
+        <csl:variable type="publisher">Springer</csl:variable>
+        <csl:variable type="publisher-place">Tokyo</csl:variable>
+    </csl:reference>
+    <csl:reference id="bib5" type="article-journal">
+        <csl:contributor type="author">
+            <csl:family>Axtell</csl:family>
+            <csl:given>RL</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2001"/>
+        </csl:date>
+        <csl:variable type="title">Zipf distribution of U.S. firm sizes</csl:variable>
+        <csl:variable type="container-title">Science</csl:variable>
+        <csl:variable type="volume">293</csl:variable>
+        <csl:variable type="page">1818-1820</csl:variable>
+        <csl:variable type="page-first">1818</csl:variable>
+        <csl:variable type="DOI">10.1126/science.1062081</csl:variable>
+        <csl:variable type="PMID">11546870</csl:variable>
+    </csl:reference>
+    <csl:reference id="bib6" type="article-journal">
+        <csl:contributor type="author">
+            <csl:family>Bendor</csl:family>
+            <csl:given>J</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Glazer</csl:family>
+            <csl:given>A</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Hammond</csl:family>
+            <csl:given>T</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2001"/>
+        </csl:date>
+        <csl:variable type="title">Theories of delegation</csl:variable>
+        <csl:variable type="container-title">Annual Review of Political Science</csl:variable>
+        <csl:variable type="volume">4</csl:variable>
+        <csl:variable type="page">235-269</csl:variable>
+        <csl:variable type="page-first">235</csl:variable>
+    </csl:reference>
+    <csl:reference id="bib7" type="article-journal">
+        <csl:contributor type="author">
+            <csl:family>Bolton</csl:family>
+            <csl:given>P</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Farrell</csl:family>
+            <csl:given>J</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="1990"/>
+        </csl:date>
+        <csl:variable type="title">Decentralization, duplication, and delay</csl:variable>
+        <csl:variable type="container-title">Journal of Political Economy</csl:variable>
+        <csl:variable type="volume">98</csl:variable>
+        <csl:variable type="page">803-826</csl:variable>
+        <csl:variable type="page-first">803</csl:variable>
+        <csl:variable type="DOI">10.1086/261707</csl:variable>
+    </csl:reference>
+    <csl:reference id="bib8" type="article-journal">
+        <csl:contributor type="author">
+            <csl:family>Bowersox</csl:family>
+            <csl:given>D</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Daugherty</csl:family>
+            <csl:given>P</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="1995"/>
+        </csl:date>
+        <csl:variable type="title">Logistics paradigms: the impact of information
+            technology</csl:variable>
+        <csl:variable type="container-title">Journal of Business Logistics</csl:variable>
+        <csl:variable type="volume">16</csl:variable>
+        <csl:variable type="issue">1</csl:variable>
+        <csl:variable type="page">65-80</csl:variable>
+        <csl:variable type="page-first">65</csl:variable>
+    </csl:reference>
+    <csl:reference id="bib9" type="article-journal">
+        <csl:contributor type="author">
+            <csl:family>Doucouliagos</csl:family>
+            <csl:given>H</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Uluba&#x015F;o&#x011F;lu</csl:family>
+            <csl:given>MA</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2008"/>
+        </csl:date>
+        <csl:variable type="title">Democracy and economic growth: A meta-analysis</csl:variable>
+        <csl:variable type="container-title">American Journal of Political Science</csl:variable>
+        <csl:variable type="volume">52</csl:variable>
+        <csl:variable type="page">61-83</csl:variable>
+        <csl:variable type="page-first">61</csl:variable>
+        <csl:variable type="DOI">10.1111/j.1540-5907.2007.00299.x</csl:variable>
+    </csl:reference>
+    <csl:reference id="bib10" type="chapter">
+        <csl:contributor type="author">
+            <csl:family>Egeberg</csl:family>
+            <csl:given>M</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2007"/>
+        </csl:date>
+        <csl:variable type="title">How bureaucratic structure matters: An organizational perspective </csl:variable>
+        <csl:variable type="container-title">Tradition and Public Administration</csl:variable>
+        <csl:variable type="page">77-87</csl:variable>
+        <csl:variable type="page-first">77</csl:variable>
+        <csl:variable type="publisher">Palgrave-MacMillan</csl:variable>
+        <csl:variable type="publisher-place">Basingstoke</csl:variable>
+    </csl:reference>
+    <csl:reference id="bib11" type="manuscript">
+        <csl:contributor type="author">
+            <csl:family>Guerini</csl:family>
+            <csl:given>M</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Napoletano</csl:family>
+            <csl:given>M</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Roventini</csl:family>
+            <csl:given>A</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2016"/>
+        </csl:date>
+        <csl:variable type="title">No man is an island: the impact of heterogeneity and local
+            interactions on macroeconomic dynamics </csl:variable>
+        <csl:variable type="publisher">Laboratory of Economics and Management</csl:variable>
+    </csl:reference>
+    <csl:reference id="bib12" type="book">
+        <csl:contributor type="author">
+            <csl:family>Hall</csl:family>
+            <csl:given>P</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Soskice</csl:family>
+            <csl:given>D</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2001"/>
+        </csl:date>
+        <csl:variable type="title">Varieties of Capitalism: The Institutional Foundations of
+            Comparative Advantage </csl:variable>
+        <csl:variable type="publisher-place">New York</csl:variable>
+        <csl:variable type="publisher">Oxford University Press</csl:variable>
+    </csl:reference>
+    <csl:reference id="bib13" type="article-journal">
+        <csl:contributor type="author">
+            <csl:family>Hayek</csl:family>
+            <csl:given>F</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="1945"/>
+        </csl:date>
+        <csl:variable type="title">The use of knowledge in society</csl:variable>
+        <csl:variable type="container-title">The American Economic Review</csl:variable>
+        <csl:variable type="volume">35</csl:variable>
+        <csl:variable type="page">519-530</csl:variable>
+        <csl:variable type="page-first">519</csl:variable>
+    </csl:reference>
+    <csl:reference id="bib14" type="article-journal">
+        <csl:contributor type="author">
+            <csl:family>Landau</csl:family>
+            <csl:given>M</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="1969"/>
+        </csl:date>
+        <csl:variable type="title">Redundancy, rationality, and the problem of duplication and
+            overlap </csl:variable>
+        <csl:variable type="container-title">Public Administration Review</csl:variable>
+        <csl:variable type="volume">29</csl:variable>
+        <csl:variable type="page">346-358</csl:variable>
+        <csl:variable type="page-first">346</csl:variable>
+        <csl:variable type="DOI">10.2307/973247</csl:variable>
+    </csl:reference>
+    <csl:reference id="bib15" type="article-journal">
+        <csl:contributor type="author">
+            <csl:family>Lange</csl:family>
+            <csl:given>O</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="1936"/>
+        </csl:date>
+        <csl:variable type="title">On the economic theory of socialism: part one</csl:variable>
+        <csl:variable type="container-title">The Review of Economic Studies</csl:variable>
+        <csl:variable type="volume">4</csl:variable>
+        <csl:variable type="page">53-71</csl:variable>
+        <csl:variable type="page-first">53</csl:variable>
+        <csl:variable type="DOI">10.2307/2967660</csl:variable>
+    </csl:reference>
+    <csl:reference id="bib16" type="article-journal">
+        <csl:contributor type="author">
+            <csl:family>Liesbet</csl:family>
+            <csl:given>H</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Gary</csl:family>
+            <csl:given>M</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2003"/>
+        </csl:date>
+        <csl:variable type="title">Unraveling the central state, but how? types of multi-level
+            governance </csl:variable>
+        <csl:variable type="container-title">American Political Science Review</csl:variable>
+        <csl:variable type="volume">97</csl:variable>
+        <csl:variable type="page">233-243</csl:variable>
+        <csl:variable type="page-first">233</csl:variable>
+        <csl:variable type="DOI">10.1017/S0003055403000649</csl:variable>
+    </csl:reference>
+    <csl:reference id="bib17" type="article-journal">
+        <csl:contributor type="author">
+            <csl:family>Love</csl:family>
+            <csl:given>LG</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Priem</csl:family>
+            <csl:given>RL</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Lumpkin</csl:family>
+            <csl:given>GT</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2002"/>
+        </csl:date>
+        <csl:variable type="title">Explicitly articulated strategy and firm performance under
+            alternative levels of centralization </csl:variable>
+        <csl:variable type="container-title">Journal of Management</csl:variable>
+        <csl:variable type="volume">28</csl:variable>
+        <csl:variable type="page">611-627</csl:variable>
+        <csl:variable type="page-first">611</csl:variable>
+        <csl:variable type="DOI">10.1177/014920630202800503</csl:variable>
+    </csl:reference>
+    <csl:reference id="bib18" type="article-journal">
+        <csl:contributor type="author">
+            <csl:family>Maskin</csl:family>
+            <csl:given>E</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Qian</csl:family>
+            <csl:given>Y</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Xu</csl:family>
+            <csl:given>C</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2000"/>
+        </csl:date>
+        <csl:variable type="title">Incentives, information, and organizational form</csl:variable>
+        <csl:variable type="container-title">Review of Economic Studies</csl:variable>
+        <csl:variable type="volume">67</csl:variable>
+        <csl:variable type="page">359-378</csl:variable>
+        <csl:variable type="page-first">359</csl:variable>
+        <csl:variable type="DOI">10.1111/1467-937X.00135</csl:variable>
+    </csl:reference>
+    <csl:reference id="bib19" type="article-journal">
+        <csl:contributor type="author">
+            <csl:family>Millo</csl:family>
+            <csl:given>Y</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Muniesa</csl:family>
+            <csl:given>F</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Panourgias</csl:family>
+            <csl:given>NS</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Scott</csl:family>
+            <csl:given>SV</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2005"/>
+        </csl:date>
+        <csl:variable type="title">Organised detachment: Clearinghouse mechanisms in financial
+            markets </csl:variable>
+        <csl:variable type="container-title">Information and Organization</csl:variable>
+        <csl:variable type="volume">15</csl:variable>
+        <csl:variable type="page">229-246</csl:variable>
+        <csl:variable type="page-first">229</csl:variable>
+        <csl:variable type="DOI">10.1016/j.infoandorg.2005.02.003</csl:variable>
+    </csl:reference>
+    <csl:reference id="bib20" type="book">
+        <csl:contributor type="author">
+            <csl:family>Milward</csl:family>
+            <csl:given>A</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="1979"/>
+        </csl:date>
+        <csl:variable type="title">War, Economy, and Society: 1939-1945</csl:variable>
+        <csl:variable type="publisher-place">Berkley</csl:variable>
+        <csl:variable type="publisher">University of California Press</csl:variable>
+    </csl:reference>
+    <csl:reference id="bib21" type="article-journal">
+        <csl:contributor type="author">
+            <csl:family>Ostrom</csl:family>
+            <csl:given>E</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="1999"/>
+        </csl:date>
+        <csl:variable type="title">Coping with tragedies of the commons</csl:variable>
+        <csl:variable type="container-title">Annual Review of Political Science</csl:variable>
+        <csl:variable type="volume">2</csl:variable>
+        <csl:variable type="page">493-535</csl:variable>
+        <csl:variable type="page-first">493</csl:variable>
+        <csl:variable type="DOI">10.1146/annurev.polisci.2.1.493</csl:variable>
+    </csl:reference>
+    <csl:reference id="bib22" type="article-journal">
+        <csl:contributor type="author">
+            <csl:family>Ostrom</csl:family>
+            <csl:given>V</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Tiebout</csl:family>
+            <csl:given>CM</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Warren</csl:family>
+            <csl:given>R</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="1961"/>
+        </csl:date>
+        <csl:variable type="title">The organization of government in metropolitan areas: a
+            theoretical inquiry </csl:variable>
+        <csl:variable type="container-title">American Political Science Review</csl:variable>
+        <csl:variable type="volume">55</csl:variable>
+        <csl:variable type="page">831-842</csl:variable>
+        <csl:variable type="page-first">831</csl:variable>
+        <csl:variable type="DOI">10.1017/S0003055400125973</csl:variable>
+    </csl:reference>
+    <csl:reference id="bib23" type="article-journal">
+        <csl:contributor type="author">
+            <csl:family>Peters</csl:family>
+            <csl:given>BG</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="1998"/>
+        </csl:date>
+        <csl:variable type="title">Managing horizontal government: The politics of co-ordination </csl:variable>
+        <csl:variable type="container-title">Public Administration</csl:variable>
+        <csl:variable type="volume">76</csl:variable>
+        <csl:variable type="page">295-311</csl:variable>
+        <csl:variable type="page-first">295</csl:variable>
+        <csl:variable type="DOI">10.1111/1467-9299.00102</csl:variable>
+    </csl:reference>
+    <csl:reference id="bib24" type="article-journal">
+        <csl:contributor type="author">
+            <csl:family>Rodrik</csl:family>
+            <csl:given>D</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="1999"/>
+        </csl:date>
+        <csl:variable type="title">Where did all the growth go? External shocks, social conflict,
+            and growth collapses </csl:variable>
+        <csl:variable type="container-title">Journal of Economic Growth</csl:variable>
+        <csl:variable type="volume">4</csl:variable>
+        <csl:variable type="page">385-412</csl:variable>
+        <csl:variable type="page-first">385</csl:variable>
+    </csl:reference>
+    <csl:reference id="bib25" type="article-journal">
+        <csl:contributor type="author">
+            <csl:family>Sah</csl:family>
+            <csl:given>R</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Stiglitz</csl:family>
+            <csl:given>J</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="1986"/>
+        </csl:date>
+        <csl:variable type="title">The architecture of economic systems: Hierarchies and polyarchies </csl:variable>
+        <csl:variable type="container-title">The American Economic Review</csl:variable>
+        <csl:variable type="volume">76</csl:variable>
+        <csl:variable type="page">716-727</csl:variable>
+        <csl:variable type="page-first">716</csl:variable>
+    </csl:reference>
+    <csl:reference id="bib26" type="article-journal">
+        <csl:contributor type="author">
+            <csl:family>Simon</csl:family>
+            <csl:given>H</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="1962"/>
+        </csl:date>
+        <csl:variable type="title">The architecture of complexity</csl:variable>
+        <csl:variable type="container-title">Proceedings of the American Philosophical
+            Society</csl:variable>
+        <csl:variable type="volume">106</csl:variable>
+        <csl:variable type="page">467-482</csl:variable>
+        <csl:variable type="page-first">467</csl:variable>
+    </csl:reference>
+    <csl:reference id="bib27" type="book">
+        <csl:contributor type="author">
+            <csl:family>Sloan</csl:family>
+            <csl:given>A</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="1964"/>
+        </csl:date>
+        <csl:variable type="title">My Years with General Motors</csl:variable>
+        <csl:variable type="publisher-place">New York</csl:variable>
+        <csl:variable type="publisher">Doubleday</csl:variable>
+    </csl:reference>
+    <csl:reference id="bib28" type="article-journal">
+        <csl:contributor type="author">
+            <csl:family>Stein</csl:family>
+            <csl:given>JC</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2002"/>
+        </csl:date>
+        <csl:variable type="title">Information production and capital allocation: decentralized
+            versus hierarchical firms </csl:variable>
+        <csl:variable type="container-title">The Journal of Finance</csl:variable>
+        <csl:variable type="volume">57</csl:variable>
+        <csl:variable type="page">1891-1921</csl:variable>
+        <csl:variable type="page-first">1891</csl:variable>
+        <csl:variable type="DOI">10.1111/0022-1082.00483</csl:variable>
+    </csl:reference>
+    <csl:reference id="bib29" type="book">
+        <csl:contributor type="author">
+            <csl:family>Tzu</csl:family>
+            <csl:given>S</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2009"/>
+        </csl:date>
+        <csl:contributor type="editor">
+            <csl:family>Cleary</csl:family>
+            <csl:given>T. homas</csl:given>
+        </csl:contributor>
+        <csl:variable type="title">The Art of War</csl:variable>
+        <csl:variable type="publisher">Shambhala Publications</csl:variable>
+    </csl:reference>
+    <csl:reference id="bib30" type="chapter">
+        <csl:contributor type="author">
+            <csl:family>von Neumann</csl:family>
+            <csl:given>J</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="1951"/>
+        </csl:date>
+        <csl:contributor type="editor">
+            <csl:family>Jeffress</csl:family>
+            <csl:given>Lloyd A.</csl:given>
+        </csl:contributor>
+        <csl:variable type="title">The General and Logical Theory of Automata. Cerebral Mechanisms
+            in Behavior</csl:variable>
+        <csl:variable type="publisher-place">New York</csl:variable>
+        <csl:variable type="publisher">Wiley</csl:variable>
+        <csl:variable type="page">1-41</csl:variable>
+        <csl:variable type="page-first">1</csl:variable>
+    </csl:reference>
+
+</references>

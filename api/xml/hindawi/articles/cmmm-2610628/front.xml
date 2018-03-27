@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<?xml-model href="../../front.rng"?>
+
+<front xmlns="http://libero.pub" xmlns:ms="http://hindawi.com" xml:lang="en">
+
+    <id>cmmm-2610628</id>
+    <doi>10.1155/2017/2610628</doi>
+    <title>Artificial Neural Networks in Image Processing for Early Detection of Breast Cancer</title>
+    <abstract id="abstract">
+        <p>We study a simple coordination problem to understand the difference between
+            centralized and decentralized economic systems. The decentralized system is more robust than the
+            centralized system to communication errors. But the centralized system takes less time than the
+            decentralized system to create coordination among constituent parts. Decentralization is preferable
+            when the constituent parts are more likely to make communication errors, when there is little
+            urgency, and when there is need to prevent system-collapse.</p>
+    </abstract>
+
+</front>

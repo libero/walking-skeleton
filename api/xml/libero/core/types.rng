@@ -8,6 +8,18 @@
             <param name="pattern">10[.][0-9]{4,}[^\s&quot;/&lt;&gt;]*/[^\s&quot;]+</param>
         </data>
     </define>
+    
+    <define name="libero.types.filename">
+        <data type="string">
+            <param name="pattern">[A-Za-z0-9_. ()\-]+\.[A-Za-z0-9]+</param>
+        </data>
+    </define>
+    
+    <define name="libero.types.length">
+        <data type="string">
+            <param name="pattern">((-?[0-9]*([0-9]\.?|\.[0-9])[0-9]*(e[mx]|in|cm|mm|p[xtc]|%)?))</param>
+        </data>
+    </define>
 
     <define name="libero.types.id">
         <data type="string">
@@ -15,4 +27,28 @@
         </data>
     </define>
 
+    <define name="libero.types.media_type">
+        <data type="string">
+            <param name="pattern">([a-zA-Z0-9!#$%^&amp;*_\-+{}|'.`~]+/[a-zA-Z0-9!#$%^&amp;*_\-+{}|'.`~]+)(; *[a-zA-Z0-9!#$%^&amp;*_\-+{}|'.`~]+=(([a-zA-Z0-9.\-]+)|(&quot;.+&quot;)))*</param>
+        </data>
+    </define>
+
+    <define name="libero.types.uri.absolute">
+        <data type="anyURI">
+            <param name="pattern">[a-z0-9+.\-]+:.*</param>
+        </data>
+    </define>
+    
+    <define name="libero.types.uri.fragment">
+        <data type="anyURI">
+            <param name="pattern">#.*</param>
+        </data>
+    </define>
+    
+    <define name="libero.types.url">
+        <data type="anyURI">
+            <param name="pattern">https?://.*</param>
+        </data>
+    </define>
+    
 </grammar>

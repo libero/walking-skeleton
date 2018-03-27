@@ -3,22 +3,242 @@
 <grammar xmlns="http://relaxng.org/ns/structure/1.0"
     datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
 
-    <define name="libero.blocks.paragraph">
-        <element name="p">
-            <ref name="libero.text.model"/>
+    <define name="libero.blocks.object.model">
+        <interleave>
+            <optional>
+                <ref name="libero.attrib.id"/>
+            </optional>
+            <optional>
+                <element name="title">
+                    <ref name="libero.attrib.lang.optional"/>
+                    <ref name="libero.text.limited.model"/>
+                </element>
+            </optional>
+            <optional>
+                <element name="caption">
+                    <oneOrMore>
+                        <ref name="libero.blocks.limited.model"/>
+                    </oneOrMore>
+                </element>
+            </optional>
+            <optional>
+                <element name="attribution">
+                    <oneOrMore>
+                        <ref name="libero.blocks.limited.model"/>
+                    </oneOrMore>
+                </element>
+            </optional>
+        </interleave>
+    </define>
+
+    <define name="libero.blocks.figure">
+        <element name="figure">
+            <oneOrMore>
+                <ref name="libero.blocks.figure.asset"/>
+            </oneOrMore>
         </element>
     </define>
 
-    <define name="libero.blocks.class">
+    <define name="libero.blocks.figure.asset">
+        <element name="asset">
+            <ref name="libero.blocks.figure.asset.model"/>
+        </element>
+    </define>
+
+    <define name="libero.blocks.figure.asset.model">
+        <interleave>
+            <element name="label">
+                <ref name="libero.attrib.lang.optional"/>
+                <ref name="libero.text.limited.model"/>
+            </element>
+            <ref name="libero.blocks.figure.asset.class"/>
+            <zeroOrMore>
+                <ref name="libero.blocks.file"/>
+            </zeroOrMore>
+        </interleave>
+    </define>
+
+    <define name="libero.blocks.figure.asset.class">
+        <choice>
+            <ref name="libero.blocks.image"/>
+            <ref name="libero.blocks.video"/>
+        </choice>
+    </define>
+
+    <define name="libero.blocks.image">
+        <element name="image">
+            <ref name="libero.blocks.image.model"/>
+        </element>
+    </define>
+
+    <define name="libero.blocks.image.model">
+        <interleave>
+            <ref name="libero.blocks.object.model"/>
+            <optional>
+                <element name="alt">
+                    <text/>
+                </element>
+            </optional>
+            <element name="source">
+                <ref name="libero.blocks.image.source.model"/>
+            </element>
+            <zeroOrMore>
+                <element name="variant">
+                    <ref name="libero.blocks.image.source.model"/>
+                </element>
+            </zeroOrMore>
+        </interleave>
+    </define>
+
+    <define name="libero.blocks.image.source.model">
+        <attribute name="height">
+            <data type="positiveInteger"/>
+        </attribute>
+        <attribute name="width">
+            <data type="positiveInteger"/>
+        </attribute>
+        <attribute name="media-type">
+            <ref name="libero.types.media_type"/>
+        </attribute>
+        <optional>
+            <attribute name="filename">
+                <ref name="libero.types.filename"/>
+            </attribute>
+        </optional>
+        <ref name="libero.types.url"/>
+    </define>
+
+    <define name="libero.blocks.file">
+        <element name="file">
+            <ref name="libero.blocks.file.model"/>
+        </element>
+    </define>
+
+    <define name="libero.blocks.file.model">
+        <interleave>
+            <ref name="libero.blocks.object.model"/>
+            <element name="label">
+                <ref name="libero.attrib.lang.optional"/>
+                <ref name="libero.text.limited.model"/>
+            </element>
+            <element name="source">
+                <ref name="libero.blocks.file.source.model"/>
+            </element>
+            <zeroOrMore>
+                <element name="variant">
+                    <ref name="libero.blocks.file.source.model"/>
+                </element>
+            </zeroOrMore>
+        </interleave>
+    </define>
+
+    <define name="libero.blocks.file.source.model">
+        <attribute name="media-type">
+            <ref name="libero.types.media_type"/>
+        </attribute>
+        <optional>
+            <attribute name="filename">
+                <ref name="libero.types.filename"/>
+            </attribute>
+        </optional>
+        <ref name="libero.types.url"/>
+    </define>
+
+    <define name="libero.blocks.video">
+        <element name="video">
+            <ref name="libero.blocks.video.model"/>
+        </element>
+    </define>
+
+    <define name="libero.blocks.video.model">
+        <ref name="libero.blocks.object.model"/>
+        <optional>
+            <element name="attribution">
+                <oneOrMore>
+                    <ref name="libero.blocks.paragraph"/>
+                </oneOrMore>
+            </element>
+        </optional>
+        <element name="source">
+            <ref name="libero.blocks.video.source.model"/>
+        </element>
+        <zeroOrMore>
+            <element name="variant">
+                <ref name="libero.blocks.video.source.model"/>
+            </element>
+        </zeroOrMore>
+    </define>
+
+    <define name="libero.blocks.video.source.model">
+        <attribute name="height">
+            <data type="positiveInteger"/>
+        </attribute>
+        <attribute name="width">
+            <data type="positiveInteger"/>
+        </attribute>
+        <attribute name="media-type">
+            <ref name="libero.types.media_type"/>
+        </attribute>
+        <optional>
+            <attribute name="filename">
+                <ref name="libero.types.filename"/>
+            </attribute>
+        </optional>
+        <ref name="libero.types.url"/>
+    </define>
+
+    <define name="libero.blocks.paragraph">
+        <element name="p">
+            <ref name="libero.blocks.paragraph.model"/>
+        </element>
+    </define>
+
+    <define name="libero.blocks.paragraph.model">
+        <ref name="libero.attrib.lang.optional"/>
+        <ref name="libero.text.full.model"/>
+    </define>
+
+    <define name="libero.blocks.text.model">
+        <oneOrMore>
+            <ref name="libero.blocks.text.class"/>
+        </oneOrMore>
+    </define>
+
+    <define name="libero.blocks.text.class">
         <choice>
             <ref name="libero.blocks.paragraph"/>
         </choice>
     </define>
 
-    <define name="libero.blocks.model">
+    <define name="libero.blocks.limited.model">
         <oneOrMore>
-            <ref name="libero.blocks.class"/>
+            <choice>
+                <ref name="libero.blocks.text.model"/>
+                <ref name="libero.blocks.limited.class"/>
+            </choice>
         </oneOrMore>
+    </define>
+
+    <define name="libero.blocks.limited.class">
+        <choice>
+            <ref name="libero.blocks.paragraph"/>
+        </choice>
+    </define>
+
+    <define name="libero.blocks.full.model">
+        <oneOrMore>
+            <choice>
+                <ref name="libero.blocks.limited.model"/>
+                <ref name="libero.blocks.full.class"/>
+            </choice>
+        </oneOrMore>
+    </define>
+
+    <define name="libero.blocks.full.class">
+        <choice>
+            <ref name="libero.blocks.figure.asset.class"/>
+            <ref name="libero.blocks.figure"/>
+        </choice>
     </define>
 
 </grammar>

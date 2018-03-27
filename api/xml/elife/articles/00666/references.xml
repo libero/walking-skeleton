@@ -1,0 +1,1569 @@
+<?xml version="1.0" ?>
+<?xml-model href="../../references.rng"?>
+
+<references xmlns="http://libero.pub" xmlns:csl="http://purl.org/net/xbiblio/csl">
+
+    <!-- Journal reference: page numbers and DOI -->
+    <csl:reference id="bib1" type="article-journal">
+        <csl:contributor type="author">
+            <csl:family>Aivazian</csl:family>
+            <csl:given>D</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Serrano</csl:family>
+            <csl:given>RL</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Pfeffer</csl:family>
+            <csl:given>S</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2006"/>
+        </csl:date>
+        <csl:variable type="title">TIP47 is a key effector for Rab9 localization</csl:variable>
+        <csl:variable type="container-title">The Journal of Cell Biology</csl:variable>
+        <csl:variable type="volume">173</csl:variable>
+        <csl:variable type="page">917-926</csl:variable>
+        <csl:variable type="page-first">917</csl:variable>
+        <csl:variable type="DOI">10.1083/jcb.200510010</csl:variable>
+        <csl:variable type="PMID">16769818</csl:variable>
+    </csl:reference>
+    <!-- Software reference: Has authors, curator, title and source but no publisher -->
+    <csl:reference id="bib2" type="software">
+        <csl:contributor type="author">
+            <csl:family>Bates</csl:family>
+            <csl:given>D</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Maechler</csl:family>
+            <csl:given>M</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Bolker</csl:family>
+            <csl:given>B</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Walker</csl:family>
+            <csl:given>S</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Haubo Bojesen Christensen</csl:family>
+            <csl:given>R</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Singmann</csl:family>
+            <csl:given>H</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Dai</csl:family>
+            <csl:given>B</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Grothendieck</csl:family>
+            <csl:given>G</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Green</csl:family>
+            <csl:given>P</csl:given>
+        </csl:contributor>
+        <csl:contributor type="collection-editor">
+            <csl:family>Bolker</csl:family>
+            <csl:given>B</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2016"/>
+        </csl:date>
+        <csl:variable type="title">Lme4: Linear Mixed-Effects Models Using Eigen and
+            S4</csl:variable>
+        <csl:variable type="source">CRAN</csl:variable>
+        <csl:variable type="URL"
+            >https://cran.r-project.org/web/packages/lme4/index.html</csl:variable>
+        <csl:variable type="version">1.1-12</csl:variable>
+    </csl:reference>
+    <!-- Reference to a Preprint: bioRxiv -->
+    <csl:reference id="bib3" type="manuscript">
+        <csl:contributor type="author">
+            <csl:family>Bloss</csl:family>
+            <csl:given>CS</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Wineinger</csl:family>
+            <csl:given>NE</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Peters</csl:family>
+            <csl:given>M</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Boeldt</csl:family>
+            <csl:given>DL</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Ariniello</csl:family>
+            <csl:given>L</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Kim</csl:family>
+            <csl:given>JL</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Judy Sheard</csl:family>
+            <csl:given>J</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Komatireddy</csl:family>
+            <csl:given>R</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Barrett</csl:family>
+            <csl:given>P</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Topol</csl:family>
+            <csl:given>EJ</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2016"/>
+        </csl:date>
+        <csl:variable type="title">A prospective randomized trial examining health care utilization
+            in individuals using multiple smartphone-enabled biosensors</csl:variable>
+        <csl:variable type="source">bioRxiv</csl:variable>
+        <csl:variable type="DOI">10.1101/029983</csl:variable>
+    </csl:reference>
+    <!-- Data reference: NCBI Gene Expression Omnibus: pub-id-type="accession" assigning-authority="NCBI" -->
+    <csl:reference id="bib4" type="dataset">
+        <csl:contributor type="author">
+            <csl:family>Bouveret</csl:family>
+            <csl:given>R</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Waardenberg</csl:family>
+            <csl:given>AJ</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Schonrock</csl:family>
+            <csl:given>N</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Ramialison</csl:family>
+            <csl:given>M</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Doan</csl:family>
+            <csl:given>T</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>de Jong</csl:family>
+            <csl:given>D</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Bondue</csl:family>
+            <csl:given>A</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Kaur</csl:family>
+            <csl:given>G</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Mohamed</csl:family>
+            <csl:given>S</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Fonoudi</csl:family>
+            <csl:given>H</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Chen</csl:family>
+            <csl:given>C</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Wouters</csl:family>
+            <csl:given>M</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Bhattacharya</csl:family>
+            <csl:given>S</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family> Plachta</csl:family>
+            <csl:given>N</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Dunwoodie</csl:family>
+            <csl:given>SL</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Chapman</csl:family>
+            <csl:given>G</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Blanpain</csl:family>
+            <csl:given>C</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Harvey</csl:family>
+            <csl:given>RP</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2015"/>
+        </csl:date>
+        <csl:variable type="title">NKX2-5 mutations causative for congenital heart disease retain
+            functionality and are directed to hundreds of targets</csl:variable>
+        <csl:variable type="source">NCBI Gene Expression Omnibus</csl:variable>
+        <pub-id pub-id-type="accession" assigning-authority="NCBI"
+            href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE44902">GSE44902</pub-id>
+    </csl:reference>
+    <!-- Journal reference: year a -->
+    <csl:reference id="bib5" type="article-journal">
+        <csl:contributor type="author">
+            <csl:family>Brettar</csl:family>
+            <csl:given>I</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Christen</csl:family>
+            <csl:given>R</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Hofle</csl:family>
+            <csl:given>M</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2004"/>
+        </csl:date>
+        <csl:variable type="year-suffix">a</csl:variable>
+        <csl:variable type="title">Aquiflexum balticum gen. nov., sp nov., a novel marine bacterium
+            of the Cytophaga-Flavobacterium-Bacteroides group isolated from surface water of the
+            central Baltic Sea</csl:variable>
+        <csl:variable type="container-title">International journal of systematic and evolutionary
+            microbiology</csl:variable>
+        <csl:variable type="volume">54</csl:variable>
+        <csl:variable type="page">2335-2341</csl:variable>
+        <csl:variable type="page-first">2335</csl:variable>
+        <csl:variable type="DOI">10.1099/ijs.0.63255-0</csl:variable>
+        <csl:variable type="PMID">15545480</csl:variable>
+    </csl:reference>
+    <!-- Journal reference: year b -->
+    <csl:reference id="bib6" type="article-journal">
+        <csl:contributor type="author">
+            <csl:family>Brettar</csl:family>
+            <csl:given>I</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Christen</csl:family>
+            <csl:given>R</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Hofle</csl:family>
+            <csl:given>MG</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2004"/>
+        </csl:date>
+        <csl:variable type="year-suffix">b</csl:variable>
+        <csl:variable type="title">Belliella baltica gen. nov., sp. nov., a novel marine bacterium
+            of the Cytophaga-Flavobacterium-Bacteroides group isolated from surface water of the
+            central Baltic Sea</csl:variable>
+        <csl:variable type="container-title">International journal of systematic and evolutionary
+            microbiology</csl:variable>
+        <csl:variable type="volume">54</csl:variable>
+        <csl:variable type="page">65</csl:variable>
+        <csl:variable type="page-first">65</csl:variable>
+        <csl:variable type="DOI">10.1099/ijs.0.02752-0</csl:variable>
+        <csl:variable type="PMID">14742460</csl:variable>
+    </csl:reference>
+    <!-- Software reference-->
+    <csl:reference id="bib7" type="software">
+        <csl:contributor type="author">
+            <csl:family>Bricogne</csl:family>
+            <csl:given>G</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Blanc</csl:family>
+            <csl:given>E</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Brandl</csl:family>
+            <csl:given>M</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Flensburg</csl:family>
+            <csl:given>C</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Keller</csl:family>
+            <csl:given>P</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Paciorek</csl:family>
+            <csl:given>W</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Roversi</csl:family>
+            <csl:given>P</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Sharff</csl:family>
+            <csl:given>A</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Smart</csl:family>
+            <csl:given>OS</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Vonrhein</csl:family>
+            <csl:given>C</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Womack</csl:family>
+            <csl:given>TO</csl:given>
+        </csl:contributor>
+        <csl:variable type="title">BUSTER</csl:variable>
+        <csl:variable type="version">2.10.0</csl:variable>
+        <csl:variable type="publisher-place">Cambridge, UK</csl:variable>
+        <csl:variable type="publisher">Global Phasing Ltd</csl:variable>
+        <csl:date type="issued">
+            <csl:begin-date year="2011"/>
+        </csl:date>
+        <csl:variable type="URL">https://www.globalphasing.com/buster/</csl:variable>
+    </csl:reference>
+    <!-- Book reference: Editors, no chapter details -->
+    <csl:reference id="bib8" type="book">
+        <csl:contributor type="editor">
+            <csl:family>Cardé</csl:family>
+            <csl:given>RT</csl:given>
+        </csl:contributor>
+        <csl:contributor type="editor">
+            <csl:family>Millar</csl:family>
+            <csl:given>JG</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2004"/>
+        </csl:date>
+        <csl:variable type="title">Advances in insect chemical ecology</csl:variable>
+        <csl:variable type="publisher">Cambridge University Press</csl:variable>
+        <csl:variable type="publisher-place">Cambridge</csl:variable>
+    </csl:reference>
+    <!-- Reference to a Preprint: arXiv.org, no DOI -->
+    <csl:reference id="bib9" type="manuscript">
+        <csl:contributor type="author">
+            <csl:family>Cartwright</csl:family>
+            <csl:given>A</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2016"/>
+        </csl:date>
+        <csl:variable type="title">The Venus Hypothesis</csl:variable>
+        <csl:variable type="source">arXiv.org</csl:variable>
+        <csl:variable type="URL">https://arxiv.org/abs/1608.03074</csl:variable>
+    </csl:reference>
+    <!-- Book reference: Has edition, editor is author -->
+    <csl:reference id="bib10" type="book">
+        <csl:contributor type="editor">
+            <csl:family>Chmeil</csl:family>
+            <csl:given>N</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2008"/>
+        </csl:date>
+        <csl:variable type="edition">2</csl:variable>
+        <csl:variable type="title">An Introduction to Work and Organizational Psychology: A European
+            Perspective</csl:variable>
+        <csl:variable type="publisher">Wiley-Blackwell</csl:variable>
+    </csl:reference>
+    <!-- Book reference: publisher location - US: city followed by state code -->
+    <csl:reference id="bib11" type="book">
+        <csl:contributor type="author">
+            <csl:family>Coyne</csl:family>
+            <csl:given>JA</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Orr</csl:family>
+            <csl:given>HA</csl:given>
+        </csl:contributor>
+        <csl:contributor type="editor">
+            <csl:family>Otte</csl:family>
+            <csl:given>D</csl:given>
+        </csl:contributor>
+        <csl:contributor type="editor">
+            <csl:family>Endler</csl:family>
+            <csl:given>JA</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="1989"/>
+        </csl:date>
+        <csl:variable type="title">Two rules of speciation</csl:variable>
+        <csl:variable type="container-title">Speciation and its consequences</csl:variable>
+        <csl:variable type="page">1-2</csl:variable>
+        <csl:variable type="page-first">1</csl:variable>
+        <csl:variable type="publisher-place">Sunderland, MA</csl:variable>
+        <csl:variable type="publisher">Sinauer Associates</csl:variable>
+    </csl:reference>
+    <!-- Software reference: Question to Software citation group. Author correct??? Details correct?? See also bib35 -->
+    <csl:reference id="bib12" type="software">
+        <csl:contributor type="author">
+            <csl:family>DeLano</csl:family>
+            <csl:given>W</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2002"/>
+        </csl:date>
+        <csl:variable type="source">PyMol</csl:variable>
+        <csl:variable type="title">The PyMol Molecular Graphics System</csl:variable>
+        <!-- designator attribute added for version - Feb 8 2017 -->
+        <csl:variable type="version">Version 1.7.4</csl:variable>
+        <csl:variable type="publisher">Schrödinger LLC</csl:variable>
+        <csl:variable type="URL">https://www.pymol.org/</csl:variable>
+    </csl:reference>
+    <!-- UK White Paper with ISBN -->
+    <csl:reference id="bib13" type="report">
+        <csl:contributor type="author">
+            <csl:name>Department of Education</csl:name>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Morgan</csl:family>
+            <csl:given>N</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2016"/>
+        </csl:date>
+        <csl:variable type="title">Educational excellence everywhere</csl:variable>
+        <csl:variable type="publisher">Her Majesty’s Stationery Office</csl:variable>
+        <csl:variable type="publisher-place">United Kingdom</csl:variable>
+        <csl:variable type="ISBN">9781474130158</csl:variable>
+    </csl:reference>
+    <!-- Data reference: RCSB Protein Data Bank -->
+    <csl:reference id="bib14" type="dataset">
+        <csl:contributor type="author">
+            <csl:family>Du</csl:family>
+            <csl:given>J</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Johnson</csl:family>
+            <csl:given>LM</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Groth</csl:family>
+            <csl:given>M</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Feng</csl:family>
+            <csl:given>S</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Hale</csl:family>
+            <csl:given>CJ</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Li</csl:family>
+            <csl:given>S</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Vashisht</csl:family>
+            <csl:given>AA</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Gallego-Bartolome</csl:family>
+            <csl:given>J</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Wohlschlegel</csl:family>
+            <csl:given>JA</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Patel</csl:family>
+            <csl:given>DJ</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Jacobsen</csl:family>
+            <csl:given>SE</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2014"/>
+        </csl:date>
+        <csl:variable type="title">Crystal structure of KRYPTONITE in complex with mCHH DNA and
+            SAH</csl:variable>
+        <csl:variable type="source">RCSB Protein Data Bank</csl:variable>
+        <csl:variable type="DOI">10.2210/pdb4qen/pdb</csl:variable>
+    </csl:reference>
+    <!-- Reference to a post on a blog (page on a Website) -->
+    <csl:reference id="bib15" type="webpage">
+        <csl:contributor type="author">
+            <csl:family>Eisen</csl:family>
+            <csl:given>M</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2016"/>
+        </csl:date>
+        <csl:date type="accessed">
+            <csl:begin-date year="2016" month="8" day="19"/>
+        </csl:date>
+        <csl:variable type="title">The Imprinter of All Maladies</csl:variable>
+        <csl:variable type="container-title">it is NOT junk</csl:variable>
+        <csl:variable type="URL">http://www.michaeleisen.org/blog/?p=1894</csl:variable>
+    </csl:reference>
+    <!-- Data citation -->
+    <csl:reference id="bib16" type="dataset">
+        <csl:contributor type="author">
+            <csl:family>Ferry</csl:family>
+            <csl:given>Q</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Steinberg</csl:family>
+            <csl:given>J</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Webber</csl:family>
+            <csl:given>C</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>FitzPatrick</csl:family>
+            <csl:given>DR</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Ponting</csl:family>
+            <csl:given>CP</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Zisserman</csl:family>
+            <csl:given>A</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Nellåker</csl:family>
+            <csl:given>C</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2014"/>
+        </csl:date>
+        <csl:variable type="title">Diagnostically relevant facial gestalt information from ordinary
+            photos database</csl:variable>
+        <csl:variable type="source">Division of Clinical Neurology, University of
+            Oxford</csl:variable>
+        <csl:variable type="URL"
+            >https://github.com/ChristofferNellaker/Clinical_Face_Phenotype_Space_Pipeline</csl:variable>
+    </csl:reference>
+    <!-- Journal reference: author with suffix -->
+    <csl:reference id="bib17" type="article-journal">
+        <csl:contributor type="author">
+            <csl:family>Gall</csl:family>
+            <csl:given>A</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Treuting</csl:family>
+            <csl:given>P</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Elkon</csl:family>
+            <csl:given>KB</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Loo</csl:family>
+            <csl:given>YM</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Gale</csl:family>
+            <csl:given>M</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Barber</csl:family>
+            <csl:given>GN</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2012"/>
+        </csl:date>
+        <csl:variable type="title">Autoimmunity initiates in nonhematopoietic cells and progresses
+            via lymphocytes in an interferon-dependent autoimmune disease</csl:variable>
+        <csl:variable type="container-title">Immunity</csl:variable>
+        <csl:variable type="volume">36</csl:variable>
+        <csl:variable type="page">120-131</csl:variable>
+        <csl:variable type="page-first">120</csl:variable>
+        <csl:variable type="DOI">10.1016/j.immuni.2011.11.018</csl:variable>
+        <csl:variable type="PMID">22284419</csl:variable>
+    </csl:reference>
+    <!-- Data reference: NCBI Nucleotide: pub-id-type="accession" assigning-authority="NCBI" contains version details -->
+    <csl:reference id="bib18" type="dataset">
+        <csl:contributor type="author">
+            <csl:family>Gavrilov</csl:family>
+            <csl:given>S</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Harvey</csl:family>
+            <csl:given>RP</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Papaioannou</csl:family>
+            <csl:given>VE</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2014"/>
+        </csl:date>
+        <csl:variable type="title">Mus musculus T-box 2 (Tbx2), mRNA</csl:variable>
+        <csl:variable type="source">NCBI Nucleotide</csl:variable>
+        <pub-id pub-id-type="accession" assigning-authority="NCBI"
+            href="http://www.ncbi.nlm.nih.gov/nuccore/120407038">NM_009324</pub-id>
+        <csl:variable type="version">NM_009324.2</csl:variable>
+    </csl:reference>
+    <!-- Product information with web-page -->
+    <csl:reference id="bib19" type="report">
+        <csl:contributor type="author">
+            <collab>GlaxoSmithKline UK</collab>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2016"/>
+        </csl:date>
+        <csl:variable type="title">Augmentin 250/62 SF Suspension</csl:variable>
+        <csl:variable type="publisher">GlaxoSmithKline UK</csl:variable>
+        <csl:variable type="publisher-place">United Kingdom</csl:variable>
+        <csl:variable type="URL">https://www.medicines.org.uk/emc/medicine/19188</csl:variable>
+    </csl:reference>
+    <!-- Journal reference -->
+    <csl:reference id="bib20" type="article-journal">
+        <csl:contributor type="author">
+            <csl:family>Goodstadt</csl:family>
+            <csl:given>L</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2010"/>
+        </csl:date>
+        <csl:variable type="title">Ruffus: a lightweight Python library for computational
+            pipelines</csl:variable>
+        <csl:variable type="container-title">Bioinformatics</csl:variable>
+        <csl:variable type="volume">26</csl:variable>
+        <csl:variable type="page">2778-2779</csl:variable>
+        <csl:variable type="page-first">2778</csl:variable>
+        <csl:variable type="DOI">10.1093/bioinformatics/btq524</csl:variable>
+        <csl:variable type="PMID">20847218</csl:variable>
+    </csl:reference>
+    <!-- Data reference: NCBI Gene Expression Omnibus (GEO): pub-id-type="accession" assigning-authority="NCBI" -->
+    <csl:reference id="bib21" type="dataset">
+        <csl:contributor type="author">
+            <csl:family>Hoang</csl:family>
+            <csl:given>C</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Swift</csl:family>
+            <csl:given>GH</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Azevedo-Pouly</csl:family>
+            <csl:given>A</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>MacDonald</csl:family>
+            <csl:given>RJ</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2015"/>
+        </csl:date>
+        <csl:variable type="title">Effects on the transcriptome of adult mouse pancreas (principally
+            acinar cells) by the inactivation of the Ptf1a gene in vivo</csl:variable>
+        <csl:variable type="source">NCBI Gene Expression Omnibus</csl:variable>
+        <pub-id pub-id-type="accession" assigning-authority="NCBI"
+            href="http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE70542">GSE70542</pub-id>
+    </csl:reference>
+    <!-- Book reference: simple book reference, with ISBN -->
+    <csl:reference id="bib22" type="book">
+        <csl:contributor type="author">
+            <csl:family>Horne</csl:family>
+            <csl:given>P</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Page</csl:family>
+            <csl:given>J</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2008"/>
+        </csl:date>
+        <csl:variable type="title">Integrated pest management for crops and pastures</csl:variable>
+        <csl:variable type="publisher">Landlinks Press</csl:variable>
+        <csl:variable type="publisher-place">Victoria</csl:variable>
+        <csl:variable type="ISBN">9780643092570</csl:variable>
+    </csl:reference>
+    <!-- Software reference: Has authors, source and publisher but no title -->
+    <csl:reference id="bib23" type="software">
+        <csl:contributor type="author">
+            <csl:family>Hubbard</csl:family>
+            <csl:given>S</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Thornton</csl:family>
+            <csl:given>J</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="1993"/>
+        </csl:date>
+        <csl:variable type="title">Naccess,</csl:variable>
+        <csl:variable type="publisher">Department of Biochemistry Molecular Biology, University
+            College London</csl:variable>
+        <csl:variable type="version">V2.1.1</csl:variable>
+        <csl:variable type="URL">http://www.bioinf.manchester.ac.uk/naccess</csl:variable>
+    </csl:reference>
+    <!-- Reference to a conference: minimal info -->
+    <csl:reference id="bib24" type="paper-conference">
+        <csl:contributor type="author">
+            <csl:family>Jain</csl:family>
+            <csl:given>BV</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Bollman</csl:family>
+            <csl:given>B</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Richardson</csl:family>
+            <csl:given>M</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Berger</csl:family>
+            <csl:given>DR</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Helmstaedter</csl:family>
+            <csl:given>MN</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Briggman</csl:family>
+            <csl:given>KL</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Denk</csl:family>
+            <csl:given>W</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Bowden</csl:family>
+            <csl:given>JB</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Mendenhall</csl:family>
+            <csl:given>JM</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Abraham</csl:family>
+            <csl:given>WC</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Harris</csl:family>
+            <csl:given>KM</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Kasthuri</csl:family>
+            <csl:given>N</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Hayworth</csl:family>
+            <csl:given>KJ</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Schalek</csl:family>
+            <csl:given>R</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Tapia</csl:family>
+            <csl:given>JC</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Lichtman</csl:family>
+            <csl:given>JW</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Seung</csl:family>
+            <csl:given>HS</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2010"/>
+        </csl:date>
+        <csl:variable type="title">Boundary learning by optimization with topological
+            constraints</csl:variable>
+        <csl:variable type="event">IEEE Conference on Computer Vision and Pattern Recognition
+            (CVPR), 2010</csl:variable>
+    </csl:reference>
+    <!-- Book reference: Has volume, no publisher location -->
+    <csl:reference id="bib25" type="book">
+        <csl:contributor type="author">
+            <csl:family>Koch</csl:family>
+            <csl:given>S</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="1959"/>
+        </csl:date>
+        <csl:variable type="volume">3: Formulations of the Person and the Social
+            Context</csl:variable>
+        <csl:variable type="title">Psychology A Study Of A Science</csl:variable>
+        <csl:variable type="publisher">Mcgraw-Hill Book Company</csl:variable>
+    </csl:reference>
+    <!-- Data reference: Dryad dataset -->
+    <csl:reference id="bib26" type="dataset">
+        <csl:contributor type="author">
+            <csl:family>Kok</csl:family>
+            <csl:given>K</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Ay</csl:family>
+            <csl:given>A</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Li</csl:family>
+            <csl:given>L</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Arnosti</csl:family>
+            <csl:given>DN</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2015"/>
+        </csl:date>
+        <csl:variable type="title">Data from: Genome-wide errant targeting by Hairy</csl:variable>
+        <csl:variable type="source">Dryad Digital Repository</csl:variable>
+        <csl:variable type="DOI">10.5061/dryad.cv323</csl:variable>
+    </csl:reference>
+    <!-- Journal reference: collab author -->
+    <csl:reference id="bib27" type="article-journal">
+        <csl:contributor type="author">
+            <csl:family>McQuilton</csl:family>
+            <csl:given>P</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>St Pierre</csl:family>
+            <csl:given>SE</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Thurmond</csl:family>
+            <csl:given>J</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:name>FlyBase Consortium</csl:name>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2012"/>
+        </csl:date>
+        <csl:variable type="title">FlyBase 101—the basics of navigating FlyBase</csl:variable>
+        <csl:variable type="container-title-short">Nucleic Acids Res</csl:variable>
+        <csl:variable type="volume">40</csl:variable>
+        <csl:variable type="page">D706-D714</csl:variable>
+        <csl:variable type="page-first">D706</csl:variable>
+        <csl:variable type="DOI">10.1093/nar/gkr1030</csl:variable>
+        <csl:variable type="PMID">22127867</csl:variable>
+    </csl:reference>
+    <!-- Technical report -->
+    <csl:reference id="bib28" type="report">
+        <csl:contributor type="author">
+            <csl:name>National Institute of Mental Health</csl:name>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="1990"/>
+        </csl:date>
+        <csl:variable type="title">Clinical training in serious mental illness (DHHS Publication No.
+            ADM 90-1679)</csl:variable>
+        <csl:variable type="publisher">Government Printing Office</csl:variable>
+        <csl:variable type="publisher-place">Washington, DC, United States</csl:variable>
+    </csl:reference>
+    <!-- Software reference: Has author, title and source but no publisher -->
+    <csl:reference id="bib29" type="software">
+        <csl:contributor type="author">
+            <csl:family>Nellåker</csl:family>
+            <csl:given>C</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2014"/>
+        </csl:date>
+        <csl:variable type="title">Clinical_Face_Phenotype_Space_Pipeline</csl:variable>
+        <csl:variable type="source">Github</csl:variable>
+        <csl:variable type="version">v1.2</csl:variable>
+        <csl:variable type="URL"
+            >https://github.com/ChristofferNellaker/Clinical_Face_Phenotype_Space_Pipeline</csl:variable>
+    </csl:reference>
+    <!-- Software reference: Has authors, title, source -->
+    <csl:reference id="bib30" type="software">
+        <csl:contributor type="author">
+            <csl:family>Pages</csl:family>
+            <csl:given>H</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Gentleman</csl:family>
+            <csl:given>R</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Aboyoun</csl:family>
+            <csl:given>P</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Biostrings</csl:family>
+            <csl:given>DS</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2014"/>
+        </csl:date>
+        <csl:variable type="title">String objects representing biological sequences, and matching
+            algorithms</csl:variable>
+        <csl:variable type="source">Bioconductor</csl:variable>
+        <csl:variable type="version">R Package Version 2.30.1</csl:variable>
+        <csl:variable type="URL"
+            >https://bioconductor.org/packages/release/bioc/html/Biostrings.html</csl:variable>
+    </csl:reference>
+    <!-- Reference to a conference: Has title of proceedings and has page numbers -->
+    <csl:reference id="bib31" type="paper-conference">
+        <csl:contributor type="author">
+            <csl:family>Palmer</csl:family>
+            <csl:given>JA</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Kreutz-Delgado</csl:family>
+            <csl:given>K</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Rao</csl:family>
+            <csl:given>BD</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Makeig</csl:family>
+            <csl:given>S</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2007"/>
+        </csl:date>
+        <csl:variable type="title">Probabilistic Formulation of Independent Vector Analysis Using
+            Complex Gaussian Scale Mixtures</csl:variable>
+        <csl:variable type="container-title">Independent component analysis and signal
+            separation</csl:variable>
+        <csl:variable type="event">8th International Conference, ICA 2009, Paraty, Brazil, March
+            15-18, 2009</csl:variable>
+        <csl:variable type="page">90-97</csl:variable>
+        <csl:variable type="page-first">90</csl:variable>
+    </csl:reference>
+    <!-- Reference to a United States patent -->
+    <csl:reference id="bib32" type="patent">
+        <csl:contributor type="author">
+            <csl:family>Patterson</csl:family>
+            <csl:given>JB</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Lonergan</csl:family>
+            <csl:given>DG</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Flynn</csl:family>
+            <csl:given>GA</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Qingpeng</csl:family>
+            <csl:given>Z</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Pallai</csl:family>
+            <csl:given>PV</csl:given>
+        </csl:contributor>
+        <csl:contributor type="recipient">
+            <csl:name>Mankind Corp</csl:name>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2011"/>
+        </csl:date>
+        <csl:variable type="title">IRE-1alpha inhibitors</csl:variable>
+        <csl:variable type="jurisdiction">United States patent</csl:variable>
+        <patent country="United States">US20100941530</patent>
+        <csl:variable type="URL">http://europepmc.org/patents/PAT/US2011065162</csl:variable>
+    </csl:reference>
+    <!-- Software reference: R -->
+    <csl:reference id="bib33" type="software">
+        <csl:contributor type="author">
+            <csl:name>R Development Core Team</csl:name>
+        </csl:contributor>
+        <csl:variable type="title">R: a language and environment for statistical
+            computing</csl:variable>
+        <csl:variable type="version">3.2.2</csl:variable>
+        <csl:date type="issued">
+            <csl:begin-date year="2015"/>
+        </csl:date>
+        <csl:variable type="publisher-place">Vienna, Austria</csl:variable>
+        <csl:variable type="publisher">R Foundation for Statistical Computing</csl:variable>
+        <csl:variable type="URL">http://www.r-project.org/</csl:variable>
+    </csl:reference>
+    <!-- Data reference: ProteomeXchange: pub-id-type="archive" - not clear what this number is, so default option -->
+    <csl:reference id="bib34" type="dataset">
+        <csl:contributor type="author">
+            <csl:family>Radoshevich</csl:family>
+            <csl:given>L</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Impens</csl:family>
+            <csl:given>F</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Ribet</csl:family>
+            <csl:given>D</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Quereda</csl:family>
+            <csl:given>JJ</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Nam Tham</csl:family>
+            <csl:given>T</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Nahori</csl:family>
+            <csl:given>MA</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Bierne</csl:family>
+            <csl:given>H</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Dussurget</csl:family>
+            <csl:given>O</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Pizarro-Cerdá</csl:family>
+            <csl:given>J</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Knobeloch</csl:family>
+            <csl:given>KP</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Cossart</csl:family>
+            <csl:given>P</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2015"/>
+        </csl:date>
+        <csl:variable type="year-suffix">a</csl:variable>
+        <csl:variable type="title">ISG15 counteracts <i>Listeria monocytogenes</i>
+            infection</csl:variable>
+        <csl:variable type="source">ProteomeXchange</csl:variable>
+        <pub-id pub-id-type="archive"
+            href="http://proteomecentral.proteomexchange.org/cgi/GetDataset?ID=PXD001805"
+            >PXD001805</pub-id>
+    </csl:reference>
+    <!-- Data reference: ArrayExpress: pub-id-type="accession" -->
+    <csl:reference id="bib35" type="dataset">
+        <csl:contributor type="author">
+            <csl:family>Radoshevich</csl:family>
+            <csl:given>L</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Impens</csl:family>
+            <csl:given>F</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Ribet</csl:family>
+            <csl:given>D</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Quereda</csl:family>
+            <csl:given>JJ</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Nam Tham</csl:family>
+            <csl:given>T</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Nahori</csl:family>
+            <csl:given>MA</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Bierne</csl:family>
+            <csl:given>H</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Dussurget</csl:family>
+            <csl:given>O</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Pizarro-Cerdá</csl:family>
+            <csl:given>J</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Knobeloch</csl:family>
+            <csl:given>KP</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Cossart</csl:family>
+            <csl:given>P</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2015"/>
+        </csl:date>
+        <csl:variable type="year-suffix">b</csl:variable>
+        <csl:variable type="title">Transcription profiling by high throughput sequencing of LoVo
+            cells infected with Listeria for 24 hr compared to uninfected cells</csl:variable>
+        <csl:variable type="source">ArrayExpress</csl:variable>
+        <pub-id pub-id-type="accession"
+            href="https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-3649/">E-MTAB-3649</pub-id>
+    </csl:reference>
+    <!-- Software reference: no source -->
+    <csl:reference id="bib36" type="software">
+        <csl:contributor type="author">
+            <csl:family>Rasband</csl:family>
+            <csl:given>WS</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="1997"/>
+        </csl:date>
+        <csl:variable type="title">Image J</csl:variable>
+        <csl:variable type="publisher-place">Bethesda, MA</csl:variable>
+        <csl:variable type="publisher">US National Institutes of Health</csl:variable>
+        <csl:variable type="URL">http://imagej.nih.gov/ij/</csl:variable>
+    </csl:reference>
+    <!-- Journal reference: in press -->
+    <csl:reference id="bib37" type="article-journal">
+        <csl:contributor type="author">
+            <csl:family>Roy</csl:family>
+            <csl:given>S</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Wapinski</csl:family>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Pfiffner</csl:family>
+            <csl:given>J</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>French</csl:family>
+            <csl:given>C</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Socha</csl:family>
+            <csl:given>A</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Konieczka</csl:family>
+            <csl:given>J</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Regev</csl:family>
+            <csl:given>A</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2013"/>
+        </csl:date>
+        <csl:variable type="title">Arboretum: reconstruction and analysis of the evolutionary
+            history of condition-specific transcriptional programs</csl:variable>
+        <csl:variable type="container-title-short">Genome Res</csl:variable>
+        <csl:variable type="status">In press</csl:variable>
+    </csl:reference>
+    <!-- Reference to a Thesis -->
+    <csl:reference id="bib38" type="thesis">
+        <csl:contributor type="author">
+            <csl:family>Schneider</csl:family>
+            <csl:given>P</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2006"/>
+        </csl:date>
+        <csl:variable type="title">PhD thesis: Submicroscopic <i>Plasmodium falciparum</i>
+            gametocytaemia and the contribution to malaria transmission</csl:variable>
+        <csl:variable type="publisher">Radboud University Nijmegen Medical Centre</csl:variable>
+        <csl:variable type="publisher-place">Nijmegen, The Netherlands</csl:variable>
+    </csl:reference>
+    <!-- Software reference: should source be article title? -->
+    <csl:reference id="bib39" type="software">
+        <csl:contributor type="author">
+            <csl:family>Schrödinger</csl:family>
+            <csl:given>LLC</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2011"/>
+        </csl:date>
+        <csl:variable type="title">The PyMOL Molecular Graphics System</csl:variable>
+        <csl:variable type="publisher">Schrödinger LLC</csl:variable>
+        <!-- designator attribute added for version - Feb 8 2017 -->
+        <csl:variable type="version">1.2r3pre</csl:variable>
+        <csl:variable type="URL">https://www.pymol.org/</csl:variable>
+    </csl:reference>
+    <!-- Reference to a Newspaper article -->
+    <csl:reference id="bib40" type="article-newspaper">
+        <csl:contributor type="author">
+            <csl:family>Schwartz</csl:family>
+            <csl:given>J</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="1993" month="9" day="9"/>
+        </csl:date>
+        <csl:variable type="title">Obesity affects economic, social status</csl:variable>
+        <csl:variable type="container-title">The Washington Post</csl:variable>
+        <csl:variable type="page">A1-A4</csl:variable>
+        <csl:variable type="page-first">A1</csl:variable>
+    </csl:reference>
+    <!-- Reference to a Clinical Trial - subject to revision -->
+    <csl:reference id="bib41" type="clinicaltrial">
+        <csl:contributor type="sponsor">
+            <csl:name>Scripps Translational Science Institute</csl:name>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2015"/>
+        </csl:date>
+        <csl:variable type="title">Scripps Wired for Health Study</csl:variable>
+        <csl:variable type="URL">https://clinicaltrials.gov/ct2/show/NCT01975428</csl:variable>
+    </csl:reference>
+    <!-- Software reference: No title -->
+    <csl:reference id="bib42" type="software">
+        <csl:contributor type="author">
+            <csl:family>Smit</csl:family>
+            <csl:given>A</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Hubley</csl:family>
+            <csl:given>R</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2010"/>
+        </csl:date>
+        <csl:variable type="title">RepeatModeler</csl:variable>
+        <csl:variable type="publisher">Institute for Systems Biology</csl:variable>
+        <csl:variable type="publisher-place">Seattle, USA</csl:variable>
+        <csl:variable type="version">open-1.0</csl:variable>
+        <csl:variable type="URL">http://www.repeatmasker.org/RepeatModeler.html</csl:variable>
+    </csl:reference>
+    <!-- Data reference: JASPAR -->
+    <csl:reference id="bib43" type="dataset">
+        <csl:contributor type="author">
+            <csl:family>Staab</csl:family>
+            <csl:given>TA</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Griffen</csl:family>
+            <csl:given>TC</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Corcoran</csl:family>
+            <csl:given>C</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Evgrafov</csl:family>
+            <csl:given>O</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Knowles</csl:family>
+            <csl:given>JA</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Sieburth</csl:family>
+            <csl:given>D</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2013"/>
+        </csl:date>
+        <csl:variable type="title">SKN-1 from the JASPAR CORE database</csl:variable>
+        <csl:variable type="source">JASPAR</csl:variable>
+        <pub-id pub-id-type="archive" href="http://jaspar.genereg.net/cgi-bin/jaspar_db.pl"
+            >MA0547.1</pub-id>
+    </csl:reference>
+    <!-- Reference to a Preprint: preprints -->
+    <csl:reference id="bib44" type="manuscript">
+        <csl:contributor type="author">
+            <csl:family>Tanaka</csl:family>
+            <csl:given>Y</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Hosoyama</csl:family>
+            <csl:given>T</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Mikamo</csl:family>
+            <csl:given>A</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Kurazumi</csl:family>
+            <csl:given>H</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Nishimoto</csl:family>
+            <csl:given>A</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Ueno</csl:family>
+            <csl:given>K</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Shirasawa</csl:family>
+            <csl:given>B</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Hamano</csl:family>
+            <csl:given>K</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2016"/>
+        </csl:date>
+        <csl:variable type="title">Hypoxic Preconditioning of Human Cardiosphere-derived Cell Sheets
+            Enhances Cellular Functions via Activation of the PI3K/Akt/mTOR/HIF-1a
+            Pathway</csl:variable>
+        <csl:variable type="source">preprints</csl:variable>
+        <csl:variable type="DOI">10.20944/preprints201608.0124.v1</csl:variable>
+    </csl:reference>
+    <!-- Data reference: NCBI BioProject: author is a collab pub-id-type="accession" assigning-authority="NCBI" example of 3 references with same author/year -->
+    <csl:reference id="bib45" type="dataset">
+        <csl:contributor type="author">
+            <csl:name>The <i>Shigella</i> Genome Sequencing Consortium</csl:name>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2015"/>
+        </csl:date>
+        <csl:variable type="year-suffix">a</csl:variable>
+        <csl:variable type="title">Global Diversity of Shigella Species</csl:variable>
+        <csl:variable type="source">NCBI BioProject</csl:variable>
+        <pub-id pub-id-type="accession" assigning-authority="NCBI"
+            href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJEB2846">PRJEB2846</pub-id>
+    </csl:reference>
+    <csl:reference id="bib46" type="dataset">
+        <csl:contributor type="author">
+            <csl:name>The <i>Shigella</i> Genome Sequencing Consortium</csl:name>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2015"/>
+        </csl:date>
+        <csl:variable type="year-suffix">b</csl:variable>
+        <csl:variable type="title">Shigella sonnei and flexneri from around the world</csl:variable>
+        <csl:variable type="source">NCBI BioProject</csl:variable>
+        <pub-id pub-id-type="accession" assigning-authority="NCBI"
+            href="http://www.ncbi.nlm.nih.gov/bioproject/204320">PRJEB2460</pub-id>
+    </csl:reference>
+    <csl:reference id="bib47" type="dataset">
+        <csl:contributor type="author">
+            <csl:name>The <i>Shigella</i> Genome Sequencing Consortium</csl:name>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2015"/>
+        </csl:date>
+        <csl:variable type="year-suffix">c</csl:variable>
+        <csl:variable type="title">Shigella flexneri from around the world</csl:variable>
+        <csl:variable type="source">NCBI BioProject</csl:variable>
+        <pub-id pub-id-type="accession" assigning-authority="NCBI"
+            href="http://www.ncbi.nlm.nih.gov/bioproject/?term=PRJEB2542">PRJEB2542</pub-id>
+    </csl:reference>
+    <!-- Book reference: chapter in book with editors -->
+    <csl:reference id="bib48" type="book">
+        <csl:contributor type="author">
+            <csl:family>Turlings</csl:family>
+            <csl:given>TCJ</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Wäckers</csl:family>
+            <csl:given>FL</csl:given>
+        </csl:contributor>
+        <csl:contributor type="editor">
+            <csl:family>Cardé</csl:family>
+            <csl:given>RT</csl:given>
+        </csl:contributor>
+        <csl:contributor type="editor">
+            <csl:family>Millar</csl:family>
+            <csl:given>JG</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2004"/>
+        </csl:date>
+        <csl:variable type="year-suffix">a</csl:variable>
+        <csl:variable type="container-title">Advances in insect chemical ecology</csl:variable>
+        <csl:variable type="title">Recruitment of predators and parasitoids by herbivore-injured
+            plants</csl:variable>
+        <csl:variable type="publisher">Cambridge University Press</csl:variable>
+        <csl:variable type="publisher-place">Cambridge</csl:variable>
+        <csl:variable type="page">21-75</csl:variable>
+        <csl:variable type="page-first">21</csl:variable>
+    </csl:reference>
+    <!-- Book reference: book with editors and authors, no chapter, and example of  -->
+    <csl:reference id="bib49" type="book">
+        <csl:contributor type="author">
+            <csl:family>Turlings</csl:family>
+            <csl:given>TCJ</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Wäckers</csl:family>
+            <csl:given>FL</csl:given>
+        </csl:contributor>
+        <csl:contributor type="editor">
+            <csl:family>Cardé</csl:family>
+            <csl:given>RT</csl:given>
+        </csl:contributor>
+        <csl:contributor type="editor">
+            <csl:family>Millar</csl:family>
+            <csl:given>JG</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2004"/>
+        </csl:date>
+        <csl:variable type="year-suffix">a</csl:variable>
+        <csl:variable type="title">Advances in insect chemical ecology</csl:variable>
+        <csl:variable type="publisher">Cambridge University Press</csl:variable>
+    </csl:reference>
+    <!-- Reference to a whole Website - added date a year ealier than accessed date-->
+    <csl:reference id="bib50" type="webpage">
+        <csl:contributor type="author">
+            <csl:family>Walker</csl:family>
+            <csl:given>J</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="1994"/>
+        </csl:date>
+        <csl:date type="accessed">
+            <csl:begin-date year="1995" month="9" day="10"/>
+        </csl:date>
+        <csl:variable type="title">Solar System Live</csl:variable>
+        <csl:variable type="URL">https://www.fourmilab.ch/solar/</csl:variable>
+    </csl:reference>
+    <!-- Journal reference: elocation-id and DOI and PMID -->
+    <csl:reference id="bib51" type="article-journal">
+        <csl:contributor type="author">
+            <csl:family>Wolski</csl:family>
+            <csl:given>SC</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Kuper</csl:family>
+            <csl:given>J</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Hanzelmann</csl:family>
+            <csl:given>P</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Truglio</csl:family>
+            <csl:given>JJ</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Croteau</csl:family>
+            <csl:given>DL</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Van Houten</csl:family>
+            <csl:given>B</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2008"/>
+        </csl:date>
+        <csl:variable type="title">Crystal structure of the FeS cluster-containing nucleotide
+            excision repair helicase XPD</csl:variable>
+        <csl:variable type="container-title-short">PLoS Biol</csl:variable>
+        <csl:variable type="volume">6</csl:variable>
+        <elocation-id>e149</elocation-id>
+        <csl:variable type="DOI">10.1371/journal.pbio.0060149</csl:variable>
+        <csl:variable type="PMID">18578568</csl:variable>
+    </csl:reference>
+    <!-- Book reference: Has edition, editor is author -->
+    <csl:reference id="bib52" type="book">
+        <csl:contributor type="author">
+            <csl:name>World Health Organization</csl:name>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2016"/>
+        </csl:date>
+        <csl:variable type="edition">2</csl:variable>
+        <csl:variable type="title">Growing up unequal: gender and socioeconomic differences in young
+            people's health and well-being. Health Behaviour in School-aged Children (HBSC)
+            study</csl:variable>
+        <csl:variable type="publisher">World Health Organization</csl:variable>
+    </csl:reference>
+    <csl:reference id="bib53" type="dataset">
+        <csl:contributor type="author">
+            <csl:family>Zhang</csl:family>
+            <csl:given>YA</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Salinas</csl:family>
+            <csl:given>I</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Li</csl:family>
+            <csl:given>J</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Parra</csl:family>
+            <csl:given>D</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Bjork</csl:family>
+            <csl:given>S</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Xu</csl:family>
+            <csl:given>Z</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>LaPatra</csl:family>
+            <csl:given>SE</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Bartholomew</csl:family>
+            <csl:given>J</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Sunyer</csl:family>
+            <csl:given>JO</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2010"/>
+        </csl:date>
+        <csl:variable type="title">Polymeric immunoglobulin receptor [Oncorhynchus
+            mykiss]</csl:variable>
+        <csl:variable type="source">NCBI</csl:variable>
+        <pub-id assigning-authority="NCBI" pub-id-type="accession"
+            href="http://www.ncbi.nlm.nih.gov/protein/ADB81776.1">GenBank: ADB81776.1</pub-id>
+    </csl:reference>
+    <!-- Data reference: modMine pub-id-type="archive" -->
+    <csl:reference id="bib54" type="dataset">
+        <csl:contributor type="author">
+            <csl:family>Zhong</csl:family>
+            <csl:given>M</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Snyder</csl:family>
+            <csl:given>M</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Slightam</csl:family>
+            <csl:given>C</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Kim</csl:family>
+            <csl:given>S</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Murray</csl:family>
+            <csl:given>J</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Waterston</csl:family>
+            <csl:given>R</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Gerstein</csl:family>
+            <csl:given>M</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Niu</csl:family>
+            <csl:given>W</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Janette</csl:family>
+            <csl:given>J</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Raha</csl:family>
+            <csl:given>D</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Agarwal</csl:family>
+            <csl:given>A</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Reinke</csl:family>
+            <csl:given>V</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Sarov</csl:family>
+            <csl:given>M</csl:given>
+        </csl:contributor>
+        <csl:contributor type="author">
+            <csl:family>Hyman</csl:family>
+            <csl:given>A</csl:given>
+        </csl:contributor>
+        <csl:date type="issued">
+            <csl:begin-date year="2013"/>
+        </csl:date>
+        <csl:variable type="title">ChIP-Seq Identification of C. elegans TF Binding
+            Sites</csl:variable>
+        <csl:variable type="source">modMine</csl:variable>
+        <pub-id pub-id-type="archive"
+            href="http://intermine.modencode.org/release-33/report.do?id=77000379"
+            >modENCODE_3369</pub-id>
+    </csl:reference>
+
+</references>

@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<?xml-model href="../../front.rng"?>
+
+<front xmlns="http://libero.pub" xmlns:elife="http://elifesciences.org"
+    xmlns:mml="http://www.w3.org/1998/Math/MathML" xml:lang="en">
+
+    <id>7dbeb390</id>
+    <title>Reproducible Document Stack – supporting the next-generation research article</title>
+
+</front>

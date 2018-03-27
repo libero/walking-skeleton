@@ -1,0 +1,1024 @@
+<?xml version="1.0" ?>
+<?xml-model href="../../body.rng"?>
+
+<body xmlns="http://libero.pub" xmlns:ms="http://hindawi.com" xml:lang="en">
+
+    <section id="sec1">
+        <title>1. Introduction</title>
+        <content>
+            <p>Breast cancer is one of the main causes of death among women and the most frequently
+                diagnosed non-skin cancer in women [<a href="#B1">1</a>]. Breast cancer occurs when
+                the cell tissues of the breast become abnormal and uncontrollably divided. These
+                abnormal cells form large lump of tissues, which consequently becomes a tumor [<a
+                    href="#B2">2</a>]. Such disorders could successfully be treated if they are
+                detected early. Thus, it is of importance to have appropriate methods for screening
+                the earliest signs of breast cancer.</p>
+            <p>Microcalcifications and masses are the earliest signs of breast cancer which can only
+                be detected using modern techniques. Microcalcifications are clusters of calcium
+                deposits which are very small in size and present inside the soft breast tissues [<a
+                    href="#B2">2</a>]. Generally, detection of masses in breast tissues is more
+                challenging compared to the detection of microcalcifications, not only due to the
+                large variation in size and shape but also because masses often exhibit poor image
+                contrast when using mammography [<a href="#B3">3</a>]. The difficulty in
+                classification of benign and malignant microcalcifications also causes a significant
+                problem in medical image processing.</p>
+            <p>Automated classifiers may be useful for radiologists in distinguishing between benign
+                and malignant patterns. Thus, in this paper, an artificial neural network (ANN)
+                which can be served as an automated classifier is investigated. In medical image
+                processing, ANNs have been applied to a variety of data-classification and pattern
+                recognition tasks and become a promising classification tool in breast cancer [<a
+                    href="#B4">4</a>]. ANN applications in mammography, ultrasound, and MRI and IR
+                imaging for early detection of breast cancer are reviewed in this paper.</p>
+            <p>Image features can be distinguished in many aspects, such as texture, color, shape,
+                and spatial relations. They can reflect the subtle variance in many degrees. Thus,
+                different selections of image features will result in different classification
+                decisions. These classifications can be divided into three types: first, the method
+                based on statistics, such as Support Vector Machine; second, the method based on
+                rule, such as decision tree and rough sets; and third, artificial neural network [<a
+                    href="#B5">5</a>].</p>
+            <p>In the early 1980s, there was an increment in the use of neural networks in the field
+                of image and signal processing. The main benefit was the reduction in manipulation
+                time due to the parallel-distributed processing behavior of neural networks [<a
+                    href="#B6">6</a>]. Then the network had been used widely in the common image
+                processing methods such as vector quantization, eigenvector extraction, 2D pulse
+                code modulation, or 2D filtering [<a href="#B7">7</a>]. The artificial neural
+                network resembles the function of the biological neuron, and it is composed of
+                neurons with different layers and these neurons are interconnected by numeric
+                weights; these weights can be changed due to the learning behavior of the network to
+                approach the optimum result. Usually in image processing applications, the number of
+                the neurons is directly related to the number of pixels in the input image [<a
+                    href="#B8">8</a>], and the number of layers depends on the processing steps.</p>
+            <p>For cancer detection and classification, image segmentation has been widely used.
+                Many image segmentation methods, based on histogram features, edge detection, region
+                growing, or pixel classification, have been trained using ANNs [<a href="#B9"
+                >9</a>].</p>
+            <p>Although the technology related to ANN in breast cancer detection has rapidly moved
+                forward during the last few years, there is a dearth of critical literature review
+                on the subject which is a distinct drawback for further development of the
+                technologies. This paper is an attempt to fulfill that vacuum in the field of image
+                processing in the early detection of breast cancer.</p>
+        </content>
+    </section>
+    <section id="sec2">
+        <title>2. Applications of ANNs</title>
+        <content>
+            <section id="sec2.1">
+                <title>2.1. Mammogram</title>
+                <content>
+                    <p>Mammography is one of the most effective methods used in hospitals and
+                        clinics for early detection of breast cancer. It has been proven effective
+                        to reduce mortality as much as by 30&#x25; [<a href="#B3">3</a>]. The main
+                        objective of screening mammography is to early detect the cancerous tumor
+                        and remove it before the establishment of metastases [<a href="#B3">3</a>,
+                            <a href="#B10">10</a>, <a href="#B11">11</a>]. The early signs for
+                        breast cancer are masses and microcalcification but the abnormalities and
+                        normal breast tissues are often difficult to be differentiated due to their
+                        subtle appearance and ambiguous margins [<a href="#B3">3</a>]. Only about
+                        3&#x25; of the required information are revealed during a mammogram where a
+                        part of suspicious region is covered with vessels and normal tissues. This
+                        situation may cause the radiologists difficult to identify a cancerous
+                        tumor. Thus, computer-aided diagnosis (CAD) has been developed to overcome
+                        the limitation of mammogram and assists the radiologists to read the
+                        mammograms much better [<a href="#B10">10</a>]. ANN model is the most
+                        commonly used in CAD for mammography interpretation and biopsy decision
+                        making. There are two ways used in ANN to assist in mammography
+                        interpretation: first, applying classifier directly to the region of
+                        interest (ROI) image data and second, understanding the situation from the
+                        features extracted from the preprocessed image signals [<a href="#B12"
+                            >12</a>]. Figure <a href="#fig1">1</a> shows an example of ANN structure
+                        with multi-featured input data and multi-hidden layers [<a href="#B12"
+                            >12</a>].</p>
+                    <figure>
+                        <asset>
+                            <label>Figure 1</label>
+                            <image id="fig1">
+                                <caption>
+                                    <p>Structure of a typical ANN for classification of breast
+                                        tumors in mammography [<a href="#B12">12</a>].</p>
+                                </caption>
+                                <source height="833" width="822" media-type="image/svg+xml"
+                                    >https://www.hindawi.com/journals/cmmm/2017/2610628.fig.001.svgz</source>
+                            </image>
+                        </asset>
+                    </figure>
+                    <p>Microcalcification is deposition calcium in the soft breast tissues. They are
+                        quite minute in quantity and size. It is found in a cluster or pattern of
+                        circles/lines together with extra cell activity in breast region [<a
+                            href="#B2">2</a>]. Many researchers have developed CAD system using
+                        artificial neural network to detect microcalcification. In early
+                        90&#x2019;s, research done by Dhawan et al. [<a href="#B13">13</a>] has
+                        defined image structure features using the second-order grey-level
+                        statistics. The classification was based on implementing perceptron based
+                        3-layer neural network and the network uses backpropagation algorithm in
+                        training which has been used successfully for a number of pattern
+                        recognition and classification applications [<a href="#B13">13</a>, <a
+                            href="#B14">14</a>]. The entropy feature has significant discriminating
+                        power for classification [<a href="#B13">13</a>]. The group of researchers
+                        further extended their research in investigating the potential of using
+                        second-order histogram textural features for their correlation with
+                        malignancy. Several architectures of neural networks were proposed to
+                        analyze the features extracted from segmented calcifications and it shows
+                        that the neural network gives good results for the classification of
+                        hard-to-diagnoses cases of mammographic microcalcification into benign and
+                        malignant categories using the selected set of features [<a href="#B15"
+                            >15</a>].</p>
+                    <p>Image segmentation is a technique used in image processing. Basically,
+                        segmentation is performed on the raw image to detect small, local, and
+                        bright spots. Research done by Kevin et al. [<a href="#B16">16</a>] has
+                        drawn significant attention on the segmentation process and neural network
+                        used. After segmentation process, ANN is performed to distinguish the
+                        segmented objects called candidates, as either microcalcifications or
+                        nonmicrocalcifications. The accuracy of the ANN is tested by having a set of
+                        labelled test images for determination of true positive (TP) and false
+                        positive (FP) detection rates. This ANN is using cascade correlation (CC)
+                        for pattern classification. It is a self-organizing ANN which runs a
+                        supervised learning algorithm. The CC ANN approach shows a promising result
+                        to detect microcalcification [<a href="#B16">16</a>].</p>
+                    <p>Not only image segmentation but also image registration techniques can be
+                        used for the breast cancer detection where ANN is performed to enhance the
+                        effectiveness of the cancer detection. In Saini and Vijay [<a href="#B17"
+                            >17</a>], Grey-Level Cooccurrence Matrix (GLCM) features are extracted
+                        and used as input to train artificial neural network based breast cancer
+                        detection system. After that, the extracted features of known and unknown
+                        mammogram images have been compared using feed-forward backpropagation and
+                        Cascade forward backpropagation ANN to distinguish the malignant and benign
+                        images. Feed-forward backpropagation network has high accuracy of 87.5&#x25;
+                        compared to Cascade forward backpropagation network with 67.8&#x25; after
+                        optimizing the number of neurons and number of layers [<a href="#B17"
+                        >17</a>].</p>
+                    <p>In late 90&#x2019;s, the application of ANN in CAD mammography was found to
+                        have limitation in terms of data overfitting. Thus, Bayesian belief network
+                        (BBN) was compared with ANN classification method to identify the positive
+                        mass regions based on a set of computed features in CAD. The same database
+                        was used in ANN and a BNN with topologies optimization using a genetic
+                        algorithm (GA) to test the performance and robustness of the ANN and BBN.
+                        However, the result shows that there is no significant difference between
+                        using an ANN and using a BBN in CAD for mass detection if the network is
+                        optimized properly [<a href="#B18">18</a>]. In Alayliogh and Aghdasi [<a
+                            href="#B11">11</a>], wavelet-based image enhancement technique has been
+                        used to improve the detection of breast cancer. Input feature vectors
+                        containing spatial and spectral image were employed in neural network
+                        classifier. Microcalcification detection scheme and wavelet image
+                        enhancement have been investigated. Microcalcification detection has been
+                        performed by using a multistage algorithm comprising the image segmentation
+                        and pattern recognition to classify the microcalcifications whereas
+                        biorthogonal spline wavelets have been used in image enhancement to separate
+                        the image into frequency bands without affecting the spatial locality. The
+                        result shows that spatial and spectral feature are promising ways to detect
+                        microcalcification [<a href="#B11">11</a>].</p>
+                    <p>Besides microcalcification, masses are the most important symptoms which are
+                        difficult to be detected and distinguished accurately. A new algorithm based
+                        on two ANNs (artificial neural networks) was proposed to detect these masses
+                        automatically. ANFIS and multilayer perceptron (MLP) classifier have been
+                        used for adjustment and filtration. Suitable methods and parameters should
+                        be applied to get high detection precision and low false positive (FP) [<a
+                            href="#B10">10</a>]. The detection process was well adjusted and
+                        improved with this proposed algorithm and the final diagnosis result showed
+                        that the CAD scheme could simultaneously achieve comparatively high
+                        detection precision and low false positive rate, even when the special
+                        masses are dealt with [<a href="#B10">10</a>].</p>
+                    <p>In mammography equipped with CAD system, the major problems developed are
+                        inconsistency and low classification accuracy. The accuracy can be improved
+                        by introducing a novel intelligent classifier which used texture information
+                        as input for the classification of normal and abnormal tissues in
+                        mammograms. Dheeba et al. [<a href="#B3">3</a>] used neutral network as a
+                        new artificial intelligent technique for the tissue classification. CAD
+                        system based on the optimized wavelet neural network was designed and
+                        evaluated using Particle Swarm Optimization approach (PSOWNN). Optimization
+                        using heuristic algorithm is done to find appropriate hidden neurons,
+                        momentum constant, and learning rate during the training process. Thus, it
+                        will improve the classification accuracy in breast cancer detection by
+                        reducing the misclassification rate [<a href="#B3">3</a>]. In Zhang et al.
+                            [<a href="#B19">19</a>], backpropagation neural network (BPNN) is
+                        introduced for the classification of benign and malignant. The digitized
+                        mammogram used fuzzy detection algorithm to detect the microcalcification
+                        and suspicious area. BPNN gives a very promising result with 83.3&#x25; for
+                        the classification [<a href="#B19">19</a>].</p>
+                    <p>Any defect in breast image obtained from mammogram is highly advantageous to
+                        be detected automatically. In Lashkari [<a href="#B20">20</a>], Gabor
+                        wavelets and ANN are used to classify normal and abnormal tissues which
+                        could increase the accuracy and save radiologist&#x2019;s time (Figure <a
+                            href="#fig2">2</a>). Gabor wavelets transforms have a good attribute in
+                        image processing and computer vision. The result shows that this combination
+                        of neural networks has a good potential with 97&#x25; accuracy on unknown
+                        cases [<a href="#B20">20</a>].</p>
+                    <figure>
+                        <asset>
+                            <label>Figure 2</label>
+                            <image-group id="fig2">
+                                <caption>
+                                    <p>Results (from (a)&#x2013;(c)): original image, image after
+                                        first stage of NN processing, and image at second stage of
+                                        NN processing using Gabor wavelets as input for mammogram
+                                        image [<a href="#B20">20</a>].</p>
+                                </caption>
+                                <image id="fig2a">
+                                    <source height="414" width="283" media-type="image/svg+xml"
+                                        >https://www.hindawi.com/journals/cmmm/2017/2610628.fig.002a.svgz</source>
+                                </image>
+                                <image id="fig2b">
+                                    <source height="414" width="273" media-type="image/svg+xml"
+                                        >https://www.hindawi.com/journals/cmmm/2017/2610628.fig.002b.svgz</source>
+                                </image>
+                                <image id="fig2c">
+                                    <source height="414" width="281" media-type="image/svg+xml"
+                                        >https://www.hindawi.com/journals/cmmm/2017/2610628.fig.002c.svgz</source>
+                                </image>
+                            </image-group>
+                        </asset>
+                    </figure>
+                </content>
+            </section>
+            <section id="sec2.2">
+                <title>2.2. Ultrasound</title>
+                <content>
+                    <p>Neural network (NN) also plays its role in ultrasound images in detecting
+                        breast cancer. We will first look into the capability of NN in determining
+                        and recognizing a region where malignant and benign lesions can be found.
+                        Buller [<a href="#B21">21</a>] was one of the first who used neural network
+                        in breast cancer detection for ultrasound images. In his work, he separated
+                        the training process for benign and malignant cases by feeding the first
+                        system only with images containing benign lesion and the other with images
+                        containing only malignant lesion. He also introduces &#x201c;spider
+                        web&#x201d; topology which are able to produce two vectors that are further
+                        used in the classification process. The first vector represent the localized
+                        effects in a defined neighborhood and the other represents the global
+                        attributes. The technique brings high advantages as the spider web topology
+                        is sensitive to small area and hence provides better results in small area
+                        by putting more weights on the localized effects. This technique can
+                        actually be improved taking into account the extra parameters of texture and
+                        shape. As we know, malign and benign lesion has slightly different texture
+                        and shape. In Ruggierol et al. [<a href="#B22">22</a>], the researchers
+                        implement the NN using both texture and shape parameters. Transition
+                        probability matrix and Run length matrix on the texture parameter have been
+                        used to quantify the homogeneity of images while shape parameter shows the
+                        irregularity of border of lesion. Besides, three-layer NN consisting of
+                        input, output, and hidden neurons was used. They also execute the training
+                        process by leaving one out before training and use the left out as tester.
+                        From the result, texture implementation achieved a very good result on both
+                        solid and liquid lesion.</p>
+                    <p>Classification is an important technique used widely to differentiate
+                        cancerous and noncancerous breasts. Denser breast has higher risk in having
+                        cancer. Knowing this, Sahiner et al. [<a href="#B23">23</a>] in their paper
+                        describe the importance of texture images in classification of dense breast
+                        tissue. They also introduce convolution neural network classifier to replace
+                        the backpropagation methods where the images are fed directly into the
+                        network. To measure the coarseness of texture, grey-level difference
+                        statistics and features are used, whereas spatial grey-level dependence
+                        features will be showing the element distribution. The strength of this
+                        method is that no image of tumor is fed into the network. Besides,
+                        segmentation does not need to be performed beforehand; instead a threshold
+                        value will be used. The drawback is the high computational cost which in
+                        turn makes the technique probably unsuitable for real-time operation.</p>
+                    <p>As early as 1999, NN classifier has been used with autocorrelation features
+                        to classify the breast cancer as benign or malignant. Chen et al. [<a
+                            href="#B24">24</a>] introduced a 25-input node multilayer feed-forward
+                        NN which consists of 24-dimensional image feature vector from the ultrasound
+                        image, together with a predefined threshold of the input layer to classify
+                        the cancer. The introduced system has a relatively high accuracy in
+                        classifying malignancies and thus could help inexperienced operators to
+                        diagnose complicated ultrasound images. One of the striking advantages of NN
+                        is that it could be further optimized by supplying larger set of ultrasound
+                        images as the NN is well-trainable.</p>
+                    <p>Self-organizing map (SOM) model is one type of neural networks that can be
+                        trained without supervision; it is widely used as a classifier in recent
+                        years. It expresses lower dimensional data in a simple geometry compared
+                        with the complex high dimensional data such as that in Chen et al. [<a
+                            href="#B25">25</a>]. SOM training is fairly easy as a desired output is
+                        not necessary. SOM will automatically choose the closest input vector. The
+                        classification of benign and malignant lesion is automated. The only
+                        training needed is the data from texture analysis. However, its accuracy is
+                        slightly lower than that of the multilayer feed-forward NN introduced by
+                        Chen et al. [<a href="#B24">24</a>] previously. With a high negative
+                        predictive value of 98&#x25;, this CAD technique of SOM could potentially
+                        avoid benign biopsies. In the same year, Chen et al. [<a href="#B26">26</a>]
+                        came out with a HNN diagnostic system. The texture information features are
+                        extracted from four ultrasound images. The 2D normalized autocorrelation
+                        matrix for the input is modified and 2-phase HNN was used to combine the
+                        texture information from all of the ultrasound images. This study proves
+                        that the use of all 4 images leads to a more promising result than the case
+                        where images are used separately.</p>
+                    <p>Bootstrap is a statistical measure that relies on random sampling with
+                        replacement. Combination of bootstrap technique with neural network helps
+                        improve the accuracy. Chen et al. [<a href="#B27">27</a>] implement
+                        bootstrap to perform random sampling; the observation was then recomputed.
+                        This technique is useful where large amount of training data is not
+                        available, as it does not require much training data. However, the reduced
+                        amount of data should be compensated by adding image analysis component, in
+                        the bootstrap method.</p>
+                    <p>The research done in 2002 used error backpropagation algorithm to train the
+                        multilayer perceptron neural network (MLPNN) and resulted in an area index
+                        of the receiver operating curve (ROC) of <mml:math
+                            xmlns:mml="http://www.w3.org/1998/Math/MathML" id="M1">
+                            <mml:mn>0.9396</mml:mn>
+                            <mml:mo>&#xb1;</mml:mo>
+                            <mml:mn>0.0183</mml:mn>
+                        </mml:math>&#x2009;&#x2009;&#x2009;&#x2009;[<a href="#B28">28</a>]. Seven
+                        morphological features have been introduced to differentiate benign from
+                        malignant breast lesions with the use of MPNN [<a href="#B29">29</a>]. The
+                        morphological features were named as lobulation index (LI),
+                        elliptic-normalized skeleton (ENS), elliptic-normalized circumference (ENC),
+                        depth to width ratio (D&#x2009;:&#x2009;W), long axis to short axis
+                        (L&#x2009;:&#x2009;S), number of substantial protuberances and depressions
+                        (NSPD), and the size of lesion. The MPLNN is also tested with different
+                        number of hidden neurons but all results lead to a similar performance.
+                        Accuracy of the training set and test set is better than SOM and MLP NN with
+                        three inputs but on par with the accuracy of NN with 25 autocorrelation
+                        features as inputs. Different inputs selected and number of inputs may have
+                        an impact on the accuracy of the NN itself regardless of any types of NN
+                        techniques.</p>
+                    <p>A year later, a research tested the NN by using only 5 morphological features
+                        which are the spiculation, branch pattern, ellipsoid shape, brightness of
+                        nodule, and the number of lobulations [<a href="#B30">30</a>, <a href="#B31"
+                            >31</a>]. Based on these morphological features, the difference of
+                        characteristics between the benign and malignant could be seen as
+                        follows:</p>
+                    <list prefix="roman-lower">
+                        <item>
+                            <p>Spiculation (benign: larger; malignant: smaller)</p>
+                        </item>
+                        <item>
+                            <p>Branch pattern (benign: fewer; malignant: more)</p>
+                        </item>
+                        <item>
+                            <p>Ellipsoid shape (benign: smaller; malignant: larger)</p>
+                        </item>
+                        <item>
+                            <p>Brightness of nodule (benign: larger; malignant: smaller)</p>
+                        </item>
+                        <item>
+                            <p>Number of lobulations (benign: fewer; malignant: more)</p>
+                        </item>
+                    </list>
+                    <p>Latest research implements the hybrid method to improve the conventional
+                        neural network method to detect the malignancies of breast cancer.
+                        Combination of the<i> k</i>-means cluster algorithm with the backpropagation
+                        neural network (BPNN) is proven to provide an impressive performance [<a
+                            href="#B32">32</a>]. Figure <a href="#fig3">3</a> shows the result of
+                        image segmentation using ANN to extract cysts from an ultrasound breast
+                        image [<a href="#B32">32</a>].</p>
+                    <figure>
+                        <asset>
+                            <label>Figure 3</label>
+                            <image id="fig3">
+                                <caption>
+                                    <p>Segmentations of cysts for breast ultrasound image using ANN
+                                            [<a href="#B32">32</a>].</p>
+                                </caption>
+                                <source height="233" width="699" media-type="image/svg+xml"
+                                    >https://www.hindawi.com/journals/cmmm/2017/2610628.fig.003.svgz</source>
+                            </image>
+                        </asset>
+                    </figure>
+                </content>
+            </section>
+            <section id="sec2.3">
+                <title>2.3. Thermal Imaging</title>
+                <content>
+                    <p>Thermal imaging has been used for early identification of breast tumor and
+                        risk prediction since the 60s [<a href="#B33">33</a>]. Thermogram is a
+                        promising cutting edge screening instrument as it can caution ladies of
+                        breast malignancy up to 10 years ahead of time [<a href="#B34">34</a>]. Some
+                        studies have utilized several types of ANNs to manipulate and classify IR
+                        images, by taking the IR image as an input to the ANN [<a href="#B35"
+                        >35</a>]. In 2003, multispectral IR images were classified using Lagrange
+                        Constraint Neural Network (LCNN) which provides a better diagnosis for the
+                        physician [<a href="#B36">36</a>]. Wavelet transformation is also useful
+                        with ANN for multidimensional features of the IR image, especially when it
+                        was found that the temperature of the breast is affected by many
+                        pathological factors including the mental state [<a href="#B37">37</a>].
+                        Asymmetry discrimination between left and right breasts can be done to
+                        produce statistical features such as mean temperature and standard deviation
+                        that could be utilized as info parameters to a backpropagation ANN [<a
+                            href="#B33">33</a>]. In 2007, thermographic image analysis was done by
+                        implementing a special neural network that utilizes some fuzzy logic
+                        principles, called Complementary Learning Fuzzy Neural Network (CLFNN).
+                        CLFNN takes many factors into account such as family history and temperature
+                        difference of the statistical features between contralateral breasts [<a
+                            href="#B34">34</a>]. The system is widely used in several countries at
+                        present.</p>
+                </content>
+            </section>
+            <section id="sec2.4">
+                <title>2.4. MRI</title>
+                <content>
+                    <p>MRI technique has been used widely in medical examinations, especially for
+                        cancer investigation for few decades [<a href="#B38">38</a>]. For the
+                        diagnosis to be done properly, breast region should be extracted from other
+                        surrounding regions and tissues using image segmentation methods [<a
+                            href="#B39">39</a>]. Figure <a href="#fig4">4</a> depicts such case as
+                        it was reported in the study [<a href="#B39">39</a>].</p>
+                    <figure>
+                        <asset>
+                            <label>Figure 4</label>
+                            <image id="fig4">
+                                <caption>
+                                    <p>Multistate CNN used to segment small fatty breast and medium
+                                        dense breast for MRI image [<a href="#B39">39</a>].</p>
+                                </caption>
+                                <source height="154" width="697" media-type="image/svg+xml"
+                                    >https://www.hindawi.com/journals/cmmm/2017/2610628.fig.004.svgz</source>
+                            </image>
+                        </asset>
+                    </figure>
+                    <p>Many neural networks models were utilized to aid MRI for enhancing the
+                        detection and the classification of the breast tumors, which can be trained
+                        with previous cases that are diagnosed by the clinicians correctly [<a
+                            href="#B40">40</a>], or can manipulate the signal intensity or the mass
+                        characteristics (margins, shape, size, and granularity) [<a href="#B41"
+                            >41</a>]. In 2012, multistate cellular neural networks (CNN) have been
+                        used in MR image segmentation to estimate the density of the breast regions
+                        for evaluation of the fat contents [<a href="#B39">39</a>]. Hassanien et al.
+                            [<a href="#B38">38</a>] introduced a hybrid model consisting of Pulse
+                        Couple Neural Network (PCNN) and Support Vector Machines (SVM) to identify
+                        breast cancer from MR images. Another hybrid algorithm was presented by
+                        ElNawasany et al. in 2014 by combining perceptron with the Scale Invariant
+                        Feature Transform (SIFT) for the same purpose [<a href="#B42">42</a>].</p>
+                </content>
+            </section>
+        </content>
+    </section>
+    <section id="sec3">
+        <title>3. Discussion</title>
+        <content>
+            <p>For the last few decades, several computer-aided diagnosis (CAD) techniques have been
+                developed in mammographic examination of breast cancer to assist radiologist in
+                overall image analysis and to highlight suspicious areas that need further
+                attention. It can help radiologist to find a tumor which cannot be spotted using
+                naked eye. As technologies keep growing, many researchers are concerned about the
+                development of intelligent techniques which can be used in mammography to improve
+                the classification accuracy. This artificial intelligence makes use of human skills
+                in a more efficient manner than the conventional mathematical models do. Based on
+                the research outcomes, ANN is proved to be a good classifier in mammography for
+                classification of masses and microcalcifications. Implementation perceptron based
+                three-layer neural network using backpropagation algorithm becomes a pioneer in ANN
+                mammography. Various ANNs developed are based on the concept of increasing the true
+                positive (TP) detection rate and decreasing the false positive (FP) and false
+                negative (FN) detection rate for the optimum result. Implementation of wavelet in
+                ANNs such as Particle Swarm Optimized Wavelet Neural Network (PSOWNN), biorthogonal
+                spline wavelet ANN, second-order grey-level ANN, and Gabor wavelets ANN can improve
+                the sensitivity and specificity which are acquired in masses and microcalcification
+                detection.</p>
+            <p>For ultrasound applications, in the field of determining breast cancer malignancy,
+                CAD frameworks utilizing ultrasound images are widely used due to their nonradiation
+                properties, low cost, high availability, speedier results, and higher accuracy. An
+                improved version of the breast cancer detection using ultrasound images has been
+                introduced, which works on a three-dimensional ultrasound imaging that can give more
+                in-depth information on the breast lesion compared to the conventional
+                two-dimensional imaging. This three-dimensional imaging joins each of the
+                two-dimensional characteristics. Furthermore, in order to handle the vulnerability
+                nature of the ultrasound images, some methods and methodologies based on ANN have
+                also been introduced. A majority of the research works that utilize ANN have
+                acquired noteworthy results. Hybrid methods, which combine two ANN techniques, have
+                recently been developed for the detection and classification of breast cancer. A
+                two-phase hierarchical NN is also found to be promising rather than using the image
+                analysis separately. It can also be seen that the larger the number of inputs to the
+                ANN, the better the accuracy of the output in identification and classification of
+                breast cancer. However, the number of hidden neurons does not seem to have a big
+                impact on the accuracy of the system. To state which individual ANN is the best is
+                quite subjective depending on the application and various variables to be
+                considered. Most of the ANN techniques for the ultrasound application give good
+                results in terms of accuracy, sensitivity, specificity, positive predictive value,
+                and negative predictive value. Another advantage of using the ANN in determining
+                breast lesion is that the ANN can be trained to produce better accuracy. Besides
+                that, this ANN can be combined together with not only another ANN technique but also
+                other signal processing techniques such as wavelet to produce better results.</p>
+            <p>For different techniques that have been utilized for the breast cancer imaging, there
+                are different methods of detection and classification according to the input
+                parameters of that technique. For the IR imaging, it has been shown that the
+                detection of the breast cancer depends mainly on the statistical features of the
+                thermal behavior of the tissues (mean, standard deviation, etc.), as well as the
+                asymmetry differentiation of the contralateral breasts. Therefore, image
+                classification methods based on ANN are quite fruitful in thermography.</p>
+            <p>The MRI imaging is highly recognized as a reliable technique for tumor localization
+                as well as early detection and classification of cancer, as it is generally
+                recommended for soft tissue recognition. Many image segmentation and 3D extraction
+                algorithms are applied in MRI applications, and recently, many ANN classification
+                types have been designed with many fine specifications for MRI breast imaging.</p>
+            <p>A summary of methods with NN in breast cancer detection has been given in tabulated
+                form in Table <a href="#tab1">1</a>.</p>
+            <figure>
+                <asset>
+                    <label>Table 1</label>
+                    <table id="tab1">
+                        <caption>
+                            <p>Summary of methods with NN in breast cancer detection.</p>
+                        </caption>
+                        <thead>
+                            <tr>
+                                <th align="left">Study</th>
+                                <th align="left">Methods</th>
+                                <th align="center">Input</th>
+                                <th align="center">Purpose</th>
+                                <th align="left">Dataset</th>
+                                <th align="left">Classifier</th>
+                                <th align="left">Results</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td align="left"> Dheeba et al. [<a href="#B3">3</a>]</td>
+                                <td align="left">Particle Swarm Optimized Wavelet Neural Network
+                                    (PSOWNN)</td>
+                                <td align="center">Mammogram</td>
+                                <td align="center">Improve classification accuracy in breast cancer
+                                    detection and reducing misclassification rate</td>
+                                <td align="left">216 mammograms</td>
+                                <td align="left">PSOWNN</td>
+                                <td align="left">(i) Sensitivity 94.167&#x25; <break/>(ii)
+                                    Specificity 92.105&#x25;<break/>(iii) AUC 0.96853<break/>(iv)
+                                    Youden&#x2019;s index 0.86272<break/>(v) Misclassification rate
+                                    0.063291</td>
+                            </tr>
+                            <tr>
+                                <td align="left"> Xu et al. [<a href="#B10">10</a>]</td>
+                                <td align="left">New algorithm based on two ANNs</td>
+                                <td align="center">Mammogram</td>
+                                <td align="center">Classification of masses</td>
+                                <td align="left">30 cases and 60 mammograms<break/>(containing 78
+                                    masses)</td>
+                                <td align="left">ANFIS and MLP</td>
+                                <td align="left">(i) True positive (TP) rate 93.6&#x25;
+                                    (73/78),<break/>(ii) Number of the FPs per image 0.63
+                                    (38/60).</td>
+                            </tr>
+                            <tr>
+                                <td align="left"> Alayliogh and Aghdasi [<a href="#B11">11</a>]</td>
+                                <td align="left">ANN and biorthogonal spline wavelet</td>
+                                <td align="center">Mammogram</td>
+                                <td align="center">Classification of microcalcification cluster
+                                    (MCC) and image enhancement</td>
+                                <td align="left">40 digitized mammogram</td>
+                                <td align="left">ANN</td>
+                                <td align="left">(i) Sensitivity 93&#x25;,<break/>(ii) FP rate
+                                    (MCC/image) 0.82</td>
+                            </tr>
+                            <tr>
+                                <td align="left"> Dhawan et al. [<a href="#B13">13</a>]</td>
+                                <td align="left">(i) ANN<break/>(ii) second-order gray-level
+                                    statistics</td>
+                                <td align="center">Mammogram</td>
+                                <td align="center">Classification of significant and benign
+                                    microcalcifications</td>
+                                <td align="left">5 image structure features</td>
+                                <td align="left">(i) Three-layer perceptron based ANN</td>
+                                <td align="left">The entropy feature has significant discriminating
+                                    power for classification</td>
+                            </tr>
+                            <tr>
+                                <td align="left"> Chitre et al. [<a href="#B15">15</a>]</td>
+                                <td align="left">ANN</td>
+                                <td align="center">Mammogram</td>
+                                <td align="center">Classification of microcalcification into benign
+                                    and malignant</td>
+                                <td align="left">(i) 40, 60, and 80 training cases<break/>(ii) 151,
+                                    131, and 111 test cases</td>
+                                <td align="left">ANN</td>
+                                <td align="left">Neural network is a robust classifier of a
+                                    combination of image structure and binary features into benign
+                                    and malignant</td>
+                            </tr>
+                            <tr>
+                                <td align="left"> Kevin et al. [<a href="#B16">16</a>]</td>
+                                <td align="left">ANN</td>
+                                <td align="center">Mammogram</td>
+                                <td align="center">Classification of microcalcifications and
+                                    nonmicrocalcifications</td>
+                                <td align="left">24 mammograms with<break/>each containing at least
+                                    one cluster of microcalcifications</td>
+                                <td align="left">Cascade correlation ANN<break/>(CC ANN)</td>
+                                <td align="left">(i) TP detection rate for
+                                    individual<break/>microcalcifications is 73&#x25; and 92&#x25;
+                                    for nonmicrocalcifications</td>
+                            </tr>
+                            <tr>
+                                <td align="left"> Zheng et al. [<a href="#B18">18</a>]</td>
+                                <td align="left">ANN and BBN</td>
+                                <td align="center">Mammogram</td>
+                                <td align="center">Compare performances of ANN and BBN</td>
+                                <td align="left">3 independent image databases and 38 features</td>
+                                <td align="left">ANN and BBN</td>
+                                <td align="left">Performance level (<mml:math
+                                        xmlns:mml="http://www.w3.org/1998/Math/MathML" id="M2">
+                                        <mml:mrow>
+                                            <mml:msub>
+                                                <mml:mrow>
+                                                  <mml:mi>A</mml:mi>
+                                                </mml:mrow>
+                                                <mml:mrow>
+                                                  <mml:mi>z</mml:mi>
+                                                </mml:mrow>
+                                            </mml:msub>
+                                        </mml:mrow>
+                                    </mml:math> value)<break/>(i) ANN <mml:math
+                                        xmlns:mml="http://www.w3.org/1998/Math/MathML" id="M3">
+                                        <mml:mrow>
+                                            <mml:msub>
+                                                <mml:mrow>
+                                                  <mml:mi>A</mml:mi>
+                                                </mml:mrow>
+                                                <mml:mrow>
+                                                  <mml:mi>z</mml:mi>
+                                                </mml:mrow>
+                                            </mml:msub>
+                                        </mml:mrow>
+                                    </mml:math> value <mml:math
+                                        xmlns:mml="http://www.w3.org/1998/Math/MathML" id="M4">
+                                        <mml:mn>0.847</mml:mn>
+                                        <mml:mo>&#xb1;</mml:mo>
+                                        <mml:mn>0.014</mml:mn>
+                                    </mml:math>(ii) BBN <mml:math
+                                        xmlns:mml="http://www.w3.org/1998/Math/MathML" id="M5">
+                                        <mml:mrow>
+                                            <mml:msub>
+                                                <mml:mrow>
+                                                  <mml:mi>A</mml:mi>
+                                                </mml:mrow>
+                                                <mml:mrow>
+                                                  <mml:mi>z</mml:mi>
+                                                </mml:mrow>
+                                            </mml:msub>
+                                        </mml:mrow>
+                                    </mml:math> value 0.845 &#xb1; 0.011<break/>(iii) Hybrid
+                                    classifier (ANN and BBN)<break/><i>A</i><sub><i>z</i></sub>
+                                    value increased to 0.859 &#xb1; 0.01</td>
+                            </tr>
+                            <tr>
+                                <td align="left"> Zhang et al. [<a href="#B19">19</a>]</td>
+                                <td align="left">Digitize module, detection module, feature
+                                    extraction module, neural network module, and classification
+                                    module</td>
+                                <td align="center">Mammogram</td>
+                                <td align="center">Classification of microcalcification
+                                    clusters/suspicious areas</td>
+                                <td align="left">Fuzzy detection algorithm<break/>(i) 30 digital
+                                    images (15 contain benign cases and 15 contain malignant
+                                    cases)</td>
+                                <td align="left">Backpropagation neural network (BPNN)</td>
+                                <td align="left">(i) Fuzzy detection rate (benign 84.10&#x25; and
+                                    80.30&#x25;)<break/>(ii) Classification rates (feature vector,
+                                        <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML"
+                                        id="M6">
+                                        <mml:mi>n</mml:mi>
+                                        <mml:mo>=</mml:mo>
+                                        <mml:mn>10</mml:mn>
+                                    </mml:math> is 83.8&#x25;), (feature vector <mml:math
+                                        xmlns:mml="http://www.w3.org/1998/Math/MathML" id="M7">
+                                        <mml:mi>n</mml:mi>
+                                        <mml:mo>=</mml:mo>
+                                        <mml:mn>14</mml:mn>
+                                    </mml:math> is 72.2&#x25;)</td>
+                            </tr>
+                            <tr>
+                                <td align="left">Lashkari [<a href="#B20">20</a>]</td>
+                                <td align="left">ANN and Gabor wavelets</td>
+                                <td align="center">Mammogram</td>
+                                <td align="center">Classification of breast tissues to normal and
+                                    abnormal classes automatically</td>
+                                <td align="left">(i) Images of 50 normal and 50<break/>abnormal
+                                    breast tissues<break/>(ii) 65 cases for training set and 35
+                                    cases for testing set</td>
+                                <td align="left">ANN and Gabor wavelets</td>
+                                <td align="left">(i) Classification rate (testing performance
+                                    96.3&#x25; and training performance 97.5&#x25;)</td>
+                            </tr>
+                            <tr>
+                                <td align="left"> Saini and Vijay [<a href="#B17">17</a>]</td>
+                                <td align="left">Image registration technique and ANN</td>
+                                <td align="center">Mammogram</td>
+                                <td align="center">Classification of benign and malignant</td>
+                                <td align="left">42 mammogram images (30 benign and 12 malignant
+                                    images)</td>
+                                <td align="left">Feed-forward backpropagation and Cascade
+                                    forward<break/>backpropagation artificial neural network</td>
+                                <td align="left">Percentage
+                                    accuracy<break/>(feed-forward<break/>backpropagation network is
+                                    87.5&#x25; and Cascade forward<break/>backpropagation network is
+                                    67.8&#x25;)</td>
+                            </tr>
+                            <tr>
+                                <td align="left"> Buller et al. [<a href="#B21">21</a>]</td>
+                                <td align="left">Spider web topology with NN</td>
+                                <td align="center">Ultrasound</td>
+                                <td align="center">Classify and separate benign and malignant
+                                    lesion</td>
+                                <td align="left">25 sonograms</td>
+                                <td align="left">(i) NN classifier</td>
+                                <td align="left">(i) 69&#x25; accuracy in malignant<break/>(ii)
+                                    66&#x25; accuracy in benign<break/>(iii) 66&#x25; accuracy in no
+                                    lesions</td>
+                            </tr>
+                            <tr>
+                                <td align="left"> Ruggierol et al. [<a href="#B22">22</a>]</td>
+                                <td align="left">Texture and shape parameter feeds into NN</td>
+                                <td align="center">Ultrasound</td>
+                                <td align="center">Automated recognition of malignant lesion</td>
+                                <td align="left">(i) 41 carcinomas<break/>(ii) 41
+                                    fibroadenomas<break/>(iii) 41 cysts</td>
+                                <td align="left">(i) NN classifier</td>
+                                <td align="left">(i) 95&#x25; accuracy in solid lesions<break/>(ii)
+                                    92.7&#x25; accuracy in liquid lesions</td>
+                            </tr>
+                            <tr>
+                                <td align="left"> Sahiner et al. [<a href="#B23">23</a>]</td>
+                                <td align="left">Convolutional NN with spatial and texture
+                                    image</td>
+                                <td align="center">Mammogram</td>
+                                <td align="center">Classification of mass and normal breast</td>
+                                <td align="left">168 mammograms</td>
+                                <td align="left">(i) Convolution NN classifier</td>
+                                <td align="left">(i) Average true positive fraction of 90&#x25; at
+                                    false positive fraction of 31&#x25;</td>
+                            </tr>
+                            <tr>
+                                <td align="left"> Chen et al. [<a href="#B24">24</a>]</td>
+                                <td align="left">Multilayer feed-forward neural network (MFNN)</td>
+                                <td align="center">Ultrasound</td>
+                                <td align="center">Classify benign and malignant lesion</td>
+                                <td align="left">140 pathological proved tumors (52 malignant, 88
+                                    benign)</td>
+                                <td align="left">MFNN</td>
+                                <td align="left">(i) 95&#x25; accuracy, 98&#x25;
+                                    sensitivity<break/>(ii) 93&#x25; specificity <break/>(iii)
+                                    89&#x25; positive predictive value<break/>(iv) 99&#x25; negative
+                                    predictive value</td>
+                            </tr>
+                            <tr>
+                                <td align="left"> Chen et al. [<a href="#B25">25</a>]</td>
+                                <td align="left">Self-organizing map (SOM)</td>
+                                <td align="center">Ultrasound</td>
+                                <td align="center">Classification of benign and malignant
+                                    lesions</td>
+                                <td align="left">243 tumors (82 malignant, 161 benign)</td>
+                                <td align="left">SOM</td>
+                                <td align="left">(i) Accuracy of 85.6, sensitivity
+                                    97.6&#x25;<break/>(ii) Specificity 79.5&#x25; <break/>(iii)
+                                    Positive predictive value 70.8&#x25;<break/>(iv) Negative
+                                    predictive value 98.5&#x25;</td>
+                            </tr>
+                            <tr>
+                                <td align="left"> Chen et al. [<a href="#B27">27</a>]</td>
+                                <td align="left">Bootstrap with NN</td>
+                                <td align="center">Ultrasound</td>
+                                <td align="center">classification of tumor</td>
+                                <td align="left">263 sonographic image solid breast nodules</td>
+                                <td align="left">NN</td>
+                                <td align="left">(i) Accuracy 87.07&#x25;, sensitivity
+                                    98.35&#x25;<break/>(ii) Specificity 79.10&#x25;<break/>(iii)
+                                    Positive predictive value 81.46&#x25;<break/>(iv) Negative
+                                    predictive value 94.64&#x25;</td>
+                            </tr>
+                            <tr>
+                                <td align="left"> Chen et al. [<a href="#B26">26</a>]</td>
+                                <td align="left">2-phase Hierarchical Neural Network (HNN)</td>
+                                <td align="center">Ultrasound</td>
+                                <td align="center">Differentiate between benign and malignant
+                                    tumors</td>
+                                <td align="left">1020 images (4 different rectangular regions from
+                                    the 2 orthogonal planes of each tumor)</td>
+                                <td align="left">HNN</td>
+                                <td align="left">4 image analyses of each tumor appear to give more
+                                    promising result than if they are used separately</td>
+                            </tr>
+
+                            <tr>
+                                <td align="left">Chen et al. [<a href="#B28">28</a>]</td>
+                                <td align="left">Wavelet transform and neural network</td>
+                                <td align="center">Ultrasound</td>
+                                <td align="center">Differential diagnosis of breast tumors on
+                                    sonograms</td>
+                                <td align="left">242 cases (161 benign, 82 malignant)</td>
+                                <td align="left">Multilayer perceptron neural network (MLPNN)</td>
+                                <td align="left">(i) Receiver operating characteristic (ROC) area
+                                    index is 0.9396 &#xb1; 0.0183<break/>(ii) 98.77&#x25;
+                                    sensitivity, 81.37&#x25; specificity<break/>(iii) 72.73&#x25;
+                                    positive predictive value<break/>(iv) 99.24&#x25; negative
+                                    predictive value</td>
+                            </tr>
+                            <tr>
+                                <td align="left"> Chen et al. [<a href="#B29">29</a>]</td>
+                                <td align="left">Multilayer feed-forward neural network (MFNN)</td>
+                                <td align="center">Ultrasound</td>
+                                <td align="center">Differentiate benign from malignant breast
+                                    lesions</td>
+                                <td align="left">1st set: 160 lesions<break/>2nd set: 111
+                                    lesions</td>
+                                <td align="left">MFNN</td>
+                                <td align="left">(i) 98.2&#x25; training accuracy<break/>(ii)
+                                    95.5&#x25; testing accuracy</td>
+                            </tr>
+                            <tr>
+                                <td align="left"> Joo et al. [<a href="#B30">30</a>]</td>
+                                <td align="left">Artificial neural network (ANN)</td>
+                                <td align="center">Ultrasound</td>
+                                <td align="center">Determining whether a breast nodule is benign or
+                                    malignant</td>
+                                <td align="left">584 histologically confirmed cases (300 benign, 284
+                                    malignant)</td>
+                                <td align="left">ANN</td>
+                                <td align="left">(i) 100&#x25; training accuracy<break/>(ii)
+                                    91.4&#x25; testing set<break/>(iii) 92.3&#x25; sensitivity,
+                                    90.7&#x25; specificity</td>
+                            </tr>
+
+                            <tr>
+                                <td align="left">Joo et al. [<a href="#B31">31</a>]</td>
+                                <td align="left">Digital image processing and artificial neural
+                                    network</td>
+                                <td align="center">Ultrasound</td>
+                                <td align="center">Determine breast nodule malignancy</td>
+                                <td align="left">584 histologically confirmed cases (300 benign, 284
+                                    malignant)</td>
+                                <td align="left">ANN</td>
+                                <td align="left">(i) 91.4&#x25; accuracy, 92.3&#x25;
+                                    sensitivity<break/>(ii) 90.7&#x25; specificity</td>
+                            </tr>
+                            <tr>
+                                <td align="left"> Zheng et al. [<a href="#B32">32</a>]</td>
+                                <td align="left">Hybrid method (unsupervised <i>k</i>-means cluster,
+                                    supervised backpropagation neural network (BPNN))</td>
+                                <td align="center">Ultrasound</td>
+                                <td align="center">Classification of breast tumors as benign or
+                                    malignant</td>
+                                <td align="left">125 benign tumors, 110 malignant tumors</td>
+                                <td align="left">Combination of <i>k</i>-means with BPNN</td>
+                                <td align="left">(i) Recognition rate (94.5&#x25; for benign,
+                                    93.6&#x25; for malignant)<break/>(ii) 94&#x25; accuracy,
+                                    94.5&#x25; sensitivity<break/>(iii) 93.6&#x25; specificity</td>
+                            </tr>
+                            <tr>
+                                <td align="left"> Fok et al. [<a href="#B35">35</a>]</td>
+                                <td align="left">ANN with 3D finite element analysis</td>
+                                <td align="center">IR</td>
+                                <td align="center">Tumor prediction</td>
+                                <td align="left">200 patients</td>
+                                <td align="left">ANN</td>
+                                <td align="left">Good detection, poor sensitivity</td>
+                            </tr>
+
+                            <tr>
+                                <td align="left"> Szu et al. [<a href="#B36">36</a>]</td>
+                                <td align="left">Unsupervised classification using Lagrange
+                                    Constraint Neural Network (LCNN)</td>
+                                <td align="center">Mid and long IR images</td>
+                                <td align="center">Early detection of breast cancer</td>
+                                <td align="left">One patient with DCIS</td>
+                                <td align="left">LCNN</td>
+                                <td align="left">Better sensitivity</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2" align="left"> Jakubowska et al. [<a href="#B37"
+                                        >37</a>]</td>
+                                <td rowspan="2" align="left">ANN with wavelet transform</td>
+                                <td rowspan="2" align="center">IR</td>
+                                <td rowspan="2" align="center"> Discrimination of healthy and
+                                    pathological cases</td>
+                                <td align="left">30 healthy</td>
+                                <td rowspan="2" align="left">ANN</td>
+                                <td align="left">Accuracy (&#x25;)<break/>(frontal/side)<break/>Raw:
+                                    90/93, PCA: 90/93<break/>LDA: 93/97, NDA: 93/93</td>
+                            </tr>
+                            <tr>
+                                <td align="left">10 with recognized tumors</td>
+                                <td align="left">Accuracy (&#x25;)<break/>(frontal/side)<break/>Raw:
+                                    80/90, PCA: 80/90<break/>LDA: 90/90, NDA: 80/100</td>
+                            </tr>
+                            <tr>
+                                <td align="left"> Koay et al. [<a href="#B33">33</a>]</td>
+                                <td align="left">Backpropagation NN</td>
+                                <td align="center">IR</td>
+                                <td align="center">Early detection of breast cancer</td>
+                                <td align="left">19 patients</td>
+                                <td align="left">Levenberg-Marquardt (LM) and Resilient
+                                    Backpropagation (RP)</td>
+                                <td align="left">Accuracy
+                                    (&#x25;)<break/>(RP/LM)<break/>Whole:<break/>95/95<break/>Quadrants:
+                                    95/100</td>
+                            </tr>
+                            <tr>
+                                <td align="left"> Tan et al. [<a href="#B34">34</a>]</td>
+                                <td align="left">Fuzzy adaptive learning control network fuzzy
+                                    neural network</td>
+                                <td align="center">IR</td>
+                                <td align="center">Early detection of breast cancer and tumor
+                                    classification</td>
+                                <td align="left">28 healthy, 43 benign tumors, 7 cancer
+                                    patients</td>
+                                <td align="left">FALCON-AART</td>
+                                <td align="left">Cancer detection (&#x25;)
+                                    (TH/TDF)<break/>Predicted: 95, sensitivity: 100, specificity:
+                                    60<break/>Breast tumor detection (&#x25;)
+                                    (TH/TDF)<break/>Predicted: 84/71, sensitivity:
+                                    33/76,<break/>specificity: 91/62<break/>Breast tumor
+                                    classification (&#x25;) (TH/TDF)<break/>Predicted: 88/84,
+                                    sensitivity: 33/33,<break/>specificity: 95.5/91</td>
+                            </tr>
+                            <tr>
+                                <td align="left"> Cardillo et al. [<a href="#B40">40</a>]</td>
+                                <td align="left">NN for automatic analysis of image statistics</td>
+                                <td align="center">MRI</td>
+                                <td align="center">Early detection and classification</td>
+                                <td align="left">150 exams subdivided into 6 groups by contrast</td>
+                                <td align="left">NN</td>
+                                <td align="left">Better in specificity</td>
+                            </tr>
+
+                            <tr>
+                                <td align="left"> Tzacheva et al. [<a href="#B41">41</a>]</td>
+                                <td align="left">Evaluation of signal intensity and mass properties
+                                    by NN</td>
+                                <td align="center">MRI</td>
+                                <td align="center">Automatic diagnosis of tumors</td>
+                                <td align="left">14 patients</td>
+                                <td align="left">Feed-forward BPNN</td>
+                                <td align="left">90&#x25;&#x2013;100&#x25; sensitivity,
+                                    91&#x25;&#x2013;100&#x25; specificity, and
+                                    91&#x25;&#x2013;100&#x25; accuracy</td>
+                            </tr>
+                            <tr>
+                                <td align="left"> Ertas et al. [<a href="#B39">39</a>]</td>
+                                <td align="left">Extraction of breast regions by conventional and
+                                    multistate CNNs</td>
+                                <td align="center">MRI</td>
+                                <td align="center">Breast density evaluation and abnormality
+                                    localization</td>
+                                <td align="left">23 women</td>
+                                <td align="left">CNN</td>
+                                <td align="left">Average precision 99.3 &#xb1; 1.8&#x25;<break/>True
+                                    positive volume fraction 99.5 &#xb1; 1.3&#x25;<break/>False
+                                    positive volume fraction 0.1 &#xb1; 0.2&#x25;</td>
+                            </tr>
+                            <tr>
+                                <td align="left"> Hassanien et al. [<a href="#B38">38</a>]</td>
+                                <td align="left">Image classification using PCNN and SVM and using
+                                    wavelet and fuzzy sets for enhancement</td>
+                                <td align="center">MRI</td>
+                                <td align="center">Breast cancer detection</td>
+                                <td align="left">70 normal cases, 50 benign and malign cases</td>
+                                <td align="left">Hybrid scheme of PCNN and SVM</td>
+                                <td align="left">Accuracy<break/>SVM: 98&#x25;<break/>Rough sets:
+                                    92&#x25;</td>
+                            </tr>
+                            <tr>
+                                <td align="left"> ElNawasany et al. [<a href="#B42">42</a>]</td>
+                                <td align="left">Classifying MR images by hybrid perceptron NN</td>
+                                <td align="center">MRI</td>
+                                <td align="center">Early detection of breast cancer</td>
+                                <td align="left">138 abnormal and 143 normal</td>
+                                <td align="left">Perceptron with SIFT</td>
+                                <td align="left">Accuracy 86.74&#x25;</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </asset>
+            </figure>
+        </content>
+    </section>
+    <section id="sec4">
+        <title>4. Conclusion</title>
+        <content>
+            <p>Neural network plays an important role in detection of carcinogenic conditions in the
+                breast. The technique acts as a stepping stone in the detection of cancer. In this
+                review, we show that NN can be used in many medical applications which we
+                categorized into four main medical applications that are widely used in breast
+                cancer detection. These four medical applications include mammogram, ultrasound, and
+                thermal and MRI imaging. This shows that NN is not restricted by the
+                application.</p>
+            <p>In all applications, NN&#x2019;s main purposes were automated classification and
+                segmentation. The types of data that need to be classified include calcification and
+                noncalcification, benign and malignant, dense and normal breast, and tumorous and
+                nontumorous. Neural network needs training data. Different types of data are fed
+                into NN for training purposes. In early adaptation of NN, images of breast are being
+                fed directly into the NN. This method will perform well only if very large databases
+                are available. In the case of using such huge data, the concern was the storage, the
+                time of performance, and the data availability. This flaw was realized and being
+                improved by taking the ROI into account, which lowered the amount of dataset
+                requirement tremendously. Researcher were then able to come out with better ideas
+                where they now train the NN with feature vectors. In our findings, the features that
+                can be used as training data include spiculation, branch pattern, shape, brightness
+                of nodule, number of lobulations, margin, size of nodule, granularity, and texture.
+                These features can be extracted manually or using image analysis technique.
+                Introducing of features did improve the performance of NN in terms of size of
+                training data and accuracy.</p>
+            <p>Different variation of NN can be applied as classifier. Feed-forward backpropagation
+                NN is by far the simplest form of NN, as the name suggest, the input nodes do not
+                have interrelation between each other, and more importantly, the units do not form a
+                repetitive cycle or loops. Feed-forward backpropagation can only pass data from
+                current layer to subsequent layer; hence the data is moving in one fix direction
+                from input to output. Cascade forward NNs are somehow similar to feed-forward NNs;
+                the only difference is that they include connections from not only the input, but
+                also every previous layer to the subsequent layers. Convolution NN is considered as
+                a special type of feed-forward neural network where there are multiple layers of
+                small neuron collections that are able to process the portions of input image.</p>
+            <p>The trend now is going towards hybrid NN like SOM model. Combination of statistical
+                methods such as bootstrap is being used together with NN too. SOM and bootstrap
+                methods require lesser training data and hence are useful when we do not have many
+                training data. Besides, people utilize SVM with NN in order to achieve a better
+                performance. In conclusion, NN is widely used in medical image applications,
+                creatively combined with other methods in order to achieve better accuracy,
+                sensitivity, and also positive predictive value.</p>
+        </content>
+    </section>
+
+
+</body>

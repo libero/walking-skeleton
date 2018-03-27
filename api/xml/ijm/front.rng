@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://microsimulation.org">
+
+    <include href="../libero/front.rng"/>
+
+    <include href="../libero/extensions/abstract.rng"/>
+
+    <define name="libero.front.content" combine="interleave">
+        <optional>
+            <element name="jel">
+                <oneOrMore>
+                    <element name="code">
+                        <data type="string"
+                            datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+                            <param name="pattern">[A-Z][0-9]{2}</param>
+                        </data>
+                    </element>
+                </oneOrMore>
+            </element>
+        </optional>
+    </define>
+
+</grammar>

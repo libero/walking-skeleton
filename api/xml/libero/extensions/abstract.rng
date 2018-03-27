@@ -2,7 +2,7 @@
 
 <grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://libero.pub">
 
-    <define name="libero.article.content" combine="interleave">
+    <define name="libero.front.content" combine="interleave">
         <optional>
             <element name="abstract">
                 <ref name="libero.abstract.content"/>
@@ -12,7 +12,7 @@
 
     <define name="libero.abstract.content">
         <ref name="libero.attrib.id"/>
-        <ref name="libero.blocks.model"/>
+        <ref name="libero.blocks.limited.model"/>
     </define>
 
 </grammar>

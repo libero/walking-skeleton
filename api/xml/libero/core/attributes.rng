@@ -3,10 +3,35 @@
 <grammar xmlns="http://relaxng.org/ns/structure/1.0"
     datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
 
-    <define name="libero.attrib.id" combine="interleave">
+    <define name="libero.attrib.id">
         <attribute name="id">
             <ref name="libero.types.id"/>
         </attribute>
+    </define>
+
+    <define name="libero.attrib.lang.optional">
+        <optional>
+            <ref name="libero.attrib.lang"/>
+        </optional>
+    </define>
+
+    <define name="libero.attrib.lang">
+        <attribute name="xml:lang">
+            <choice>
+                <data type="language"/>
+            </choice>
+        </attribute>
+    </define>
+
+    <define name="libero.attrib.space">
+        <optional>
+            <attribute name="xml:space">
+                <choice>
+                    <value>default</value>
+                    <value>preserve</value>
+                </choice>
+            </attribute>
+        </optional>
     </define>
 
 </grammar>

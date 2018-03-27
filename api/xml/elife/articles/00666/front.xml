@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<?xml-model href="../../front.rng"?>
+
+<front xmlns="http://libero.pub" xmlns:elife="http://elifesciences.org"
+    xmlns:mml="http://www.w3.org/1998/Math/MathML" xml:lang="en">
+
+    <id>00666</id>
+    <doi>10.7554/eLife.00666</doi>
+    <title>The eLife research article</title>
+    <abstract id="abstract" doi="10.7554/eLife.00666.001">
+        <p>This is the abstract. This article will describe the eLife article and the process. An
+            abstract can contain any formatting, such as <i>italics</i>, <b>bold</b>,
+                <sup>superscript</sup>, <sub>subscript</sub> or <sc>small caps</sc>. MathML is also
+            allowed: <mml:math>
+                <mml:mrow>
+                    <mml:munder>
+                        <mml:mo/>
+                        <mml:mi>m</mml:mi>
+                    </mml:munder>
+                    <mml:mrow>
+                        <mml:msub>
+                            <mml:mover accent="true">
+                                <mml:mi>p</mml:mi>
+                                <mml:mo/>
+                            </mml:mover>
+                            <mml:mi>m</mml:mi>
+                        </mml:msub>
+                        <mml:mo>=</mml:mo>
+                        <mml:mn>0</mml:mn>
+                    </mml:mrow>
+                </mml:mrow>
+            </mml:math>.</p>
+        <p>eLife does not structure abstracts into sub headings expect in a clinical trial article,
+            but the abstract can have multiple paragarahs. The sub DOI is always .001 as it is the
+            first asset in any article. I have added an unmatched > bracket as this has been an
+            issue for PubMed deposits in the past.</p>
+        <p>If this was a clinical trial the clinical trial details would be listed at the end of the
+            abstract:</p>
+        <p>Clinical trial Registration: EudraCT2004-000446-20.</p>
+    </abstract>
+    <elife:digest id="digest" doi="10.7554/eLife.00666.002">
+        <p>eLife digest are now optional and not every research article will contain one. These are
+            layman abstracts, designed for non-specialists in this field to be able to understand
+            this article, as well as the general public.</p>
+        <p>Here is paragraph 2 of the digest.</p>
+    </elife:digest>
+
+</front>
