@@ -18,7 +18,7 @@ final class ArticleController
         $this->dataPath = $dataPath;
     }
 
-    public function __invoke(Request $request, string $id, $version) : Response
+    public function __invoke(Request $request, string $id, $version, string $part) : Response
     {
         if (!is_dir($articlePath = "{$this->dataPath}/articles/{$id}")) {
             throw new NotFoundHttpException("Article {$id} not found");
@@ -38,9 +38,9 @@ final class ArticleController
             throw new NotFoundHttpException("Article version {$version} not found");
         }
 
-        $availableLanguages = array_map('basename', glob("{$articleVersionPath}/*", GLOB_ONLYDIR));
+        $availableLanguages = array_map('basename', array_map('dirname', glob("{$articleVersionPath}/*/{$part}.xml")));
         $language = $request->getPreferredLanguage($availableLanguages);
 
-        return new BinaryFileResponse("{$articleVersionPath}/{$language}/front.xml");
+        return new BinaryFileResponse("{$articleVersionPath}/{$language}/{$part}.xml");
     }
 }
