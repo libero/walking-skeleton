@@ -6,3 +6,7 @@ article:
         version: '[1-9][0-9]*|latest'
     defaults:
         part: 'front'
+
+article-list:
+    path: /articles
+    controller: Libero\ApiDummy\Controller\ArticleListController
