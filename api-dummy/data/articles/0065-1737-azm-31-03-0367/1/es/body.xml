@@ -300,11 +300,11 @@
                                 <td align="center">&#x00a0;</td>
                             </tr>
                         </tbody>
-                        <table-wrap-foot>
+                        <!--<table-wrap-foot>
                             <fn id="TFN1">
                                 <p>DE = Desviación estándar, Máx y Mín = valor máximo y mínimo.</p>
                             </fn>
-                        </table-wrap-foot>
+                        </table-wrap-foot>-->
                     </table>
                 </asset>
             </figure>
@@ -426,11 +426,11 @@
                                 <td align="center">1.00</td>
                             </tr>
                         </tbody>
-                        <table-wrap-foot>
+                        <!--<table-wrap-foot>
                             <fn id="TFN2">
                                 <p>CC = centro de clase, Fr = Frecuencia relativa.</p>
                             </fn>
-                        </table-wrap-foot>
+                        </table-wrap-foot>-->
                     </table>
                 </asset>
             </figure>
@@ -510,10 +510,10 @@
                         <thead>
                             <tr>
                                 <th align="center">Characteristics</th>
-                                <th align="center">Total sample <break/> (n = 59) </th>
-                                <th align="center">No tranexamic acid <break/> (group A) <break/> (n
+                                <th align="center">Total sample <!--<break/>--> (n = 59) </th>
+                                <th align="center">No tranexamic acid <!--<break/>--> (group A) <!--<break/>--> (n
                                     = 30) </th>
-                                <th align="center">Tranexamic acid <break/> (group B) <break/> (n =
+                                <th align="center">Tranexamic acid <!--<break/>--> (group B) <!--<break/>--> (n =
                                     29) </th>
                             </tr>
                         </thead>
@@ -563,11 +563,11 @@
                                 <td align="center">(25.0 - 28.0)</td>
                             </tr>
                         </tbody>
-                        <table-wrap-foot>
+                        <!--<table-wrap-foot>
                             <fn id="TFN3">
                                 <p>n = número de individuos, Máx y Mín = valor máximo y mínimo.</p>
                             </fn>
-                        </table-wrap-foot>
+                        </table-wrap-foot>-->
                     </table>
                 </asset>
             </figure>

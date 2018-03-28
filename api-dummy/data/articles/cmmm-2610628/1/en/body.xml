@@ -524,9 +524,9 @@
                                     detection and reducing misclassification rate</td>
                                 <td align="left">216 mammograms</td>
                                 <td align="left">PSOWNN</td>
-                                <td align="left">(i) Sensitivity 94.167&#x25; <break/>(ii)
-                                    Specificity 92.105&#x25;<break/>(iii) AUC 0.96853<break/>(iv)
-                                    Youden&#x2019;s index 0.86272<break/>(v) Misclassification rate
+                                <td align="left">(i) Sensitivity 94.167&#x25; <!--<break/>-->(ii)
+                                    Specificity 92.105&#x25;<!--<break/>-->(iii) AUC 0.96853<!--<break/>-->(iv)
+                                    Youden&#x2019;s index 0.86272<!--<break/>-->(v) Misclassification rate
                                     0.063291</td>
                             </tr>
                             <tr>
@@ -534,11 +534,11 @@
                                 <td align="left">New algorithm based on two ANNs</td>
                                 <td align="center">Mammogram</td>
                                 <td align="center">Classification of masses</td>
-                                <td align="left">30 cases and 60 mammograms<break/>(containing 78
+                                <td align="left">30 cases and 60 mammograms<!--<break/>-->(containing 78
                                     masses)</td>
                                 <td align="left">ANFIS and MLP</td>
                                 <td align="left">(i) True positive (TP) rate 93.6&#x25;
-                                    (73/78),<break/>(ii) Number of the FPs per image 0.63
+                                    (73/78),<!--<break/>-->(ii) Number of the FPs per image 0.63
                                     (38/60).</td>
                             </tr>
                             <tr>
@@ -549,12 +549,12 @@
                                     (MCC) and image enhancement</td>
                                 <td align="left">40 digitized mammogram</td>
                                 <td align="left">ANN</td>
-                                <td align="left">(i) Sensitivity 93&#x25;,<break/>(ii) FP rate
+                                <td align="left">(i) Sensitivity 93&#x25;,<!--<break/>-->(ii) FP rate
                                     (MCC/image) 0.82</td>
                             </tr>
                             <tr>
                                 <td align="left"> Dhawan et al. [<a href="#B13">13</a>]</td>
-                                <td align="left">(i) ANN<break/>(ii) second-order gray-level
+                                <td align="left">(i) ANN<!--<break/>-->(ii) second-order gray-level
                                     statistics</td>
                                 <td align="center">Mammogram</td>
                                 <td align="center">Classification of significant and benign
@@ -570,7 +570,7 @@
                                 <td align="center">Mammogram</td>
                                 <td align="center">Classification of microcalcification into benign
                                     and malignant</td>
-                                <td align="left">(i) 40, 60, and 80 training cases<break/>(ii) 151,
+                                <td align="left">(i) 40, 60, and 80 training cases<!--<break/>-->(ii) 151,
                                     131, and 111 test cases</td>
                                 <td align="left">ANN</td>
                                 <td align="left">Neural network is a robust classifier of a
@@ -583,11 +583,11 @@
                                 <td align="center">Mammogram</td>
                                 <td align="center">Classification of microcalcifications and
                                     nonmicrocalcifications</td>
-                                <td align="left">24 mammograms with<break/>each containing at least
+                                <td align="left">24 mammograms with<!--<break/>-->each containing at least
                                     one cluster of microcalcifications</td>
-                                <td align="left">Cascade correlation ANN<break/>(CC ANN)</td>
+                                <td align="left">Cascade correlation ANN<!--<break/>-->(CC ANN)</td>
                                 <td align="left">(i) TP detection rate for
-                                    individual<break/>microcalcifications is 73&#x25; and 92&#x25;
+                                    individual<!--<break/>-->microcalcifications is 73&#x25; and 92&#x25;
                                     for nonmicrocalcifications</td>
                             </tr>
                             <tr>
@@ -609,7 +609,7 @@
                                             </mml:mrow>
                                         </mml:msub>
                                     </mml:mrow>
-                                </mml:math> value)<break/>(i) ANN <mml:math
+                                </mml:math> value)<!--<break/>-->(i) ANN <mml:math
                                         xmlns:mml="http://www.w3.org/1998/Math/MathML" id="M3">
                                     <mml:mrow>
                                         <mml:msub>
@@ -638,8 +638,8 @@
                                             </mml:mrow>
                                         </mml:msub>
                                     </mml:mrow>
-                                </mml:math> value 0.845 &#xb1; 0.011<break/>(iii) Hybrid
-                                    classifier (ANN and BBN)<break/><i>A</i><sub><i>z</i></sub>
+                                </mml:math> value 0.845 &#xb1; 0.011<!--<break/>-->(iii) Hybrid
+                                    classifier (ANN and BBN)<!--<break/>--><i>A</i><sub><i>z</i></sub>
                                     value increased to 0.859 &#xb1; 0.01</td>
                             </tr>
                             <tr>
@@ -650,12 +650,12 @@
                                 <td align="center">Mammogram</td>
                                 <td align="center">Classification of microcalcification
                                     clusters/suspicious areas</td>
-                                <td align="left">Fuzzy detection algorithm<break/>(i) 30 digital
+                                <td align="left">Fuzzy detection algorithm<!--<break/>-->(i) 30 digital
                                     images (15 contain benign cases and 15 contain malignant
                                     cases)</td>
                                 <td align="left">Backpropagation neural network (BPNN)</td>
                                 <td align="left">(i) Fuzzy detection rate (benign 84.10&#x25; and
-                                    80.30&#x25;)<break/>(ii) Classification rates (feature vector,
+                                    80.30&#x25;)<!--<break/>-->(ii) Classification rates (feature vector,
                                     <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML"
                                               id="M6">
                                         <mml:mi>n</mml:mi>
@@ -674,8 +674,8 @@
                                 <td align="center">Mammogram</td>
                                 <td align="center">Classification of breast tissues to normal and
                                     abnormal classes automatically</td>
-                                <td align="left">(i) Images of 50 normal and 50<break/>abnormal
-                                    breast tissues<break/>(ii) 65 cases for training set and 35
+                                <td align="left">(i) Images of 50 normal and 50<!--<break/>-->abnormal
+                                    breast tissues<!--<break/>-->(ii) 65 cases for training set and 35
                                     cases for testing set</td>
                                 <td align="left">ANN and Gabor wavelets</td>
                                 <td align="left">(i) Classification rate (testing performance
@@ -689,10 +689,10 @@
                                 <td align="left">42 mammogram images (30 benign and 12 malignant
                                     images)</td>
                                 <td align="left">Feed-forward backpropagation and Cascade
-                                    forward<break/>backpropagation artificial neural network</td>
+                                    forward<!--<break/>-->backpropagation artificial neural network</td>
                                 <td align="left">Percentage
-                                    accuracy<break/>(feed-forward<break/>backpropagation network is
-                                    87.5&#x25; and Cascade forward<break/>backpropagation network is
+                                    accuracy<!--<break/>-->(feed-forward<!--<break/>-->backpropagation network is
+                                    87.5&#x25; and Cascade forward<!--<break/>-->backpropagation network is
                                     67.8&#x25;)</td>
                             </tr>
                             <tr>
@@ -703,8 +703,8 @@
                                     lesion</td>
                                 <td align="left">25 sonograms</td>
                                 <td align="left">(i) NN classifier</td>
-                                <td align="left">(i) 69&#x25; accuracy in malignant<break/>(ii)
-                                    66&#x25; accuracy in benign<break/>(iii) 66&#x25; accuracy in no
+                                <td align="left">(i) 69&#x25; accuracy in malignant<!--<break/>-->(ii)
+                                    66&#x25; accuracy in benign<!--<break/>-->(iii) 66&#x25; accuracy in no
                                     lesions</td>
                             </tr>
                             <tr>
@@ -712,10 +712,10 @@
                                 <td align="left">Texture and shape parameter feeds into NN</td>
                                 <td align="center">Ultrasound</td>
                                 <td align="center">Automated recognition of malignant lesion</td>
-                                <td align="left">(i) 41 carcinomas<break/>(ii) 41
-                                    fibroadenomas<break/>(iii) 41 cysts</td>
+                                <td align="left">(i) 41 carcinomas<!--<break/>-->(ii) 41
+                                    fibroadenomas<!--<break/>-->(iii) 41 cysts</td>
                                 <td align="left">(i) NN classifier</td>
-                                <td align="left">(i) 95&#x25; accuracy in solid lesions<break/>(ii)
+                                <td align="left">(i) 95&#x25; accuracy in solid lesions<!--<break/>-->(ii)
                                     92.7&#x25; accuracy in liquid lesions</td>
                             </tr>
                             <tr>
@@ -738,8 +738,8 @@
                                     benign)</td>
                                 <td align="left">MFNN</td>
                                 <td align="left">(i) 95&#x25; accuracy, 98&#x25;
-                                    sensitivity<break/>(ii) 93&#x25; specificity <break/>(iii)
-                                    89&#x25; positive predictive value<break/>(iv) 99&#x25; negative
+                                    sensitivity<!--<break/>-->(ii) 93&#x25; specificity <!--<break/>-->(iii)
+                                    89&#x25; positive predictive value<!--<break/>-->(iv) 99&#x25; negative
                                     predictive value</td>
                             </tr>
                             <tr>
@@ -751,8 +751,8 @@
                                 <td align="left">243 tumors (82 malignant, 161 benign)</td>
                                 <td align="left">SOM</td>
                                 <td align="left">(i) Accuracy of 85.6, sensitivity
-                                    97.6&#x25;<break/>(ii) Specificity 79.5&#x25; <break/>(iii)
-                                    Positive predictive value 70.8&#x25;<break/>(iv) Negative
+                                    97.6&#x25;<!--<break/>-->(ii) Specificity 79.5&#x25; <!--<break/>-->(iii)
+                                    Positive predictive value 70.8&#x25;<!--<break/>-->(iv) Negative
                                     predictive value 98.5&#x25;</td>
                             </tr>
                             <tr>
@@ -763,8 +763,8 @@
                                 <td align="left">263 sonographic image solid breast nodules</td>
                                 <td align="left">NN</td>
                                 <td align="left">(i) Accuracy 87.07&#x25;, sensitivity
-                                    98.35&#x25;<break/>(ii) Specificity 79.10&#x25;<break/>(iii)
-                                    Positive predictive value 81.46&#x25;<break/>(iv) Negative
+                                    98.35&#x25;<!--<break/>-->(ii) Specificity 79.10&#x25;<!--<break/>-->(iii)
+                                    Positive predictive value 81.46&#x25;<!--<break/>-->(iv) Negative
                                     predictive value 94.64&#x25;</td>
                             </tr>
                             <tr>
@@ -789,9 +789,9 @@
                                 <td align="left">242 cases (161 benign, 82 malignant)</td>
                                 <td align="left">Multilayer perceptron neural network (MLPNN)</td>
                                 <td align="left">(i) Receiver operating characteristic (ROC) area
-                                    index is 0.9396 &#xb1; 0.0183<break/>(ii) 98.77&#x25;
-                                    sensitivity, 81.37&#x25; specificity<break/>(iii) 72.73&#x25;
-                                    positive predictive value<break/>(iv) 99.24&#x25; negative
+                                    index is 0.9396 &#xb1; 0.0183<!--<break/>-->(ii) 98.77&#x25;
+                                    sensitivity, 81.37&#x25; specificity<!--<break/>-->(iii) 72.73&#x25;
+                                    positive predictive value<!--<break/>-->(iv) 99.24&#x25; negative
                                     predictive value</td>
                             </tr>
                             <tr>
@@ -800,10 +800,10 @@
                                 <td align="center">Ultrasound</td>
                                 <td align="center">Differentiate benign from malignant breast
                                     lesions</td>
-                                <td align="left">1st set: 160 lesions<break/>2nd set: 111
+                                <td align="left">1st set: 160 lesions<!--<break/>-->2nd set: 111
                                     lesions</td>
                                 <td align="left">MFNN</td>
-                                <td align="left">(i) 98.2&#x25; training accuracy<break/>(ii)
+                                <td align="left">(i) 98.2&#x25; training accuracy<!--<break/>-->(ii)
                                     95.5&#x25; testing accuracy</td>
                             </tr>
                             <tr>
@@ -815,8 +815,8 @@
                                 <td align="left">584 histologically confirmed cases (300 benign, 284
                                     malignant)</td>
                                 <td align="left">ANN</td>
-                                <td align="left">(i) 100&#x25; training accuracy<break/>(ii)
-                                    91.4&#x25; testing set<break/>(iii) 92.3&#x25; sensitivity,
+                                <td align="left">(i) 100&#x25; training accuracy<!--<break/>-->(ii)
+                                    91.4&#x25; testing set<!--<break/>-->(iii) 92.3&#x25; sensitivity,
                                     90.7&#x25; specificity</td>
                             </tr>
 
@@ -830,7 +830,7 @@
                                     malignant)</td>
                                 <td align="left">ANN</td>
                                 <td align="left">(i) 91.4&#x25; accuracy, 92.3&#x25;
-                                    sensitivity<break/>(ii) 90.7&#x25; specificity</td>
+                                    sensitivity<!--<break/>-->(ii) 90.7&#x25; specificity</td>
                             </tr>
                             <tr>
                                 <td align="left"> Zheng et al. [<a href="#B32">32</a>]</td>
@@ -842,8 +842,8 @@
                                 <td align="left">125 benign tumors, 110 malignant tumors</td>
                                 <td align="left">Combination of <i>k</i>-means with BPNN</td>
                                 <td align="left">(i) Recognition rate (94.5&#x25; for benign,
-                                    93.6&#x25; for malignant)<break/>(ii) 94&#x25; accuracy,
-                                    94.5&#x25; sensitivity<break/>(iii) 93.6&#x25; specificity</td>
+                                    93.6&#x25; for malignant)<!--<break/>-->(ii) 94&#x25; accuracy,
+                                    94.5&#x25; sensitivity<!--<break/>-->(iii) 93.6&#x25; specificity</td>
                             </tr>
                             <tr>
                                 <td align="left"> Fok et al. [<a href="#B35">35</a>]</td>
@@ -874,13 +874,13 @@
                                     pathological cases</td>
                                 <td align="left">30 healthy</td>
                                 <td rowspan="2" align="left">ANN</td>
-                                <td align="left">Accuracy (&#x25;)<break/>(frontal/side)<break/>Raw:
-                                    90/93, PCA: 90/93<break/>LDA: 93/97, NDA: 93/93</td>
+                                <td align="left">Accuracy (&#x25;)<!--<break/>-->(frontal/side)<!--<break/>-->Raw:
+                                    90/93, PCA: 90/93<!--<break/>-->LDA: 93/97, NDA: 93/93</td>
                             </tr>
                             <tr>
                                 <td align="left">10 with recognized tumors</td>
-                                <td align="left">Accuracy (&#x25;)<break/>(frontal/side)<break/>Raw:
-                                    80/90, PCA: 80/90<break/>LDA: 90/90, NDA: 80/100</td>
+                                <td align="left">Accuracy (&#x25;)<!--<break/>-->(frontal/side)<!--<break/>-->Raw:
+                                    80/90, PCA: 80/90<!--<break/>-->LDA: 90/90, NDA: 80/100</td>
                             </tr>
                             <tr>
                                 <td align="left"> Koay et al. [<a href="#B33">33</a>]</td>
@@ -891,7 +891,7 @@
                                 <td align="left">Levenberg-Marquardt (LM) and Resilient
                                     Backpropagation (RP)</td>
                                 <td align="left">Accuracy
-                                    (&#x25;)<break/>(RP/LM)<break/>Whole:<break/>95/95<break/>Quadrants:
+                                    (&#x25;)<!--<break/>-->(RP/LM)<!--<break/>-->Whole:<!--<break/>-->95/95<!--<break/>-->Quadrants:
                                     95/100</td>
                             </tr>
                             <tr>
@@ -905,12 +905,12 @@
                                     patients</td>
                                 <td align="left">FALCON-AART</td>
                                 <td align="left">Cancer detection (&#x25;)
-                                    (TH/TDF)<break/>Predicted: 95, sensitivity: 100, specificity:
-                                    60<break/>Breast tumor detection (&#x25;)
-                                    (TH/TDF)<break/>Predicted: 84/71, sensitivity:
-                                    33/76,<break/>specificity: 91/62<break/>Breast tumor
-                                    classification (&#x25;) (TH/TDF)<break/>Predicted: 88/84,
-                                    sensitivity: 33/33,<break/>specificity: 95.5/91</td>
+                                    (TH/TDF)<!--<break/>-->Predicted: 95, sensitivity: 100, specificity:
+                                    60<!--<break/>-->Breast tumor detection (&#x25;)
+                                    (TH/TDF)<!--<break/>-->Predicted: 84/71, sensitivity:
+                                    33/76,<!--<break/>-->specificity: 91/62<!--<break/>-->Breast tumor
+                                    classification (&#x25;) (TH/TDF)<!--<break/>-->Predicted: 88/84,
+                                    sensitivity: 33/33,<!--<break/>-->specificity: 95.5/91</td>
                             </tr>
                             <tr>
                                 <td align="left"> Cardillo et al. [<a href="#B40">40</a>]</td>
@@ -943,8 +943,8 @@
                                     localization</td>
                                 <td align="left">23 women</td>
                                 <td align="left">CNN</td>
-                                <td align="left">Average precision 99.3 &#xb1; 1.8&#x25;<break/>True
-                                    positive volume fraction 99.5 &#xb1; 1.3&#x25;<break/>False
+                                <td align="left">Average precision 99.3 &#xb1; 1.8&#x25;<!--<break/>-->True
+                                    positive volume fraction 99.5 &#xb1; 1.3&#x25;<!--<break/>-->False
                                     positive volume fraction 0.1 &#xb1; 0.2&#x25;</td>
                             </tr>
                             <tr>
@@ -955,7 +955,7 @@
                                 <td align="center">Breast cancer detection</td>
                                 <td align="left">70 normal cases, 50 benign and malign cases</td>
                                 <td align="left">Hybrid scheme of PCNN and SVM</td>
-                                <td align="left">Accuracy<break/>SVM: 98&#x25;<break/>Rough sets:
+                                <td align="left">Accuracy<!--<break/>-->SVM: 98&#x25;<!--<break/>-->Rough sets:
                                     92&#x25;</td>
                             </tr>
                             <tr>

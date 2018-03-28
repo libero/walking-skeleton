@@ -1003,13 +1003,13 @@
                                         <td>—</td>
                                     </tr>
                                 </tbody>
-                                <table-wrap-foot>
+                                <!--<table-wrap-foot>
                                     <fn>
                                         <p>Footnotes not linked to content within the table text are
                                             usually to define abbreviations. For example:</p>
                                         <p>WT, wild type.</p>
                                     </fn>
-                                </table-wrap-foot>
+                                </table-wrap-foot>-->
                             </table>
                         </asset>
                     </figure>
@@ -1129,7 +1129,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <table-wrap-foot>
+                                <!--<table-wrap-foot>
                                     <fn id="tablefn1">
                                         <label>*</label>
                                         <p>Footnotes can be used to highlight properties of data
@@ -1152,7 +1152,7 @@
                                             &#x2a;&#x2a;&#x2a;p), undesignated footnotes and
                                             abbreviations.</p>
                                     </fn>
-                                </table-wrap-foot>
+                                </table-wrap-foot>-->
                             </table-group>
                         </asset>
                     </figure>
@@ -1362,11 +1362,11 @@
                                 <td>1250, 625, 312.5, 156.3, 78.1, 39.1</td>
                             </tr>
                         </tbody>
-                        <table-wrap-foot>
+                        <!--<table-wrap-foot>
                             <fn>
                                 <p>This is an unmarked footnote for an anchored/inline table</p>
                             </fn>
-                        </table-wrap-foot>
+                        </table-wrap-foot>-->
                     </table>
                 </content>
             </section>
@@ -1882,10 +1882,10 @@
                     <section id="s2-6-4">
                         <title>Inline graphics</title>
                         <content>
-                            <p> Here is an example of pulling in an inline graphic <img
+                            <p> Here is an example of pulling in an inline graphic <!--<img
                                     src="https://continuumtest-cdn.elifesciences.org/articles/00666/eLife-00666-inf1-v9.jpg"/>
                                 <inline-graphic mimetype="image" mime-subtype="jpeg"
-                                                href="elife-00666-inf001.jpeg"/>.</p>
+                                                href="elife-00666-inf001.jpeg"/>-->.</p>
                         </content>
                     </section>
                     <section id="s2-6-5">
@@ -1935,11 +1935,11 @@
                     <table id="keyresource">
                         <thead>
                             <tr>
-                                <th>Reagent type <break/>(species) or resource</th>
+                                <th>Reagent type <!--<break/>-->(species) or resource</th>
                                 <th>Designation</th>
                                 <th>Source or reference</th>
                                 <th>Identifiers</th>
-                                <th>Additional <break/>information</th>
+                                <th>Additional <!--<break/>-->information</th>
                             </tr>
                         </thead>
                         <tbody>
