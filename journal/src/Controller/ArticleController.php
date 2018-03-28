@@ -61,7 +61,7 @@ final class ArticleController
                     $context['front']['abstract'] += [
                         'id' => $abstract->getAttribute('id')->toText(),
                         'doi' => $abstract->getAttribute('doi') ? $abstract->getAttribute('doi')->toText() : null,
-                        'text' => implode('', will_convert_all($this->converter, ['lang' => $context['front']['language']])($abstract)),
+                        'text' => implode('', will_convert_all($this->converter, ['lang' => $context['front']['language'], 'level' => 3])($abstract)),
                     ];
                 }
 
@@ -69,13 +69,13 @@ final class ArticleController
                     $context['front']['digest'] += [
                         'id' => $digest->getAttribute('id')->toText(),
                         'doi' => $digest->getAttribute('doi') ? $digest->getAttribute('doi')->toText() : null,
-                        'text' => implode('', will_convert_all($this->converter, ['lang' => $context['front']['language']])($digest)),
+                        'text' => implode('', will_convert_all($this->converter, ['lang' => $context['front']['language'], 'level' => 3])($digest)),
                     ];
                 }
 
                 if ($body) {
                     $context['body'] += [
-                        'text' => implode('', will_convert_all($this->converter, ['lang' => $body->getAttribute('lang')->toText()])($body)),
+                        'text' => implode('', will_convert_all($this->converter, ['lang' => $body->getAttribute('lang')->toText(), 'level' => 2])($body)),
                         'language' => $body->getAttribute('lang')->toText(),
                     ];
                 }

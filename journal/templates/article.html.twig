@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <h1{% if front.language != app.request.locale %} lang="{{ front.language }}"{% endif %}>{{ front.title }}</h1>
+    <h2{% if front.language != app.request.locale %} lang="{{ front.language }}"{% endif %}>{{ front.title }}</h2>
 
     {% if front.doi %}
         <p>doi:{{ front.doi }}</p>
@@ -14,7 +14,7 @@
 
         <section id="{{ front.abstract.id }}">
 
-            <h2>{% trans %}app.abstract{% endtrans %}</h2>
+            <h3>{% trans %}app.abstract{% endtrans %}</h3>
 
             {{ front.abstract.text|raw }}
 
@@ -27,7 +27,7 @@
 
     {% if front.digest %}
 
-        <h2>{% trans %}app.digest{% endtrans %}</h2>
+        <h3>{% trans %}app.digest{% endtrans %}</h3>
 
         {{ front.digest.text|raw }}
 

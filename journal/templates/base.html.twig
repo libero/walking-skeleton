@@ -18,6 +18,20 @@
 
 <body>
 
+<h1>{% trans %}app.title{% endtrans %}</h1>
+
+<ul>
+    <li>
+        {% if '/' != app.request.pathInfo %}
+        <a href="{{ path('home') }}">
+            {% endif %}
+            {% trans %}app.home{% endtrans %}
+            {% if '/' != app.request.pathInfo %}
+        </a>
+        {% endif %}
+    </li>
+</ul>
+
 {% block body %}{% endblock %}
 
 <hr>
