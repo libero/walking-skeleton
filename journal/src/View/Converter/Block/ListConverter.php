@@ -64,8 +64,8 @@ final class ListConverter implements ViewConverter
 
             $attributes = '';
             if ($object->getAttribute('lang') ?? $childContext['lang'] !== $childContext['lang']) {
-                $attributes .= " lang=\"{$object->getAttribute('lang')}\"";
-                $childContext['lang'] = $object->getAttribute('lang');
+                $attributes .= " lang=\"{$object->getAttribute('lang')->toText()}\"";
+                $childContext['lang'] = $object->getAttribute('lang')->toText();
             }
             foreach ($item as $child) {
 

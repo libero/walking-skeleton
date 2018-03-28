@@ -26,7 +26,8 @@ final class AConverter implements ViewConverter
 
         $attributes = '';
         if ($object->getAttribute('lang') ?? $context['lang'] !== $context['lang']) {
-            $attributes .= " lang=\"{$object->getAttribute('lang')}\"";
+            $attributes .= " lang=\"{$object->getAttribute('lang')->toText()}\"";
+            $context['lang'] = $object->getAttribute('lang')->toText();
         }
 
         $text = '';

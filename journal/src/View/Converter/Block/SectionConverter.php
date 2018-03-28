@@ -23,25 +23,26 @@ final class SectionConverter implements ViewConverter
         $context['lang'] = $context['lang'] ?? null;
         $context['level'] = ($context['level'] ?? 1) + 1;
 
-        $titleElement = $object->get('libero:title');
-        $titleContext = $context;
-        $titleAttributes = '';
-        if ($titleElement->getAttribute('lang') ?? $titleContext['lang'] !== $titleContext['lang']) {
-            $titleAttributes .= " lang=\"{$object->getAttribute('lang')}\"";
-            $childContext['lang'] = $object->getAttribute('lang');
-        }
-
-        $title = '';
-        foreach ($titleElement as $child) {
-            $title .= $this->converter->convert($child, $context);
-        }
-
         $attributes = '';
         if ($id = $object->getAttribute('id')) {
             $attributes .= " id=\"{$id->toText()}\"";
         }
         if ($object->getAttribute('lang') ?? $context['lang'] !== $context['lang']) {
-            $attributes .= " lang=\"{$object->getAttribute('lang')}\"";
+            $attributes .= " lang=\"{$object->getAttribute('lang')->toText()}\"";
+            $context['lang'] = $object->getAttribute('lang')->toText();
+        }
+
+        $titleElement = $object->get('libero:title');
+        $titleContext = $context;
+        $titleAttributes = '';
+        if ($titleElement->getAttribute('lang') ?? $titleContext['lang'] !== $titleContext['lang']) {
+            $titleAttributes .= " lang=\"{$object->getAttribute('lang')->toText()}\"";
+            $titleContext['lang'] = $object->getAttribute('lang')->toText();
+        }
+
+        $title = '';
+        foreach ($titleElement as $child) {
+            $title .= $this->converter->convert($child, $titleContext);
         }
 
         $body = '';

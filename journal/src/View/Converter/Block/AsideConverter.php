@@ -27,14 +27,18 @@ final class AsideConverter implements ViewConverter
         if ($id = $object->getAttribute('id')) {
             $attributes .= " id=\"{$id->toText()}\"";
         }
+        if ($object->getAttribute('lang') ?? $context['lang'] !== $context['lang']) {
+            $attributes .= " lang=\"{$object->getAttribute('lang')->toText()}\"";
+            $context['lang'] = $object->getAttribute('lang')->toText();
+        }
 
         $labelElement = $object->get('libero:label');
         if ($labelElement) {
             $labelContext = $context;
             $labelAttributes = '';
             if ($labelElement->getAttribute('lang') ?? $labelContext['lang'] !== $labelContext['lang']) {
-                $labelAttributes .= " lang=\"{$object->getAttribute('lang')}\"";
-                $childContext['lang'] = $object->getAttribute('lang');
+                $labelAttributes .= " lang=\"{$object->getAttribute('lang')->toText()}\"";
+                $labelContext['lang'] = $object->getAttribute('lang')->toText();
             }
 
             $label = '';
@@ -51,8 +55,8 @@ final class AsideConverter implements ViewConverter
             $titleContext = $context;
             $titleAttributes = '';
             if ($titleElement->getAttribute('lang') ?? $titleContext['lang'] !== $titleContext['lang']) {
-                $titleAttributes .= " lang=\"{$object->getAttribute('lang')}\"";
-                $childContext['lang'] = $object->getAttribute('lang');
+                $titleAttributes .= " lang=\"{$object->getAttribute('lang')->toText()}\"";
+                $titleContext['lang'] = $object->getAttribute('lang')->toText();
             }
 
             $title = '';

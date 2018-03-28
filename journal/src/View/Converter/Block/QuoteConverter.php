@@ -33,8 +33,8 @@ final class QuoteConverter implements ViewConverter
 
             $citeAttributes = '';
             if ($citeElement->getAttribute('lang') ?? $citeContext['lang'] !== $citeContext['lang']) {
-                $citeAttributes .= " lang=\"{$citeElement->getAttribute('lang')}\"";
-                $citeContext['lang'] = $citeElement->getAttribute('lang');
+                $citeAttributes .= " lang=\"{$citeElement->getAttribute('lang')->toText()}\"";
+                $citeContext['lang'] = $citeElement->getAttribute('lang')->toText();
             }
             $cite = '';
 
