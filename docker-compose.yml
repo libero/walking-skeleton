@@ -18,3 +18,23 @@ services:
             - ./api-dummy/public:/srv/app/public
         depends_on:
             - api-dummy-fpm
+    journal-fpm:
+        build:
+            context: ./journal
+        volumes:
+            - ./journal:/srv/app
+        environment:
+            - APP_ENV=dev
+            - APP_LIBERO_API=http://api-dummy-nginx
+            - APP_SECRET=f6a87c2e031ecadc0d7eb442729435c6
+        depends_on:
+            - api-dummy-nginx
+    journal-nginx:
+        image: nginx:1.13
+        ports:
+            - '8080:80'
+        volumes:
+            - ./journal/.docker/nginx-server.conf:/etc/nginx/conf.d/default.conf
+            - ./journal/public:/srv/app/public
+        depends_on:
+            - journal-fpm

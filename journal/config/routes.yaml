@@ -1,0 +1,9 @@
+home:
+    path: /
+    controller: Libero\Journal\Controller\HomeController
+
+article:
+    path: /articles/{id}
+    controller: Libero\Journal\Controller\ArticleController
+    requirements:
+        id: '[A-Za-z0-9\-._]+'

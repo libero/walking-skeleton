@@ -1,0 +1,24 @@
+services:
+    _defaults:
+        autoconfigure: true
+        autowire: true
+        bind:
+            $apiClient: '@eight_points_guzzle.client.libero_api'
+        public: false
+
+    Libero\Journal\:
+        resource: '../src/*'
+        exclude: '../src/{functions.php,Kernel.php}'
+
+    Libero\Journal\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+
+    Libero\Journal\View\Converter\:
+        resource: '../src/View/Converter'
+        tags: ['view_model.converter']
+
+    Libero\Journal\View\Converter\ViewConverter:
+        alias: 'Libero\Journal\View\Converter\ViewConverterRegistry'
+
+    Libero\Journal\View\Converter\ViewConverterRegistry: ~

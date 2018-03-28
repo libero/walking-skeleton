@@ -1,0 +1,50 @@
+<!doctype html>
+
+<html lang="{{ app.request.locale }}">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title>{% block title %}{{ title|striptags }}{% endblock %} | {% trans %}app.title{% endtrans %}</title>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+
+    <meta name="format-detection" content="telephone=no">
+
+    {% block head %}{% endblock %}
+
+</head>
+
+<body>
+
+{% block body %}{% endblock %}
+
+<hr>
+
+<p>{% trans %}app.language_choice{% endtrans %}</p>
+
+<ul>
+    {% for locale in translator.fallbackLocales %}
+        <li>
+            {% if locale != app.request.locale %}
+            <a href="?locale={{ locale }}">
+                {% endif %}
+                {{ locale|locale_name }}
+                {% if app.request.locale != app.request.defaultLocale %}
+                    <small lang="{{ app.request.defaultLocale }}">
+                        ({{ locale|locale_name(app.request.defaultLocale) }})
+                    </small>
+                {% endif %}
+                {% if locale != app.request.locale %}
+            </a>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+
+{% block end %}{% endblock %}
+
+</body>
+
+</html>

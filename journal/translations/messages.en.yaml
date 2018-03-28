@@ -1,0 +1,11 @@
+app:
+    article:
+        in_locale:
+            en: 'This article is written in English.'
+            es: 'This article is written in Spanish.'
+            ru: 'This article is written in Russian.'
+    articles: 'Articles'
+    home: 'Home'
+    language_choice: 'Choose a language:'
+    no_articles: 'No articles available.'
+    title: 'Libero Demo'

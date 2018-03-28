@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ front.title|striptags }}{% endblock %}
+
+{% block body %}
+
+    <h1{% if front.language != app.request.locale %} lang="{{ front.language }}"{% endif %}>{{ front.title }}</h1>
+
+    {% if body %}
+        {% if body.language != app.request.locale %}
+            <p><i>{{ ('app.article.in_locale.' ~ body.language)|trans }}</i></p>
+            <div lang="{{ body.language }}">
+        {% endif %}
+
+        {{ body.text|raw }}
+
+        {% if body.language != app.request.locale %}
+            </div>
+        {% endif %}
+
+    {% endif %}
+
+{% endblock %}
+
+{% block end %}
+
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=MML_CHTML"
+            integrity="sha384-Ra6zh6uYMmH5ydwCqqMoykyf1T/+ZcnOQfFPhDrp2kI4OIxadnhsvvA2vv9A7xYv"
+            crossorigin="anonymous"></script>
+
+{% endblock %}
