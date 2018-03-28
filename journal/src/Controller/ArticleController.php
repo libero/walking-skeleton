@@ -48,11 +48,40 @@ final class ArticleController
                 $context = [
                     'front' => [
                         'id' => $front->get('libero:id')->toText(),
+                        'doi' => $front->get('libero:doi') ? $front->get('libero:doi')->toText() : null,
                         'title' => $front->get('libero:title')->toText(),
                         'language' => $front->getAttribute('lang')->toText(),
+                        'abstract' => [],
+                        'digest' => [],
                     ],
                     'body' => [],
                 ];
+
+                if ($abstract = $front->get('libero:abstract')) {
+                    $text = '';
+                    foreach ($abstract as $child) {
+                        $text .= $this->converter->convert($child, $context);
+                    }
+
+                    $context['front']['abstract'] += [
+                        'id' => $abstract->getAttribute('id')->toText(),
+                        'doi' => $abstract->getAttribute('doi') ? $abstract->getAttribute('doi')->toText() : null,
+                        'text' => implode('', will_convert_all($this->converter, ['lang' => $context['front']['language']])($abstract)),
+                    ];
+                }
+
+                if ($digest = $front->get('elife:digest')) {
+                    $text = '';
+                    foreach ($digest as $child) {
+                        $text .= $this->converter->convert($child, $context);
+                    }
+
+                    $context['front']['digest'] += [
+                        'id' => $digest->getAttribute('id')->toText(),
+                        'doi' => $digest->getAttribute('doi') ? $digest->getAttribute('doi')->toText() : null,
+                        'text' => implode('', will_convert_all($this->converter, ['lang' => $context['front']['language']])($digest)),
+                    ];
+                }
 
                 if ($body) {
                     $context['body'] += [

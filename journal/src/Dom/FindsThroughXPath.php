@@ -24,9 +24,9 @@ trait FindsThroughXPath
 
     final public function get(string $xpath) : ?Node
     {
-        $result = $this->getXPath()->query($xpath, $context = $this->getXPathContext());
+        $result = @$this->getXPath()->query($xpath, $context = $this->getXPathContext()); // TODO fix error handling
 
-        if (!$result->item(0)) {
+        if (!$result || !$result->item(0)) {
             return null;
         }
 
