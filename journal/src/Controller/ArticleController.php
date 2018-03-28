@@ -58,11 +58,6 @@ final class ArticleController
                 ];
 
                 if ($abstract = $front->get('libero:abstract')) {
-                    $text = '';
-                    foreach ($abstract as $child) {
-                        $text .= $this->converter->convert($child, $context);
-                    }
-
                     $context['front']['abstract'] += [
                         'id' => $abstract->getAttribute('id')->toText(),
                         'doi' => $abstract->getAttribute('doi') ? $abstract->getAttribute('doi')->toText() : null,
@@ -71,11 +66,6 @@ final class ArticleController
                 }
 
                 if ($digest = $front->get('elife:digest')) {
-                    $text = '';
-                    foreach ($digest as $child) {
-                        $text .= $this->converter->convert($child, $context);
-                    }
-
                     $context['front']['digest'] += [
                         'id' => $digest->getAttribute('id')->toText(),
                         'doi' => $digest->getAttribute('doi') ? $digest->getAttribute('doi')->toText() : null,
