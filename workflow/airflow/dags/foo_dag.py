@@ -1,6 +1,12 @@
 """
 A simple DAG that has one operator which just prints its kwargs and return value
 to it's log then completes.
+
+You can pass the DAG an 'article_id' and run it like this:
+
+$ airflow trigger_dag foo_python_operator --conf '{"article_id": 12345}'
+
+
 """
 
 from datetime import timedelta
@@ -10,6 +16,8 @@ import airflow
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 
+
+DAG_ID = 'foo_python_operator'
 
 # these args will get passed on to each operator
 # you can override them on a per-task basis during operator initialization
@@ -44,7 +52,7 @@ def print_context(*args, **kwargs):
     return 'Ran foo task with article_id {}'.format(article_id)
 
 
-foo_dag = DAG(dag_id='foo_python_operator', default_args=default_args, schedule_interval=None)
+foo_dag = DAG(dag_id=DAG_ID, default_args=default_args, schedule_interval=None)
 
 foo_operator = PythonOperator(task_id='print_the_context',
                               provide_context=True,
