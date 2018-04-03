@@ -41,4 +41,4 @@ Start a webserver instance in it's own process: (not required but provides a nic
 
 `airflow webserver -p 8080`
 
-Browsing to [http://localhost:8080/](http://localhost:8080/) will now take you to the admin console.
+Browsing to [http://localhost:8080/](http://localhost:8080/) will now take you to the [admin console](https://airflow.apache.org/ui.html).
