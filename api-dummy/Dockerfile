@@ -10,8 +10,7 @@ RUN apt-get update && apt-get install -y \
 RUN docker-php-ext-configure opcache --enable-opcache \
     && docker-php-ext-install opcache
 
-COPY .docker/scripts /root/scripts
-RUN /root/scripts/install-composer.sh
+COPY --from=composer:1.6 /usr/bin/composer /usr/bin/composer
 
 RUN mkdir -p /srv/app && \
     chown www-data:www-data /srv/app
