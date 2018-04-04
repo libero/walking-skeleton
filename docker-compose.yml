@@ -6,6 +6,8 @@ services:
             context: ./api-dummy
         volumes:
             - ./api-dummy:/srv/app
+            - /srv/app/var
+            - /srv/app/vendor
         environment:
             - APP_ENV=dev
             - APP_SECRET=f6a87c2e031ecadc0d7eb442729435c5
@@ -23,6 +25,8 @@ services:
             context: ./journal
         volumes:
             - ./journal:/srv/app
+            - /srv/app/var
+            - /srv/app/vendor
         environment:
             - APP_ENV=dev
             - APP_LIBERO_API=http://api-dummy-nginx
