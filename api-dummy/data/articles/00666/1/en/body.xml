@@ -1,0 +1,2213 @@
+<?xml version="1.0" ?>
+
+<body xmlns="http://libero.pub" xmlns:elife="http://elifesciences.org"
+      xmlns:iiif="http://libero.pub/iiif" xmlns:mml="http://www.w3.org/1998/Math/MathML" xml:lang="en">
+
+    <section id="s1">
+        <title>Introduction (Level 1 heading)</title>
+        <content>
+            <p>This article is a guide to the tagging and display of eLife articles and will
+                encompass all the elements that can possibly be contained in an eLife article. It
+                will also include information from the author guide. For this reason, it is
+                colloquially known as the eLife 'kitchen sink'.</p>
+            <section id="s1-1">
+                <title>The eLife editorial process (level 2 heading)</title>
+                <content>
+                    <p>eLife publishes the most highly influential research across the life sciences
+                        and biomedicine. Before you submit your work, please note that eLife is a
+                        very selective journal that aims to publish work of the highest scientific
+                        standards and importance. Leading academic researchers evaluate new
+                        submissions and approximately two-thirds are returned to the authors without
+                        further peer review. See <a href="#bib12">DeLano, 2002</a> and <a
+                                href="#bib13"> Department of Education and Morgan, 2016</a>.
+                        Approximately half of the articles that are selected for peer review go on
+                        to be published (<a href="#bib5">Brettar et al., 2004a</a>). If other
+                        researchers publish similar findings after submission, this will not be a
+                        reason for rejection. The eLife editorial process broadly occurs in three
+                        phases (<a href="#bib48">Turlings and Wäckers, 2004a</a>; <a href="#bib49"
+                        >Turlings and Wäckers, 2004b</a>; <a href="#bib51"> Wolski et al.,
+                            2008</a>; <a href="#bib50">Walker, 1994</a>; <a href="#bib44">Tanaka et
+                            al., 2016</a>). If you are interested in submitting your work to eLife,
+                        please review the guidelines relating to initial submissions. If you have
+                        received an encouraging response to your initial submission, please review
+                        the guidelines relating to full submissions. If your full submission has
+                        been peer reviewed and you have been asked to make revisions, please review
+                        our guidelines for revised submissions (<a href="#bib6">Brettar et al.,
+                            2004b</a>).</p>
+                    <section id="s1-1-1">
+                        <title>Initial submission (level 3 heading)</title>
+                        <content>
+                            <p>eLife publishes research of the very highest (<a href="#bib7"
+                            >Bricogne et al., 2011</a>) standard and significance, so many
+                                manuscripts are returned to the authors without in-depth peer
+                                review. During the initial submission phase, members of eLife’s
+                                senior editorial team rapidly assess new submissions, often in
+                                consultation with members of the Board of Reviewing Editors or with
+                                external guest editors where necessary, to identify the ones that
+                                are appropriate for in-depth peer review (<a href="#bib8">Cardé and
+                                    Millar, 2004</a>; <a href="#bib9">Cartwright, 2016</a>; <a
+                                        href="#bib10">Chmeil, 2008</a>). To simplify the submission
+                                process, authors should submit their full manuscript as a single
+                                PDF. Limited additional information is collected via the submission
+                                screen questions to complete the submission (<a href="#bib6">Brettar
+                                    et al., 2004b</a>).</p>
+                        </content>
+                    </section>
+                    <section id="s1-1-2">
+                        <title>Full submission (level 3 heading)</title>
+                        <content>
+                            <p>For manuscripts that are invited for in-depth peer review, see <a
+                                    href="#bib11">Coyne and Orr, 1989</a> and <a href="#bib14">Du et
+                                al., 2014</a>, we request detailed information about the work to
+                                support the peer review process, to ensure that the work meets
+                                appropriate standards for the reporting of new findings, and, if
+                                accepted, to assist in rapid publication and further dissemination
+                                of the work in relevant indexes and repositories. Authors are asked
+                                to agree to publish their work under the terms of the Creative
+                                Commons Attribution license (PDF of the agreement), or the Creative
+                                Commons CC0 public domain dedication (PDF of the agreement) if one
+                                or more authors are US-government employees (<a href="#bib23"
+                                >Hubbard and Thornton, 1993</a>; <a href="#bib19"
+                                >GlaxoSmithKline UK, 2016</a>; <a href="#bib24">Jain et al.,
+                                    2010</a>).</p>
+                        </content>
+                    </section>
+                    <section id="s1-1-3">
+                        <title>Revised submission (level 3 heading)</title>
+                        <content>
+                            <p>We will require a response to the essential revision requirements
+                                outlined in the decision letter. A response to minor comments is
+                                optional. In the event of acceptance, the substantive revision
+                                requests and the authors’ response will be published, under the
+                                terms of the Creative Commons Attribution license. In preparation
+                                for submission, authors should ensure they have all the materials
+                                and information necessary to expedite the submission and assessment
+                                of their work (<a href="#bib15">Eisen, 2016</a>; <a href="#bib16"
+                                >Ferry et al., 2014</a>; <a href="#bib18">Gavrilov et al.,
+                                    2014</a>; <a href="#bib20">Goodstadt, 2010</a>; <a href="#bib21"
+                                >Hoang et al., 2015</a>).</p>
+                        </content>
+                    </section>
+                </content>
+            </section>
+            <section id="s1-2">
+                <title>The eLife production process (level 2 heading)</title>
+                <content>
+                    <section id="s1-2-1">
+                        <title>Immediate publication (accepted manuscript) (level 3 heading)</title>
+                        <content>
+                            <p>On acceptance an eLife article can be published in accepted
+                                manuscript form immediately. The mean time from acceptance to
+                                publication at this stage is 1 day. Using SQl, basic metadata is
+                                exported from the submission system to an AWS bucket as CSV files.
+                                The author files are exported to another AWS bucket and an eLife
+                                process generates a package of this information and the author files
+                                to deliver to the online platform, Continuum.</p>
+                        </content>
+                    </section>
+                    <section id="s1-2-2">
+                        <title>Publication of the full version (version of record) (level 3
+                            heading)</title>
+                        <content>
+                            <p>The production process includes an author proofing cycle, the output
+                                of which is the final full text version of the article online, as
+                                well as a typeset PDF.</p>
+                        </content>
+                    </section>
+                    <section id="s1-2-3">
+                        <title>Publication of versions (level 3 heading)</title>
+                        <content>
+                            <p>eLife allows the publication of updates to an article after the full
+                                version has been produced. These are treated as new versions of the
+                                article. All previous versions of the article will continue to exist
+                                online and will be accessible from the latest live version.</p>
+                            <section id="s1-2-3-1">
+                                <title>level 4 heading</title>
+                                <content>
+                                    <p>eLife allows up to four levels of headings and no more. This
+                                        is a demonstration of a level 4 heading.</p>
+                                </content>
+                            </section>
+                        </content>
+                    </section>
+                </content>
+            </section>
+        </content>
+    </section>
+    <section id="s2">
+        <title>Results</title>
+        <content>
+            <p>This section will be used to demostrate the majority of eLife XML tagging and
+                editorial policies. However, the Introduction section was used to demostrate heading
+                levels. See <a href="#s8">Appendix 1</a> and <a href="#s9">2</a>.</p>
+            <section id="s2-1">
+                <title>eLife controlled lists</title>
+                <content>
+                    <p>eLife has no strict requirements for the display of lists. Below we will show
+                        examples of how to present lists. See <a href="#fig2s1">Figure 2—figure
+                            supplement 1</a> for the representation of the Major Subject Areas,
+                        Research Organisms and author keywords on the eLife HTML page (<a
+                                href="#bib45">The <i>Shigella</i> Genome Sequencing Consortium,
+                            2015a</a>). </p>
+                    <section id="s2-1-1">
+                        <title>Article types</title>
+                        <content>
+                            <p>This is an example of a list where the prefix character is a
+                                lowercase roman numeral. eLife Article Types are taken from a
+                                controlled list:</p>
+                            <list prefix="roman-lower">
+                                <item>
+                                    <p>Research article</p>
+                                </item>
+                                <item>
+                                    <p>Short Report</p>
+                                </item>
+                                <item>
+                                    <p>Tools and Resources</p>
+                                </item>
+                                <item>
+                                    <p>Research Advance</p>
+                                </item>
+                                <item>
+                                    <p>Registered Report</p>
+                                </item>
+                                <item>
+                                    <p>Replication Study</p>
+                                </item>
+                            </list>
+                            <section id="s2-1-1-1">
+                                <title>Article types (XML only, not display) (level 4
+                                    heading)</title>
+                                <content>
+                                    <p>This is an example of a list where the prefix character is a
+                                        uppercase roman numeral. This is a controlled list from the
+                                        JATS DTD</p>
+                                    <list prefix="roman-upper">
+                                        <item>
+                                            <p>article-commentary (used for Insights)</p>
+                                        </item>
+                                        <item>
+                                            <p>correction</p>
+                                        </item>
+                                        <item>
+                                            <p>discussion (used for Feature 1 and Feature 2)</p>
+                                        </item>
+                                        <item>
+                                            <p>editorial</p>
+                                        </item>
+                                        <item>
+                                            <p>research-article (all reseasrch content)</p>
+                                        </item>
+                                    </list>
+                                    <p>Nested lists are allowed and these are very common in
+                                        Registered Peports. Below is an example of a nested list to
+                                        3 levels.</p>
+                                    <p>Genus: Plasmodium; following species are known to infect
+                                        humans</p>
+                                    <list prefix="roman-upper">
+                                        <item>
+                                            <list prefix="roman-lower">
+                                                <item>
+                                                    <p>
+                                                        <i>P. falciparum</i>
+                                                    </p>
+                                                </item>
+                                                <item>
+                                                    <p>
+                                                        <i>P. vivax</i>
+                                                    </p>
+                                                </item>
+                                                <item>
+                                                    <p>
+                                                        <i>P. ovale</i>
+                                                    </p>
+                                                </item>
+                                                <item>
+                                                    <p>
+                                                        <i>P. malariae</i>
+                                                    </p>
+                                                </item>
+                                                <item>
+                                                    <p>
+                                                        <i>P. knowlesi</i>
+                                                    </p>
+                                                </item>
+                                            </list>
+                                            <p>Genus: Leishmania. There are 3 subgenus of
+                                                Leishmania:</p>
+                                        </item>
+                                        <item>
+                                            <list prefix="roman-lower">
+                                                <item>
+                                                    <p>Leishmania</p>
+                                                </item>
+                                                <item>
+                                                    <p>Sauroleishmania</p>
+                                                </item>
+                                                <item>
+                                                    <p>Viannia</p>
+                                                </item>
+                                                <item>
+                                                    <p>Within Viannia subgenus, there are 11
+                                                        species:</p>
+                                                    <list prefix="bullet">
+                                                        <item>
+                                                            <p>
+                                                                <i>L. braziliensis</i>
+                                                            </p>
+                                                        </item>
+                                                        <item>
+                                                            <p>
+                                                                <i>L. colombiensis</i>
+                                                            </p>
+                                                        </item>
+                                                        <item>
+                                                            <p>
+                                                                <i>L. equatorensis</i>
+                                                            </p>
+                                                        </item>
+                                                        <item>
+                                                            <p>
+                                                                <i>L. guyanensis</i>
+                                                            </p>
+                                                        </item>
+                                                        <item>
+                                                            <p>
+                                                                <i>L. lainsoni</i>
+                                                            </p>
+                                                        </item>
+                                                        <item>
+                                                            <p>
+                                                                <i>L. naiffi</i>
+                                                            </p>
+                                                        </item>
+                                                        <item>
+                                                            <p>
+                                                                <i>L. panamensis</i>
+                                                            </p>
+                                                        </item>
+                                                        <item>
+                                                            <p>
+                                                                <i>L. peruviana</i>
+                                                            </p>
+                                                        </item>
+                                                        <item>
+                                                            <p>
+                                                                <i>L. pifanoi</i>
+                                                            </p>
+                                                        </item>
+                                                        <item>
+                                                            <p>
+                                                                <i>L. shawi</i>
+                                                            </p>
+                                                        </item>
+                                                        <item>
+                                                            <p>
+                                                                <i>L. utingensis</i>
+                                                            </p>
+                                                        </item>
+                                                    </list>
+                                                </item>
+                                            </list>
+                                        </item>
+                                    </list>
+                                </content>
+                            </section>
+                        </content>
+                    </section>
+                    <section id="s2-1-2">
+                        <title>Major Subject Areas</title>
+                        <content>
+                            <p>This is an example of a bulleted list. eLife Major subject areas are
+                                taken from a controlled list:</p>
+                            <list prefix="bullet">
+                                <item>
+                                    <p>Biochemistry</p>
+                                </item>
+                                <item>
+                                    <p>Biophysics and Structural Biology</p>
+                                </item>
+                                <item>
+                                    <p>Cell Biology</p>
+                                </item>
+                                <item>
+                                    <p>Computational and Systems Biology</p>
+                                </item>
+                                <item>
+                                    <p>Developmental Biology and Stem Cells</p>
+                                </item>
+                                <item>
+                                    <p>Ecology</p>
+                                </item>
+                                <item>
+                                    <p>Epidemiology and Global Health</p>
+                                </item>
+                                <item>
+                                    <p>Genes and Chromosomes</p>
+                                </item>
+                                <item>
+                                    <p>Genomics and Evolutionary Biology</p>
+                                </item>
+                                <item>
+                                    <p>Human Biology and Medicine</p>
+                                </item>
+                                <item>
+                                    <p>Immunology</p>
+                                </item>
+                                <item>
+                                    <p>Microbiology and Infectious Disease</p>
+                                </item>
+                                <item>
+                                    <p>Neuroscience</p>
+                                </item>
+                                <item>
+                                    <p>Plant Biology</p>
+                                </item>
+                            </list>
+                        </content>
+                    </section>
+                    <section id="s2-1-3">
+                        <title>Multi-lists</title>
+                        <content>
+                            <list prefix="number">
+                                <item>
+                                    <p>Here is an example of a list with multiple paragraphs and
+                                        equations.</p>
+                                    <p>A discrete three-dimensional model space was generated
+                                        (represented as a three-dimensional matrix; <a
+                                                href="#fig2s1">Figure 2&#x2014;figure supplement 1A</a>,
+                                        left), with dimensions corresponding to population &#x00B5;,
+                                        population &#x03C3;, and f value. Any given value in the
+                                        matrix indicates P(f|&#x03BC;,&#x03C3;), that&#x00A0;is, the
+                                        probability of a given frequency given a particular &#x03BC;
+                                        and &#x03C3;. The columns (all f values for a given &#x03BC;
+                                        and &#x03C3; combination; <a href="#fig2s1">Figure
+                                            2&#x2014;figure supplement 1</a>, upper-right) thus
+                                        constitute the forward model (by which stimuli are
+                                        generated), and the planes (all combinations of &#x03BC; and
+                                        &#x03C3; for a given f value; <a href="#fig2s1">Figure
+                                            2&#x2014;figure supplement 1</a>, lower-middle)
+                                        constitute the inverse model (by which hidden parameters can
+                                        be estimated from observed f values).</p>
+                                </item>
+                                <item>
+                                    <p> 2) For each segment, the model was inverted for its
+                                        particular f value, yielding a two-dimensional probability
+                                        distribution for the hidden parameters (<a href="#fig2s1"
+                                        >Figure 2&#x2014;figure supplement 1</a>, lower-middle).
+                                        Steps 3-6 were then worked through for each stimulus segment
+                                        in order, starting at the beginning of the stimulus.</p>
+                                </item>
+                                <item>
+                                    <p>These probability distributions, for each segment subsequent
+                                        to the most recent estimated population change (as defined
+                                        later), were multiplied together, and scaled to a sum of 1.
+                                        The resulting probability distribution (<a href="#fig2s1"
+                                        >Figure 2&#x2014;figure supplement 1</a>, lower-right)
+                                        thus reflects parameter probabilities taking into account
+                                        all relevant f values</p>
+                                </item>
+                                <item>
+                                    <p>This combined parameter probability distribution was then
+                                        scalar multiplied with the full model space, in order to
+                                        weight each of the forward model columns (each corresponding
+                                        to a particular parameter combination) by the probability of
+                                        that parameter combination being in effect. The resulting
+                                        weighted model space was then averaged across parameter
+                                        dimensions, to yield a one-dimensional (forward) probability
+                                        distribution, constituting an optimal prediction about the f
+                                        value of the next stimulus segment, provided a population
+                                        change did not occur before then. A probability distribution
+                                        applicable if a population change were to occur was
+                                        calculated the same way, but without weighting the forward
+                                        model columns (so as to encompass every possible parameter
+                                        combination).</p>
+                                </item>
+                                <item>
+                                    <p>It was assumed that a population change occurred immediately
+                                        prior to the first stimulus segment. To infer subsequent
+                                        population changes, for each segment the probability of
+                                        observing the present f value was compared for the two
+                                        probability distributions (the distribution assuming a
+                                        population change, and the distribution assuming no change),
+                                        that&#x00A0;is, P(f|c) and P(f|&#x007E;c), respectively,
+                                        with c denoting a population change. The probabilities were
+                                        compared, in conjunction with the known prior probability of
+                                        a population change (1/8), using Bayes&#x2019; rule, as
+                                        stated in Equation 2:</p><mathml id="equ1">
+                                    <label>(1)</label>
+                                    <mml:math id="m2">
+                                        <mml:mrow>
+                                            <mml:mi>P</mml:mi>
+                                            <mml:mo>(</mml:mo>
+                                            <mml:mi>c</mml:mi>
+                                            <mml:mo>|</mml:mo>
+                                            <mml:mi>f</mml:mi>
+                                            <mml:mo>)</mml:mo>
+                                            <mml:mo>=</mml:mo>
+                                            <mml:mfrac>
+                                                <mml:mrow>
+                                                    <mml:mi>P</mml:mi>
+                                                    <mml:mrow>
+                                                        <mml:mo>(</mml:mo>
+                                                        <mml:mrow>
+                                                            <mml:mi>f</mml:mi>
+                                                            <mml:mtext>|</mml:mtext>
+                                                            <mml:mi>c</mml:mi>
+                                                        </mml:mrow>
+                                                        <mml:mo>)</mml:mo>
+                                                    </mml:mrow>
+                                                    <mml:mi>P</mml:mi>
+                                                    <mml:mo>(</mml:mo>
+                                                    <mml:mi>c</mml:mi>
+                                                    <mml:mo>)</mml:mo>
+                                                </mml:mrow>
+                                                <mml:mrow>
+                                                    <mml:mi>P</mml:mi>
+                                                    <mml:mo>(</mml:mo>
+                                                    <mml:mi>f</mml:mi>
+                                                    <mml:mo>)</mml:mo>
+                                                </mml:mrow>
+                                            </mml:mfrac>
+                                        </mml:mrow>
+                                    </mml:math>
+                                </mathml>
+                                    <p>Here, P(c|f) is the chance that a population change occurred
+                                        at that particular time. Given that P(c) is known to be 1/8,
+                                        and P(f), the total probability of the observed f value, can
+                                        be rewritten P(f|c)P(c)+P(f|&#x007E;c)(1-P(c)), the above
+                                        equation can be rewritten as Equation 3:</p><mathml
+                                        id="equ2">
+                                    <label>(2)</label>
+                                    <mml:math id="m3">
+                                        <mml:mrow>
+                                            <mml:mi>P</mml:mi>
+                                            <mml:mrow>
+                                                <mml:mo>(</mml:mo>
+                                                <mml:mrow>
+                                                    <mml:mi>c</mml:mi>
+                                                    <mml:mtext>|</mml:mtext>
+                                                    <mml:mi>f</mml:mi>
+                                                </mml:mrow>
+                                                <mml:mo>)</mml:mo>
+                                            </mml:mrow>
+                                            <mml:mo>=</mml:mo>
+                                            <mml:mfrac>
+                                                <mml:mn>1</mml:mn>
+                                                <mml:mrow>
+                                                    <mml:mn>1</mml:mn>
+                                                    <mml:mo>+</mml:mo>
+                                                    <mml:mfrac>
+                                                        <mml:mrow>
+                                                            <mml:mn>7</mml:mn>
+                                                            <mml:mi>P</mml:mi>
+                                                            <mml:mo>(</mml:mo>
+                                                            <mml:mi>f</mml:mi>
+                                                            <mml:mo>|</mml:mo>
+                                                            <mml:mo>&#x007E;</mml:mo>
+                                                            <mml:mi>c</mml:mi>
+                                                            <mml:mo>)</mml:mo>
+                                                        </mml:mrow>
+                                                        <mml:mrow>
+                                                            <mml:mi>P</mml:mi>
+                                                            <mml:mo>(</mml:mo>
+                                                            <mml:mi>f</mml:mi>
+                                                            <mml:mo>|</mml:mo>
+                                                            <mml:mi>c</mml:mi>
+                                                            <mml:mo>)</mml:mo>
+                                                        </mml:mrow>
+                                                    </mml:mfrac>
+                                                </mml:mrow>
+                                            </mml:mfrac>
+                                        </mml:mrow>
+                                    </mml:math>
+                                </mathml>
+                                </item>
+                                <item>
+                                    <p>For each segment, the above calculation of P(c|f) was made
+                                        not only with respect to the immediately preceding segment,
+                                        but also a number of segments preceding that, up to a
+                                        maximum of 4. Therefore, for segment t, it was possible to
+                                        conclude that a population change had occurred immediately
+                                        prior to t, t-1, t-2, t-3, or none of the above. A
+                                        population change was judged to have occurred at the time
+                                        point with the highest value of P(c|f), provided this value
+                                        was greater than 0.5. Using more than 4 lags did not
+                                        appreciably alter the estimates obtained by model inversion.
+                                        Importantly, any retrospective inference of population
+                                        changes did not retrospectively alter any prior predictions
+                                        generated by the model (e.g. at time t, if a population
+                                        change were inferred to have occurred at time t-3 then the
+                                        priors for t-2, t-1 and t were not affected, but only the
+                                        priors for t+1 onwards).</p>
+                                </item>
+                                <item>
+                                    <p>Once the above steps were worked through for each stimulus
+                                        segment in order, the optimal prior predictions were used to
+                                        calculate the perceptual inference variables of interest.
+                                        Predictions themselves were summarised by their mean
+                                        (&#x03BC;) and precision (1/variance). Changes to
+                                        predictions (&#x0394;&#x00B5;) were calculated as the
+                                        absolute change (in octaves) in &#x03BC; from one prediction
+                                        to the next. Surprise (S) was calculated as the negative log
+                                        probability of the observed f value given the prior
+                                        prediction, and prediction error (irrespective of prediction
+                                        precision) was calculated as the absolute difference (in
+                                        octaves) between the observed f value and the mean of the
+                                        prior prediction. Mathematically, surprise is directly
+                                        proportional to prediction precision multiplied by
+                                        prediction error. Finally, &#x0394;f was calculated as the
+                                        absolute difference between the current and preceding value
+                                        of f.</p>
+                                </item>
+                            </list>
+                        </content>
+                    </section>
+                    <section id="s2-1-4">
+                        <title>Research Organisms</title>
+                        <content>
+                            <p>This is an example of an ordered list, the "system" will default to
+                                numbers. eLife Research organsims are taken from a controlled list
+                                from the submission system:</p>
+                            <list prefix="number">
+                                <item>
+                                    <p>
+                                        <i>Arabidopsis</i>
+                                    </p>
+                                </item>
+                                <item>
+                                    <p><i>B</i>. <i>subtilis</i></p>
+                                </item>
+                                <item>
+                                    <p><i>C</i>. <i>elegans</i></p>
+                                </item>
+                                <item>
+                                    <p><i>C</i>. <i>intestinalis</i></p>
+                                </item>
+                                <item>
+                                    <p>Chicken</p>
+                                </item>
+                                <item>
+                                    <p><i>D</i>. <i>melanogaster</i></p>
+                                </item>
+                                <item>
+                                    <p>
+                                        <i>Dictyostelium</i>
+                                    </p>
+                                </item>
+                                <item>
+                                    <p><i>E</i>. <i>coli</i></p>
+                                </item>
+                                <item>
+                                    <p>Frog</p>
+                                </item>
+                                <item>
+                                    <p>Human</p>
+                                </item>
+                                <item>
+                                    <p><i>M</i>. <i>mulatta</i></p>
+                                </item>
+                                <item>
+                                    <p>Maize</p>
+                                </item>
+                                <item>
+                                    <p>Mouse</p>
+                                </item>
+                                <item>
+                                    <p><i>M</i>. <i>thermophila</i></p>
+                                </item>
+                                <item>
+                                    <p><i>M</i>. <i>crassa</i></p>
+                                </item>
+                                <item>
+                                    <p>
+                                        <i>Neurospora</i>
+                                    </p>
+                                </item>
+                                <item>
+                                    <p>None</p>
+                                </item>
+                                <item>
+                                    <p>Other</p>
+                                </item>
+                                <item>
+                                    <p><i>O</i>. <i>fasciatus</i></p>
+                                </item>
+                                <item>
+                                    <p><i>P</i>. <i>falciparum</i></p>
+                                </item>
+                                <item>
+                                    <p><i>P</i>. <i>dumerilii</i></p>
+                                </item>
+                                <item>
+                                    <p>Rat</p>
+                                </item>
+                                <item>
+                                    <p><i>S</i>. <i>cerevisiae</i></p>
+                                </item>
+                                <item>
+                                    <p><i>S</i>. <i>pombe</i></p>
+                                </item>
+                                <item>
+                                    <p><i>S</i>. <i>enterica</i>serovar Typhi</p>
+                                </item>
+                                <item>
+                                    <p><i>S</i>. <i>pyogenes</i></p>
+                                </item>
+                                <item>
+                                    <p>Virus</p>
+                                </item>
+                                <item>
+                                    <p>
+                                        <i>Volvox</i>
+                                    </p>
+                                </item>
+                                <item>
+                                    <p>
+                                        <i>Xenopus</i>
+                                    </p>
+                                </item>
+                                <item>
+                                    <p><i>P</i>. <i>cynocephalus</i></p>
+                                </item>
+                                <item>
+                                    <p>Zebrafish</p>
+                                </item>
+                            </list>
+                            <p>However, additional research organisms can be added during the
+                                production process so this is not a controlled list once it is
+                                output from the editorial system. The research organism "Other" is
+                                hidden from display on the eLife website.</p>
+                        </content>
+                    </section>
+                </content>
+            </section>
+            <section id="s2-2">
+                <title>Tables</title>
+                <content>
+                    <p>This section is an example of different tables, there are four in total (<a
+                            href="#table1">Tables 1 to 3</a> and an unnamed inline table).</p>
+                    <figure>
+                        <asset>
+                            <label>Table 1.</label>
+                            <table id="table1">
+                                <doi>10.7554/eLife.00666.003</doi>
+                                <title>This is the title.</title>
+                                <caption>
+                                    <p>This is the caption: A table containing interesting formating
+                                        that is large enough to require landscape orientation in the
+                                        PDF.</p>
+                                </caption>
+                                <thead>
+                                    <tr>
+                                        <th colspan="3" rowspan="2"> </th>
+                                        <th align="center" colspan="8">GLVs (percent IS
+                                            plant<sup>-1</sup>)</th>
+                                        <th align="center" colspan="17">TPS10 products (percent IS
+                                            plant<sup>-1</sup>)</th>
+                                        <th align="center" colspan="10">Non-target volatiles
+                                            (percent IS plant<sup>-1</sup>)</th>
+                                    </tr>
+                                    <tr>
+                                        <th align="center" colspan="8">(<i>Z</i>)-Hexen-3-ol</th>
+                                        <th align="center" colspan="10">TAB</th>
+                                        <th align="center" colspan="7">TBF</th>
+                                        <th align="center" colspan="6">α-Duprezianene</th>
+                                        <th align="center" colspan="4">Germacrene A</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <b>Genotype</b>
+                                        </td>
+                                        <td>
+                                            <b>Day n</b>
+                                        </td>
+                                        <td>
+                                            <b>Night n</b>
+                                        </td>
+                                        <td colspan="3">
+                                            <b>Day</b>
+                                        </td>
+                                        <td colspan="5">
+                                            <b>Night</b>
+                                        </td>
+                                        <td colspan="4">
+                                            <b>Day</b>
+                                        </td>
+                                        <td colspan="6">
+                                            <b>Night</b>
+                                        </td>
+                                        <td colspan="4">
+                                            <b>Day</b>
+                                        </td>
+                                        <td colspan="3">
+                                            <b>Night</b>
+                                        </td>
+                                        <td colspan="3">
+                                            <b>Day</b>
+                                        </td>
+                                        <td colspan="3">
+                                            <b>Night</b>
+                                        </td>
+                                        <td colspan="3">
+                                            <b>Day</b>
+                                        </td>
+                                        <td>
+                                            <b>Night</b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>WT</b>
+                                        </td>
+                                        <td>8</td>
+                                        <td>8</td>
+                                        <td>0.99%</td>
+                                        <td>±</td>
+                                        <td>0.99%</td>
+                                        <td>7.96%</td>
+                                        <td>±</td>
+                                        <td>4.25%</td>
+                                        <td rowspan="2" valign="middle">
+                                            <elife:color color="blue">}</elife:color>
+                                        </td>
+                                        <td rowspan="2" valign="middle">
+                                            <b>
+                                                <elife:color color="blue">a</elife:color>
+                                            </b>
+                                            <sub>
+                                                <b>
+                                                    <elife:color color="blue">lox</elife:color>
+                                                </b>
+                                            </sub>
+                                        </td>
+                                        <td>0.37%</td>
+                                        <td>±</td>
+                                        <td>0.29%</td>
+                                        <td>
+                                            <b>
+                                                <elife:color color="blue">a</elife:color>
+                                            </b>
+                                        </td>
+                                        <td colspan="3">—</td>
+                                        <td> </td>
+                                        <td rowspan="3" valign="middle">
+                                            <elife:color color="blue">}</elife:color>
+                                        </td>
+                                        <td rowspan="2" valign="bottom">
+                                            <b>
+                                                <elife:color color="blue">a</elife:color>
+                                            </b>
+                                            <sub>
+                                                <b>
+                                                    <elife:color color="blue">TPS</elife:color>
+                                                </b>
+                                            </sub>
+                                        </td>
+                                        <td colspan="3">—</td>
+                                        <td>
+                                            <b>
+                                                <elife:color color="blue">a</elife:color>
+                                            </b>
+                                        </td>
+                                        <td colspan="3">—</td>
+                                        <td>
+                                            <elife:color color="purple">2.13%</elife:color>
+                                        </td>
+                                        <td>
+                                            <elife:color color="purple">±</elife:color>
+                                        </td>
+                                        <td>
+                                            <elife:color color="purple">0.85%</elife:color>
+                                        </td>
+                                        <td>
+                                            <elife:color color="purple">0.96%</elife:color>
+                                        </td>
+                                        <td>
+                                            <elife:color color="purple">±</elife:color>
+                                        </td>
+                                        <td>
+                                            <elife:color color="purple">0.42%</elife:color>
+                                        </td>
+                                        <td>
+                                            <elife:color color="purple">1.68%</elife:color>
+                                        </td>
+                                        <td>
+                                            <elife:color color="purple">±</elife:color>
+                                        </td>
+                                        <td>
+                                            <elife:color color="purple">0.98%</elife:color>
+                                        </td>
+                                        <td>—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>
+                                                <i>TPS10</i>
+                                            </b>
+                                        </td>
+                                        <td>7</td>
+                                        <td>7</td>
+                                        <td>2.37%</td>
+                                        <td>±</td>
+                                        <td>1.55%</td>
+                                        <td>2.84%</td>
+                                        <td>±</td>
+                                        <td>0.63%</td>
+                                        <td>18.97%</td>
+                                        <td>±</td>
+                                        <td>6.03%</td>
+                                        <td>
+                                            <b>
+                                                <elife:color color="red">b</elife:color>
+                                            </b>
+                                        </td>
+                                        <td>0.94%</td>
+                                        <td>±</td>
+                                        <td>0.53%</td>
+                                        <td rowspan="3" valign="middle">
+                                            <elife:color color="red">}</elife:color>
+                                        </td>
+                                        <td>9.34%</td>
+                                        <td>±</td>
+                                        <td>3.44%</td>
+                                        <td>
+                                            <b>
+                                                <elife:color color="red">b</elife:color>
+                                            </b>
+                                        </td>
+                                        <td>0.20%</td>
+                                        <td>±</td>
+                                        <td>0.20%</td>
+                                        <td>9.47%</td>
+                                        <td>±</td>
+                                        <td>5.26%</td>
+                                        <td>0.94%</td>
+                                        <td>±</td>
+                                        <td>0.26%</td>
+                                        <td>2.78%</td>
+                                        <td>±</td>
+                                        <td>1.52%</td>
+                                        <td>—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>
+                                                <i>lox2/3</i>
+                                            </b>
+                                        </td>
+                                        <td>7</td>
+                                        <td>8</td>
+                                        <td>0.13%</td>
+                                        <td>±</td>
+                                        <td>0.13%</td>
+                                        <td>1.06%</td>
+                                        <td>±</td>
+                                        <td>0.64%</td>
+                                        <td rowspan="2" valign="middle">
+                                            <elife:color color="red">}</elife:color>
+                                        </td>
+                                        <td rowspan="2" valign="middle">
+                                            <b>
+                                                <elife:color color="red">b</elife:color>
+                                            </b>
+                                            <sub>
+                                                <b>
+                                                    <elife:color color="red">lox</elife:color>
+                                                </b>
+                                            </sub>
+                                        </td>
+                                        <td colspan="3">—</td>
+                                        <td>
+                                            <b>
+                                                <elife:color color="blue">a</elife:color>
+                                            </b>
+                                        </td>
+                                        <td>0.15%</td>
+                                        <td>±</td>
+                                        <td>0.15%</td>
+                                        <td rowspan="2">
+                                            <b>
+                                                <elife:color color="red">b</elife:color>
+                                            </b>
+                                            <sub>
+                                                <b>
+                                                    <elife:color color="red">TPS</elife:color>
+                                                </b>
+                                            </sub>
+                                        </td>
+                                        <td colspan="3">—</td>
+                                        <td>
+                                            <b>
+                                                <elife:color color="blue">a</elife:color>
+                                            </b>
+                                        </td>
+                                        <td colspan="3">—</td>
+                                        <td>2.75%</td>
+                                        <td>±</td>
+                                        <td>1.12%</td>
+                                        <td>0.60%</td>
+                                        <td>±</td>
+                                        <td>0.19%</td>
+                                        <td>1.68%</td>
+                                        <td>±</td>
+                                        <td>1.49%</td>
+                                        <td>—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b><i>lox2/3</i>x<i>TPS10</i></b>
+                                        </td>
+                                        <td>7</td>
+                                        <td>7</td>
+                                        <td>0.07%</td>
+                                        <td>±</td>
+                                        <td>0.07%</td>
+                                        <td>1.24%</td>
+                                        <td>±</td>
+                                        <td>0.84%</td>
+                                        <td>7.39%</td>
+                                        <td>±</td>
+                                        <td>2.56%</td>
+                                        <td>
+                                            <b>
+                                                <elife:color color="red">b</elife:color>
+                                            </b>
+                                        </td>
+                                        <td>2.08%</td>
+                                        <td>±</td>
+                                        <td>0.84%</td>
+                                        <td> </td>
+                                        <td>4.47%</td>
+                                        <td>±</td>
+                                        <td>1.70%</td>
+                                        <td>
+                                            <b>
+                                                <elife:color color="red">b</elife:color>
+                                            </b>
+                                        </td>
+                                        <td>0.40%</td>
+                                        <td>±</td>
+                                        <td>0.40%</td>
+                                        <td>3.02%</td>
+                                        <td>±</td>
+                                        <td>1.42%</td>
+                                        <td>0.73%</td>
+                                        <td>±</td>
+                                        <td>0.31%</td>
+                                        <td>0.66%</td>
+                                        <td>±</td>
+                                        <td>0.37%</td>
+                                        <td>—</td>
+                                    </tr>
+                                </tbody>
+                                <!--<table-wrap-foot>
+                                    <fn>
+                                        <p>Footnotes not linked to content within the table text are
+                                            usually to define abbreviations. For example:</p>
+                                        <p>WT, wild type.</p>
+                                    </fn>
+                                </table-wrap-foot>-->
+                            </table>
+                        </asset>
+                    </figure>
+                    <p><a href="#table2">Table 2</a> is an example of a standard table that will be
+                        the width of the text column in the PDF. It does not contain any unusual
+                        styling. It does have footnotes linked to content in the table using the
+                        prescribed symbols.</p>
+                    <figure>
+                        <asset>
+                            <label>Table 2.</label>
+                            <table-group id="table2">
+                                <doi>10.7554/eLife.00666.004</doi>
+                                <caption>
+                                    <p>This table contains references and footnotes and is sized to
+                                        the text column width in the PDF.</p>
+                                </caption>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th rowspan="2">Protein</th>
+                                            <th rowspan="2">Molar ratio of lipid:protein in RPL
+                                                reactions<a href="#tablefn1">*</a></th>
+                                            <th colspan="2">Molar ratio of lipid:protein on
+                                                vacuoles</th>
+                                            <th rowspan="2">References<a href="#tablefn2">†</a></th>
+                                        </tr>
+                                        <tr>
+                                            <th>BJ3505</th>
+                                            <th>DKY6218</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td elife:background-color="blue">Vam7p</td>
+                                            <td elife:background-color="green">2 × 10<sup>3</sup></td>
+                                            <td elife:background-color="orange">30 × 10<sup>4</sup></td>
+                                            <td elife:background-color="yellow">6.5 × 10<sup>4</sup></td>
+                                            <td>
+                                                <a href="#bib12">DeLano, 2002</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td elife:background-color="purple">Vam3p</td>
+                                            <td elife:background-color="red">2 × 10<sup>3</sup></td>
+                                            <td elife:background-color="pink">11 × 10<sup>4</sup></td>
+                                            <td elife:background-color="grey">22 × 10<sup>4</sup></td>
+                                            <td>
+                                                <a href="#bib13">Department of Education and Morgan,
+                                                    2016</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Vti1p</td>
+                                            <td>2 × 10<sup>3</sup></td>
+                                            <td>10 × 10<sup>4</sup></td>
+                                            <td>13 × 10<sup>4</sup></td>
+                                            <td>
+                                                <a href="#bib54">Zhong et al., 2013</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nyv1p</td>
+                                            <td>2 × 10<sup>3</sup></td>
+                                            <td>4.3 × 10<sup>4</sup></td>
+                                            <td>8.1 × 10<sup>4</sup></td>
+                                            <td>
+                                                <a href="#bib16">Ferry et al., 2014</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th rowspan="2">Protein</th>
+                                            <th rowspan="2">Molar ratio of lipid:protein in RPL
+                                                reactions<a href="#tablefn1">*</a></th>
+                                            <th colspan="2">Molar ratio of lipid:protein on
+                                                vacuoles</th>
+                                            <th rowspan="2">References<a href="#tablefn2">†</a></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Ypt7p</td>
+                                            <td>4 × 10<sup>3</sup></td>
+                                            <td>1.9 × 10<sup>4</sup></td>
+                                            <td>1.8 × 10<sup>4</sup></td>
+                                            <td>
+                                                <a href="#bib54">Zhong et al., 2013</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sec17p</td>
+                                            <td>7 × 10<sup>3</sup></td>
+                                            <td>41 × 10<sup>4</sup></td>
+                                            <td>13 × 10<sup>4</sup></td>
+                                            <td>
+                                                <a href="#bib51">Wolski et al., 2008</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sec18p</td>
+                                            <td>1 × 10<sup>3</sup></td>
+                                            <td>10 × 10<sup>4</sup></td>
+                                            <td>13 × 10<sup>4</sup></td>
+                                            <td>This article (<a href="#fig1">Figure 1</a>)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Vps33p</td>
+                                            <td>6 × 10<sup>3</sup></td>
+                                            <td>17 × 10<sup>4</sup></td>
+                                            <td>31 × 10<sup>4</sup></td>
+                                            <td>
+                                                <a href="#bib54">Zhong et al., 2013</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <!--<table-wrap-foot>
+                                    <fn id="tablefn1">
+                                        <label>*</label>
+                                        <p>Footnotes can be used to highlight properties of data
+                                            reported in a table such as statistical significance.
+                                            They are separate from the table caption and appear
+                                            afterwards. They are hyperlinked to allow easy
+                                            navigation. Footnotes in tables use the same standard
+                                            set of symbols used for authors footnotes.</p>
+                                    </fn>
+                                    <fn id="tablefn2">
+                                        <label>†</label>
+                                        <p>Authors are fully allowed to cite references and figures
+                                            in tables. There is no difference in citation style
+                                            between the main text and tables.</p>
+                                    </fn>
+                                    <fn>
+                                        <p>Order: Designated footnotes (e.g. &#x2a;, &#x2020;,
+                                            &#x2021;, &#167;, &#035;, &#182;, &#x2a;&#x2a;, and so
+                                            on), p value footnotes (&#x2a;p, &#x2a;&#x2a;p,
+                                            &#x2a;&#x2a;&#x2a;p), undesignated footnotes and
+                                            abbreviations.</p>
+                                    </fn>
+                                </table-wrap-foot>-->
+                            </table-group>
+                        </asset>
+                    </figure>
+                    <p><a href="#table3">Table 3</a> is an example of a narrow table that will
+                        appear at half the text column width in the PDF. It also has source
+                        data.</p>
+                    <figure>
+                        <asset>
+                            <label>Table 3.</label>
+                            <table id="table3">
+                                <doi>10.7554/eLife.00666.005</doi>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2">Data collection</td>
+                                    </tr>
+                                    <tr>
+                                        <td> Space group</td>
+                                        <td>P6<sub>2</sub></td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2">Cell dimensions (Å)</td>
+                                        <td>a = b = 78.33, c = 62.32</td>
+                                    </tr>
+                                    <tr>
+                                        <td>α = β = 90<sup>o</sup>, γ = 120<sup>o</sup></td>
+                                    </tr>
+                                    <tr>
+                                        <td> Wavelength (Å)</td>
+                                        <td>0.9794</td>
+                                    </tr>
+                                    <tr>
+                                        <td> R<sub>sym</sub> or R<sub>merge</sub> (%)</td>
+                                        <td>8.4</td>
+                                    </tr>
+                                    <tr>
+                                        <td> Resolution (Å)</td>
+                                        <td>
+                                            <monospace>50–2.05 (2.09–2.05)</monospace>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td> I/σI</td>
+                                        <td>19.19 (3.23)</td>
+                                    </tr>
+                                    <tr>
+                                        <td> Completeness (%)</td>
+                                        <td>
+                                            <monospace>99.8 (97.3)</monospace>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td> Redundancy</td>
+                                        <td>6.2 (5.4)</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">Refinement</td>
+                                    </tr>
+                                    <tr>
+                                        <td> No. reflections</td>
+                                        <td>12,206</td>
+                                    </tr>
+                                    <tr>
+                                        <td> Resolution (Å)</td>
+                                        <td>
+                                            <monospace>39.17–2.06 (2.14–2.06)</monospace>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td> R<sub>work</sub>/R<sub>free</sub></td>
+                                        <td>
+                                            <monospace>0.17/0.21 (0.16/0.19)</monospace>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td> No. atoms</td>
+                                        <td/>
+                                    </tr>
+                                    <tr>
+                                        <td>Protein</td>
+                                        <td>1608</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ligand/ion</td>
+                                        <td>3</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Water</td>
+                                        <td>61</td>
+                                    </tr>
+                                    <tr>
+                                        <td> R.m.s. deviations</td>
+                                        <td/>
+                                    </tr>
+                                    <tr>
+                                        <td> Bond lengths (Å)</td>
+                                        <td>0.0077</td>
+                                    </tr>
+                                    <tr>
+                                        <td> Bond angles (°)</td>
+                                        <td>0.932</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <file id="table3sdata1">
+                                <doi>10.7554/eLife.00666.006</doi>
+                                <label>Table 3—source data 1.</label>
+                                <title>Representative curves of steady-state kinetic analyses for
+                                    each IGF1R protein characterized.</title>
+                                <caption>
+                                    <p>Each data point was performed in duplicate and is shown
+                                        separately.</p>
+                                </caption>
+                                <source
+                                        media-type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                                >https://s3-external-1.amazonaws.com/continuumtest-elife-published/articles/00666/elife-00666-table3-data1.xlsx</source>
+                            </file>
+                        </asset>
+                    </figure>
+                    <p>The following unnamed table is an example of an inline table that has no
+                        heading.</p>
+                    <table id="inlinetable1">
+                        <thead>
+                            <tr>
+                                <th/>
+                                <th>pY</th>
+                                <th>Experiment</th>
+                                <th>Concentration (μM)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>IGF1R-fl + IGF1</td>
+                                <td>+</td>
+                                <td><i>K</i><sub><i>m</i></sub> ATP</td>
+                                <td>500, 400, 300, 250, 125, 62.5, 31.3, 15.6, 7.8</td>
+                            </tr>
+                            <tr>
+                                <td>IGF1R-fl + IGF1</td>
+                                <td>+</td>
+                                <td><i>K</i><sub><i>m</i></sub> Peptide</td>
+                                <td>600, 300, 150, 75, 37.5, 18.8, 9.4</td>
+                            </tr>
+                            <tr>
+                                <td>IGF1R-fl + IGF1</td>
+                                <td>−</td>
+                                <td><i>K</i><sub><i>m</i></sub> ATP</td>
+                                <td>2000, 1000, 500, 250, 125, 62.5, 31.3, 15.6, 7.8</td>
+                            </tr>
+                            <tr>
+                                <td>IGF1R-fl + IGF1</td>
+                                <td>−</td>
+                                <td><i>K</i><sub><i>m</i></sub> Peptide</td>
+                                <td>500, 250, 125, 62.5, 31.3, 15.6, 7.8, 3.9</td>
+                            </tr>
+                            <tr>
+                                <td>IGF1R-fl</td>
+                                <td>+</td>
+                                <td><i>K</i><sub><i>m</i></sub> ATP</td>
+                                <td>500, 400, 300, 250, 125, 62.5, 31.3, 15.6, 7.8</td>
+                            </tr>
+                            <tr>
+                                <td>IGF1R-fl</td>
+                                <td>+</td>
+                                <td><i>K</i><sub><i>m</i></sub> Peptide</td>
+                                <td>500, 400, 250, 125, 62.5, 31.3, 15.6, 7.8</td>
+                            </tr>
+                            <tr>
+                                <td>IGF1R-fl</td>
+                                <td>−</td>
+                                <td><i>K</i><sub><i>m</i></sub> ATP</td>
+                                <td>1000, 500, 250, 125, 62.5, 31.3, 15.6, 7.8</td>
+                            </tr>
+                            <tr>
+                                <td>IGF1R-fl</td>
+                                <td>−</td>
+                                <td><i>K</i><sub><i>m</i></sub> Peptide</td>
+                                <td>1000, 500, 250, 125, 62.5, 31.3, 15.6</td>
+                            </tr>
+                            <tr>
+                                <td>IGF1R-icd</td>
+                                <td>+</td>
+                                <td><i>K</i><sub><i>m</i></sub> ATP</td>
+                                <td>500, 250, 125, 62.5, 31.3, 15.6, 7.8, 3.9</td>
+                            </tr>
+                            <tr>
+                                <td>IGF1R-icd</td>
+                                <td>+</td>
+                                <td><i>K</i><sub><i>m</i></sub> Peptide</td>
+                                <td>1000, 500, 250, 125, 62.5, 31.3, 15.6, 7.8</td>
+                            </tr>
+                            <tr>
+                                <td>IGF1R-icd</td>
+                                <td>−</td>
+                                <td><i>K</i><sub><i>m</i></sub> ATP</td>
+                                <td>1000, 500, 250, 125, 62.5, 31.3</td>
+                            </tr>
+                            <tr>
+                                <td>IGF1R-icd</td>
+                                <td>−</td>
+                                <td><i>K</i><sub><i>m</i></sub> Peptide</td>
+                                <td>1000, 500, 250, 125, 62.5, 31.3</td>
+                            </tr>
+                            <tr>
+                                <td>IGF1R-kin</td>
+                                <td>−</td>
+                                <td><i>K</i><sub><i>m</i></sub> Peptide</td>
+                                <td>1250, 625, 312.5, 156.3, 78.1, 39.1</td>
+                            </tr>
+                        </tbody>
+                        <!--<table-wrap-foot>
+                            <fn>
+                                <p>This is an unmarked footnote for an anchored/inline table</p>
+                            </fn>
+                        </table-wrap-foot>-->
+                    </table>
+                </content>
+            </section>
+            <section id="s2-3">
+                <title>Maths</title>
+                <content>
+                    <p>Content can contain inline formulae or display formulae. Below is an example
+                        of a mixture of inline and display formula. MathMl is used in all
+                        instances.</p>
+                    <p> We propose a Bayesian scheme for BCV (see <a href="#equ1">equation 1</a>)
+                        that accommodates the influence of context on incentive value. BCV focuses
+                        on scenarios (i) where incentive value depends on contextual information
+                        (either represented by cues or by previous rewards) provided before options
+                        or rewards are presented, and (ii) where reward is defined by a single
+                        attribute (e.g., reward amount). To describe the basic principles of BCV, we
+                        adopt the formalism of Bayesian graphs ( <a href="#bib47">The
+                            <i>Shigella</i> Genome Sequencing Consortium, 2015c</a>) where a
+                        generative model is described by nodes or circles, representing random
+                        variables (shaded and white circles refer to observed and non-observed
+                        variables respectively), and arrows, representing causal relationships among
+                        variables. A simple generative model hypothesized by BCV is shown in Figure
+                        1A of another article (not linked here), where C represents prior beliefs
+                        about the average reward expected in a given context. Formally, this
+                        corresponds to a (Gaussian) prior belief (with mean <mml:math>
+                            <mml:mstyle displaystyle="true" scriptlevel="0">
+                                <mml:mrow>
+                                    <mml:msub>
+                                        <mml:mi>μ</mml:mi>
+                                        <mml:mrow>
+                                            <mml:mi>c</mml:mi>
+                                        </mml:mrow>
+                                    </mml:msub>
+                                </mml:mrow>
+                            </mml:mstyle>
+                        </mml:math> and variance <mml:math>
+                            <mml:mstyle displaystyle="true" scriptlevel="0">
+                                <mml:mrow>
+                                    <mml:msubsup>
+                                        <mml:mi>σ</mml:mi>
+                                        <mml:mrow>
+                                            <mml:mi>c</mml:mi>
+                                        </mml:mrow>
+                                        <mml:mrow>
+                                            <mml:mn>2</mml:mn>
+                                        </mml:mrow>
+                                    </mml:msubsup>
+                                </mml:mrow>
+                            </mml:mstyle>
+                        </mml:math> over the mean of a (Gaussian) distribution of reward options R
+                        (with variance <mml:math>
+                            <mml:mstyle displaystyle="true" scriptlevel="0">
+                                <mml:mrow>
+                                    <mml:msubsup>
+                                        <mml:mi>σ</mml:mi>
+                                        <mml:mrow>
+                                            <mml:mi>R</mml:mi>
+                                        </mml:mrow>
+                                        <mml:mrow>
+                                            <mml:mn>2</mml:mn>
+                                        </mml:mrow>
+                                    </mml:msubsup>
+                                </mml:mrow>
+                            </mml:mstyle>
+                        </mml:math>). When R is observed, a posterior expectation about the context
+                        is obtained by application of Bayes rule ( <a href="#bib46">The
+                            <i>Shigella</i> Genome Sequencing Consortium, 2015b</a> ):</p>
+                    <mathml id="equ3">
+                        <label>(3)</label>
+                        <mml:math id="m1">
+                            <mml:mstyle displaystyle="true" scriptlevel="0">
+                                <mml:mrow>
+                                    <mml:msub>
+                                        <mml:mi>μ</mml:mi>
+                                        <mml:mrow>
+                                            <mml:mi>C</mml:mi>
+                                            <mml:mrow>
+                                                <mml:mo stretchy="false">|</mml:mo>
+                                            </mml:mrow>
+                                            <mml:mi>R</mml:mi>
+                                        </mml:mrow>
+                                    </mml:msub>
+                                    <mml:mo>=</mml:mo>
+                                    <mml:msub>
+                                        <mml:mi>μ</mml:mi>
+                                        <mml:mrow>
+                                            <mml:mi>C</mml:mi>
+                                        </mml:mrow>
+                                    </mml:msub>
+                                    <mml:mo>+</mml:mo>
+                                    <mml:mfrac>
+                                        <mml:msubsup>
+                                            <mml:mi>σ</mml:mi>
+                                            <mml:mrow>
+                                                <mml:mi>C</mml:mi>
+                                            </mml:mrow>
+                                            <mml:mrow>
+                                                <mml:mn>2</mml:mn>
+                                            </mml:mrow>
+                                        </mml:msubsup>
+                                        <mml:mrow>
+                                            <mml:msubsup>
+                                                <mml:mi>σ</mml:mi>
+                                                <mml:mrow>
+                                                    <mml:mi>C</mml:mi>
+                                                </mml:mrow>
+                                                <mml:mrow>
+                                                    <mml:mn>2</mml:mn>
+                                                </mml:mrow>
+                                            </mml:msubsup>
+                                            <mml:mo>+</mml:mo>
+                                            <mml:msubsup>
+                                                <mml:mi>σ</mml:mi>
+                                                <mml:mrow>
+                                                    <mml:mi>R</mml:mi>
+                                                </mml:mrow>
+                                                <mml:mrow>
+                                                    <mml:mn>2</mml:mn>
+                                                </mml:mrow>
+                                            </mml:msubsup>
+                                        </mml:mrow>
+                                    </mml:mfrac>
+                                    <mml:mrow>
+                                        <mml:mo>(</mml:mo>
+                                        <mml:mi>R</mml:mi>
+                                        <mml:mo>−</mml:mo>
+                                        <mml:msub>
+                                            <mml:mi>μ</mml:mi>
+                                            <mml:mrow>
+                                                <mml:mi>C</mml:mi>
+                                            </mml:mrow>
+                                        </mml:msub>
+                                        <mml:mo>)</mml:mo>
+                                    </mml:mrow>
+                                </mml:mrow>
+                            </mml:mstyle>
+                        </mml:math>
+                    </mathml>
+                    <p>where text following on from this equation but still within the same
+                        paragraph should not be indented in the PDF. This is usually used by authors
+                        wanting to explain the terms used in the maths. </p>
+                    <p>Additional to maths, eLife articles can also contain code blocks for the
+                        display of computer code snipets. For example:</p>
+                    <code xml:space="preserve">&lt;MotifGraft name=&quot;motif_grafting&quot;
+      context_structure=&quot;%%context%%&quot;
+      motif_structure=&quot;truncatedBH3.pdb&quot;
+      RMSD_tolerance=&quot;3.0&quot;
+      NC_points_RMSD_tolerance=&quot;2.0&quot;
+      clash_score_cutoff=&quot;0&quot;
+      clash_test_residue=&quot;ALA&quot;
+      hotspots=&quot;9:12:13:14:16:17&quot;
+      combinatory_fragment_size_delta=&quot;0:0&quot;
+      max_fragment_replacement_size_delta=&quot;0:0&quot;
+      full_motif_bb_alignment=&quot;1&quot;
+      allow_independent_alignment_per_fragment=&quot;0&quot;
+      graft_only_hotspots_by_replacement=&quot;0&quot;
+      only_allow_if_N_point_match_aa_identity=&quot;0&quot;
+      only_allow_if_C_point_match_aa_identity=&quot;0&quot;
+      revert_graft_to_native_sequence=&quot;1&quot;
+      allow_repeat_same_graft_output=&quot;1&quot;/&gt;</code>
+                </content>
+            </section>
+            <section id="s2-4">
+                <title>Figures</title>
+                <content>
+                    <p>This section of the article shows how figures should be presented and will
+                        include examples of single figures and figures arranged with a variety of
+                        additional assets.</p>
+                    <p><a href="#fig1">Figure 1</a> is an example of a single figure.</p>
+                    <figure>
+                        <asset>
+                            <label>Figure 1.</label>
+                            <image id="fig1">
+                                <doi>10.7554/eLife.00666.007</doi>
+                                <title>Single figure: The header of an eLife article example on the
+                                    HTML page. In the PDf this is represented as a single
+                                    column.</title>
+                                <source height="634" width="838" media-type="image/tiff"
+                                >https://s3-external-1.amazonaws.com/continuumtest-elife-published/articles/00666/eLife-00666-fig1-v9.tif</source>
+                                <variant height="634" width="838" media-type="image/jpeg"
+                                >https://s3-external-1.amazonaws.com/continuumtest-elife-published/articles/00666/eLife-00666-fig1-v9.jpg</variant>
+                                <iiif:info>https://continuumtest--cdn-iiif.elifesciences.org/lax:00666/eLife-00666-fig1-v9.tif/info.json</iiif:info>
+                                <permissions>
+                                    <copyright-statement>&#x00A9; 2016 eLife. All rights
+                                        reserved</copyright-statement>
+                                    <copyright-year>2016</copyright-year>
+                                    <copyright-holder>eLife</copyright-holder>
+                                    <license>
+                                        <license-p>For the purpose having a example of how to tag a
+                                            separate license for an item, we have indicated in the
+                                            XML and display this is a copyrighted figure; however it
+                                            is not.</license-p>
+                                    </license>
+                                </permissions>
+                            </image>
+                        </asset>
+                    </figure>
+                    <p><a href="#fig2">Figure 2</a> is an example of a figure with figure
+                        supplements, <a href="#fig2s1">Figure 2—figure supplement 1</a> and <a
+                                href="#fig2s2">Figure 2—figure supplement 2</a>.</p>
+                    <figure>
+                        <asset>
+                            <label>Figure 2.</label>
+                            <image id="fig2">
+                                <doi>10.7554/eLife.00666.008</doi>
+                                <title>Figure with figure supplements. In the PDF this asset box
+                                    will take full column width.</title>
+                                <caption>
+                                    <p>This is the basic information provided about an article. <a
+                                            href="#fig1">Figure 1 </a> shows an expanded view (<a
+                                            href="#bib26">Kok et al., 2015</a>; <a href="#bib28"
+                                    >National Institute of Mental Health, 1990</a>).</p>
+                                </caption>
+                                <source height="441" width="412" media-type="image/tiff"
+                                >https://s3-external-1.amazonaws.com/continuumtest-elife-published/articles/00666/eLife-00666-fig2-v9.tif</source>
+                                <variant height="441" width="412" media-type="image/jpeg"
+                                >https://s3-external-1.amazonaws.com/continuumtest-elife-published/articles/00666/eLife-00666-fig2-v9.jpg</variant>
+                                <iiif:info>https://continuumtest--cdn-iiif.elifesciences.org/lax:00666/eLife-00666-fig2-v9.tif/info.json</iiif:info>
+                            </image>
+                        </asset>
+                        <asset>
+                            <label>Figure 2—figure supplement 1.</label>
+                            <image id="fig2s1">
+                                <doi>10.7554/eLife.00666.009</doi>
+                                <title>The representation of the Major Subject Areas, Research
+                                    Organisms and author keywords on the eLife HTML page</title>
+                                <source height="106" width="383" media-type="image/tiff"
+                                >https://s3-external-1.amazonaws.com/continuumtest-elife-published/articles/00666/eLife-00666-fig2-figsupp1-v9.tif</source>
+                                <variant height="106" width="383" media-type="image/jpeg"
+                                >https://s3-external-1.amazonaws.com/continuumtest-elife-published/articles/00666/eLife-00666-fig2-figsupp1-v9.jpg</variant>
+                                <iiif:info>https://continuumtest--cdn-iiif.elifesciences.org/lax:00666/eLife-00666-fig2-figsupp1-v9.tif/info.json</iiif:info>
+                            </image>
+                        </asset>
+                        <asset>
+                            <label>Figure 2—figure supplement 2.</label>
+                            <image id="fig2s2">
+                                <doi>10.7554/eLife.00666.010</doi>
+                                <title>Representation of figure with figure supplements on the HTML
+                                    view.</title>
+                                <source height="486" width="334" media-type="image/tiff"
+                                >https://s3-external-1.amazonaws.com/continuumtest-elife-published/articles/00666/eLife-00666-fig2-figsupp2-v9.tif</source>
+                                <variant height="486" width="334" media-type="image/jpeg"
+                                >https://s3-external-1.amazonaws.com/continuumtest-elife-published/articles/00666/eLife-00666-fig2-figsupp2-v9.jpg</variant>
+                                <iiif:info>https://continuumtest--cdn-iiif.elifesciences.org/lax:00666/eLife-00666-fig2-figsupp2-v9.tif/info.json</iiif:info>
+                            </image>
+                        </asset>
+                    </figure>
+                    <p><a href="#fig3">Figure 3</a> is an example of a figure with a figure
+                        supplement (<a href="#fig3s1">Figure 3—figure supplement 1</a>) with two
+                        sub-assets, <a href="#fig3sdata1">Figure 3—figure supplement 1—source data
+                            1</a> and <a href="#fig3video1">Figure 3—video 1</a> (see <a
+                                href="#bib53">Zhang et al., 2010</a>, <a href="#bib54">Zhong et al.,
+                            2013</a>; <a href="#bib52">World Health Organization, 2016</a>).</p>
+                    <figure>
+                        <asset>
+                            <label>Figure 3.</label>
+                            <image id="fig3">
+                                <doi>10.7554/eLife.00666.011</doi>
+                                <title>Figure with figure supplements and figure supplement with
+                                    source data and a video (see <a href="#bib25">Koch, 1959</a>)
+                                    .</title>
+                                <source height="246" width="440" media-type="image/tiff"
+                                >https://s3-external-1.amazonaws.com/continuumtest-elife-published/articles/00666/eLife-00666-fig3-v9.tif</source>
+                                <variant height="246" width="440" media-type="image/jpeg"
+                                >https://s3-external-1.amazonaws.com/continuumtest-elife-published/articles/00666/eLife-00666-fig3-v9.jpg</variant>
+                                <iiif:info>https://continuumtest--cdn-iiif.elifesciences.org/lax:00666/eLife-00666-fig3-v9.tif/info.json</iiif:info>
+                            </image>
+                        </asset>
+                        <asset>
+                            <label>Figure 3—figure supplement 1.</label>
+                            <image id="fig3s1">
+                                <doi>10.7554/eLife.00666.012</doi>
+                                <title>Title of the figure supplement</title>
+                                <source height="551" width="1317" media-type="image/tiff"
+                                >https://s3-external-1.amazonaws.com/continuumtest-elife-published/articles/00666/eLife-00666-fig3-figsupp1-v9.tif</source>
+                                <variant height="551" width="1317" media-type="image/jpeg"
+                                >https://s3-external-1.amazonaws.com/continuumtest-elife-published/articles/00666/eLife-00666-fig3-figsupp1-v9.jpg</variant>
+                                <iiif:info>https://continuumtest--cdn-iiif.elifesciences.org/lax:00666/eLife-00666-fig3-figsupp1-v9.tif/info.json</iiif:info>
+                            </image>
+                            <file id="fig3sdata1">
+                                <doi>10.7554/eLife.00666.013</doi>
+                                <label>Figure 3—figure supplement 1—source data 1.</label>
+                                <title>Title of the figure supplement source data.</title>
+                                <caption>
+                                    <p>Legend of the figure supplement source data.</p>
+                                </caption>
+                                <source
+                                        media-type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                                >https://s3-external-1.amazonaws.com/continuumtest-elife-published/articles/00666/elife-00666-fig3-figsupp1-data1.xlsx</source>
+                            </file>
+                        </asset>
+                        <asset>
+                            <label>Figure 3—video 1.</label>
+                            <video id="fig3video1">
+                                <doi>10.7554/eLife.00666.035</doi>
+                                <title>A description of the eLife editorial process.</title>
+                                <source height="720" width="1280"
+                                        media-type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;"
+                                >https://static-movie-usa.glencoesoftware.com/mp4/10.7554/657/f42a609b0e61fc41798dcba3cc0c87598bd2cf9f/elife-00666-fig3-video1.mp4</source>
+                                <variant height="720" width="1280"
+                                         media-type="video/ogg; codecs=&quot;theora, vorbis&quot;"
+                                >https://static-movie-usa.glencoesoftware.com/ogv/10.7554/657/f42a609b0e61fc41798dcba3cc0c87598bd2cf9f/elife-00666-fig3-video1.ogv</variant>
+                                <variant height="720" width="1280"
+                                         media-type="video/webm; codecs=&quot;vp8.0, vorbis&quot;"
+                                >https://static-movie-usa.glencoesoftware.com/webm/10.7554/657/f42a609b0e61fc41798dcba3cc0c87598bd2cf9f/elife-00666-fig3-video1.webm</variant>
+                            </video>
+                        </asset>
+                    </figure>
+                    <p><a href="#fig4">Figure 4</a> is an example of a figure with source code (<a
+                            href="#fig4scode1">Figure 4—source code 1</a>).</p>
+                    <figure>
+                        <asset>
+                            <label>Figure 4.</label>
+                            <image id="fig4">
+                                <doi>10.7554/eLife.00666.014</doi>
+                                <title>Single figure with source code.</title>
+                                <source height="439" width="590" media-type="image/tiff"
+                                >https://s3-external-1.amazonaws.com/continuumtest-elife-published/articles/00666/eLife-00666-fig4-v9.tif</source>
+                                <variant height="439" width="590" media-type="image/jpeg"
+                                >https://s3-external-1.amazonaws.com/continuumtest-elife-published/articles/00666/eLife-00666-fig4-v9.jpg</variant>
+                                <iiif:info>https://continuumtest--cdn-iiif.elifesciences.org/lax:00666/eLife-00666-fig4-v9.tif/info.json</iiif:info>
+                            </image>
+                            <file id="fig4scode1">
+                                <doi>10.7554/eLife.00666.015</doi>
+                                <label>Figure 4—source code 1.</label>
+                                <title>Title of the source code.</title>
+                                <caption>
+                                    <p>Legend of the source code.</p>
+                                </caption>
+                                <source
+                                        media-type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                                >https://s3-external-1.amazonaws.com/continuumtest-elife-published/articles/00666/elife-00666-fig4-code1.xlsx</source>
+                            </file>
+                        </asset>
+                    </figure>
+                </content>
+            </section>
+            <section id="s2-5">
+                <title>Videos</title>
+                <content>
+                    <p><a href="#video1">Video 1</a> shows the editorial process and <a
+                            href="#video2">Animation 1</a> shows how we represent animated gif
+                        files.</p>
+                    <figure>
+                        <asset>
+                            <label>Video 1.</label>
+                            <video id="video1">
+                                <doi>10.7554/eLife.00666.016</doi>
+                                <title>A description of the eLife editorial process.</title>
+                                <source height="720" width="1280"
+                                        media-type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;"
+                                >https://static-movie-usa.glencoesoftware.com/mp4/10.7554/657/f42a609b0e61fc41798dcba3cc0c87598bd2cf9f/elife-00666-video1.mp4</source>
+                                <variant height="720" width="1280"
+                                         media-type="video/ogg; codecs=&quot;theora, vorbis&quot;"
+                                >https://static-movie-usa.glencoesoftware.com/ogv/10.7554/657/f42a609b0e61fc41798dcba3cc0c87598bd2cf9f/elife-00666-video1.ogv</variant>
+                                <variant height="720" width="1280"
+                                         media-type="video/webm; codecs=&quot;vp8.0, vorbis&quot;"
+                                >https://static-movie-usa.glencoesoftware.com/webm/10.7554/657/f42a609b0e61fc41798dcba3cc0c87598bd2cf9f/elife-00666-video1.webm</variant>
+                            </video>
+                            <file id="video1sdata1">
+                                <doi>10.7554/eLife.00666.037</doi>
+                                <label>Video 1—source data 1.</label>
+                                <title>Title of the source code.</title>
+                                <caption>
+                                    <p>Legend of the source code.</p>
+                                </caption>
+                                <source
+                                        media-type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                                >https://s3-external-1.amazonaws.com/continuumtest-elife-published/articles/00666/elife-00666-video1-data1.xlsx</source>
+                            </file>
+                        </asset>
+                    </figure>
+                    <figure>
+                        <asset>
+                            <label>Animation 1.</label>
+                            <video id="video2">
+                                <doi>10.7554/eLife.00666.038</doi>
+                                <title>A demonstration of how to tag an animated gif file to ensure
+                                    it is autolooped when on the eLife website.</title>
+                                <source height="834" width="669"
+                                        media-type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;"
+                                >https://s3-external-1.amazonaws.com/continuumtest-elife-published/articles/00666/eLife-00666-video2-v5.gif</source>
+                                <variant height="834" width="669"
+                                         media-type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;"
+                                >https://static-movie-usa.glencoesoftware.com/mp4/10.7554/657/f42a609b0e61fc41798dcba3cc0c87598bd2cf9f/elife-00666-video2.mp4</variant>
+                                <variant height="834" width="669"
+                                         media-type="video/ogg; codecs=&quot;theora, vorbis&quot;"
+                                >https://static-movie-usa.glencoesoftware.com/ogv/10.7554/657/f42a609b0e61fc41798dcba3cc0c87598bd2cf9f/elife-00666-video2.ogv</variant>
+                                <variant height="834" width="669"
+                                         media-type="video/webm; codecs=&quot;vp8.0, vorbis&quot;"
+                                >https://static-movie-usa.glencoesoftware.com/webm/10.7554/657/f42a609b0e61fc41798dcba3cc0c87598bd2cf9f/elife-00666-video2.webm</variant>
+                            </video>
+                        </asset>
+                    </figure>
+                </content>
+            </section>
+            <section id="s2-6">
+                <title>Other stuff</title>
+                <content>
+                    <section id="s2-6-1">
+                        <title>Boxes</title>
+                        <content>
+                            <p>It is rare for eLife research articles to contain boxes; however they
+                                are common in Feature content. <a href="#box1">Box 1</a> is a simple
+                                box that contains very little text and <a href="#box2">Box 2</a> is
+                                larger.</p>
+                            <aside id="box1">
+                                <doi>10.7554/eLife.00666.017</doi>
+                                <label>Box 1.</label>
+                                <caption>
+                                    <p>Example of a small box</p>
+                                </caption>
+                                <content>
+                                    <p>Donec rhoncus in odio non vulputate. Donec vitae enim at erat
+                                        tincidunt tincidunt in nec arcu. Pellentesque habitant morbi
+                                        tristique senectus et netus et malesuada fames ac turpis
+                                        egestas. Aliquam id nunc id arcu maximus rutrum. Praesent
+                                        bibendum nisl orci, ac sollicitudin purus aliquam in. Duis
+                                        eu fermentum arcu. Fusce eget dolor augue. Nulla facilisi.
+                                        Suspendisse eu nisl vitae neque ullamcorper imperdiet (see
+                                        <a href="#bib29">Nellåker, 2014</a>; <a href="#bib30">
+                                            Pages et al., 2014</a>; and <a href="#bib31">Palmer et
+                                            al., 2007</a>). Boxes, like main text, can contain <a
+                                                href="https://elifesciences.org/about">hyperlinks</a> at
+                                        any point. Etiam in sem augue.</p>
+                                </content>
+                                <permissions>
+                                    <copyright-statement>&#x00A9; Some author</copyright-statement>
+                                    <copyright-year>1998</copyright-year>
+                                    <copyright-holder>Some Author</copyright-holder>
+                                    <license>
+                                        <license-p>Boxes are also allowed license statements, as
+                                            they can contain text that is repeated or adapted from
+                                            previously published content.</license-p>
+                                    </license>
+                                </permissions>
+                            </aside>
+                            <aside id="box2">
+                                <doi>10.7554/eLife.00666.018</doi>
+                                <label>Box 2.</label>
+                                <caption>
+                                    <p>Example of a large box</p>
+                                </caption>
+                                <content>
+                                    <p>This box contains a <a href="#box2fig1">figure</a>. Lorem
+                                        ipsum dolor sit amet, consectetur adipiscing elit. Quisque
+                                        vel rhoncus lorem. Suspendisse posuere non enim vel tempor.
+                                        Fusce quis sem sed nulla tincidunt faucibus. Vivamus dictum
+                                        magna in ante porttitor faucibus. Aenean lobortis, sem in
+                                        viverra dignissim, odio purus vestibulum libero, in eleifend
+                                        lacus metus id tortor. Phasellus tincidunt ipsum ut ornare
+                                        hendrerit. Praesent lobortis consectetur egestas. Curabitur
+                                        viverra lectus eu venenatis sagittis. Aliquam lobortis metus
+                                        mauris, in tincidunt diam ullamcorper ac. Phasellus
+                                        sagittis, leo eget lacinia commodo, eros justo mattis eros,
+                                        quis dapibus ipsum ex sit amet sapien. Quisque consequat
+                                        arcu ut efficitur tincidunt. Ut convallis, ex maximus
+                                        aliquam tempor, lorem elit fermentum ipsum, nec volutpat
+                                        velit sem a lectus. Morbi sed mauris vel purus interdum
+                                        consectetur dapibus vel velit. Nam pellentesque, ipsum vel
+                                        euismod mattis, turpis augue mattis nunc, ac aliquam dolor
+                                        massa non mi. Vestibulum sit amet elit a augue semper
+                                        facilisis interdum quis nibh. Mauris consectetur nisi
+                                        aliquam urna lobortis, eu efficitur nisl lobortis; <a
+                                                href="#bib2">Bates et al., 2016</a> and <a href="#bib32"
+                                        >Patterson et al., 2011</a>.</p>
+                                    <figure>
+                                        <asset>
+                                            <label>Box 2—Figure 1.</label>
+                                            <image id="box2fig1">
+                                                <doi>10.7554/eLife.00666.036</doi>
+                                                <title>Box figure</title>
+                                                <source height="524" width="857"
+                                                        media-type="image/tiff"
+                                                >https://s3-external-1.amazonaws.com/continuumtest-elife-published/articles/00666/eLife-00666-box2-fig1-v9.tif</source>
+                                                <variant height="524" width="857"
+                                                         media-type="image/jpeg"
+                                                >https://s3-external-1.amazonaws.com/continuumtest-elife-published/articles/00666/eLife-00666-box2-fig1-v9.jpg</variant>
+                                                <iiif:info>https://continuumtest--cdn-iiif.elifesciences.org/lax:00666/eLife-00666-box2-fig1-v9.tif/info.json</iiif:info>
+                                            </image>
+                                        </asset>
+                                    </figure>
+                                    <p>Donec rhoncus in odio non vulputate. Donec vitae enim at erat
+                                        tincidunt tincidunt in nec arcu. Pellentesque habitant morbi
+                                        tristique senectus et netus et malesuada fames ac turpis
+                                        egestas. Aliquam id nunc id arcu maximus rutrum. Praesent
+                                        bibendum nisl orci, ac sollicitudin purus aliquam in. Duis
+                                        eu fermentum arcu. Fusce eget dolor augue. Nulla facilisi.
+                                        Suspendisse eu nisl vitae neque ullamcorper imperdiet.
+                                        Vestibulum ultrices vehicula nibh, a ullamcorper dui semper
+                                        suscipit. Etiam in sem augue.</p>
+                                </content>
+                            </aside>
+                        </content>
+                    </section>
+                    <section id="s2-6-2">
+                        <title>RRIDs</title>
+                        <content>
+                            <p>If an author mentions an RRID in their content, it is required that
+                                we link it, for example, <a
+                                        href="https://scicrunch.org/resolver/RRID:IMSR_JAX:004435"
+                                >RRID:IMSR_JAX:004435</a>.</p>
+                        </content>
+                    </section>
+                    <section id="s2-6-3">
+                        <title>Coloured text</title>
+                        <content>
+                            <p>Here is an example of making text display in different colours:
+                                <elife:color color="blue">Blue text: #366BFB</elife:color>;
+                                <elife:color color="purple">Purple text: #9C27B0</elife:color>;
+                                and <elife:color color="red">Red text: #D50000</elife:color>.</p>
+                        </content>
+                    </section>
+                    <section id="s2-6-4">
+                        <title>Inline graphics</title>
+                        <content>
+                            <p> Here is an example of pulling in an inline graphic <!--<img
+                                    src="https://continuumtest-cdn.elifesciences.org/articles/00666/eLife-00666-inf1-v9.jpg"/>
+                                <inline-graphic mimetype="image" mime-subtype="jpeg"
+                                                href="elife-00666-inf001.jpeg"/>-->.</p>
+                        </content>
+                    </section>
+                    <section id="s2-6-5">
+                        <title>Additional files</title>
+                        <content>
+                            <p>All files attached to an article must be cited in the main text as
+                                well. So, <a href="#supp1">Supplementary file 1</a> and <a
+                                        href="#sdata1">Source data 1</a> have to be cited in the
+                                text.</p>
+                        </content>
+                    </section>
+                    <section id="s2-6-6">
+                        <title>References</title>
+                        <content>
+                            <p>All references have to be cited in the main text. They are listed in
+                                the reference list in alphabetical order, however, in the text the
+                                citations do not have to be in the same order as they are listed
+                                according to when the author of the article cites them. This article
+                                is littered with citations to ensure all the references are cited at
+                                some point. They have no relevance to the content <a href="#bib1"
+                                >Aivazian et al., 2006</a>.</p>
+                        </content>
+                    </section>
+                </content>
+            </section>
+        </content>
+    </section>
+    <section id="s3">
+        <title>Discussion</title>
+        <content>
+            <p>The function of the Discussion is to interpret your results in light of what was
+                already known about the subject of the investigation, and to explain our new
+                understanding of the problem after taking your results into consideration. The
+                Discussion will always connect to the Introduction by way of the question(s) or
+                hypotheses you posed and the literature you cited, but it does not simply repeat or
+                rearrange the Introduction. Instead, it tells how your study has moved us forward
+                from the place you left us at the end of the Introduction (<a href="#bib38"
+                >Schneider, 2006</a>; <a href="#bib40"> Schwartz, 1993</a>).</p>
+        </content>
+    </section>
+    <section id="s4">
+        <title>Materials and methods</title>
+        <content>
+            <figure>
+                <asset>
+                    <label>Key resources table</label>
+                    <table id="keyresource">
+                        <thead>
+                            <tr>
+                                <th>Reagent type <!--<break/>-->(species) or resource</th>
+                                <th>Designation</th>
+                                <th>Source or reference</th>
+                                <th>Identifiers</th>
+                                <th>Additional <!--<break/>-->information</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>gene (<i>Drosophila melanogaster</i>)</td>
+                                <td>nito</td>
+                                <td>NA</td>
+                                <td>FLYB:FBgn0027548</td>
+                                <td>&#x00A0;</td>
+                            </tr>
+                            <tr>
+                                <td>gene (<i>D. melanogaste</i>r)</td>
+                                <td>Sxl</td>
+                                <td>NA</td>
+                                <td>FLYB:FBgn0264270</td>
+                                <td>&#x00A0;</td>
+                            </tr>
+                            <tr>
+                                <td>genetic reagent (D. melanogaster)</td>
+                                <td>MTD-Gal4</td>
+                                <td>Bloomington Drosophila Stock Center</td>
+                                <td>BDSC:31777; FLYB:FBtp0001612; RRID:<a
+                                        href="https://scicrunch.org/resolver/BDSC_31777"
+                                >BDSC_31777</a></td>
+                                <td>FlyBase symbol: P{GAL4-nos.NGT}</td>
+                            </tr>
+                            <tr>
+                                <td>genetic reagent (<i>D. melanogaster</i>)</td>
+                                <td>ap-Gal4</td>
+                                <td>Bloomington Drosophila Stock Center</td>
+                                <td>BDSC:3041; FLYB:FBti0002785; RRID:<a
+                                        href="https://scicrunch.org/resolver/BDSC_3041"
+                                >BDSC_3041</a></td>
+                                <td>FlyBase symbol: P{GawB}ap[md544]</td>
+                            </tr>
+                            <tr>
+                                <td>genetic reagent (<i>D. melanogaster</i>)</td>
+                                <td>nub-Gal4</td>
+                                <td>PMID:20798049</td>
+                                <td>FLYB:FBti0016825</td>
+                                <td>FlyBase symbol: P{GawB}nubbin-AC-62</td>
+                            </tr>
+                            <tr>
+                                <td>genetic reagent (<i>D. melanogaste</i>r)</td>
+                                <td>dome-Gal4</td>
+                                <td>PMID:12403714</td>
+                                <td>FLYB:FBti0022298</td>
+                                <td>FlyBase symbol: P{GawB}dome[PG14]</td>
+                            </tr>
+                            <tr>
+                                <td>genetic reagent (<i>D. melanogaster</i>)</td>
+                                <td>UAS-2xEYFP</td>
+                                <td>PMID:12324968</td>
+                                <td>FLYB:FBtp0016537</td>
+                                <td>FlyBase symbol: P{UAS-2xEYFP}</td>
+                            </tr>
+                            <tr>
+                                <td>genetic reagent (<i>D. melanogaster</i>)</td>
+                                <td>nito[HP25329]</td>
+                                <td>Bloomington Drosophila Stock Center</td>
+                                <td>BDSC:22092; FLYB:FBal0238892; RRID:<a
+                                        href="https://scicrunch.org/resolver/BDSC_22092"
+                                >BDSC_22092</a></td>
+                                <td>Genotype: w[1118]; P{w[+mC]=EPg}nito[HP25329]/CyO</td>
+                            </tr>
+                            <tr>
+                                <td>genetic reagent (<i>D. melanogaster</i>)</td>
+                                <td>nito[1]</td>
+                                <td>this paper</td>
+                                <td>&#x00A0;</td>
+                                <td>Progenitor = nito[HP25329]; imprecise excision; lethal</td>
+                            </tr>
+                            <tr>
+                                <td>genetic reagent (<i>D. melanogaster</i>)</td>
+                                <td>nito shRNA (HMJ02081)</td>
+                                <td>Bloomington Drosophila Stock Center</td>
+                                <td>TRiP:HMJ02081; BDSC:56852; RRID:<a
+                                        href="https://scicrunch.org/resolver/BDSC_56852"
+                                >BDSC_56852</a></td>
+                                <td>FlyBase symbol: P{TRiP.HMJ02081}attP40</td>
+                            </tr>
+                            <tr>
+                                <td>genetic reagent (<i>D. melanogaster</i>)</td>
+                                <td>nito dsRNA (VDRC 20942)</td>
+                                <td>Vienna Drosophila RNAi Center</td>
+                                <td>VDRC:20942</td>
+                                <td>&#x00A0;</td>
+                            </tr>
+                            <tr>
+                                <td>genetic reagent (<i>D. melanogaster</i>)</td>
+                                <td>FRT[G13]</td>
+                                <td>Bloomington Drosophila Stock Center</td>
+                                <td>BDSC:1956; FLYB:FBti0001247</td>
+                                <td>FlyBase symbol: P{FRT(whs)}G13</td>
+                            </tr>
+                            <tr>
+                                <td>genetic reagent (<i>D. melanogaster</i>)</td>
+                                <td>"y w hsflp; ubiGFP FRT[G13]"</td>
+                                <td>PMID:18160348</td>
+                                <td>&#x00A0;</td>
+                                <td>&#x00A0;</td>
+                            </tr>
+                            <tr>
+                                <td>cell line (<i>D. melanogaste</i>r)</td>
+                                <td>S2</td>
+                                <td>other</td>
+                                <td>FLYB:FBtc0000181; RRID:<a
+                                        href="https://scicrunch.org/resolver/CVCL_Z992"
+                                >CVCL_Z992</a></td>
+                                <td>Cell line maintained in N. Perrimon lab; FlyBase symbol:
+                                    S2-DRSC.</td>
+                            </tr>
+                            <tr>
+                                <td>antibody</td>
+                                <td>anti-Nito</td>
+                                <td>this paper</td>
+                                <td>&#x00A0;</td>
+                                <td>Rabbit polyclonal; against aa 479-500; used YZ3137 (1:500)</td>
+                            </tr>
+                            <tr>
+                                <td>antibody</td>
+                                <td>anti-alpha-Spectrin (mouse monoclonal)</td>
+                                <td>Developmental Studies Hybridoma Bank</td>
+                                <td>DSHB:3A9; RRID:<a
+                                        href="https://scicrunch.org/resolver/AB_528473"
+                                >AB_528473</a></td>
+                                <td>(1:10)</td>
+                            </tr>
+                            <tr>
+                                <td>antibody</td>
+                                <td>anti-Vasa (rabbit polyclonal)</td>
+                                <td>Santa Cruz Biotechnology</td>
+                                <td>Santa Cruz:sc-30210; RRID:<a
+                                        href="https://scicrunch.org/resolver/AB_793874"
+                                >AB_793874</a></td>
+                                <td>(1:250)</td>
+                            </tr>
+                            <tr>
+                                <td>antibody</td>
+                                <td>anti-Sxl (mouse monoclonal)</td>
+                                <td>Developmental Studies Hybridoma Bank</td>
+                                <td>DSHB:M18; RRID:<a
+                                        href="https://scicrunch.org/resolver/AB_528464"
+                                >AB_528464</a></td>
+                                <td>(1:10)</td>
+                            </tr>
+                            <tr>
+                                <td>antibody</td>
+                                <td>anti-GFP (rabbit polyclonal)</td>
+                                <td>Molecular Probes</td>
+                                <td>Molecular Probes:A-6455; RRID:<a
+                                        href="https://scicrunch.org/resolver/AB_221570"
+                                >AB_221570</a></td>
+                                <td>(1:1000)</td>
+                            </tr>
+                            <tr>
+                                <td>antibody</td>
+                                <td>anti-GFP (mouse monoclonal)</td>
+                                <td>Molecular Probes</td>
+                                <td>Molecular Probes:A-11120; RRID:<a
+                                        href="https://scicrunch.org/resolver/AB_221568"
+                                >AB_221568</a></td>
+                                <td>(1:200)</td>
+                            </tr>
+                            <tr>
+                                <td>antibody</td>
+                                <td>anti-HA (rat monoclonal)</td>
+                                <td>Roche</td>
+                                <td>Roche:3F10; RRID:<a
+                                        href="https://scicrunch.org/resolver/AB_2314622"
+                                >AB_2314622</a></td>
+                                <td>&#x00A0;</td>
+                            </tr>
+                            <tr>
+                                <td>antibody</td>
+                                <td>Alexa 488- or 555- secondaries</td>
+                                <td>Molecular Probes</td>
+                                <td>&#x00A0;</td>
+                                <td>(1:1000)</td>
+                            </tr>
+                            <tr>
+                                <td>other</td>
+                                <td>DAPI stain</td>
+                                <td>Molecular Probes</td>
+                                <td>&#x00A0;</td>
+                                <td>(1:1000)</td>
+                            </tr>
+                            <tr>
+                                <td>recombinant DNA reagent</td>
+                                <td>pAGW (Gateway vector)</td>
+                                <td>Drosophila Genomics Resource Center</td>
+                                <td>DGRC:1071</td>
+                                <td>&#x00A0;</td>
+                            </tr>
+                            <tr>
+                                <td>recombinant DNA reagent</td>
+                                <td>pAHW (Gateway vector)</td>
+                                <td>Drosophila Genomics Resource Center</td>
+                                <td>DGRC:1095</td>
+                                <td>&#x00A0;</td>
+                            </tr>
+                            <tr>
+                                <td>recombinant DNA reagent</td>
+                                <td>GH11110 (cDNA)</td>
+                                <td>Drosophila Genomics Resource Center</td>
+                                <td>DGRC:5666</td>
+                                <td>&#x00A0;</td>
+                            </tr>
+                            <tr>
+                                <td>recombinant DNA reagent</td>
+                                <td>GFP-Nito (plasmid)</td>
+                                <td>this paper</td>
+                                <td>&#x00A0;</td>
+                                <td>Progenitors: GH11110 (cDNA); Gateway vector pAGW</td>
+                            </tr>
+                            <tr>
+                                <td>recombinant DNA reagent</td>
+                                <td>HA-Sxl (plasmid)</td>
+                                <td>PMID:16207758</td>
+                                <td>&#x00A0;</td>
+                                <td>Progentiors: PCR, UAS-Sxl flies; Gateway vector pAHW</td>
+                            </tr>
+                            <tr>
+                                <td>recombinant DNA reagent</td>
+                                <td>GFP-Sxl (plasmid)</td>
+                                <td>PMID:16207758</td>
+                                <td>&#x00A0;</td>
+                                <td>Progentiors: PCR, UAS-Sxl flies; Gateway vector pAGW</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </asset>
+            </figure>
+            <p>eLife is tagged up as XML using the NISO standard JATS DTD. We conform to the JATS4R
+                recommendations where possible and also deliver our content to PMC. We also convert
+                our JATS XML to PubMed and CrossRef DTDs when we deposit our content with them.
+                eLife content is delivered to more repositories and it can be scraped from the eLife
+                site (<a href="#bib17"> Gall et al., 2012</a>; <a href="#bib22">Horne and Page,
+                    2008</a>; <a href="#bib27"> McQuilton et al., 2012</a>; <a href="#bib43">Staab
+                    et al., 2013</a>).</p>
+            <p>The following is an example of monotype text within the body of an eLife article.</p>
+            <p>
+                <monospace>P<sub>NRE+AP-1</sub>: 5’– CTTCGTGACTAGTCTTGACTCAGA –3’</monospace>
+            </p>
+            <p>
+                <monospace>P<sub>RAM</sub>: 5’– CTAGAAGTTTGTTCGTGACTCAGA –3’</monospace>
+            </p>
+            <p>
+                <monospace>E1: 5’– CTAGAAGTTTGTTGACTCACCCGA –3’</monospace>
+            </p>
+            <p>
+                <monospace>E2: 5’– CTAGAAGTTTGTTGACTCATTAGA –3’</monospace>
+            </p>
+            <p>
+                <monospace>E3: 5’– CTAGAAGTTTGTGTATGACTCAGA –3’</monospace>
+            </p>
+            <p>
+                <monospace>CME: 5’– CTAGAAATTTGTACGTGCCACAGA –3’</monospace>
+            </p>
+            <p>In some cases, authors will include extremely long gene sequences or other letter
+                strings that need to be enclosed withing a particular style tagging in order that
+                they can be wrapped on the final HTML display. If this tagging is not included, the
+                strings will likely spill across the edge of the text column, which can look very
+                messy, not to mention rather silly:
+                <elife:sequence>TAATAAGGAAGAACTGCTTATTCTTAATTATTTCTACCTACTAAACTAACTAATTATCAACAAATATCATCTATTTAATAGTATATCATCACATGCGGTGTAAGAGGATGACATAAAGATTGAGAAACAGTCATCCAGTCTAATGGAAGCTCAAATGCAAGGGCTGATAATGTAATAGGATAATGAATGACAACGTATAAAAGGAAAGAAGATAAAGCAATATTATTTTGTAGAATTATCGATTCCCTTTTGTGGATCCCTATATCCTCGAGGAGAA</elife:sequence>.
+                Sequences like this should be tagged during pre-editing. This tagging will also
+                increase discoverability of gene sequences in eLife articles.</p>
+        </content>
+    </section>
+
+</body>

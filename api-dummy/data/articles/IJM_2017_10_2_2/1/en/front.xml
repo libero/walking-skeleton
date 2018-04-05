@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+
+<front xmlns="http://libero.pub" xmlns:ms="http://microsimulation.org" xml:lang="en">
+
+    <id>IJM_2017_10_2_2</id>
+    <title>Coordination in Centralized and Decentralized Systems</title>
+    <abstract id="abstract">
+        <p>We study a simple coordination problem to understand the difference between centralized
+            and decentralized economic systems. The decentralized system is more robust than the
+            centralized system to communication errors. But the centralized system takes less time
+            than the decentralized system to create coordination among constituent parts.
+            Decentralization is preferable when the constituent parts are more likely to make
+            communication errors, when there is little urgency, and when there is need to prevent
+            system-collapse.</p>
+    </abstract>
+    <keywords>
+        <keyword>Coordination</keyword>
+        <keyword>Communication errors</keyword>
+        <keyword>Economic systems</keyword>
+        <keyword>Robustness</keyword>
+    </keywords>
+    <ms:jel>
+        <ms:code>D21</ms:code>
+        <ms:code>D22</ms:code>
+        <ms:code>L11</ms:code>
+        <ms:code>L22</ms:code>
+    </ms:jel>
+
+</front>

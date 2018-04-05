@@ -1,0 +1,328 @@
+<?xml version="1.0" ?>
+
+<body xmlns="http://libero.pub" xmlns:elife="http://elifesciences.org" xmlns:iiif="http://libero.pub/iiif" xml:lang="en">
+    <p>Blogpost by Naomi Penfold, Innovation Officer</p>
+    <p>Today, <a
+            href="https://elifesciences.org/for-the-press/e6038800/elife-supports-development-of-open-technology-stack-for-publishing-reproducible-manuscripts-online"
+    >we announced a new project collaboration</a> between <a href="http://substance.io/"
+    >Substance</a>, <a href="https://stenci.la/">Stencila</a> and eLife, to support the
+        development of an open technology stack that will enable researchers to publish reproducible
+        manuscripts through online journals. In this blogpost, we outline the background and remit
+        of this project. We welcome feedback and contributions: please comment publicly on the
+        article using <a href="https://hypothes.is">Hypothes.is</a> or email <a
+                href="mailto:innovation@elifesciences.org">innovation@elifesciences.org</a>.</p>
+    <section>
+        <title>Building on the traditional research article</title>
+        <content>
+            <p>The research article: a concise narrative describing the background, methods, results
+                and interpretation of a body of research work. And while the established format of
+                research articles generally allows researchers to describe their work in sufficient
+                detail to allow others to repeat, understand, critique and validate it, that same
+                format falls short when it comes to communicating the complexity of modern
+                research.</p>
+            <p>For example, an early finding from the Reproducibility Project: Cancer Biology (RPCB)
+                is that <a href="https://elifesciences.org/articles/23383">research methods are not
+                    generally described in sufficient detail</a> to allow other researchers to
+                faithfully repeat key experiments without engaging the original authors. And
+                although engaging the author is an important part of the scientific conversation,
+                the findings that form the very building blocks of scientific progress should
+                ideally be communicated in a way that outlasts the original author’s memory.</p>
+            <p>To this end, researchers today have access to a multitude of dedicated tools and
+                services aimed at facilitating the sharing of specific methods and resources: <a
+                        href="http://www.bio-protocol.org/">Bio-protocol</a> (a journal), <a
+                        href="https://www.protocols.io/">Protocols.io</a> (an online repository and
+                forum), and resource-specific initiatives such as <a href="https://www.addgene.org/"
+                >AddGene</a> and <a href="http://www.chemicalprobes.org/">Chemical Probes</a>).
+                Additionally, data and code repositories, and dedicated journals such as Scientific
+                Data, <a href="http://joss.theoj.org/">JOSS</a> and <a
+                        href="https://openresearchsoftware.metajnl.com/">JORS</a> provide platforms to
+                more completely describe research data and software. Yet, while the abovementioned
+                initiatives help researchers to improve the documentation of all the assets that lie
+                behind a research finding, they also share one key obstacle to reproducibility: they
+                are not integral to the research article itself.</p>
+            <quote>
+                <content>
+                    <p>These days, data trails are often a morass of separate data and results and
+                        code files in which no one knows which results were derived from which raw
+                        data using which code files.</p>
+                </content>
+                <cite>Professor Charles Randy Gallistel, Rutgers University</cite>
+            </quote>
+        </content>
+    </section>
+    <section>
+        <title>Supporting a reproducible document format</title>
+        <content>
+            <p>A reproducible document is one where any code used by the original researcher to
+                compute an output (a graph, equation, table or statistical result) is embedded
+                within the narrative describing the work.</p>
+            <p>Reproducible document formats like <a
+                    href="https://elifesciences.org/labs/cad57bcf/composing-reproducible-manuscripts-using-r-markdown"
+            >R Markdown</a> and <a href="http://jupyter.org/">Jupyter Notebooks</a> help
+                researchers organise both data and code into an understandable workflow that not
+                only improves documentation for the authors themselves, making it faster to build on
+                previous work when new data becomes available, but which also aids collaboration,
+                training and reproducibility.</p>
+            <quote>
+                <content>
+                    <p>Tools like Jupyter notebook enable a level of interaction that can transform
+                        scientific communication. Exchange between authors and reviewers and,
+                        ultimately, between authors and readers could be very focused on technical
+                        aspects. This would counteract a trend by which papers are seen as tools to
+                        advertise research work, rather than to enable other investigators to
+                        proceed with research.</p>
+                </content>
+                <cite>Professor Vincenzo Carnevale, Temple University</cite>
+            </quote>
+            <p>But when submitting to a journal, authors today have to export their manuscripts in a
+                flattened format (Word doc, PDF) or submit in LaTeX. This process strips code from
+                being embedded into the narrative of the research into a separate asset. What
+                started as a self-contained, fully reproducible document is transformed into a
+                collection of linked assets.</p>
+            <quote>
+                <content>
+                    <p>We are already composing our research manuscripts in a format that is
+                        intimately paired with the methodology and data underlying the findings.
+                        It's frustrating to have to convert these rich and reproducible documents
+                        into flattened formats, such as PDF and Word documents, in order to satisfy
+                        the needs of the traditional publishing workflow. I would like to see
+                        publishers supporting me to share my work and data in the reproducible
+                        formats I prepare them in.</p>
+                </content>
+                <cite>Dr Laurent Gatto, University of Cambridge</cite>
+            </quote>
+            <p>Earlier this year, <a
+                    href="https://elifesciences.org/inside-elife/e832444e/innovation-understanding-the-demand-for-reproducible-research-articles"
+            >researchers familiar with reproducible document tools told us</a> they were
+                interested in being able to share and read research articles with features that
+                support better code and data sharing as well as greater interactivity and
+                executability:</p>
+            <image>
+                <alt>Bar graph showing researcher likelihood of using a feature such as downloading
+                    data and code</alt>
+                <attribution>
+                    <p>Source: <a
+                            href="https://elifesciences.org/inside-elife/e832444e/innovation-understanding-the-demand-for-reproducible-research-articles"
+                    >https://elifesciences.org/inside-elife/e832444e/innovation-understanding-the-demand-for-reproducible-research-articles</a></p>
+                </attribution>
+                <iiif:info>https://iiif.elifesciences.org/journal-cms:content/2017-09/fig5-generaldemand.jpg/info.json</iiif:info>
+                <source height="621" width="730" media-type="image/jpeg"
+                        filename="fig5-generaldemand.jpg"
+                >https://iiif.elifesciences.org/journal-cms:content/2017-09/fig5-generaldemand.jpg/full/full/0/default.jpg</source>
+            </image>
+            <p>As Dr Ithai Rabinowitch at the Hebrew University of Jerusalem, notes, embedding data
+                and code in an organised manner would not only aid reproducibility efforts, it could
+                also “make science much more efficient as a community endeavour”. Professor Gary
+                Bader, University of Toronto, adds:</p>
+            <quote>
+                <content>
+                    <p>Having the code available for analysis workflows would really speed up
+                        research. For instance, one could copy and improve a workflow for use with
+                        another data set. We've seen this in my lab with the use of R/Jupyter
+                        notebook.</p>
+                </content>
+            </quote>
+            <p>Finally, providing a means for authors to enrich their research article in this way
+                would recognise the researchers who invest resources in preparing these assets. This
+                is a key point given <a href="https://doi.org/10.6084/m9.figshare.4055448.v1">the
+                    imbalance between effort and reward has been identified as a key barrier to
+                    researchers adopting more open research practises</a>.</p>
+        </content>
+    </section>
+    <section>
+        <title>The Reproducible Document Stack Project</title>
+        <content>
+            <p>We wish to support reproducible document formats from authoring through publication.
+                A valuable step forward would be to enable researchers to publish the code and data
+                behind their analyses in a form that can be easily examined, and thereby create
+                figures and whole documents where users can faithfully reproduce key aspects of the
+                work.</p>
+            <p>As such, <a
+                    href="https://elifesciences.org/for-the-press/e6038800/elife-supports-development-of-open-technology-stack-for-publishing-reproducible-manuscripts-online"
+            >we are embarking on a project</a> with Substance and Stencila to develop the
+                technology required to support the Reproducible Document through authoring, sharing
+                and publication.</p>
+            <quote>
+                <content>
+                    <p>We will have succeeded once any scientist can easily create a standardised
+                        reproducible publication and submit it to a journal. Together with our
+                        supporters we are building an open source toolset, to be used by authors,
+                        journals and readers.</p>
+                </content>
+                <cite>Michael Aufreiter, Substance</cite>
+            </quote>
+            <p>The creation of an open standard for the exchange, submission and publication of
+                reproducible documents is critical for widespread adoption by academic publishers,
+                and will be beneficial for the discovery and persistence of research reported in
+                this form. Therefore, a key output of this project will be a Reproducible Document
+                Exchange Format, which will allow the data, code and computed outputs (graphs,
+                statistical results, tables) embedded in a reproducible document to be recognised
+                and presented online as <a
+                        href="https://elifesciences.org/labs/e5737fd5/designing-progressive-enhancement-into-the-academic-manuscript"
+                >an enhanced version</a> of the published research article. In order to do this,
+                Substance is investigating how to represent these assets in JATS XML, the publishing
+                standard through which research manuscripts are processed through the publishing
+                workflow:</p>
+            <code xml:space="preserve">&lt;fig id=&quot;f1&quot;&gt;
+  &lt;caption&gt;
+    &lt;title&gt;Figure 1&lt;/title&gt;
+    &lt;p&gt;Biodiversity on Mars&lt;/p&gt;
+  &lt;/caption&gt;
+  &lt;alternatives&gt;
+    &lt;code executable=&quot;yes&quot; specific-use=&quot;input&quot; language=&quot;mini&quot;&gt;
+      bars(counts_by_species)
+    &lt;/code&gt;
+    &lt;code specific-use=&quot;output&quot; language=&quot;json&quot;&gt;
+      {
+        &quot;execution_time&quot;: 322,
+        &quot;value_type&quot;: &quot;plot-ly&quot;,
+        &quot;value&quot;: {...}
+      }
+    &lt;/code&gt;
+    &lt;!-- static version for existing JATS toolchains --&gt;
+    &lt;graphic xlink:href=&quot;89f8b53e361f.svg&quot;/&gt;
+  &lt;/alternatives&gt;
+&lt;/fig&gt;</code>
+            <p>This complements Substance's work to develop <a
+                    href="https://elifesciences.org/labs/8de87c33/texture-an-open-science-manuscript-editor"
+            >Texture</a>, an XML-based text editor for authoring, and contributions towards
+                <a href="https://lens.elifesciences.org/about/">eLife Lens</a>, the side-by-side
+                article reader.</p>
+            <p>We recognise that these computational research tools are not the mainstay of all life
+                sciences research. Efforts to encourage <a
+                        href="https://medium.com/@_mql/reproducible-science-for-people-who-dont-code-5850abe806db"
+                >greater adoption of reproducible research methods by researchers who are less
+                    familiar with programming</a> are welcomed to aid interdisciplinary
+                communications, and facilitate those who wish to learn code-based research
+                practises. Substance and eLife are already supporting the development of <a
+                        href="https://stenci.la/">Stencila</a>, an authoring platform and execution
+                engine for reproducible documents that is targeted at researchers who are less
+                comfortable with programming and more familiar with Microsoft Word and Excel.</p>
+            <quote>
+                <content>
+                    <p>The calls for research to be reproducible are growing louder. But many of the
+                        tools for reproducible research are code focussed and can be intimidating to
+                        non-coders. We’re creating tools with the same intuitive, visual interfaces
+                        that researchers are familiar with but built from the ground up with
+                        reproducibility in mind. We want to create a platform that is accessible to
+                        a greater range of scientists - without dumbing down their research or
+                        restricting their ability to learn new computational methods.</p>
+                </content>
+                <cite>Nokome Bentley, Stencila</cite>
+            </quote>
+            <p>With intuitive text and spreadsheet authoring interfaces capable of producing XML
+                documents, Stencila offers a platform to feed directly into the reproducible
+                document publishing workflow.</p>
+            <youtube height="720" width="1280">
+                <id>PCRoc0JxRWg</id>
+            </youtube>
+            <p>In addition, we are interested in developing features that will enable readers to
+                make the most of this enhanced article. Above all, the task of replicating an
+                author’s original research – at least from a computational and analysis angle –
+                should be trivial from the reader’s standpoint.</p>
+            <p>To meet the needs of researchers, the project will need to address several key
+                technological considerations, including:</p>
+            <list prefix="bullet">
+                <item><b>The diversity of programming environments used in research must be
+                    supported</b> – a variety of languages and environments are used to perform
+                    computations in research, from Python and R, to Bash and Matlab, and sometimes
+                    multiple languages are combined in a single workflow. The Reproducible Document
+                    Exchange Format will be designed with applications like Jupyter and R Studio (a
+                    popular R Markdown authoring tool) in mind, but ultimately be platform-agnostic
+                    to enable researchers freedom of choice in their own workflow.</item>
+                <item><b>Researchers should be able to follow their current workflows </b>– the rich
+                    ecosystem of platforms and tools for conducting, storing, documenting and
+                    sharing computational research is a resource that we intend to build on.
+                    Further, some scripts and data are too complex to sit within a reproducible
+                    document. Where possible, we aim to support as many use cases and workflows as
+                    possible, and we welcome input from the community to help us to understand these
+                    use cases (email <a href="mailto:innovation@elifesciences.org"
+                    >innovation@elifesciences.org</a>).</item>
+                <item><b>Composing reproducible manuscripts should be easy</b> – current authoring
+                    tools such as Microsoft Word are popular for a reason: What You See Is What You
+                    Get (WYSIWYG). We intend to support tools that make authoring and consumption of
+                    computationally reproducible documents as intuitive as possible for the user. It
+                    was with this principle in mind that <a
+                            href="https://elifesciences.org/labs/fc2e10b3/redesigning-an-online-scientific-journal-from-the-article-up"
+                    >we recently redesigned our online journal</a>.</item>
+            </list>
+        </content>
+    </section>
+    <section>
+        <title>Get involved</title>
+        <content>
+            <p>We are at the beginning of the process to develop a complete publishing solution to
+                support the Reproducible Document envisioned above. We expect this process to take
+                at least 12 months.</p>
+            <p>We are open to your input and feedback throughout, whether about the concept or
+                regarding specific elements. Please consider commenting publicly on this blogpost
+                using <a href="https://hypothes.is">Hypothes.is</a>, or emailing us directly at <a
+                        href="mailto:innovation@elifesciences.org">innovation@elifesciences.org</a>. For
+                more news, please sign up for our <a
+                        href="https://crm.elifesciences.org/crm/node/8?_ga=2.196309225.471549536.1503402080-303271206.1463581989"
+                >technology and innovation newsletter</a>.</p>
+            <p>For specific elements contributing towards this project, please see:</p>
+            <list prefix="bullet">
+                <item>Texture is an open format manuscript editor: the code is open source at <a
+                        href="https://github.com/substance/texture"
+                >https://github.com/substance/texture</a></item>
+                <item>Stencila is a office suite for reproducible research: it is being developed
+                    openly at <a href="https://github.com/stencila/stencila"
+                    >https://github.com/stencila/stencila</a> and you can participate in
+                    discussions at <a href="https://community.stenci.la/"
+                    >https://community.stenci.la/</a></item>
+            </list>
+        </content>
+    </section>
+    <section>
+        <title>Future considerations</title>
+        <content>
+            <p>The ultimate goal of this project is to enable researchers to share their research
+                manuscripts in a reproducible format. This will complement existing practises to
+                share research data and code, and readers will remain free to use the assets as they
+                wish. However, this project will also open up new avenues for innovation, including
+                the executability of articles online, and the potential to capitalise on
+                reproducible resources during peer review.</p>
+            <p>The idea of supporting executable notebooks is not new. In 2014, <a
+                    href="http://www.nature.com/news/interactive-notebooks-sharing-the-code-1.16261"
+            >Nature piloted a feature</a> that supported an online interactive iPython
+                notebook (now Jupyter notebook). This was a popular feature, likely due to the
+                novelty, with <a
+                        href="https://developer.rackspace.com/blog/how-did-we-serve-more-than-20000-ipython-notebooks-for-nature/"
+                >more than 20,000 notebook runs</a> computed. The team behind Authorea, the
+                online collaborative authoring platform, <a
+                        href="https://www.authorea.com/users/3/articles/156875-the-authorea-open-product-roadmap"
+                >continue to add</a> features that enable authors to <a
+                        href="https://www.authorea.com/users/3/articles/3904-data-driven-interactive-science-with-d3-js-plots-and-ipython-notebooks/_show_article"
+                >include dynamic and interactive plots</a> in their manuscripts and to highlight
+                the source data underlying a figure. How these features could be supported by the
+                ultimate publisher of the peer-reviewed work remains to be addressed, but <a
+                        href="https://www.eurekalert.org/pub_releases/2014-07/fo1-fbs073014.php">F1000
+                    Research has piloted similar features</a> and continues to experiment along
+                these lines. Further, journals in other domains are responding to the needs of their
+                own computational research communities: <a href="https://distill.pub/about/"
+                >Distill</a>, an online journal for machine learning research, includes a
+                ‘reactive diagram’ feature and, in some articles, readers can even <a
+                        href="http://distill.pub/2016/handwriting/">input data to trial an
+                    algorithm</a>.</p>
+            <p>Any third-party review of data and code assets is challenging. Currently, reviewers
+                have to in many cases take the authors at their word that the code and algorithms
+                they employed in their work are robust. At Nature Neuroscience, the efficacy of code
+                sharing is currently under investigation via <a
+                        href="http://www.nature.com/neuro/journal/v20/n6/full/nn.4579.html">a pilot to
+                    review the code used to compute key figures in new articles</a>. We hope that
+                offering a means to share reproducible documents will help to incentivise the
+                sharing of demonstrably reusable data and code underlying a research article.
+                Further, opening up the means to support the submission of research in a
+                reproducible format could assist interested reviewers to reproduce computations with
+                as minimal extra effort as is feasible.</p>
+        </content>
+    </section>
+    <p>For the latest in innovation, eLife Labs and new open-source tools, sign up for our <a
+            href="https://crm.elifesciences.org/crm/node/8?_ga=2.213152084.1156933223.1498463747-1005832603.1488200227"
+    >technology and innovation newsletter</a>. You can also follow <a
+            href="https://twitter.com/eLifeInnovation?lang=en">@eLifeInnovation</a> on Twitter. We
+        welcome comments and questions, so please comment using <a href="https://web.hypothes.is/"
+        >Hypothes.is</a>.</p>
+
+</body>
