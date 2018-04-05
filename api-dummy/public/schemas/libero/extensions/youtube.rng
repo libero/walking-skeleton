@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://libero.pub" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+    
+    <define name="libero.blocks.limited.class" combine="choice">
+        <ref name="libero.blocks.youtube"/>
+    </define>
+    
+    <define name="libero.blocks.youtube">
+        <element name="youtube">
+            <ref name="libero.blocks.object.model"/>
+            <ref name="libero.blocks.youtube.model"/>
+        </element>
+    </define>
+    
+    <define name="libero.blocks.youtube.model">
+        <attribute name="height">
+            <data type="positiveInteger"/>
+        </attribute>
+        <attribute name="width">
+            <data type="positiveInteger"/>
+        </attribute>
+        <element name="id">
+            <data type="string">
+                <param name="pattern">[0-9A-Za-z_\-]{10}[048AEIMQUYcgkosw]</param>
+            </data>
+        </element>
+    </define>
+    
+</grammar>

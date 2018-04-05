@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://libero.pub">
+    
+    <define name="libero.blocks.full.class" combine="choice">
+        <ref name="libero.blocks.section"/>
+    </define>
+    
+    <define name="libero.blocks.section">
+        <element name="section">
+            <ref name="libero.blocks.section.model"/>
+        </element>
+    </define>
+    
+    <define name="libero.blocks.section.model">
+        <optional>
+            <ref name="libero.attrib.id"/>
+        </optional>
+        <element name="title">
+            <ref name="libero.attrib.lang.optional"/>
+            <ref name="libero.text.limited.model"/>
+        </element>
+        <element name="content">
+            <ref name="libero.blocks.full.model"/>
+        </element>
+    </define>
+
+</grammar>

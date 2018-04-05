@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://libero.pub">
+
+    <define name="libero.blocks.figure.asset.class" combine="choice">
+        <ref name="libero.blocks.image_group"/>
+    </define>
+    
+    <define name="libero.blocks.image_group">
+        <element name="image-group">
+            <ref name="libero.blocks.image_group.model"/>
+        </element>
+    </define>
+    
+    <define name="libero.blocks.image_group.model">
+        <ref name="libero.blocks.object.model"/>
+        <oneOrMore>
+            <ref name="libero.blocks.image"/>
+        </oneOrMore>
+    </define>
+    
+</grammar>

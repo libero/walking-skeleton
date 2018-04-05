@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://libero.pub">
+
+    <define name="libero.blocks.limited.class" combine="choice">
+        <ref name="libero.blocks.code"/>
+    </define>
+
+    <define name="libero.blocks.code">
+        <element name="code">
+            <ref name="libero.attrib.space"/>
+            <text/>
+        </element>
+    </define>
+
+</grammar>

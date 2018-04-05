@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+    datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+
+    <define name="libero.text.a">
+        <element name="a">
+            <ref name="libero.text.a.model"/>
+        </element>
+    </define>
+
+    <define name="libero.text.a.model">
+        <attribute name="href">
+            <choice>
+                <ref name="libero.types.uri.absolute"/>
+                <ref name="libero.types.uri.fragment"/>
+            </choice>
+        </attribute>
+        <ref name="libero.attrib.lang.optional"/>
+        <ref name="libero.text.full.model"/>
+    </define>
+
+    <define name="libero.text.b">
+        <element name="b">
+            <ref name="libero.attrib.lang.optional"/>
+            <ref name="libero.text.full.model"/>
+        </element>
+    </define>
+
+    <define name="libero.text.i">
+        <element name="i">
+            <ref name="libero.attrib.lang.optional"/>
+            <ref name="libero.text.full.model"/>
+        </element>
+    </define>
+    
+    <define name="libero.text.monospace">
+        <element name="monospace">
+            <ref name="libero.attrib.lang.optional"/>
+            <ref name="libero.text.limited.model"/>
+        </element>
+    </define>
+    
+    <define name="libero.text.sc">
+        <element name="sc">
+            <ref name="libero.attrib.lang.optional"/>
+            <ref name="libero.text.limited.model"/>
+        </element>
+    </define>
+
+    <define name="libero.text.sub">
+        <element name="sub">
+            <ref name="libero.attrib.lang.optional"/>
+            <ref name="libero.text.limited.model"/>
+        </element>
+    </define>
+
+    <define name="libero.text.sup">
+        <element name="sup">
+            <ref name="libero.attrib.lang.optional"/>
+            <ref name="libero.text.limited.model"/>
+        </element>
+    </define>
+
+    <define name="libero.text.limited.model">
+        <oneOrMore>
+            <choice>
+                <text/>
+                <ref name="libero.text.limited.class"/>
+            </choice>
+        </oneOrMore>
+    </define>
+    
+    <define name="libero.text.limited.class">
+        <choice>
+            <ref name="libero.text.b"/>
+            <ref name="libero.text.i"/>
+            <ref name="libero.text.sub"/>
+            <ref name="libero.text.sup"/>
+        </choice>
+    </define>
+    
+    <define name="libero.text.full.model">
+        <oneOrMore>
+            <choice>
+                <ref name="libero.text.limited.model"/>
+                <ref name="libero.text.full.class"/>
+            </choice>
+        </oneOrMore>
+    </define>
+    
+    <define name="libero.text.full.class">
+        <choice>
+            <ref name="libero.text.a"/>
+            <ref name="libero.text.monospace"/>
+            <ref name="libero.text.sc"/>
+        </choice>
+    </define>
+
+</grammar>

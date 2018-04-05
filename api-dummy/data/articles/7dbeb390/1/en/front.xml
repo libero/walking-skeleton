@@ -1,4 +1,5 @@
 <?xml version="1.0" ?>
+<?xml-model href="http://localhost:8081/schemas/elife/article/front.rng"?>
 
 <front xmlns="http://libero.pub" xmlns:elife="http://elifesciences.org"
        xmlns:mml="http://www.w3.org/1998/Math/MathML" xml:lang="en">

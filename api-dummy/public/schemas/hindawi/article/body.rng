@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://hindawi.com">
+
+    <include href="../../libero/article/body.rng"/>
+    
+    <include href="../../libero/extensions/image-group.rng"/>
+    <include href="../../libero/extensions/list.rng"/>
+    <include href="../../libero/extensions/mathml.rng"/>
+    <include href="../../libero/extensions/section.rng"/>
+    <include href="../../libero/extensions/table.rng"/>
+
+</grammar>

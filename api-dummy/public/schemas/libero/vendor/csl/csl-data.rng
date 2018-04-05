@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <dc:title>Citation Style Language Data</dc:title>
+  <dc:creator>Bruce D'Arcus</dc:creator>
+  <dc:copyright>Bruce D'Arcus, 2009</dc:copyright>
+  <dc:description>A schema for the CSL data model.</dc:description>
+  <include href="csl-types.rng"/>
+  <include href="csl-variables.rng"/>
+  <start>
+    <element name="references">
+      <oneOrMore>
+        <ref name="reference"/>
+      </oneOrMore>
+    </element>
+  </start>
+  <define name="reference">
+    <element name="reference">
+      <ref name="type"/>
+      <ref name="id"/>
+      <optional>
+        <ref name="uri"/>
+      </optional>
+      <optional>
+        <ref name="container-uri"/>
+      </optional>
+      <interleave>
+        <zeroOrMore>
+          <ref name="contributor"/>
+        </zeroOrMore>
+        <zeroOrMore>
+          <ref name="date"/>
+        </zeroOrMore>
+        <oneOrMore>
+          <ref name="variable"/>
+        </oneOrMore>
+      </interleave>
+    </element>
+  </define>
+  <div>
+    <a:documentation>Types </a:documentation>
+    <define name="type">
+      <attribute name="type">
+        <ref name="item-types"/>
+      </attribute>
+    </define>
+  </div>
+  <div>
+    <a:documentation>Identifiers</a:documentation>
+    <define name="id">
+      <a:documentation>The id is an identifier unique to the scope of the file</a:documentation>
+      <attribute name="id">
+        <data type="token" datatypeLibrary=""/>
+      </attribute>
+    </define>
+    <define name="uri">
+      <a:documentation>The URI is the global identity for the refererence; used to associate a citation reference to its data</a:documentation>
+      <attribute name="uri">
+        <data type="anyURI"/>
+      </attribute>
+    </define>
+    <define name="container-uri">
+      <a:documentation>the URI for containing items (such as edited books or journals)</a:documentation>
+      <attribute name="container-uri">
+        <data type="anyURI"/>
+      </attribute>
+    </define>
+  </div>
+  <div>
+    <a:documentation>Contributors</a:documentation>
+    <define name="contributor">
+      <element name="contributor">
+        <attribute name="type">
+          <ref name="variables.names"/>
+        </attribute>
+        <ref name="name-elements"/>
+      </element>
+    </define>
+    <define name="name-elements">
+      <choice>
+        <element name="name">
+          <text/>
+        </element>
+        <interleave>
+          <interleave>
+            <optional>
+              <element name="given">
+                <text/>
+              </element>
+            </optional>
+            <optional>
+              <element name="family">
+                <text/>
+              </element>
+            </optional>
+          </interleave>
+          <optional>
+            <element name="dropping-particle">
+              <text/>
+            </element>
+          </optional>
+          <optional>
+            <element name="non-dropping-particle">
+              <text/>
+            </element>
+          </optional>
+          <optional>
+            <element name="suffix">
+              <text/>
+            </element>
+          </optional>
+        </interleave>
+      </choice>
+    </define>
+  </div>
+  <div>
+    <a:documentation>Dates</a:documentation>
+    <define name="date">
+      <element name="date">
+        <attribute name="type">
+          <ref name="variables.dates"/>
+        </attribute>
+        <optional>
+          <attribute name="circa">
+            <data type="boolean"/>
+          </attribute>
+        </optional>
+        <choice>
+          <ref name="date-pattern"/>
+          <ref name="date-range"/>
+        </choice>
+      </element>
+    </define>
+    <define name="date-pattern">
+      <ref name="year-pattern"/>
+      <optional>
+        <choice>
+          <group>
+            <ref name="month-pattern"/>
+            <optional>
+              <ref name="day-pattern"/>
+            </optional>
+          </group>
+          <ref name="season-pattern"/>
+        </choice>
+      </optional>
+    </define>
+    <define name="date-range">
+      <element name="begin-date">
+        <ref name="date-pattern"/>
+      </element>
+      <optional>
+        <element name="end-date">
+          <ref name="date-pattern"/>
+        </element>
+      </optional>
+    </define>
+    <define name="year-pattern">
+      <attribute name="year">
+        <choice>
+          <data type="integer">
+            <param name="maxInclusive">-1</param>
+          </data>
+          <data type="integer">
+            <param name="minInclusive">1</param>
+          </data>
+        </choice>
+      </attribute>
+    </define>
+    <define name="month-pattern">
+      <attribute name="month">
+        <data type="integer">
+          <param name="minInclusive">1</param>
+          <param name="maxInclusive">12</param>
+        </data>
+      </attribute>
+    </define>
+    <define name="day-pattern">
+      <attribute name="day">
+        <data type="integer">
+          <param name="minInclusive">1</param>
+          <param name="maxInclusive">31</param>
+        </data>
+      </attribute>
+    </define>
+    <!-- 1 = Spring, 2 = Summer, 3 = Fall, 4 = Winter -->
+    <define name="season-pattern">
+      <attribute name="season">
+        <data type="integer">
+          <param name="minInclusive">1</param>
+          <param name="maxInclusive">4</param>
+        </data>
+      </attribute>
+    </define>
+  </div>
+  <div>
+    <a:documentation>Simple Variables</a:documentation>
+    <define name="variable">
+      <element name="variable">
+        <attribute name="type">
+          <ref name="variables.standard"/>
+        </attribute>
+        <choice>
+          <ref name="simple-variable-pattern"/>
+          <ref name="rich-variable-pattern"/>
+        </choice>
+      </element>
+    </define>
+    <define name="simple-variable-pattern">
+      <text/>
+    </define>
+    <define name="rich-variable-pattern">
+      <oneOrMore>
+        <choice>
+          <text/>
+          <element name="abbr">
+            <text/>
+          </element>
+          <element name="b">
+            <text/>
+          </element>
+          <element name="cite">
+            <optional>
+              <attribute name="class">
+                <a:documentation>cited title which is a part (like an article), and so typically rendered in quotes, rather than italicized</a:documentation>
+                <value>part</value>
+              </attribute>
+            </optional>
+            <text/>
+          </element>
+          <element name="i">
+            <text/>
+          </element>
+          <element name="sc">
+            <text/>
+          </element>
+          <element name="span">
+            <optional>
+              <attribute name="class">
+                <a:documentation>text whose case should not be transformed (as with proper nouns)</a:documentation>
+                <value>protect</value>
+              </attribute>
+            </optional>
+            <text/>
+          </element>
+          <element name="sup">
+            <text/>
+          </element>
+          <element name="sub">
+            <text/>
+          </element>
+        </choice>
+      </oneOrMore>
+    </define>
+  </div>
+</grammar>

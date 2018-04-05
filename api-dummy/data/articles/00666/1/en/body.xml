@@ -1,4 +1,5 @@
 <?xml version="1.0" ?>
+<?xml-model href="http://localhost:8081/schemas/elife/article/body.rng"?>
 
 <body xmlns="http://libero.pub" xmlns:elife="http://elifesciences.org"
       xmlns:iiif="http://libero.pub/iiif" xmlns:mml="http://www.w3.org/1998/Math/MathML" xml:lang="en">
@@ -1548,7 +1549,7 @@
                                 <variant height="634" width="838" media-type="image/jpeg"
                                 >https://s3-external-1.amazonaws.com/continuumtest-elife-published/articles/00666/eLife-00666-fig1-v9.jpg</variant>
                                 <iiif:info>https://continuumtest--cdn-iiif.elifesciences.org/lax:00666/eLife-00666-fig1-v9.tif/info.json</iiif:info>
-                                <permissions>
+                                <!--<permissions>
                                     <copyright-statement>&#x00A9; 2016 eLife. All rights
                                         reserved</copyright-statement>
                                     <copyright-year>2016</copyright-year>
@@ -1559,7 +1560,7 @@
                                             XML and display this is a copyrighted figure; however it
                                             is not.</license-p>
                                     </license>
-                                </permissions>
+                                </permissions>-->
                             </image>
                         </asset>
                     </figure>
@@ -1625,7 +1626,7 @@
                             <image id="fig3">
                                 <doi>10.7554/eLife.00666.011</doi>
                                 <title>Figure with figure supplements and figure supplement with
-                                    source data and a video (see <a href="#bib25">Koch, 1959</a>)
+                                    source data and a video <!--(see <a href="#bib25">Koch, 1959</a>)-->
                                     .</title>
                                 <source height="246" width="440" media-type="image/tiff"
                                 >https://s3-external-1.amazonaws.com/continuumtest-elife-published/articles/00666/eLife-00666-fig3-v9.tif</source>
@@ -1792,7 +1793,7 @@
                                                 href="https://elifesciences.org/about">hyperlinks</a> at
                                         any point. Etiam in sem augue.</p>
                                 </content>
-                                <permissions>
+                                <!--<permissions>
                                     <copyright-statement>&#x00A9; Some author</copyright-statement>
                                     <copyright-year>1998</copyright-year>
                                     <copyright-holder>Some Author</copyright-holder>
@@ -1801,7 +1802,7 @@
                                             they can contain text that is repeated or adapted from
                                             previously published content.</license-p>
                                     </license>
-                                </permissions>
+                                </permissions>-->
                             </aside>
                             <aside id="box2">
                                 <doi>10.7554/eLife.00666.018</doi>
