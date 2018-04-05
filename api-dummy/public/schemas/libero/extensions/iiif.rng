@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://libero.pub/iiif">
+    
+    <define name="libero.blocks.image.model" combine="interleave">
+        <optional>
+            <element name="info">
+                <ref name="libero.iiif.info"/>
+            </element>
+        </optional>
+    </define>
+    
+    <define name="libero.iiif.info">
+        <data type="anyURI" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+            <param name="pattern">https?://.*/info.json</param>
+        </data>
+    </define>
+
+</grammar>

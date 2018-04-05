@@ -1,4 +1,5 @@
 <?xml version="1.0" ?>
+<?xml-model href="http://localhost:8081/schemas/ijm/article/front.rng"?>
 
 <front xmlns="http://libero.pub" xmlns:ms="http://microsimulation.org" xml:lang="en">
 
@@ -13,12 +14,12 @@
             communication errors, when there is little urgency, and when there is need to prevent
             system-collapse.</p>
     </abstract>
-    <keywords>
+    <!--<keywords>
         <keyword>Coordination</keyword>
         <keyword>Communication errors</keyword>
         <keyword>Economic systems</keyword>
         <keyword>Robustness</keyword>
-    </keywords>
+    </keywords>-->
     <ms:jel>
         <ms:code>D21</ms:code>
         <ms:code>D22</ms:code>

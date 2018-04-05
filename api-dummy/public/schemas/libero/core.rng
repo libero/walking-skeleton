@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://libero.pub">
+    
+    <include href="core/attributes.rng"/>
+    <include href="core/block.rng"/>
+    <include href="core/inline.rng"/>
+    <include href="core/types.rng"/>
+
+</grammar>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://libero.pub"
+    datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+
+    <define name="libero.blocks.figure.asset.class" combine="choice">
+        <ref name="libero.blocks.table"/>
+    </define>
+
+    <define name="libero.blocks.table">
+        <element name="table">
+            <ref name="libero.blocks.table.model"/>
+        </element>
+    </define>
+
+    <define name="libero.blocks.table.model">
+        <interleave>
+            <ref name="libero.blocks.object.model"/>
+            <zeroOrMore>
+                <element name="colgroup">
+                    <ref name="libero.blocks.table.colgroup.model"/>
+                </element>
+            </zeroOrMore>
+            <optional>
+                <element name="thead">
+                    <ref name="libero.blocks.table.thead.model"/>
+                </element>
+            </optional>
+            <oneOrMore>
+                <element name="tbody">
+                    <ref name="libero.blocks.table.tbody.model"/>
+                </element>
+            </oneOrMore>
+            <optional>
+                <element name="tfoot">
+                    <ref name="libero.blocks.table.tfoot.model"/>
+                </element>
+            </optional>
+        </interleave>
+    </define>
+
+    <define name="libero.blocks.table.col.base">
+        <ref name="libero.blocks.table.cell.base"/>
+        <optional>
+            <attribute name="width">
+                <ref name="libero.types.length"/>
+            </attribute>
+        </optional>
+    </define>
+
+    <define name="libero.blocks.table.colgroup.model">
+        <ref name="libero.blocks.table.col.base"/>
+        <choice>
+            <attribute name="span">
+                <data type="positiveInteger"/>
+            </attribute>
+            <oneOrMore>
+                <element name="col">
+                    <ref name="libero.blocks.table.col.model"/>
+                </element>
+            </oneOrMore>
+        </choice>
+    </define>
+
+    <define name="libero.blocks.table.col.model">
+        <ref name="libero.blocks.table.col.base"/>
+        <optional>
+            <attribute name="span">
+                <data type="positiveInteger"/>
+            </attribute>
+        </optional>
+        <empty/>
+    </define>
+
+    <define name="libero.blocks.table.thead.model">
+        <oneOrMore>
+            <element name="tr">
+                <oneOrMore>
+                    <ref name="libero.blocks.table.th"/>
+                </oneOrMore>
+            </element>
+        </oneOrMore>
+    </define>
+
+    <define name="libero.blocks.table.tfoot.model">
+        <oneOrMore>
+            <element name="tr">
+                <oneOrMore>
+                    <ref name="libero.blocks.table.th"/>
+                </oneOrMore>
+            </element>
+        </oneOrMore>
+    </define>
+
+    <define name="libero.blocks.table.tbody.model">
+        <oneOrMore>
+            <ref name="libero.blocks.table.tr"/>
+        </oneOrMore>
+    </define>
+
+    <define name="libero.blocks.table.tr">
+        <element name="tr">
+            <ref name="libero.blocks.table.tr.model"/>
+        </element>
+    </define>
+
+    <define name="libero.blocks.table.tr.model">
+        <oneOrMore>
+            <choice>
+                <ref name="libero.blocks.table.td"/>
+                <ref name="libero.blocks.table.th"/>
+            </choice>
+        </oneOrMore>
+    </define>
+
+    <define name="libero.blocks.table.th">
+        <element name="th">
+            <ref name="libero.blocks.table.cell"/>
+        </element>
+    </define>
+
+    <define name="libero.blocks.table.td">
+        <element name="td">
+            <ref name="libero.blocks.table.cell"/>
+        </element>
+    </define>
+
+    <define name="libero.blocks.table.cell.base">
+        <ref name="libero.attrib.lang.optional"/>
+        <optional>
+            <attribute name="align">
+                <choice>
+                    <value>center</value>
+                    <value>left</value>
+                    <value>right</value>
+                </choice>
+            </attribute>
+        </optional>
+        <optional>
+            <attribute name="valign">
+                <choice>
+                    <value>bottom</value>
+                    <value>middle</value>
+                    <value>top</value>
+                </choice>
+            </attribute>
+        </optional>
+    </define>
+
+    <define name="libero.blocks.table.cell">
+        <ref name="libero.blocks.table.cell.base"/>
+        <optional>
+            <attribute name="colspan">
+                <data type="positiveInteger"/>
+            </attribute>
+        </optional>
+        <optional>
+            <attribute name="rowspan">
+                <data type="positiveInteger"/>
+            </attribute>
+        </optional>
+        <zeroOrMore>
+            <choice>
+                <ref name="libero.text.full.model"/>
+                <ref name="libero.blocks.limited.model"/>
+            </choice>
+        </zeroOrMore>
+    </define>
+
+</grammar>
