@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://scielo.org">
+
+    <include href="../../libero/article/body.rng"/>
+    
+    <include href="../../libero/extensions/aside.rng"/>
+    <include href="../../libero/extensions/list.rng"/>
+    <include href="../../libero/extensions/mathml.rng"/>
+    <include href="../../libero/extensions/quote.rng"/>
+    <include href="../../libero/extensions/section.rng"/>
+    <include href="../../libero/extensions/table.rng"/>
+
+</grammar>

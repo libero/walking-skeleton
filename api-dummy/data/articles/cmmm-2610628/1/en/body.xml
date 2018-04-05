@@ -1,4 +1,5 @@
 <?xml version="1.0" ?>
+<?xml-model href="http://localhost:8081/schemas/hindawi/article/body.rng"?>
 
 <body xmlns="http://libero.pub" xmlns:hindawi="http://hindawi.com" xml:lang="en">
 

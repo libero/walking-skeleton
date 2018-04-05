@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://elifesciences.org">
+
+    <include href="../../libero/article/front.rng"/>
+
+    <include href="../../libero/extensions/abstract.rng"/>
+    <include href="../../libero/extensions/doi.rng"/>
+    <include href="../../libero/extensions/mathml.rng"/>
+
+    <define name="libero.front.content" combine="interleave">
+        <optional>
+            <element name="digest">
+                <ref name="libero.attrib.id"/>
+                <ref name="libero.blocks.limited.model"/>
+            </element>
+        </optional>
+    </define>
+
+</grammar>
