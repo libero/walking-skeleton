@@ -51,7 +51,7 @@ There are multiple ways to trigger a DAG manually.
 
 [CLI](https://airflow.apache.org/cli.html#trigger_dag)
 
-`airflow trigger_dag foo_dag`
+`airflow trigger_dag foo_python_operator`
 
 [UI](https://airflow.apache.org/ui.html#)
 
