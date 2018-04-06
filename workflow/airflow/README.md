@@ -41,4 +41,18 @@ Start a webserver instance in it's own process: (not required but provides a nic
 
 `airflow webserver -p 8080`
 
-Browsing to [http://localhost:8080/](http://localhost:8080/) will now take you to the [admin console](https://airflow.apache.org/ui.html).
+Browsing to [http://localhost:8080/](http://localhost:8080/) will now take you to the [admin console](https://airflow.apache.org/ui.html)foo_dag.py.
+
+
+Trigger a DAG
+-----------
+
+There are multiple ways to trigger a DAG manually.
+
+[CLI](https://airflow.apache.org/cli.html#trigger_dag)
+
+`airflow trigger_dag foo_dag`
+
+[UI](https://airflow.apache.org/ui.html#)
+
+On the DAGS view, you can locate a required DAG type and select `Trigger Dag` via the Links column.
