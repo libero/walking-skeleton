@@ -9,7 +9,7 @@ from datetime import timedelta
 
 class FileWatcherOperator(BaseSensorOperator):
     """
-    Triggers a file system check. Parses a file if present.
+    Triggers a file system check.
     """
 
     def __init__(self, *args, **kwargs):
