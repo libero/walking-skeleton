@@ -10,7 +10,7 @@ Installation
 ------------
 This will setup your virtual environment and install the required dependencies:
 
-`pipenv --three install`
+`pipenv --python 3.6.3 install`
 
 Set the `AIRFLOW_HOME` environment variable in the `.env` file to your absolute path:
 
