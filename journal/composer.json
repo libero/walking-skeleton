@@ -3,8 +3,12 @@
     "license": "MIT",
     "require": {
         "php": "^7.1.3",
+        "ext-dom": "*",
         "ext-iconv": "*",
-        "ext-xml": "*",
+        "ext-intl": "*",
+        "eightpoints/guzzle-bundle": "^7.3",
+        "lstrojny/functional-php": "^1.7",
+        "symfony/asset": "^4.0",
         "symfony/config": "^4.0",
         "symfony/console": "^4.0",
         "symfony/dependency-injection": "^4.0",
@@ -12,20 +16,30 @@
         "symfony/framework-bundle": "^4.0",
         "symfony/http-foundation": "^4.0",
         "symfony/http-kernel": "^4.0",
+        "symfony/intl": "^4.0",
         "symfony/monolog-bundle": "^3.2",
         "symfony/routing": "^4.0",
-        "symfony/yaml": "^4.0"
+        "symfony/translation": "^4.0",
+        "symfony/twig-bundle": "^4.0",
+        "symfony/yaml": "^4.0",
+        "twig/twig": "^2.4"
     },
     "require-dev": {
-        "symfony/debug": "^4.0"
+        "symfony/debug": "^4.0",
+        "symfony/stopwatch": "^4.0",
+        "symfony/web-profiler-bundle": "^4.0"
     },
     "autoload": {
         "psr-4": {
-            "Libero\\ApiDummy\\": "src/"
-        }
+            "Libero\\Journal\\": "src/"
+        },
+        "files": [
+            "src/functions.php"
+        ]
     },
     "replace": {
         "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-intl-icu": "*",
         "symfony/polyfill-php71": "*",
         "symfony/polyfill-php70": "*",
         "symfony/polyfill-php56": "*"
@@ -44,5 +58,10 @@
         "post-update-cmd": [
             "@auto-scripts"
         ]
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": "true"
+        }
     }
 }

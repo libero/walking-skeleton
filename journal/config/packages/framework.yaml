@@ -1,0 +1,6 @@
+framework:
+    php_errors:
+        log: true
+    secret: '%env(APP_SECRET)%'
+    session:
+        handler_id: ~

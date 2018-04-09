@@ -1,0 +1,13 @@
+app:
+    abstract: 'Resumen'
+    article:
+        in_locale:
+            en: 'Este artículo está escrito en inglés.'
+            es: 'Este artículo está escrito en español.'
+            ru: 'Este artículo está escrito en ruso.'
+    articles: 'Articulos'
+    digest: 'Compendio'
+    home: 'Inicio'
+    language_choice: 'Elige un idioma:'
+    no_articles: 'No hay articulos disponibles.'
+    title: 'Demostración de Libero'

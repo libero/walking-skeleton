@@ -1,0 +1,7 @@
+eight_points_guzzle:
+    clients:
+        libero_api:
+            base_url: '%env(APP_LIBERO_API)%'
+            options:
+                headers:
+                    Accept: 'application/xml'
