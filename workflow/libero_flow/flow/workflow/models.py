@@ -1,6 +1,7 @@
 import uuid
 
 from django.db import models
+from django.contrib.postgres.fields import JSONField
 
 
 CANCELLED = 'Cancelled'
@@ -33,6 +34,7 @@ class Workflow(models.Model):
     status = models.CharField(max_length=50, choices=WORKFLOW_STATUSES, default=PENDING)
     start_timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
     end_timestamp = models.DateTimeField(null=True, blank=True)
+    config = JSONField(null=True, blank=True)
 
     def __str__(self):
         return f'{self.name}: {self.instance_id}'
@@ -44,6 +46,7 @@ class Activity(models.Model):
     required = models.BooleanField(default=True)
     status = models.CharField(max_length=50, choices=ACTIVITY_STATUSES, default=PENDING)
     workflow = models.ForeignKey(Workflow, related_name='activity', on_delete=models.CASCADE)
+    config = JSONField(null=True, blank=True)
 
     class Meta:
         verbose_name_plural = 'Activities'
