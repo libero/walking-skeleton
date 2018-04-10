@@ -32,7 +32,8 @@ class Workflow(models.Model):
     instance_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=150)
     status = models.CharField(max_length=50, choices=WORKFLOW_STATUSES, default=PENDING)
-    start_timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
+    created = models.DateTimeField(auto_now=False, auto_now_add=True)
+    start_timestamp = models.DateTimeField(null=True, blank=True)
     end_timestamp = models.DateTimeField(null=True, blank=True)
     config = JSONField(null=True, blank=True)
 

@@ -22,6 +22,7 @@ class WorkflowSerializer(serializers.ModelSerializer):
             "instance_id",
             "name",
             "status",
+            "created",
             "start_timestamp",
             "end_timestamp",
             "config",
