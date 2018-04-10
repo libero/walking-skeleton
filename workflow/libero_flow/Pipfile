@@ -11,6 +11,8 @@ django = "*"
 djangorestframework = "*"
 django-debug-toolbar = "*"
 redis = "*"
+"psycopg2" = "*"
+django-filter = "*"
 
 
 [dev-packages]

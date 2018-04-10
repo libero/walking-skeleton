@@ -43,9 +43,10 @@ class Workflow(models.Model):
 class Activity(models.Model):
     instance_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=150)
+    independent = models.BooleanField(default=False)
     required = models.BooleanField(default=True)
     status = models.CharField(max_length=50, choices=ACTIVITY_STATUSES, default=PENDING)
-    workflow = models.ForeignKey(Workflow, related_name='activity', on_delete=models.CASCADE)
+    workflow = models.ForeignKey(Workflow, related_name='activities', on_delete=models.CASCADE)
     config = JSONField(null=True, blank=True)
 
     class Meta:
