@@ -35,6 +35,7 @@ class Workflow(models.Model):
     created = models.DateTimeField(auto_now=False, auto_now_add=True)
     start_timestamp = models.DateTimeField(null=True, blank=True)
     end_timestamp = models.DateTimeField(null=True, blank=True)
+    input_data = JSONField(null=True, blank=True)
     config = JSONField(null=True, blank=True)
 
     def __str__(self):

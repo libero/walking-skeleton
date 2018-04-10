@@ -1,3 +1,5 @@
+import json
+
 import pytest
 
 from workflow.models import Activity, Workflow
@@ -7,6 +9,13 @@ from workflow.models import Activity, Workflow
 @pytest.mark.django_db
 def workflow():
     return Workflow.objects.create(name='FooWorkflow', config={"foo": "bar"})
+
+
+@pytest.fixture
+@pytest.mark.django_db
+def workflow_with_input():
+    return Workflow.objects.create(name='FooWorkflow', config={"foo": "bar"},
+                                   input_data={"some": "data"})
 
 
 @pytest.fixture
@@ -27,5 +36,16 @@ def valid_activity_data(workflow):
 @pytest.fixture
 def valid_workflow_data():
     return {
-        "name": "TestWorkflow"
+        "name": "TestWorkflow",
+        "config": json.dumps({"foo": "bar"})
     }
+
+
+@pytest.fixture
+def valid_workflow_data_with_input():
+    return {
+        "name": "TestWorkflow",
+        "input_data": json.dumps({"article_id": "12345678"}),
+        "config": json.dumps({"foo": "bar"})
+    }
+
