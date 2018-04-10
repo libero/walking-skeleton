@@ -26,5 +26,6 @@ class WorkflowSerializer(serializers.ModelSerializer):
             "start_timestamp",
             "end_timestamp",
             "config",
+            "input_data",
             "activities",
         )
