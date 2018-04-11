@@ -13,6 +13,8 @@ django-debug-toolbar = "*"
 redis = "*"
 "psycopg2" = "*"
 django-filter = "*"
+requests = "*"
+pika = "*"
 
 
 [dev-packages]
