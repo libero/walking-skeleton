@@ -97,6 +97,16 @@ def schedule_decision_task(workflow_id: str) -> None:
         # TODO send event message saying scheduled a decision task
 
 
+def start_workflow(workflow_id: str) -> None:
+    """Set workflow status to 'In Progress'.
+
+    :param workflow_id:
+    :return:
+    """
+    data = {'status': 'In Progress'}
+    requests.patch(f'{WORKFLOW_API_URL}{workflow_id}/', data=data)
+
+
 def create_workflow(name: str, input_data: Dict[str, Any]) -> None:
     """Create workflow instance via workflow API.
 
@@ -126,6 +136,9 @@ def create_workflow(name: str, input_data: Dict[str, Any]) -> None:
             activity_payload['workflow'] = workflow_id
 
             requests.post(ACTIVITY_API_URL, data=activity_payload)
+
+    # set workflow state to 'In Progress'
+    start_workflow(workflow_id=workflow_id)
 
     schedule_decision_task(workflow_id=workflow_id)
 
