@@ -1,0 +1,16 @@
+app:
+    abstract: '抄録'
+    article:
+        in_locale:
+            ar: 'この記事はアラビア語で書かれています。'
+            en: 'この記事は英語で書かれています。'
+            es: 'この記事はスペイン語で書かれています。'
+            ja: 'この記事は日本語で書かれています。'
+            ru: 'この記事はロシア語で書かれています。'
+    articles: '記事'
+    digest: '撮要'
+    home: 'トップ'
+    language_choice: '言語を選択してください：'
+    no_articles: '利用可能な記事はありません。'
+    title: 'Liberoデモ'
+direction: ltr

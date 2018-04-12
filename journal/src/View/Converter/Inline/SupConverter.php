@@ -4,15 +4,18 @@ namespace Libero\Journal\View\Converter\Inline;
 
 use Libero\Journal\Dom\Element;
 use Libero\Journal\View\Converter\ViewConverter;
+use Symfony\Component\Translation\TranslatorInterface;
 use const Libero\Journal\LIBERO;
 
 final class SupConverter implements ViewConverter
 {
     private $converter;
+    private $translator;
 
-    public function __construct(ViewConverter $converter)
+    public function __construct(ViewConverter $converter, TranslatorInterface $translator)
     {
         $this->converter = $converter;
+        $this->translator = $translator;
     }
 
     /**
@@ -23,9 +26,12 @@ final class SupConverter implements ViewConverter
         $context['lang'] = $context['lang'] ?? null;
 
         $attributes = '';
-        if ($object->getAttribute('lang') ?? $context['lang'] !== $context['lang']) {
-            $attributes .= " lang=\"{$object->getAttribute('lang')->toText()}\"";
+        if ($object->getAttribute('lang') && $object->getAttribute('lang')->toText() !== $context['lang']) {
             $context['lang'] = $object->getAttribute('lang')->toText();
+            $dir = $this->translator->trans('direction', [], null, $context['lang']);
+
+            $attributes .= " lang=\"{$context['lang']}\"";
+            $attributes .= " dir=\"{$dir}\"";
         }
 
         $text = '';

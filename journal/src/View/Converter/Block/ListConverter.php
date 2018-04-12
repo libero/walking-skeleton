@@ -4,16 +4,19 @@ namespace Libero\Journal\View\Converter\Block;
 
 use Libero\Journal\Dom\Element;
 use Libero\Journal\View\Converter\ViewConverter;
+use Symfony\Component\Translation\TranslatorInterface;
 use UnexpectedValueException;
 use const Libero\Journal\LIBERO;
 
 final class ListConverter implements ViewConverter
 {
     private $converter;
+    private $translator;
 
-    public function __construct(ViewConverter $converter)
+    public function __construct(ViewConverter $converter, TranslatorInterface $translator)
     {
         $this->converter = $converter;
+        $this->translator = $translator;
     }
 
     /**
@@ -63,9 +66,12 @@ final class ListConverter implements ViewConverter
             $childContext = $context;
 
             $attributes = '';
-            if ($object->getAttribute('lang') ?? $childContext['lang'] !== $childContext['lang']) {
-                $attributes .= " lang=\"{$object->getAttribute('lang')->toText()}\"";
+            if ($object->getAttribute('lang') && $object->getAttribute('lang')->toText() !== $childContext['lang']) {
                 $childContext['lang'] = $object->getAttribute('lang')->toText();
+                $dir = $this->translator->trans('direction', [], null, $childContext['lang']);
+
+                $attributes .= " lang=\"{$context['lang']}\"";
+                $attributes .= " dir=\"{$dir}\"";
             }
             foreach ($item as $child) {
 
