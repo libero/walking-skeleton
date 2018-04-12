@@ -26,14 +26,14 @@
             <ref name="libero.text.full.model"/>
         </element>
     </define>
-    
+
     <define name="libero.text.foreign">
         <element name="foreign">
             <ref name="libero.attrib.lang"/>
             <ref name="libero.text.limited.model"/>
         </element>
     </define>
-    
+
     <define name="libero.text.i">
         <element name="i">
             <ref name="libero.attrib.lang.optional"/>
