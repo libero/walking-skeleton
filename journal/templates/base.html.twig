@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html lang="{{ app.request.locale }}">
+<html lang="{{ app.request.locale }}" dir="{% trans %}direction{% endtrans %}">
 
 <head>
 
@@ -46,7 +46,8 @@
                 {% endif %}
                 {{ locale|locale_name }}
                 {% if app.request.locale != app.request.defaultLocale %}
-                    <small lang="{{ app.request.defaultLocale }}">
+                    <small lang="{{ app.request.defaultLocale }}"
+                           dir="{% trans into app.request.defaultLocale %}direction{% endtrans %}">
                         ({{ locale|locale_name(app.request.defaultLocale) }})
                     </small>
                 {% endif %}

@@ -3,4 +3,4 @@ framework:
     translator:
         paths:
             - '%kernel.project_dir%/translations'
-        fallbacks: ['en', 'es', 'ru']
+        fallbacks: ['ar', 'en', 'es', 'ja', 'ru']

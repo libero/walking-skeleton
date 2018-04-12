@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <h2{% if front.language != app.request.locale %} lang="{{ front.language }}"{% endif %}>{{ front.title }}</h2>
+    <h2{% if front.language != app.request.locale %} lang="{{ front.language }}" dir="{% trans into front.language %}direction{% endtrans %}"{% endif %}>{{ front.title }}</h2>
 
     {% if front.doi %}
         <p>doi:{{ front.doi }}</p>
@@ -16,11 +16,16 @@
 
             <h3>{% trans %}app.abstract{% endtrans %}</h3>
 
-            {{ front.abstract.text|raw }}
+            {% if front.language != app.request.locale %}
+            <div lang="{{ front.language }}" dir="{% trans into front.language %}direction{% endtrans %}">{% endif %}
 
-            {% if front.abstract.doi %}
-                <p>doi:{{ front.abstract.doi }}</p>
-            {% endif %}
+                {{ front.abstract.text|raw }}
+
+                {% if front.abstract.doi %}
+                    <p>doi:{{ front.abstract.doi }}</p>
+                {% endif %}
+
+                {% if front.language != app.request.locale %}</div>{% endif %}
 
         </section>
     {% endif %}
@@ -29,7 +34,12 @@
 
         <h3>{% trans %}app.digest{% endtrans %}</h3>
 
+        {% if front.language != app.request.locale %}
+            <div lang="{{ front.language }}" dir="{% trans into front.language %}direction{% endtrans %}">{% endif %}
+
         {{ front.digest.text|raw }}
+
+        {% if front.language != app.request.locale %}</div>{% endif %}
 
         {% if front.digest.doi %}
             <p>doi:{{ front.digest.doi }}</p>
@@ -40,7 +50,7 @@
     {% if body %}
         {% if body.language != app.request.locale %}
             <p><i>{{ ('app.article.in_locale.' ~ body.language)|trans }}</i></p>
-            <div lang="{{ body.language }}">
+            <div lang="{{ body.language }}" dir="{% trans into body.language %}direction{% endtrans %}">
         {% endif %}
 
         {{ body.text|raw }}

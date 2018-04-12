@@ -11,7 +11,7 @@
         <ol>
             {% for article in articles %}
                 <li>
-                    <a href="{{ path('article', {id: article.id}) }}"{% if article.language != app.request.locale %} lang="{{ article.language }}"{% endif %}>{{ article.title }}</a>
+                    <a href="{{ path('article', {id: article.id}) }}"{% if article.language != app.request.locale %} lang="{{ article.language }}" dir="{% trans into article.language %}direction{% endtrans %}"{% endif %}>{{ article.title }}</a>
                 </li>
             {% endfor %}
         </ol>

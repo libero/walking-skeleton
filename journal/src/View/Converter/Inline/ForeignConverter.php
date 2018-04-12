@@ -7,7 +7,7 @@ use Libero\Journal\View\Converter\ViewConverter;
 use Symfony\Component\Translation\TranslatorInterface;
 use const Libero\Journal\LIBERO;
 
-final class AConverter implements ViewConverter
+final class ForeignConverter implements ViewConverter
 {
     private $converter;
     private $translator;
@@ -25,10 +25,8 @@ final class AConverter implements ViewConverter
     {
         $context['lang'] = $context['lang'] ?? null;
 
-        $href = $object->getAttribute('href')->toText();
-
         $attributes = '';
-        if ($object->getAttribute('lang') && $object->getAttribute('lang')->toText() !== $context['lang']) {
+        if ($object->getAttribute('lang')->toText() !== $context['lang']) {
             $context['lang'] = $object->getAttribute('lang')->toText();
             $dir = $this->translator->trans('direction', [], null, $context['lang']);
 
@@ -42,12 +40,12 @@ final class AConverter implements ViewConverter
         }
 
         return <<<EOT
-<a href="{$href}"{$attributes}>{$text}</a>
+<span{$attributes}>{$text}</span>
 EOT;
     }
 
     public function supports($object, array $context = []) : bool
     {
-        return $object instanceof Element && 'a' === $object->getName() && LIBERO === $object->getNamespace();
+        return $object instanceof Element && 'foreign' === $object->getName() && LIBERO === $object->getNamespace();
     }
 }

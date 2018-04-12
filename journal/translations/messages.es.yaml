@@ -2,8 +2,10 @@ app:
     abstract: 'Resumen'
     article:
         in_locale:
+            ar: 'Este artículo está escrito en árabe.'
             en: 'Este artículo está escrito en inglés.'
             es: 'Este artículo está escrito en español.'
+            ja: 'Este artículo está escrito en japonés.'
             ru: 'Este artículo está escrito en ruso.'
     articles: 'Articulos'
     digest: 'Compendio'
@@ -11,3 +13,4 @@ app:
     language_choice: 'Elige un idioma:'
     no_articles: 'No hay articulos disponibles.'
     title: 'Demostración de Libero'
+direction: ltr

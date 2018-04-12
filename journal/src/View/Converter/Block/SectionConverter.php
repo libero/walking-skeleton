@@ -4,15 +4,18 @@ namespace Libero\Journal\View\Converter\Block;
 
 use Libero\Journal\Dom\Element;
 use Libero\Journal\View\Converter\ViewConverter;
+use Symfony\Component\Translation\TranslatorInterface;
 use const Libero\Journal\LIBERO;
 
 final class SectionConverter implements ViewConverter
 {
     private $converter;
+    private $translator;
 
-    public function __construct(ViewConverter $converter)
+    public function __construct(ViewConverter $converter, TranslatorInterface $translator)
     {
         $this->converter = $converter;
+        $this->translator = $translator;
     }
 
     /**
@@ -27,17 +30,23 @@ final class SectionConverter implements ViewConverter
         if ($id = $object->getAttribute('id')) {
             $attributes .= " id=\"{$id->toText()}\"";
         }
-        if ($object->getAttribute('lang') ?? $context['lang'] !== $context['lang']) {
-            $attributes .= " lang=\"{$object->getAttribute('lang')->toText()}\"";
+        if ($object->getAttribute('lang') && $object->getAttribute('lang')->toText() !== $context['lang']) {
             $context['lang'] = $object->getAttribute('lang')->toText();
+            $dir = $this->translator->trans('direction', [], null, $context['lang']);
+
+            $attributes .= " lang=\"{$context['lang']}\"";
+            $attributes .= " dir=\"{$dir}\"";
         }
 
         $titleElement = $object->get('libero:title');
         $titleContext = $context;
         $titleAttributes = '';
-        if ($titleElement->getAttribute('lang') ?? $titleContext['lang'] !== $titleContext['lang']) {
-            $titleAttributes .= " lang=\"{$object->getAttribute('lang')->toText()}\"";
-            $titleContext['lang'] = $object->getAttribute('lang')->toText();
+        if ($titleElement->getAttribute('lang') && $titleElement->getAttribute('lang')->toText() !== $titleContext['lang']) {
+            $titleContext['lang'] = $titleElement->getAttribute('lang')->toText();
+            $dir = $this->translator->trans('direction', [], null, $titleContext['lang']);
+
+            $attributes .= " lang=\"{$titleContext['lang']}\"";
+            $attributes .= " dir=\"{$dir}\"";
         }
 
         $title = '';

@@ -4,15 +4,18 @@ namespace Libero\Journal\View\Converter\Block;
 
 use Libero\Journal\Dom\Element;
 use Libero\Journal\View\Converter\ViewConverter;
+use Symfony\Component\Translation\TranslatorInterface;
 use const Libero\Journal\LIBERO;
 
 final class AsideConverter implements ViewConverter
 {
     private $converter;
+    private $translator;
 
-    public function __construct(ViewConverter $converter)
+    public function __construct(ViewConverter $converter, TranslatorInterface $translator)
     {
         $this->converter = $converter;
+        $this->translator = $translator;
     }
 
     /**
@@ -27,18 +30,24 @@ final class AsideConverter implements ViewConverter
         if ($id = $object->getAttribute('id')) {
             $attributes .= " id=\"{$id->toText()}\"";
         }
-        if ($object->getAttribute('lang') ?? $context['lang'] !== $context['lang']) {
-            $attributes .= " lang=\"{$object->getAttribute('lang')->toText()}\"";
+        if ($object->getAttribute('lang') && $object->getAttribute('lang')->toText() !== $context['lang']) {
             $context['lang'] = $object->getAttribute('lang')->toText();
+            $dir = $this->translator->trans('direction', [], null, $context['lang']);
+
+            $attributes .= " lang=\"{$context['lang']}\"";
+            $attributes .= " dir=\"{$dir}\"";
         }
 
         $labelElement = $object->get('libero:label');
         if ($labelElement) {
             $labelContext = $context;
             $labelAttributes = '';
-            if ($labelElement->getAttribute('lang') ?? $labelContext['lang'] !== $labelContext['lang']) {
-                $labelAttributes .= " lang=\"{$object->getAttribute('lang')->toText()}\"";
+            if ($labelElement->getAttribute('lang') && $labelElement->getAttribute('lang')->toText() !== $labelContext['lang']) {
                 $labelContext['lang'] = $object->getAttribute('lang')->toText();
+                $dir = $this->translator->trans('direction', [], null, $labelContext['lang']);
+
+                $labelAttributes .= " lang=\"{$labelContext['lang']}\"";
+                $labelAttributes .= " dir=\"{$dir}\"";
             }
 
             $label = '';
@@ -54,9 +63,12 @@ final class AsideConverter implements ViewConverter
         if ($titleElement) {
             $titleContext = $context;
             $titleAttributes = '';
-            if ($titleElement->getAttribute('lang') ?? $titleContext['lang'] !== $titleContext['lang']) {
-                $titleAttributes .= " lang=\"{$object->getAttribute('lang')->toText()}\"";
+            if ($titleElement->getAttribute('lang') && $titleElement->getAttribute('lang')->toText() !== $titleContext['lang']) {
                 $titleContext['lang'] = $object->getAttribute('lang')->toText();
+                $dir = $this->translator->trans('direction', [], null, $titleContext['lang']);
+
+                $titleAttributes .= " lang=\"{$titleContext['lang']}\"";
+                $titleAttributes .= " dir=\"{$dir}\"";
             }
 
             $title = '';
