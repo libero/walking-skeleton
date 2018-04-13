@@ -43,6 +43,59 @@ def base_workflow_state():
     }
 
 
+@pytest.fixture(name='wf_with_multi_independent_acts')
+def base_workflow_state_with_multi_independent_activities():
+    return {
+        "instance_id": "8eed4f02-4d3c-4fb2-89f8-1507374ae541",
+        "name": "FooBarWorkflow",
+        "status": "In Progress",
+        "created": "2018-04-11T12:23:34.236207Z",
+        "start_timestamp": None,
+        "end_timestamp": None,
+        "config": {
+            "timeout": 300
+        },
+        "input_data": {
+            "timeout": 12355
+        },
+        "activities": [
+            {
+                "instance_id": "c058cd3f-93c4-4d2d-a0f4-d6eae5a3e6e2",
+                "name": "CloneXML",
+                "independent": True,
+                "required": True,
+                "status": "Pending",
+                "config": {
+                    "foo": "bar"
+                },
+                "workflow": "8eed4f02-4d3c-4fb2-89f8-1507374ae541"
+            },
+            {
+                "instance_id": "e05678d0-20b0-4a75-8452-4be151c71461",
+                "name": "GeneratePDF",
+                "independent": True,
+                "required": True,
+                "status": "Pending",
+                "config": {
+                    "foo": "bar"
+                },
+                "workflow": "8eed4f02-4d3c-4fb2-89f8-1507374ae541"
+            },
+            {
+                "instance_id": "e05678d0-20b0-4a75-8452-4be151c71461",
+                "name": "ArchiveXML",
+                "independent": False,
+                "required": True,
+                "status": "Pending",
+                "config": {
+                    "foo": "bar"
+                },
+                "workflow": "8eed4f02-4d3c-4fb2-89f8-1507374ae541"
+            }
+        ]
+    }
+
+
 @pytest.fixture
 def workflow_with_pending_state(base_workflow_state):
     return base_workflow_state
