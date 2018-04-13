@@ -2,7 +2,7 @@ FROM python:3.6.4-stretch
 
 RUN pip install pipenv
 
-ADD . /srv/app/
+ADD libero_flow /srv/app/
 WORKDIR /srv/app/flow
 
 RUN pipenv install --system

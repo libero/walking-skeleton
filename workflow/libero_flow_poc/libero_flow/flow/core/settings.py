@@ -6,7 +6,7 @@ PROJECT_NAME = 'flow'
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-CFG_PATH = os.path.join(BASE_DIR, '..')
+CFG_PATH = os.path.join(BASE_DIR, '../..')
 CFG_NAME = 'app.cfg'
 CONF = configparser.ConfigParser()
 CONF.read(os.path.join(CFG_PATH, CFG_NAME))
@@ -129,7 +129,7 @@ LOGGING = {
     },
     'handlers': {
         'file': {
-            'level': 'DEBUG',
+            'level': 'WARNING',
             'class': 'logging.FileHandler',
             'filename': os.path.join(DEFAULT_LOG_DIR, '%s.log' % PROJECT_NAME),
             'formatter': 'verbose'

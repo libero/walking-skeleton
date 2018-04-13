@@ -8,8 +8,17 @@ import uuid
 import pika
 import requests
 
-from flow_loader import FlowLoader
-from event_utils import get_channel, DELIVERY_MODE_PERSISTENT
+from libero_flow.flow_loader import FlowLoader
+from libero_flow.event_utils import (
+    get_channel,
+    setup_exchanges_and_queues,
+    DELIVERY_MODE_PERSISTENT,
+    SCHEDULED_DECISION_EXCHANGE,
+    ACTIVITY_RESULT_QUEUE,
+    DECISION_RESULT_QUEUE,
+    SCHEDULED_DECISION_QUEUE,
+    WORKFLOW_STARTER_QUEUE,
+)
 
 # Will watch queue for WorkflowStart, DecisionResult and ActivityResult
 """
@@ -58,14 +67,6 @@ DecisionResult:
 WORKFLOW_API_URL = 'http://localhost:8000/workflows/api/v1/workflows/'
 ACTIVITY_API_URL = 'http://localhost:8000/workflows/api/v1/activities/'
 
-FLOW_EXCHANGE_NAME = 'flow'
-SCHEDULED_DECISION_EXCHANGE = 'schedule_decision'
-
-ACTIVITY_RESULT_QUEUE_NAME = 'activity_results'
-DECISION_RESULT_QUEUE_NAME = 'decision_results'
-SCHEDULED_DECISION_QUEUE_NAME = 'scheduled_decisions'
-WORKFLOW_STARTER_QUEUE_NAME = 'workflow_starter'
-
 
 def schedule_decision_task(workflow_id: str) -> None:
     """create and send decision task message.
@@ -89,7 +90,7 @@ def schedule_decision_task(workflow_id: str) -> None:
         }
 
         channel.basic_publish(exchange=SCHEDULED_DECISION_EXCHANGE,
-                              routing_key=SCHEDULED_DECISION_QUEUE_NAME,
+                              routing_key=SCHEDULED_DECISION_QUEUE,
                               body=json.dumps(message),
                               properties=pika.BasicProperties(delivery_mode=DELIVERY_MODE_PERSISTENT))
         print(f'[x] Schedule decision sent: {message}')
@@ -176,16 +177,16 @@ def decision_result_message_handler(channel: pika.channel.Channel,
 
 
 def main():
-
-    # TODO create queues first
+    # NEEDS to moved somewhere else
+    setup_exchanges_and_queues()
 
     with get_channel() as channel:
         print('Scheduler running...')
         print(' [*] Waiting for Messages. To exit press CTRL+C')
 
-        channel.basic_consume(activity_result_message_handler, queue=ACTIVITY_RESULT_QUEUE_NAME, no_ack=False)
-        channel.basic_consume(decision_result_message_handler, queue=DECISION_RESULT_QUEUE_NAME, no_ack=False)
-        channel.basic_consume(workflow_starter_message_handler, queue=WORKFLOW_STARTER_QUEUE_NAME, no_ack=False)
+        channel.basic_consume(activity_result_message_handler, queue=ACTIVITY_RESULT_QUEUE, no_ack=False)
+        channel.basic_consume(decision_result_message_handler, queue=DECISION_RESULT_QUEUE, no_ack=False)
+        channel.basic_consume(workflow_starter_message_handler, queue=WORKFLOW_STARTER_QUEUE, no_ack=False)
 
         try:
             channel.start_consuming()
