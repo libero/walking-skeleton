@@ -8,16 +8,25 @@ import uuid
 import pika
 import requests
 
+from libero_flow.conf import ACTIVITY_API_URL, WORKFLOW_API_URL
 from libero_flow.flow_loader import FlowLoader
 from libero_flow.event_utils import (
     get_channel,
     setup_exchanges_and_queues,
     DELIVERY_MODE_PERSISTENT,
+    SCHEDULED_ACTIVITY_EXCHANGE,
     SCHEDULED_DECISION_EXCHANGE,
     ACTIVITY_RESULT_QUEUE,
     DECISION_RESULT_QUEUE,
+    SCHEDULED_ACTIVITY_QUEUE,
     SCHEDULED_DECISION_QUEUE,
     WORKFLOW_STARTER_QUEUE,
+)
+from libero_flow.state_utils import (
+    get_activity_state,
+    update_activity_status,
+    update_workflow_status,
+    FINISHED,
 )
 
 # Will watch queue for WorkflowStart, DecisionResult and ActivityResult
@@ -30,46 +39,50 @@ DecisionResult:
 """
 
 
-# Receive workflow start requests --------------------------
-
-#   - monitoring a queue for messages
-
-# go get workflow schema from workfow store
-#   - reject if cannot find workflow
-
-# init workflow instance
-#   - create instance in db
-#   - create event stating instance created
-#   - look at current state and schedule an activity
-#   - create event stating activity scheduled
-
-# Receive workflow start requests --------------------------
-
-
 # Receive a `success` state back from activity worker --------
 
 # get workflow_id from result and get workflow state
 
 # update activity state to success
 
-#
-
 # Receive a `success` state back from activity worker --------
 
 
 # TODO handle_activity_event
 
-# TODO handle_decision_event
 
-# TODO schedule_an_activity
+def schedule_activity(activity_id: str) -> None:
+    """create and send schedule activity message.
+
+    :param activity_id: str
+    :return:
+    """
+    with get_channel() as channel:
+        message = {
+            "eventId": str(uuid.uuid1()),
+            "happenedAt": strftime("%Y-%m-%dT%H:%M:%S+00:00", gmtime()),
+            "aggregate": {
+                "service": "flow-scheduler",
+                "name": "schedule-workflow-activity",
+                "identifier": "??",
+            },
+            "type": "schedule-activity",
+            "data": {
+                "activity_id": activity_id
+            }
+        }
+
+        channel.basic_publish(exchange=SCHEDULED_ACTIVITY_EXCHANGE,
+                              routing_key=SCHEDULED_ACTIVITY_QUEUE,
+                              body=json.dumps(message),
+                              properties=pika.BasicProperties(delivery_mode=DELIVERY_MODE_PERSISTENT))
+        print(f'[x] Schedule activity sent: {message}')
+
+        # TODO send event message saying scheduled a decision task
 
 
-WORKFLOW_API_URL = 'http://localhost:8000/workflows/api/v1/workflows/'
-ACTIVITY_API_URL = 'http://localhost:8000/workflows/api/v1/activities/'
-
-
-def schedule_decision_task(workflow_id: str) -> None:
-    """create and send decision task message.
+def schedule_decision(workflow_id: str) -> None:
+    """create and send scheduled decision message.
 
     :param workflow_id: str
     :return:
@@ -119,32 +132,83 @@ def create_workflow(name: str, input_data: Dict[str, Any]) -> None:
     loader = FlowLoader()
     workflow_def = loader.get_workflow(name)
 
-    workflow_payload = {
-        "name": workflow_def.get('name'),
-        "input_data": json.dumps(input_data),
-        "config": json.dumps(workflow_def.get('config'))
-    }
+    if workflow_def:
+        workflow_payload = {
+            "name": workflow_def.get('name'),
+            "input_data": json.dumps(input_data),
+            "config": json.dumps(workflow_def.get('config'))
+        }
 
-    # create workflow
-    response = requests.post(WORKFLOW_API_URL, data=workflow_payload)
-    workflow_id = response.json().get('instance_id')
+        # create workflow
+        response = requests.post(WORKFLOW_API_URL, data=workflow_payload)
+        workflow_id = response.json().get('instance_id')
 
-    if workflow_id:
-        # create activities
-        for activity in workflow_def.get('activities', []):
-            activity_payload = copy.deepcopy(activity)
-            activity_payload['config'] = json.dumps(activity_payload['config'])
-            activity_payload['workflow'] = workflow_id
+        if workflow_id:
+            # create activities
+            for activity in workflow_def.get('activities', []):
+                activity_payload = copy.deepcopy(activity)
+                activity_payload['config'] = json.dumps(activity_payload['config'])
+                activity_payload['workflow'] = workflow_id
 
-            requests.post(ACTIVITY_API_URL, data=activity_payload)
+                requests.post(ACTIVITY_API_URL, data=activity_payload)
 
-    # set workflow state to 'In Progress'
-    start_workflow(workflow_id=workflow_id)
+        update_workflow_status(workflow_id=workflow_id, status='In Progress')
 
-    schedule_decision_task(workflow_id=workflow_id)
+        schedule_decision(workflow_id=workflow_id)
 
-    # TODO if successful then send workflow created event
-    # TODO if unsuccessful then send workflow creation failed event
+        # TODO if successful then send workflow created event
+
+    else:
+        # TODO if unsuccessful then send workflow creation failed event
+        print(f'No Workflow definition found for {name}')
+
+
+def activity_result_message_handler(channel: pika.channel.Channel,
+                                    method: pika.spec.Basic.Deliver,
+                                    properties: pika.spec.BasicProperties, body: str) -> None:
+    print(f'[x] Activity results received: {body}')
+
+    try:
+        data = json.loads(body)
+        result = data['data']
+
+        activity_state = get_activity_state(result['activity_id'])
+
+        update_activity_status(activity_id=result['activity_id'], status=result['result'])
+
+        schedule_decision(workflow_id=activity_state['workflow'])
+    except json.decoder.JSONDecodeError:
+        pass
+
+    channel.basic_ack(method.delivery_tag)
+
+
+def decision_result_message_handler(channel: pika.channel.Channel,
+                                    method: pika.spec.Basic.Deliver,
+                                    properties: pika.spec.BasicProperties, body: str) -> None:
+    print(f'[x] Decision results received: {body}')
+
+    try:
+        data = json.loads(body)
+        decision = data['data']
+
+        if decision['decision'] == 'start-workflow':
+            create_workflow(data['name'], data['input_data'])
+
+        elif decision['decision'] == 'schedule-activities':
+            for activity in decision['activities']:
+                schedule_activity(activity['instance_id'])
+        elif decision['decision'] == 'workflow-finished':
+            update_workflow_status(workflow_id=decision['workflow_id'], status=FINISHED)
+
+        # TODO do-nothing
+
+        # TODO workflow-failure
+
+    except json.decoder.JSONDecodeError:
+        pass
+
+    channel.basic_ack(method.delivery_tag)
 
 
 def workflow_starter_message_handler(channel: pika.channel.Channel,
@@ -159,20 +223,6 @@ def workflow_starter_message_handler(channel: pika.channel.Channel,
     except json.decoder.JSONDecodeError:
         pass
 
-    channel.basic_ack(method.delivery_tag)
-
-
-def activity_result_message_handler(channel: pika.channel.Channel,
-                                    method: pika.spec.Basic.Deliver,
-                                    properties: pika.spec.BasicProperties, body: str) -> None:
-    print(f'[x] Activity results received: {body}')
-    channel.basic_ack(method.delivery_tag)
-
-
-def decision_result_message_handler(channel: pika.channel.Channel,
-                                    method: pika.spec.Basic.Deliver,
-                                    properties: pika.spec.BasicProperties, body: str) -> None:
-    print(f'[x] Decision results received: {body}')
     channel.basic_ack(method.delivery_tag)
 
 

@@ -4,10 +4,8 @@ from typing import Dict
 import uuid
 
 import pika
-import requests
 
-from libero_flow.conf import WORKFLOW_API_URL
-from libero_flow.states import (
+from libero_flow.state_utils import (
     CANCELLED,
     FINISHED,
     IN_PROGRESS,
@@ -23,16 +21,7 @@ from libero_flow.event_utils import (
     DECISION_RESULT_QUEUE,
     SCHEDULED_DECISION_QUEUE,
 )
-
-
-def get_workflow_state(workflow_id: str) -> Dict:
-    """Get workflow state via workflow API.
-
-    :param workflow_id:
-    :return:
-    """
-    response = requests.get(f'{WORKFLOW_API_URL}{workflow_id}/')
-    return response.json()
+from libero_flow.state_utils import get_workflow_state
 
 
 def send_decision_message(decision: Dict):
@@ -161,6 +150,10 @@ def decide(workflow: Dict) -> Dict:
                     decision['decision'] = 'workflow-failure'
 
         decision['activities'] = activities_to_schedule
+
+        if not decision['activities'] and decision['decision'] == 'schedule-activities':
+            # no activities outstanding and no failures, complete the workflow then
+            decision['decision'] = 'workflow-finished'
 
     return decision
 

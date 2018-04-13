@@ -2,9 +2,7 @@ import json
 from typing import Dict
 
 import pika
-import requests
 
-from libero_flow.conf import ACTIVITY_API_URL
 from libero_flow.flow_loader import FlowLoader
 from libero_flow.event_utils import (
     get_base_message,
@@ -14,16 +12,7 @@ from libero_flow.event_utils import (
     DELIVERY_MODE_PERSISTENT,
     SCHEDULED_ACTIVITY_QUEUE,
 )
-
-
-def get_activity_state(activity_id: str) -> Dict:
-    """Get activity state via workflow API.
-
-    :param activity_id:
-    :return:
-    """
-    response = requests.get(f'{ACTIVITY_API_URL}{activity_id}/')
-    return response.json()
+from libero_flow.state_utils import get_activity_state
 
 
 def run_activity(activity_id: str) -> Dict:
