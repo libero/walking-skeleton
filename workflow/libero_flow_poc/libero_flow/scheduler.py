@@ -75,7 +75,7 @@ def schedule_activity(activity_id: str) -> None:
                               properties=pika.BasicProperties(delivery_mode=DELIVERY_MODE_PERSISTENT))
         print(f'[x] Schedule activity sent: {message}')
 
-        # TODO send event message saying scheduled a decision task
+        # TODO send event message saying scheduled an activity
 
 
 def schedule_decision(workflow_id: str) -> None:
@@ -105,13 +105,13 @@ def schedule_decision(workflow_id: str) -> None:
                               properties=pika.BasicProperties(delivery_mode=DELIVERY_MODE_PERSISTENT))
         print(f'[x] Schedule decision sent: {message}')
 
-        # TODO send event message saying scheduled a decision task
+        # TODO send event message saying scheduled a decision
 
 
 def start_workflow(workflow_id: str) -> None:
     """Set workflow status to 'In Progress'.
 
-    :param workflow_id:
+    :param workflow_id: str
     :return:
     """
     data = {'status': 'In Progress'}

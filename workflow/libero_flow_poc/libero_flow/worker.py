@@ -19,8 +19,8 @@ from libero_flow.state_utils import get_activity_state
 def run_activity(activity_id: str) -> Dict:
     """
 
-    :param activity_id:
-    :return:
+    :param activity_id: str
+    :return: dict
     """
 
     result = {
@@ -53,7 +53,7 @@ def run_activity(activity_id: str) -> Dict:
 def send_result_message(result: Dict):
     """create and send decision task message.
 
-    :param workflow_id: str
+    :param result: dict
     :return:
     """
     with get_channel() as channel:

@@ -28,7 +28,7 @@ from libero_flow.state_utils import get_workflow_state
 def send_decision_message(decision: Dict):
     """create and send decision task message.
 
-    :param workflow_id: str
+    :param decision: dict
     :return:
     """
     with get_channel() as channel:
@@ -96,18 +96,8 @@ def decide(workflow: Dict) -> Dict:
     }
 
     :param workflow:
-    :return: Dict
+    :return: dict
     """
-
-    """
-    - schedule-activity
-    - workflow-finished
-    - workflow-failure
-    - do-nothing
-    
-    - wait-for-in-process-activities??? (if parallel activities are still being processed)
-    """
-
     decision = {
         'workflow_id': workflow['instance_id'],
         'decision': ''
