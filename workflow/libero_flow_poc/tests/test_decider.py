@@ -30,9 +30,13 @@ def test_will_fail_a_workflow_if_required_activity_perma_fails(workflow_with_per
     decision = decide(workflow_with_perma_failed_required_activity)
     assert decision['decision'] == 'workflow-failure'
 
-# TODO will schedule two independent activity on workflow start
 
-# TODO will schedule an independant then a non independent activity
+def test_will_schedule_multiple_independent_activities(wf_with_multi_independent_acts):
+    decision = decide(wf_with_multi_independent_acts)
+    assert decision['decision'] == 'schedule-activities'
+    assert decision['workflow_id']
+    assert len(decision['activities']) == 2
+
 
 # TODO will re schedule an activity with a temp failure
 
