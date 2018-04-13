@@ -1,6 +1,7 @@
 from contextlib import contextmanager
+from functools import wraps
 from time import gmtime, strftime
-from typing import ContextManager, Dict
+from typing import Callable, ContextManager, Dict
 import uuid
 
 import pika
@@ -79,21 +80,26 @@ def get_channel() -> ContextManager[BlockingChannel]:
     connection.close()
 
 
-def setup_exchanges_and_queues() -> None:
+def setup_exchanges_and_queues(func) -> Callable[..., None]:
     """Setup required queues and exchanges on target broker.
 
     If they exist already they will be skipped.
 
     :return:
     """
-    with get_channel() as channel:
+    @wraps(func)
+    def wrapper():
+        with get_channel() as channel:
+            for queue_name in DEFAULT_QUEUES:
+                channel.queue_declare(queue=queue_name, durable=True)
 
-        for queue_name in DEFAULT_QUEUES:
-            channel.queue_declare(queue=queue_name, durable=True)
+                for exchange in DEFAULT_QUEUES[queue_name]:
+                    channel.exchange_declare(exchange=exchange, exchange_type='fanout', durable=True)
+                    channel.queue_bind(exchange=exchange, queue=queue_name)
 
-            for exchange in DEFAULT_QUEUES[queue_name]:
-                channel.exchange_declare(exchange=exchange, exchange_type='fanout', durable=True)
-                channel.queue_bind(exchange=exchange, queue=queue_name)
+        return func()
+
+    return wrapper
 
 
 if __name__ == '__main__':

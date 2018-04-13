@@ -48,9 +48,6 @@ DecisionResult:
 # Receive a `success` state back from activity worker --------
 
 
-# TODO handle_activity_event
-
-
 def schedule_activity(activity_id: str) -> None:
     """create and send schedule activity message.
 
@@ -198,12 +195,15 @@ def decision_result_message_handler(channel: pika.channel.Channel,
         elif decision['decision'] == 'schedule-activities':
             for activity in decision['activities']:
                 schedule_activity(activity['instance_id'])
+
         elif decision['decision'] == 'workflow-finished':
             update_workflow_status(workflow_id=decision['workflow_id'], status=FINISHED)
 
-        # TODO do-nothing
+        elif decision['decision'] == 'workflow-failure':
+            update_workflow_status(workflow_id=decision['workflow_id'], status=FINISHED)
 
-        # TODO workflow-failure
+        elif decision['decision'] == 'do-nothing':
+            pass
 
     except json.decoder.JSONDecodeError:
         pass
@@ -218,7 +218,6 @@ def workflow_starter_message_handler(channel: pika.channel.Channel,
 
     try:
         data = json.loads(body)
-        # try to create workflow
         create_workflow(data['name'], data['input_data'])
     except json.decoder.JSONDecodeError:
         pass
@@ -226,10 +225,8 @@ def workflow_starter_message_handler(channel: pika.channel.Channel,
     channel.basic_ack(method.delivery_tag)
 
 
+@setup_exchanges_and_queues
 def main():
-    # NEEDS to moved somewhere else
-    setup_exchanges_and_queues()
-
     with get_channel() as channel:
         print('Scheduler running...')
         print(' [*] Waiting for Messages. To exit press CTRL+C')
@@ -245,7 +242,7 @@ def main():
 
 
 if __name__ == '__main__':
-    sys.exit(main())
+    pass
 
 
 

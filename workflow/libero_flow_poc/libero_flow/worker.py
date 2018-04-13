@@ -7,6 +7,7 @@ from libero_flow.flow_loader import FlowLoader
 from libero_flow.event_utils import (
     get_base_message,
     get_channel,
+    setup_exchanges_and_queues,
     ACTIVITY_RESULT_EXCHANGE,
     ACTIVITY_RESULT_QUEUE,
     DELIVERY_MODE_PERSISTENT,
@@ -89,6 +90,7 @@ def scheduled_activity_message_handler(channel: pika.channel.Channel,
     channel.basic_ack(method.delivery_tag)
 
 
+@setup_exchanges_and_queues
 def main():
     with get_channel() as channel:
         print('Worker running...')

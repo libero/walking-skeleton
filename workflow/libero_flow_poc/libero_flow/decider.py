@@ -16,6 +16,7 @@ from libero_flow.state_utils import (
 )
 from libero_flow.event_utils import (
     get_channel,
+    setup_exchanges_and_queues,
     DELIVERY_MODE_PERSISTENT,
     DECISION_RESULT_EXCHANGE,
     DECISION_RESULT_QUEUE,
@@ -175,6 +176,7 @@ def scheduled_decision_message_handler(channel: pika.channel.Channel,
     channel.basic_ack(method.delivery_tag)
 
 
+@setup_exchanges_and_queues
 def main():
     with get_channel() as channel:
         print('Decider running...')
