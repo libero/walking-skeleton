@@ -1,7 +1,10 @@
 import uuid
 
-from django.db import models
 from django.contrib.postgres.fields import JSONField
+from django.db import models
+from django.dispatch import receiver
+from django.db.models.signals import post_save, pre_delete
+from django.utils import timezone
 
 
 CANCELLED = 'Cancelled'
@@ -69,3 +72,16 @@ class Activity(models.Model):
 # timestamp
 # type
 
+
+@receiver(post_save, sender=Workflow)
+def set_workflow_start_timestamp(sender, instance, created, **kwargs):
+    if instance.status == IN_PROGRESS and not instance.start_timestamp:
+        instance.start_timestamp = timezone.now()
+        instance.save()
+
+
+@receiver(post_save, sender=Workflow)
+def set_workflow_end_timestamp(sender, instance, created, **kwargs):
+    if instance.status == FINISHED and not instance.end_timestamp:
+        instance.end_timestamp = timezone.now()
+        instance.save()
