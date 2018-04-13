@@ -6,28 +6,23 @@ import uuid
 import pika
 import requests
 
-from libero_flow.utils.event_utils import (
+from libero_flow.conf import WORKFLOW_API_URL
+from libero_flow.states import (
+    CANCELLED,
+    FINISHED,
+    IN_PROGRESS,
+    PENDING,
+    PERMANENT_FAILURE,
+    SUCCEEDED,
+    TEMPORARY_FAILURE,
+)
+from libero_flow.event_utils import (
     get_channel,
     DELIVERY_MODE_PERSISTENT,
     DECISION_RESULT_EXCHANGE,
     DECISION_RESULT_QUEUE,
     SCHEDULED_DECISION_QUEUE,
 )
-
-
-WORKFLOW_API_URL = 'http://localhost:8000/workflows/api/v1/workflows/'
-
-
-CANCELLED = 'Cancelled'
-FINISHED = 'Finished'
-IN_PROGRESS = 'In Progress'
-PENDING = 'Pending'
-PERMANENT_FAILURE = 'Permanent Failure'
-SUCCEEDED = 'Succeeded'
-TEMPORARY_FAILURE = 'Temporary Failure'
-
-
-# TODO Need statuses for activities and workflows as constants
 
 
 def get_workflow_state(workflow_id: str) -> Dict:
