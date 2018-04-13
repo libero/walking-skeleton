@@ -6,6 +6,7 @@ import os
 import json
 from typing import Dict
 
+from libero_flow.activities import ACTIVITIES
 
 # TODO needs to be set by config
 WORKFLOWS_DIR = os.path.join(os.path.dirname(__file__), 'workflows')
@@ -18,8 +19,9 @@ class FlowLoader:
     def __init__(self):
         pass
 
-    def get_activity(self, name):
-        pass
+    @staticmethod
+    def get_activity(name):
+        return ACTIVITIES.get(name, None)
 
     def get_workflow(self, name):
         return self.workflow_map.get(name, None)
