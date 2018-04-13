@@ -38,6 +38,9 @@ class Workflow(models.Model):
     input_data = JSONField(null=True, blank=True)
     config = JSONField(null=True, blank=True)
 
+    class Meta:
+        ordering = ('created',)
+
     def __str__(self):
         return f'{self.name}: {self.instance_id}'
 
@@ -45,6 +48,7 @@ class Workflow(models.Model):
 class Activity(models.Model):
     instance_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=150)
+    created = models.DateTimeField(auto_now=False, auto_now_add=True)
     independent = models.BooleanField(default=False)
     required = models.BooleanField(default=True)
     status = models.CharField(max_length=50, choices=ACTIVITY_STATUSES, default=PENDING)
@@ -52,6 +56,7 @@ class Activity(models.Model):
     config = JSONField(null=True, blank=True)
 
     class Meta:
+        ordering = ('created',)
         verbose_name_plural = 'Activities'
 
     def __str__(self):
