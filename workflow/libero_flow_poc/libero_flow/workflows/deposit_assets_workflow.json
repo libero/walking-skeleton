@@ -1,0 +1,26 @@
+{
+  "name": "DepositAssetsWorkflow",
+  "config": {
+    "timeout": 300
+  },
+  "activities": [
+      {
+          "name": "CloneXMLActivity",
+          "independent": true,
+          "required": true,
+          "config": {"foo": "bar"}
+      },
+      {
+          "name": "GeneratePDFActivity",
+          "independent": true,
+          "required": true,
+          "config": {"foo": "bar"}
+      },
+      {
+          "name": "ArchiveXMLActivity",
+          "independent": false,
+          "required": true,
+          "config": {"foo": "bar"}
+      }
+  ]
+}
