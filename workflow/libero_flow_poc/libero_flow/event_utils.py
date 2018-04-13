@@ -1,5 +1,7 @@
 from contextlib import contextmanager
-from typing import ContextManager
+from time import gmtime, strftime
+from typing import ContextManager, Dict
+import uuid
 
 import pika
 from pika.adapters.blocking_connection import BlockingChannel
@@ -19,17 +21,25 @@ PARAMS = pika.ConnectionParameters(host=HOST, credentials=CREDENTIALS)
 ACTIVITY_RESULT_QUEUE = 'activity_results'
 DECISION_RESULT_QUEUE = 'decision_results'
 SCHEDULED_DECISION_QUEUE = 'scheduled_decisions'
+SCHEDULED_ACTIVITY_QUEUE = 'scheduled_activities'
 WORKFLOW_STARTER_QUEUE = 'workflow_starter'
 
+ACTIVITY_RESULT_EXCHANGE = 'activity_result'
 DECISION_RESULT_EXCHANGE = 'decision_result'
+SCHEDULED_ACTIVITY_EXCHANGE = 'schedule_activity'
 SCHEDULED_DECISION_EXCHANGE = 'schedule_decision'
 WORKFLOW_STARTER_EXCHANGE = 'start_workflow'
 
 
 DEFAULT_QUEUES = {
-    ACTIVITY_RESULT_QUEUE: [],
+    ACTIVITY_RESULT_QUEUE: [
+        ACTIVITY_RESULT_EXCHANGE
+    ],
     DECISION_RESULT_QUEUE: [
         DECISION_RESULT_EXCHANGE
+    ],
+    SCHEDULED_ACTIVITY_QUEUE: [
+        SCHEDULED_ACTIVITY_EXCHANGE
     ],
     SCHEDULED_DECISION_QUEUE: [
         SCHEDULED_DECISION_EXCHANGE
@@ -38,6 +48,24 @@ DEFAULT_QUEUES = {
         WORKFLOW_STARTER_EXCHANGE
     ]
 }
+
+
+def get_base_message() -> Dict:
+    """
+
+    :return:
+    """
+    return {
+        "eventId": str(uuid.uuid1()),
+        "happenedAt": strftime("%Y-%m-%dT%H:%M:%S+00:00", gmtime()),
+        "aggregate": {
+            "service": "",
+            "name": "",
+            "identifier": "",
+        },
+        "type": "",
+        "data": {}
+    }
 
 
 @contextmanager
@@ -64,10 +92,7 @@ def setup_exchanges_and_queues() -> None:
             channel.queue_declare(queue=queue_name, durable=True)
 
             for exchange in DEFAULT_QUEUES[queue_name]:
-                channel.exchange_declare(exchange=exchange,
-                                         exchange_type='fanout',
-                                         durable=True)
-
+                channel.exchange_declare(exchange=exchange, exchange_type='fanout', durable=True)
                 channel.queue_bind(exchange=exchange, queue=queue_name)
 
 
