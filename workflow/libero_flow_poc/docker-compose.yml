@@ -1,29 +1,69 @@
 version: '3'
 
 services:
-#  web:
-#    build:
-#      context: .
-#      dockerfile: Dockerfile
-#    env_file:
-#      - '.env'
-#    ports:
-#      - '8000:8000'
-#    depends_on:
-#      - postgres
-#      - redis
-#      - rabbitmq
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: >
+            /bin/bash -c "
+                until echo > /dev/tcp/postgres/5432; do sleep 1; done
+                python manage.py migrate && python manage.py runserver 0.0.0.0:8000
+            "
+    env_file:
+      - '.env'
+    ports:
+      - '8000:8000'
+    depends_on:
+      - postgres
+      - redis
+      - rabbitmq
 
-#  scheduler
+  decider:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /srv/app
+    command: >
+            /bin/bash -c "
+                until echo > /dev/tcp/rabbitmq/5672; do sleep 1; done
+                python run_decider.py
+            "
+    depends_on:
+      - rabbitmq
 
-#  decider
+  scheduler:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /srv/app
+    command: >
+            /bin/bash -c "
+                until echo > /dev/tcp/rabbitmq/5672; do sleep 1; done
+                python run_scheduler.py
+            "
+    depends_on:
+      - rabbitmq
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /srv/app
+    command: >
+            /bin/bash -c "
+                until echo > /dev/tcp/rabbitmq/5672; do sleep 1; done
+                python run_worker.py
+            "
+    depends_on:
+      - rabbitmq
 
   redis:
     image: 'redis:3.0-alpine'
     ports:
       - '6379:6379'
     volumes:
-      - 'redis:/var/lib/redis/data'
+      - 'redis:/data'
 
   rabbitmq:
     image: 'rabbitmq:3.7.3-management'
@@ -31,7 +71,7 @@ services:
       - '8080:15672'
       - '5672:5672'
     volumes:
-      - 'rabbitmq_data:/var/lib/rabbitmq/flow'
+      - 'rabbitmq:/var/lib/rabbitmq'
 
   postgres:
     image: 'postgres:9.5-alpine'
@@ -40,9 +80,9 @@ services:
     ports:
       - '5432:5432'
     volumes:
-      - 'postgres:/var/lib/postgresql/flow'
+      - 'postgres:/var/lib/postgresql/data'
 
 volumes:
   postgres:
   redis:
-  rabbitmq_data:
+  rabbitmq:
