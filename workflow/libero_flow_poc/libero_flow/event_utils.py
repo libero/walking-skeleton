@@ -13,18 +13,10 @@ import uuid
 import pika
 from pika.adapters.blocking_connection import BlockingChannel
 
+from libero_flow.conf import BROKER_PARAMS
+
 
 DELIVERY_MODE_PERSISTENT = 2
-
-# HOST = 'rabbitmq'
-HOST = '127.0.0.1'
-PORT = 5672
-PASSWORD = 'guest'
-USER = 'guest'
-
-CREDENTIALS = pika.PlainCredentials(USER, PASSWORD)
-PARAMS = pika.ConnectionParameters(host=HOST, credentials=CREDENTIALS)
-
 
 ACTIVITY_RESULT_QUEUE = 'activity_results'
 DECISION_RESULT_QUEUE = 'decision_results'
@@ -82,7 +74,7 @@ def get_channel() -> ContextManager[BlockingChannel]:
     giving the caller a connection channel to use.
     :return: class: `BlockingChannel`
     """
-    connection = pika.BlockingConnection(parameters=PARAMS)
+    connection = pika.BlockingConnection(parameters=BROKER_PARAMS)
     yield connection.channel()
     connection.close()
 

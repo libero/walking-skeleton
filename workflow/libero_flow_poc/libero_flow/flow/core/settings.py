@@ -17,7 +17,7 @@ SECRET_KEY = CONF.get('django', 'secret_key')
 
 DEBUG = CONF.get('django', 'debug', fallback=False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = CONF.get('django', 'allowed_hosts').split(',')
 
 INTERNAL_IPS = '127.0.0.1'
 
