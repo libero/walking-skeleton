@@ -15,6 +15,6 @@ class CloneXMLActivity(BaseActivity):
         """
         print(self.__class__)
         # simulate some work
-        time.sleep(5)
+        time.sleep(15)
 
         return self.SUCCEEDED
