@@ -1,3 +1,5 @@
+import time
+
 from libero_flow.activities.base_activity import BaseActivity
 
 
@@ -12,4 +14,7 @@ class CloneXMLActivity(BaseActivity):
         :return:
         """
         print(self.__class__)
+        # simulate some work
+        time.sleep(5)
+
         return self.SUCCEEDED

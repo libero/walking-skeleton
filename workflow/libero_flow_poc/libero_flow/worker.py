@@ -14,7 +14,10 @@ from libero_flow.event_utils import (
     DELIVERY_MODE_PERSISTENT,
     SCHEDULED_ACTIVITY_QUEUE,
 )
-from libero_flow.state_utils import get_activity_state
+from libero_flow.state_utils import (
+    get_activity_state,
+    update_activity_status,
+)
 
 
 def run_activity(activity_id: str) -> Dict:
@@ -23,6 +26,8 @@ def run_activity(activity_id: str) -> Dict:
     :param activity_id: str
     :return: dict
     """
+
+    update_activity_status(activity_id, status='In Progress')
 
     result = {
         'activity_id': activity_id,
