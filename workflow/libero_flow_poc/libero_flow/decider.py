@@ -11,6 +11,7 @@ from libero_flow.state_utils import (
     IN_PROGRESS,
     PENDING,
     PERMANENT_FAILURE,
+    SCHEDULED,
     SUCCEEDED,
     TEMPORARY_FAILURE,
 )
@@ -122,7 +123,7 @@ def decide(workflow: Dict) -> Dict:
 
         for activity in workflow['activities']:
 
-            if activity['status'] == SUCCEEDED:
+            if activity['status'] in [SUCCEEDED, SCHEDULED]:
                 continue
 
             elif activity['status'] == PENDING:

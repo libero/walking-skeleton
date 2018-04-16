@@ -75,6 +75,8 @@ def schedule_activity(activity_id: str) -> None:
                               properties=pika.BasicProperties(delivery_mode=DELIVERY_MODE_PERSISTENT))
         print(f'[x] Schedule activity sent: {message}')
 
+        update_activity_status(activity_id, status='Scheduled')
+
         # TODO send event message saying scheduled an activity
 
 
@@ -180,6 +182,7 @@ def decision_result_handler(data: Dict[str, Any]) -> None:
 
     elif decision['decision'] == 'schedule-activities':
         for activity in decision['activities']:
+            # TODO need to check activity does not currently have an active timeout
             schedule_activity(activity['instance_id'])
 
     elif decision['decision'] == 'workflow-finished':
