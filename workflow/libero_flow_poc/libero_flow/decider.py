@@ -16,6 +16,7 @@ from libero_flow.state_utils import (
     TEMPORARY_FAILURE,
 )
 from libero_flow.event_utils import (
+    get_base_message,
     get_channel,
     message_handler,
     setup_exchanges_and_queues,
@@ -34,17 +35,11 @@ def send_decision_message(decision: Dict):
     :return:
     """
     with get_channel() as channel:
-        message = {
-            "eventId": str(uuid.uuid1()),
-            "happenedAt": strftime("%Y-%m-%dT%H:%M:%S+00:00", gmtime()),
-            "aggregate": {
-                "service": "flow-decider",
-                "name": "workflow-decision",
-                "identifier": "??",
-            },
-            "type": "decision-task-result",
-            "data": decision
-        }
+        message = get_base_message()
+        message['aggregate']['service'] = 'flow-decider'
+        message['aggregate']['name'] = 'workflow-decision'
+        message['type'] = 'decision-task-result'
+        message['data'] = decision
 
         channel.basic_publish(exchange=DECISION_RESULT_EXCHANGE,
                               routing_key=DECISION_RESULT_QUEUE,

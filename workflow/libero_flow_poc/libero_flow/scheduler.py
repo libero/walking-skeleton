@@ -10,6 +10,7 @@ import requests
 from libero_flow.conf import ACTIVITY_API_URL, WORKFLOW_API_URL
 from libero_flow.flow_loader import FlowLoader
 from libero_flow.event_utils import (
+    get_base_message,
     get_channel,
     message_handler,
     setup_exchanges_and_queues,
@@ -29,24 +30,6 @@ from libero_flow.state_utils import (
     FINISHED,
 )
 
-# Will watch queue for WorkflowStart, DecisionResult and ActivityResult
-"""
-DecisionResult:
-    - handle_decision()
-        - Will update workflow state
-        - May Schedule an Activity
-        - May Complete a workflow
-"""
-
-
-# Receive a `success` state back from activity worker --------
-
-# get workflow_id from result and get workflow state
-
-# update activity state to success
-
-# Receive a `success` state back from activity worker --------
-
 
 def schedule_activity(activity_id: str) -> None:
     """create and send schedule activity message.
@@ -55,19 +38,11 @@ def schedule_activity(activity_id: str) -> None:
     :return:
     """
     with get_channel() as channel:
-        message = {
-            "eventId": str(uuid.uuid1()),
-            "happenedAt": strftime("%Y-%m-%dT%H:%M:%S+00:00", gmtime()),
-            "aggregate": {
-                "service": "flow-scheduler",
-                "name": "schedule-workflow-activity",
-                "identifier": "??",
-            },
-            "type": "schedule-activity",
-            "data": {
-                "activity_id": activity_id
-            }
-        }
+        message = get_base_message()
+        message['aggregate']['service'] = 'flow-scheduler'
+        message['aggregate']['name'] = 'schedule-workflow-activity'
+        message['type'] = 'schedule-activity'
+        message['data'] = activity_id
 
         channel.basic_publish(exchange=SCHEDULED_ACTIVITY_EXCHANGE,
                               routing_key=SCHEDULED_ACTIVITY_QUEUE,
@@ -87,19 +62,11 @@ def schedule_decision(workflow_id: str) -> None:
     :return:
     """
     with get_channel() as channel:
-        message = {
-            "eventId": str(uuid.uuid1()),
-            "happenedAt": strftime("%Y-%m-%dT%H:%M:%S+00:00", gmtime()),
-            "aggregate": {
-                "service": "flow-scheduler",
-                "name": "schedule-workflow-decision",
-                "identifier": "??",
-            },
-            "type": "schedule-decision-task",
-            "data": {
-                "workflow_id": workflow_id
-            }
-        }
+        message = get_base_message()
+        message['aggregate']['service'] = 'flow-scheduler'
+        message['aggregate']['name'] = 'schedule-workflow-decision'
+        message['type'] = 'schedule-decision-task'
+        message['data'] = workflow_id
 
         channel.basic_publish(exchange=SCHEDULED_DECISION_EXCHANGE,
                               routing_key=SCHEDULED_DECISION_QUEUE,
