@@ -16,6 +16,7 @@ class BaseActivity(Activity):
     IN_PROGRESS = 'In Progress'
     PENDING = 'Pending'
     PERMANENT_FAILURE = "Permanent Failure"
+    SCHEDULED = 'Scheduled'
     SUCCEEDED = 'Succeeded'
     TEMPORARY_FAILURE = "Temporary Failure"
 
