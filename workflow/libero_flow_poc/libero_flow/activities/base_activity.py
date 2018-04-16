@@ -31,3 +31,21 @@ class BaseActivity(Activity):
         :return:
         """
         return self.PERMANENT_FAILURE
+
+    def session_get(self, key: str) -> None:
+        """Get a value by key on the activities workflow session
+
+        :param key: str
+        :param value: str
+        :return: bool
+        """
+        return self.session.get(f'{self.workflow_id}_{key}')
+
+    def session_set(self, key: str, value: str) -> None:
+        """Set a value by key on the activities workflow session
+
+        :param key: str
+        :param value: str
+        :return: bool
+        """
+        self.session.set(f'{self.workflow_id}_{key}', value)

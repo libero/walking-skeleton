@@ -97,6 +97,16 @@ def base_workflow_state_with_multi_independent_activities():
 
 
 @pytest.fixture
+def mock_session():
+    class Session(dict):
+
+        def set(self, key, value):
+            self.__setitem__(key, value)
+
+    return Session
+
+
+@pytest.fixture
 def workflow_with_pending_state(base_workflow_state):
     return base_workflow_state
 
