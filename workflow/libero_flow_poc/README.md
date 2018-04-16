@@ -1,7 +1,7 @@
 # *Libero Flow: A POC Workflow Management System
- ######A work in progress name *
+ ###### A work in progress name *
  
-#####What does it do?
+##### What does it do?
 It allows the creation and execution of user defined workflows and activities.
 
 ##### Workflows
@@ -12,7 +12,7 @@ Example:
 {
   "name": "DummyWorkflow",
   "config": {
-    // fill with configuration values
+    "some": "values"
   },
   "activities": [
       {
@@ -87,7 +87,7 @@ class DoAnotherThingActivity(BaseActivity):
 
 ```
 
-##Installation
+## Installation
 
 `docker-compose up --build`
 
