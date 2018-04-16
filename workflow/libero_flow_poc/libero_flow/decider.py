@@ -1,6 +1,6 @@
 import json
 from time import gmtime, strftime
-from typing import Dict
+from typing import Any, Dict
 import uuid
 
 import pika
@@ -16,6 +16,7 @@ from libero_flow.state_utils import (
 )
 from libero_flow.event_utils import (
     get_channel,
+    message_handler,
     setup_exchanges_and_queues,
     DELIVERY_MODE_PERSISTENT,
     DECISION_RESULT_EXCHANGE,
@@ -143,27 +144,19 @@ def decide(workflow: Dict) -> Dict:
         decision['activities'] = activities_to_schedule
 
         if not decision['activities'] and decision['decision'] == 'schedule-activities':
-            # no activities outstanding and no failures, complete the workflow then
+            # no activities outstanding and no failures? complete the workflow then...
             decision['decision'] = 'workflow-finished'
 
     return decision
 
 
-def scheduled_decision_message_handler(channel: pika.channel.Channel,
-                                       method: pika.spec.Basic.Deliver,
-                                       properties: pika.spec.BasicProperties, body: str) -> None:
-    print(f'[x] scheduled decision handler received: {body}')
+def decision_handler(data: Dict[str, Any]) -> None:
+    print(f'[x] scheduled decision handler received: {data}')
 
-    try:
-        data = json.loads(body)
-        workflow_id = data['data']['workflow_id']
+    workflow_id = data['data']['workflow_id']
 
-        decision = decide(workflow=get_workflow_state(workflow_id=workflow_id))
-        send_decision_message(decision)
-    except json.decoder.JSONDecodeError as err:
-        print(err)
-
-    channel.basic_ack(method.delivery_tag)
+    decision = decide(workflow=get_workflow_state(workflow_id=workflow_id))
+    send_decision_message(decision)
 
 
 @setup_exchanges_and_queues
@@ -172,7 +165,7 @@ def main():
         print('Decider running...')
         print(' [*] Waiting for Messages. To exit press CTRL+C')
 
-        channel.basic_consume(scheduled_decision_message_handler, queue=SCHEDULED_DECISION_QUEUE, no_ack=False)
+        channel.basic_consume(message_handler(decision_handler), queue=SCHEDULED_DECISION_QUEUE, no_ack=False)
 
         try:
             channel.start_consuming()

@@ -1,7 +1,13 @@
 from contextlib import contextmanager
 from functools import wraps
+import json
 from time import gmtime, strftime
-from typing import Callable, ContextManager, Dict
+from typing import (
+    Any,
+    Callable,
+    ContextManager,
+    Dict
+)
 import uuid
 
 import pika
@@ -10,7 +16,8 @@ from pika.adapters.blocking_connection import BlockingChannel
 
 DELIVERY_MODE_PERSISTENT = 2
 
-HOST = 'localhost'
+# HOST = 'rabbitmq'
+HOST = '127.0.0.1'
 PORT = 5672
 PASSWORD = 'guest'
 USER = 'guest'
@@ -78,6 +85,28 @@ def get_channel() -> ContextManager[BlockingChannel]:
     connection = pika.BlockingConnection(parameters=PARAMS)
     yield connection.channel()
     connection.close()
+
+
+def message_handler(func: Callable[..., Any]) -> Callable[..., Any]:
+    """Message handler wrapper that handles passing the parsed message body
+    to wrapped `func` and ack'ing the message after completion.
+
+    :param func:
+    :return:
+    """
+    def handler(channel: pika.channel.Channel = None,
+                method: pika.spec.Basic.Deliver = None,
+                properties: pika.spec.BasicProperties = None,
+                body: str = '') -> Any:
+        try:
+            data = json.loads(body)
+            func(data)
+            channel.basic_ack(method.delivery_tag)
+        except json.decoder.JSONDecodeError as err:
+            # logger.exception(exception)
+            pass
+
+    return handler
 
 
 def setup_exchanges_and_queues(func) -> Callable[..., None]:

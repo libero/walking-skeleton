@@ -1,6 +1,5 @@
 import copy
 import json
-import sys
 from time import gmtime, strftime
 from typing import Any, Dict
 import uuid
@@ -12,6 +11,7 @@ from libero_flow.conf import ACTIVITY_API_URL, WORKFLOW_API_URL
 from libero_flow.flow_loader import FlowLoader
 from libero_flow.event_utils import (
     get_channel,
+    message_handler,
     setup_exchanges_and_queues,
     DELIVERY_MODE_PERSISTENT,
     SCHEDULED_ACTIVITY_EXCHANGE,
@@ -160,69 +160,41 @@ def create_workflow(name: str, input_data: Dict[str, Any]) -> None:
         print(f'No Workflow definition found for {name}')
 
 
-def activity_result_message_handler(channel: pika.channel.Channel,
-                                    method: pika.spec.Basic.Deliver,
-                                    properties: pika.spec.BasicProperties, body: str) -> None:
-    print(f'[x] Activity results received: {body}')
+def activity_result_handler(data: Dict[str, Any]) -> None:
+    print(f'[x] Activity results received: {data}')
 
-    try:
-        data = json.loads(body)
-        result = data['data']
+    result = data['data']
 
-        activity_state = get_activity_state(result['activity_id'])
-
-        update_activity_status(activity_id=result['activity_id'], status=result['result'])
-
-        schedule_decision(workflow_id=activity_state['workflow'])
-    except json.decoder.JSONDecodeError:
-        pass
-
-    channel.basic_ack(method.delivery_tag)
+    activity_state = get_activity_state(result['activity_id'])
+    update_activity_status(activity_id=result['activity_id'], status=result['result'])
+    schedule_decision(workflow_id=activity_state['workflow'])
 
 
-def decision_result_message_handler(channel: pika.channel.Channel,
-                                    method: pika.spec.Basic.Deliver,
-                                    properties: pika.spec.BasicProperties, body: str) -> None:
-    print(f'[x] Decision results received: {body}')
+def decision_result_handler(data: Dict[str, Any]) -> None:
+    print(f'[x] Decision results received: {data}')
 
-    try:
-        data = json.loads(body)
-        decision = data['data']
+    decision = data['data']
 
-        if decision['decision'] == 'start-workflow':
-            create_workflow(data['name'], data['input_data'])
-
-        elif decision['decision'] == 'schedule-activities':
-            for activity in decision['activities']:
-                schedule_activity(activity['instance_id'])
-
-        elif decision['decision'] == 'workflow-finished':
-            update_workflow_status(workflow_id=decision['workflow_id'], status=FINISHED)
-
-        elif decision['decision'] == 'workflow-failure':
-            update_workflow_status(workflow_id=decision['workflow_id'], status=FINISHED)
-
-        elif decision['decision'] == 'do-nothing':
-            pass
-
-    except json.decoder.JSONDecodeError:
-        pass
-
-    channel.basic_ack(method.delivery_tag)
-
-
-def workflow_starter_message_handler(channel: pika.channel.Channel,
-                                     method: pika.spec.Basic.Deliver,
-                                     properties: pika.spec.BasicProperties, body: str) -> None:
-    print(f'[x] Workflow starter received: {body}')
-
-    try:
-        data = json.loads(body)
+    if decision['decision'] == 'start-workflow':
         create_workflow(data['name'], data['input_data'])
-    except json.decoder.JSONDecodeError:
+
+    elif decision['decision'] == 'schedule-activities':
+        for activity in decision['activities']:
+            schedule_activity(activity['instance_id'])
+
+    elif decision['decision'] == 'workflow-finished':
+        update_workflow_status(workflow_id=decision['workflow_id'], status=FINISHED)
+
+    elif decision['decision'] == 'workflow-failure':
+        update_workflow_status(workflow_id=decision['workflow_id'], status=FINISHED)
+
+    elif decision['decision'] == 'do-nothing':
         pass
 
-    channel.basic_ack(method.delivery_tag)
+
+def workflow_starter(data: Dict[str, Any]) -> None:
+    print(f'[x] Workflow starter received: {data}')
+    create_workflow(data['name'], data['input_data'])
 
 
 @setup_exchanges_and_queues
@@ -231,9 +203,9 @@ def main():
         print('Scheduler running...')
         print(' [*] Waiting for Messages. To exit press CTRL+C')
 
-        channel.basic_consume(activity_result_message_handler, queue=ACTIVITY_RESULT_QUEUE, no_ack=False)
-        channel.basic_consume(decision_result_message_handler, queue=DECISION_RESULT_QUEUE, no_ack=False)
-        channel.basic_consume(workflow_starter_message_handler, queue=WORKFLOW_STARTER_QUEUE, no_ack=False)
+        channel.basic_consume(message_handler(activity_result_handler), queue=ACTIVITY_RESULT_QUEUE, no_ack=False)
+        channel.basic_consume(message_handler(decision_result_handler), queue=DECISION_RESULT_QUEUE, no_ack=False)
+        channel.basic_consume(message_handler(workflow_starter), queue=WORKFLOW_STARTER_QUEUE, no_ack=False)
 
         try:
             channel.start_consuming()

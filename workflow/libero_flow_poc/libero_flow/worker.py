@@ -1,5 +1,5 @@
 import json
-from typing import Dict
+from typing import Any, Dict
 
 import pika
 
@@ -7,6 +7,7 @@ from libero_flow.flow_loader import FlowLoader
 from libero_flow.event_utils import (
     get_base_message,
     get_channel,
+    message_handler,
     setup_exchanges_and_queues,
     ACTIVITY_RESULT_EXCHANGE,
     ACTIVITY_RESULT_QUEUE,
@@ -70,24 +71,16 @@ def send_result_message(result: Dict):
         print(f'[x] Schedule activity result sent: {message}\n')
 
 
-def scheduled_activity_message_handler(channel: pika.channel.Channel,
-                                       method: pika.spec.Basic.Deliver,
-                                       properties: pika.spec.BasicProperties, body: str) -> None:
-    print(f'[x] scheduled activity handler received: {body}')
+def activity_handler(data: Dict[str, Any]) -> None:
+    print(f'[x] scheduled activity handler received: {data}')
 
-    try:
-        data = json.loads(body)
-        """
-        '{"eventId": "9052435a-3f06-11e8-95ff-8c85905818e6", "happenedAt": "2018-04-13T10:36:45+00:00", "aggregate": {"service": "flow-scheduler", "name": "schedule-workflow-activity", "identifier": "??"}, "type": "schedule-activity", "data": {"activity_id": "1b53d475-3704-46d3-9763-6a60c161362d"}}'
+    """
+    '{"eventId": "9052435a-3f06-11e8-95ff-8c85905818e6", "happenedAt": "2018-04-13T10:36:45+00:00", "aggregate": {"service": "flow-scheduler", "name": "schedule-workflow-activity", "identifier": "??"}, "type": "schedule-activity", "data": {"activity_id": "1b53d475-3704-46d3-9763-6a60c161362d"}}'
 
-        """
-        # TODO needs to be passed to celery here or launch thread/process
-        result = run_activity(data['data']['activity_id'])
-        send_result_message(result)
-    except json.decoder.JSONDecodeError as err:
-        print(err)
-
-    channel.basic_ack(method.delivery_tag)
+    """
+    # TODO needs to be passed to celery here or launch thread/process
+    result = run_activity(data['data']['activity_id'])
+    send_result_message(result)
 
 
 @setup_exchanges_and_queues
@@ -96,7 +89,7 @@ def main():
         print('Worker running...')
         print(' [*] Waiting for Messages. To exit press CTRL+C')
 
-        channel.basic_consume(scheduled_activity_message_handler, queue=SCHEDULED_ACTIVITY_QUEUE, no_ack=False)
+        channel.basic_consume(message_handler(activity_handler), queue=SCHEDULED_ACTIVITY_QUEUE, no_ack=False)
 
         try:
             channel.start_consuming()
