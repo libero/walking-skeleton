@@ -28,7 +28,7 @@ Feature: Publication of an article
   Scenario: Multilingual articles
     Given an ingested article X in languages en and pr
     When I ingest and publish article X
-    And I should see article X on journal
+    Then I should see article X on journal
     And I should see the article X in pr on journal
 
   @future
@@ -42,4 +42,4 @@ Feature: Publication of an article
   Scenario: Input formats
     Given an article X in JATS format
     When I ingest and publish article X
-    And I should see article X on journal
+    Then I should see article X on journal
