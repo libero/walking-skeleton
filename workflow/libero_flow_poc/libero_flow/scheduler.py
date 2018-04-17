@@ -1,8 +1,6 @@
 import copy
 import json
-from time import gmtime, strftime
 from typing import Any, Dict
-import uuid
 
 import pika
 import requests
@@ -42,7 +40,7 @@ def schedule_activity(activity_id: str) -> None:
         message['aggregate']['service'] = 'flow-scheduler'
         message['aggregate']['name'] = 'schedule-workflow-activity'
         message['type'] = 'schedule-activity'
-        message['data'] = activity_id
+        message['data'] = {'activity_id': activity_id}
 
         channel.basic_publish(exchange=SCHEDULED_ACTIVITY_EXCHANGE,
                               routing_key=SCHEDULED_ACTIVITY_QUEUE,
@@ -66,7 +64,7 @@ def schedule_decision(workflow_id: str) -> None:
         message['aggregate']['service'] = 'flow-scheduler'
         message['aggregate']['name'] = 'schedule-workflow-decision'
         message['type'] = 'schedule-decision-task'
-        message['data'] = workflow_id
+        message['data'] = {'workflow_id': workflow_id}
 
         channel.basic_publish(exchange=SCHEDULED_DECISION_EXCHANGE,
                               routing_key=SCHEDULED_DECISION_QUEUE,

@@ -1,7 +1,5 @@
 import json
-from time import gmtime, strftime
 from typing import Any, Dict
-import uuid
 
 import pika
 
@@ -149,10 +147,15 @@ def decide(workflow: Dict) -> Dict:
 def decision_handler(data: Dict[str, Any]) -> None:
     print(f'[x] scheduled decision handler received: {data}')
 
-    workflow_id = data['data']['workflow_id']
+    try:
+        workflow_id = data['data'].get('workflow_id')
 
-    decision = decide(workflow=get_workflow_state(workflow_id=workflow_id))
-    send_decision_message(decision)
+        if workflow_id:
+            decision = decide(workflow=get_workflow_state(workflow_id=workflow_id))
+            send_decision_message(decision)
+    except AttributeError as err:
+        # log err and state invalid data format / type
+        pass
 
 
 @setup_exchanges_and_queues
