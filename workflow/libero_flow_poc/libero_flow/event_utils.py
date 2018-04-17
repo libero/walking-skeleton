@@ -13,41 +13,10 @@ import uuid
 import pika
 from pika.adapters.blocking_connection import BlockingChannel
 
-from libero_flow.conf import BROKER_PARAMS
+from libero_flow.conf import BROKER_PARAMS, DEFAULT_QUEUES
 
 
 DELIVERY_MODE_PERSISTENT = 2
-
-ACTIVITY_RESULT_QUEUE = 'activity_results'
-DECISION_RESULT_QUEUE = 'decision_results'
-SCHEDULED_DECISION_QUEUE = 'scheduled_decisions'
-SCHEDULED_ACTIVITY_QUEUE = 'scheduled_activities'
-WORKFLOW_STARTER_QUEUE = 'workflow_starter'
-
-ACTIVITY_RESULT_EXCHANGE = 'activity_result'
-DECISION_RESULT_EXCHANGE = 'decision_result'
-SCHEDULED_ACTIVITY_EXCHANGE = 'schedule_activity'
-SCHEDULED_DECISION_EXCHANGE = 'schedule_decision'
-WORKFLOW_STARTER_EXCHANGE = 'start_workflow'
-
-
-DEFAULT_QUEUES = {
-    ACTIVITY_RESULT_QUEUE: [
-        ACTIVITY_RESULT_EXCHANGE
-    ],
-    DECISION_RESULT_QUEUE: [
-        DECISION_RESULT_EXCHANGE
-    ],
-    SCHEDULED_ACTIVITY_QUEUE: [
-        SCHEDULED_ACTIVITY_EXCHANGE
-    ],
-    SCHEDULED_DECISION_QUEUE: [
-        SCHEDULED_DECISION_EXCHANGE
-    ],
-    WORKFLOW_STARTER_QUEUE: [
-        WORKFLOW_STARTER_EXCHANGE
-    ]
-}
 
 
 def get_base_message() -> Dict:

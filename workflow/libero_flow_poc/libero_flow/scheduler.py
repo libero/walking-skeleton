@@ -5,14 +5,9 @@ from typing import Any, Dict
 import pika
 import requests
 
-from libero_flow.conf import ACTIVITY_API_URL, WORKFLOW_API_URL
-from libero_flow.flow_loader import FlowLoader
-from libero_flow.event_utils import (
-    get_base_message,
-    get_channel,
-    message_handler,
-    setup_exchanges_and_queues,
-    DELIVERY_MODE_PERSISTENT,
+from libero_flow.conf import (
+    ACTIVITY_API_URL,
+    WORKFLOW_API_URL,
     SCHEDULED_ACTIVITY_EXCHANGE,
     SCHEDULED_DECISION_EXCHANGE,
     ACTIVITY_RESULT_QUEUE,
@@ -20,6 +15,14 @@ from libero_flow.event_utils import (
     SCHEDULED_ACTIVITY_QUEUE,
     SCHEDULED_DECISION_QUEUE,
     WORKFLOW_STARTER_QUEUE,
+)
+from libero_flow.flow_loader import FlowLoader
+from libero_flow.event_utils import (
+    get_base_message,
+    get_channel,
+    message_handler,
+    setup_exchanges_and_queues,
+    DELIVERY_MODE_PERSISTENT,
 )
 from libero_flow.state_utils import (
     get_activity_state,

@@ -3,6 +3,11 @@ from typing import Any, Dict
 
 import pika
 
+from libero_flow.conf import (
+    DECISION_RESULT_EXCHANGE,
+    DECISION_RESULT_QUEUE,
+    SCHEDULED_DECISION_QUEUE,
+)
 from libero_flow.state_utils import (
     CANCELLED,
     FINISHED,
@@ -19,9 +24,6 @@ from libero_flow.event_utils import (
     message_handler,
     setup_exchanges_and_queues,
     DELIVERY_MODE_PERSISTENT,
-    DECISION_RESULT_EXCHANGE,
-    DECISION_RESULT_QUEUE,
-    SCHEDULED_DECISION_QUEUE,
 )
 from libero_flow.state_utils import get_workflow_state
 
@@ -162,7 +164,7 @@ def decision_handler(data: Dict[str, Any]) -> None:
 def main():
     with get_channel() as channel:
         print('Decider running...')
-        print(' [*] Waiting for Messages. To exit press CTRL+C')
+        print('[*] Waiting for Messages. To exit press CTRL+C')
 
         channel.basic_consume(message_handler(decision_handler), queue=SCHEDULED_DECISION_QUEUE, no_ack=False)
 

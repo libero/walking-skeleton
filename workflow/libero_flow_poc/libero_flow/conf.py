@@ -30,3 +30,33 @@ BROKER_USER = CONF.get('broker', 'user')
 
 BROKER_CREDENTIALS = pika.PlainCredentials(BROKER_USER, BROKER_PASSWORD)
 BROKER_PARAMS = pika.ConnectionParameters(host=BROKER_HOST, credentials=BROKER_CREDENTIALS)
+
+ACTIVITY_RESULT_QUEUE = CONF.get('broker', 'activity_result_queue')
+DECISION_RESULT_QUEUE = CONF.get('broker', 'decision_result_queue')
+SCHEDULED_ACTIVITY_QUEUE = CONF.get('broker', 'scheduled_activity_queue')
+SCHEDULED_DECISION_QUEUE = CONF.get('broker', 'scheduled_decision_queue')
+WORKFLOW_STARTER_QUEUE = CONF.get('broker', 'workflow_starter_queue')
+
+ACTIVITY_RESULT_EXCHANGE = CONF.get('broker', 'activity_result_exchange')
+DECISION_RESULT_EXCHANGE = CONF.get('broker', 'decision_result_exchange')
+SCHEDULED_ACTIVITY_EXCHANGE = CONF.get('broker', 'scheduled_activity_exchange')
+SCHEDULED_DECISION_EXCHANGE = CONF.get('broker', 'scheduled_decision_exchange')
+WORKFLOW_STARTER_EXCHANGE = CONF.get('broker', 'workflow_starter_exchange')
+
+DEFAULT_QUEUES = {
+    ACTIVITY_RESULT_QUEUE: [
+        ACTIVITY_RESULT_EXCHANGE
+    ],
+    DECISION_RESULT_QUEUE: [
+        DECISION_RESULT_EXCHANGE
+    ],
+    SCHEDULED_ACTIVITY_QUEUE: [
+        SCHEDULED_ACTIVITY_EXCHANGE
+    ],
+    SCHEDULED_DECISION_QUEUE: [
+        SCHEDULED_DECISION_EXCHANGE
+    ],
+    WORKFLOW_STARTER_QUEUE: [
+        WORKFLOW_STARTER_EXCHANGE
+    ]
+}
