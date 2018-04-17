@@ -4,13 +4,18 @@ Feature: Publication of an article
     Given a new article X
     When I ingest article X
     Then I should see article X on the dashboard in ready-to-publish state
-    And I should see a preview of article X on journal
 
   Scenario: Publish an article
     Given an ingested article X
     When I publish article X from the dashboard
     Then I should see article X on the dashboard in published state
     And I should see article X on journal
+
+  @future
+  Scenario: Preview an article
+    Given a new article X
+    When I ingest article X
+    Then I should see a preview of article X on journal
 
   @future
   Scenario: Multiple versions
