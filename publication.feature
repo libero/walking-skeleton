@@ -7,7 +7,8 @@ Feature: Publication of an article
 
   Scenario: Publish an article
     Given an ingested article X
-    When I publish article X from the dashboard
+    #When I publish article X from the dashboard
+    When I publish article X
     Then I should see article X on the dashboard in published state
     And I should see article X on journal
 
