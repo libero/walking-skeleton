@@ -29,3 +29,17 @@ class WorkflowSerializer(serializers.ModelSerializer):
             "input_data",
             "activities",
         )
+
+
+class WorkflowStarterSerializer(serializers.Serializer):
+    name = serializers.CharField(required=True)
+    input_data = serializers.JSONField(required=False)
+
+    class Meta:
+        model = None
+
+    def create(self, instance, validated_data):
+        pass
+
+    def update(self, instance, validated_data):
+        pass

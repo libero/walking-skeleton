@@ -1,6 +1,7 @@
 import os
 import configparser
 
+import pika
 
 PROJECT_NAME = 'flow'
 
@@ -172,3 +173,13 @@ DEBUG_TOOLBAR_CONFIG = {
     'RESULTS_STORE_SIZE': 100,
 }
 
+# Message Broker
+BROKER_HOST = CONF.get('broker', 'host')
+BROKER_PORT = CONF.get('broker', 'port')
+BROKER_PASSWORD = CONF.get('broker', 'password')
+BROKER_USER = CONF.get('broker', 'user')
+
+BROKER_CREDENTIALS = pika.PlainCredentials(BROKER_USER, BROKER_PASSWORD)
+BROKER_PARAMS = pika.ConnectionParameters(host=BROKER_HOST, credentials=BROKER_CREDENTIALS)
+WORKFLOW_STARTER_QUEUE = CONF.get('broker', 'workflow_starter_queue')
+WORKFLOW_STARTER_EXCHANGE = CONF.get('broker', 'workflow_starter_exchange')

@@ -129,6 +129,15 @@ with connection.channel() as channel:
 Start a Workflow by http request:
 ```python
 
+import requests
+
+api_root = 'http://localhost:8000'  # this will depend on your workflow API server deployment 
+
+payload = {"name": "DummyWorkflow", "input_data": {}}
+url = api_root + '/workflows/api/v1/startworkflow/'
+
+response = requests.post(url=url, data=payload)
+
 ```
 
 ## Configuration
