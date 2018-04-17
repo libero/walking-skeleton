@@ -1,8 +1,17 @@
 import json
 
 import pytest
+from rest_framework.test import APIClient
 
 from workflow.models import Activity, Workflow
+
+
+@pytest.fixture
+@pytest.mark.django_db
+def admin_rest_client(admin_user):
+    client = APIClient()
+    client.force_authenticate(user=admin_user)
+    return client
 
 
 @pytest.fixture
