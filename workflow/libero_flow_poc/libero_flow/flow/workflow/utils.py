@@ -16,7 +16,6 @@ def start_workflow(name: str, input_data: Dict[str, Any]) -> None:
     :return:
     """
     with connection.channel() as channel:
-        # msg = '{"name": {0}, "input_data": {1}}'.format(name, input_data)
         msg = json.dumps({'name': name, 'input_data': input_data})
 
         channel.basic_publish(exchange=settings.WORKFLOW_STARTER_EXCHANGE,
