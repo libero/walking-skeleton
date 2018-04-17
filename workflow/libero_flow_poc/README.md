@@ -103,8 +103,37 @@ This will spin up the following containers:
 
 ## Usage
 
-- Start a Workflow
-    - ...
+#### Starting a Workflow
+...
+
+Start a Workflow by message (via RabbitMQ using pika):
+```python
+import pika
+
+CREDENTIALS = pika.PlainCredentials('user', 'password')  # NOT REAL VALUES, USE CORRECT CREDENTIALS
+PARAMS = pika.ConnectionParameters(host='localhost', credentials=CREDENTIALS)
+
+connection = pika.BlockingConnection(parameters=PARAMS)
+
+
+with connection.channel() as channel:
+    msg = '{"name": "DummyWorkflow", "input_data": {}}'
+
+    channel.basic_publish(exchange='start_workflow',
+                          routing_key='workflow_starter',
+                          body=msg,
+                          properties=pika.BasicProperties(delivery_mode=2))
+
+```
+
+Start a Workflow by http request:
+```python
+
+```
+
+## Configuration
+
+...
  
 ## Components
  
@@ -148,4 +177,14 @@ This will spin up the following containers:
 - ...
 
  
+## Tests
+`$ ./project_tests.sh`
 
+
+## Workflow configuration options
+
+...
+
+## Activity configuration options
+
+...
