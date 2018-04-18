@@ -15,5 +15,6 @@ These can be run using `docker-compose up`.
 
 ## Experiments
 
+- `api-dummy/public/schemas`: An experiment to create an extensible data model using RELAX NG. `libero` contains base schemas (eg an article has an ID and a title), and extensions to represent common requirements (eg abstracts, MathML). `elife`, `hindawi`, `ijm`, `scielo` and `wikipedia` contain example schemas using the base Libero schemas, including Libero extensions, and custom schemas where necessary. Sample content is available in `api-dummy/data`.
 - `events`: Experiments into PHP and Python implementations of a RabbitMQ-based event bus.
 - `workflow`: An experiment into using Airflow as a workflow.
