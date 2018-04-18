@@ -40,9 +40,7 @@ def run_activity(activity_id: str) -> Dict:
     loader = FlowLoader()
     activity_state = get_activity_state(activity_id=activity_id)
 
-    print('activity state: ', activity_state)
     activity_class = loader.get_activity(activity_state['name'])
-    print('activity class: ', activity_class)
 
     if activity_class:
         session = get_session()

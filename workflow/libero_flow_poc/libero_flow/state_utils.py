@@ -6,6 +6,7 @@ from libero_flow.conf import ACTIVITY_API_URL, WORKFLOW_API_URL
 
 
 CANCELLED = 'Cancelled'
+FAILED = 'Failed'
 FINISHED = 'Finished'
 IN_PROGRESS = 'In Progress'
 PENDING = 'Pending'

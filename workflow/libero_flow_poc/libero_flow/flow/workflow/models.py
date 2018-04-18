@@ -8,6 +8,7 @@ from django.utils import timezone
 
 
 CANCELLED = 'Cancelled'
+FAILED = 'Failed'
 FINISHED = 'Finished'
 IN_PROGRESS = 'In Progress'
 PENDING = 'Pending'
@@ -29,6 +30,7 @@ WORKFLOW_STATUSES = (
     (CANCELLED, 'Cancelled'),
     (IN_PROGRESS, 'In Progress'),
     (PENDING, 'Pending'),
+    (FAILED, 'Failed'),
     (FINISHED, 'Finished'),
 )
 

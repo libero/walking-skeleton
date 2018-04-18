@@ -1,8 +1,15 @@
 import copy
 import json
+import logging
 from typing import Any, Dict
+import time
 
 import pika
+from pika.exceptions import (
+    ChannelClosed,
+    ConnectionClosed,
+    IncompatibleProtocolError
+)
 import requests
 
 from libero_flow.conf import (
@@ -24,12 +31,18 @@ from libero_flow.event_utils import (
     setup_exchanges_and_queues,
     DELIVERY_MODE_PERSISTENT,
 )
+from libero_flow.session_store import get_session
 from libero_flow.state_utils import (
     get_activity_state,
     update_activity_status,
     update_workflow_status,
+    FAILED,
     FINISHED,
 )
+
+logger = logging.getLogger(__name__)
+fh = logging.FileHandler(f'{__name__}.log')
+logger.addHandler(fh)
 
 
 def schedule_activity(activity_id: str) -> None:
@@ -110,6 +123,10 @@ def create_workflow(name: str, input_data: Dict[str, Any]) -> None:
         response = requests.post(WORKFLOW_API_URL, data=workflow_payload)
         workflow_id = response.json().get('instance_id')
 
+        # deposit input_data to session store under workflow namespace
+        session = get_session()
+        session.set(f'{workflow_id}_input_data', json.dumps(input_data))
+
         if workflow_id:
             # create activities
             for activity in workflow_def.get('activities', []):
@@ -157,7 +174,7 @@ def decision_result_handler(data: Dict[str, Any]) -> None:
         update_workflow_status(workflow_id=decision['workflow_id'], status=FINISHED)
 
     elif decision['decision'] == 'workflow-failure':
-        update_workflow_status(workflow_id=decision['workflow_id'], status=FINISHED)
+        update_workflow_status(workflow_id=decision['workflow_id'], status=FAILED)
 
     elif decision['decision'] == 'do-nothing':
         pass
@@ -170,30 +187,26 @@ def workflow_starter(data: Dict[str, Any]) -> None:
 
 @setup_exchanges_and_queues
 def main():
-    with get_channel() as channel:
-        print('Scheduler running...')
-        print(' [*] Waiting for Messages. To exit press CTRL+C')
-
-        channel.basic_consume(message_handler(activity_result_handler), queue=ACTIVITY_RESULT_QUEUE, no_ack=False)
-        channel.basic_consume(message_handler(decision_result_handler), queue=DECISION_RESULT_QUEUE, no_ack=False)
-        channel.basic_consume(message_handler(workflow_starter), queue=WORKFLOW_STARTER_QUEUE, no_ack=False)
-
+    while True:
         try:
-            channel.start_consuming()
+            with get_channel() as channel:
+                print('Scheduler running...')
+                print('[*] Waiting for Messages. To exit press CTRL+C')
+
+                channel.basic_consume(message_handler(activity_result_handler), queue=ACTIVITY_RESULT_QUEUE, no_ack=False)
+                channel.basic_consume(message_handler(decision_result_handler), queue=DECISION_RESULT_QUEUE, no_ack=False)
+                channel.basic_consume(message_handler(workflow_starter), queue=WORKFLOW_STARTER_QUEUE, no_ack=False)
+
+                channel.start_consuming()
+
+        except (ChannelClosed, ConnectionClosed, IncompatibleProtocolError) as err:
+            # lost connection
+            logger.exception('Lost connection... waiting before retry')
+            time.sleep(5)
         except KeyboardInterrupt:
             channel.stop_consuming()
+            break
 
 
 if __name__ == '__main__':
     pass
-
-
-
-
-
-
-
-
-
-
-
