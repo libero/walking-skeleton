@@ -60,3 +60,7 @@ DEFAULT_QUEUES = {
         WORKFLOW_STARTER_EXCHANGE
     ]
 }
+
+# session
+SESSION_HOST = CONF.get('session_store', 'host')
+SESSION_PORT = CONF.get('session_store', 'port')
