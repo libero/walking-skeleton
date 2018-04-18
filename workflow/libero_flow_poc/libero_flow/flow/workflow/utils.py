@@ -5,9 +5,6 @@ from django.conf import settings
 import pika
 
 
-connection = pika.BlockingConnection(parameters=settings.BROKER_PARAMS)
-
-
 def start_workflow(name: str, input_data: Dict[str, Any]) -> None:
     """Send message to target broker to instruct a workflow to be started.
 
@@ -15,6 +12,8 @@ def start_workflow(name: str, input_data: Dict[str, Any]) -> None:
     :param input_data: dict
     :return:
     """
+    connection = pika.BlockingConnection(parameters=settings.BROKER_PARAMS)
+
     with connection.channel() as channel:
         msg = json.dumps({'name': name, 'input_data': input_data})
 
