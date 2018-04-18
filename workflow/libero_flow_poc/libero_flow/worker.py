@@ -16,6 +16,7 @@ from libero_flow.event_utils import (
     setup_exchanges_and_queues,
     DELIVERY_MODE_PERSISTENT,
 )
+from libero_flow.session_store import get_session
 from libero_flow.state_utils import (
     get_activity_state,
     update_activity_status,
@@ -44,9 +45,7 @@ def run_activity(activity_id: str) -> Dict:
     print('activity class: ', activity_class)
 
     if activity_class:
-        # get session
-        # TODO session interface
-        session = None
+        session = get_session()
 
         activity = activity_class(workflow_id=activity_state['workflow'],
                                   config=activity_state['config'],

@@ -11,6 +11,7 @@ from typing import (
 import uuid
 
 import pika
+from pika.exceptions import ConnectionClosed
 from pika.adapters.blocking_connection import BlockingChannel
 
 from libero_flow.conf import BROKER_PARAMS, DEFAULT_QUEUES
@@ -43,9 +44,13 @@ def get_channel() -> ContextManager[BlockingChannel]:
     giving the caller a connection channel to use.
     :return: class: `BlockingChannel`
     """
-    connection = pika.BlockingConnection(parameters=BROKER_PARAMS)
-    yield connection.channel()
-    connection.close()
+    try:
+        connection = pika.BlockingConnection(parameters=BROKER_PARAMS)
+        yield connection.channel()
+        connection.close()
+    except ConnectionClosed as err:
+        print(err)
+        raise
 
 
 def message_handler(func: Callable[..., Any]) -> Callable[..., Any]:

@@ -27,13 +27,13 @@ class RedisSession(BaseSession):
         self.db = db
         self.session = redis.StrictRedis(host=self.host, port=self.port, db=self.db)
 
-    def get(self, key: str) -> None:
+    def get(self, key: str) -> str:
         """Retrieve value by key from session.
 
         :param key:
-        :return:
+        :return: str
         """
-        self.session.get(key)
+        return self.session.get(key)
 
     def set(self, key: str, value: str) -> None:
         """Set value by key on session.

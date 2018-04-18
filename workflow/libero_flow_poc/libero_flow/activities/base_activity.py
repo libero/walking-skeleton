@@ -9,9 +9,6 @@ class Activity(ABC):
 
 
 class BaseActivity(Activity):
-    """
-    **complete**
-    """
 
     IN_PROGRESS = 'In Progress'
     PENDING = 'Pending'
@@ -26,26 +23,27 @@ class BaseActivity(Activity):
         self.workflow_id = workflow_id
 
     def do_activity(self) -> str:
-        """
+        """Perform actions.
 
-        :return:
+        :return: str
         """
         return self.PERMANENT_FAILURE
 
-    def session_get(self, key: str) -> None:
+    def session_get(self, key: str) -> str:
         """Get a value by key on the activities workflow session
 
         :param key: str
-        :param value: str
-        :return: bool
+        :return:
         """
-        return self.session.get(f'{self.workflow_id}_{key}')
+        value = self.session.get(f'{self.workflow_id}_{key}')
+        if value:
+            return value.decode("utf-8")
 
     def session_set(self, key: str, value: str) -> None:
         """Set a value by key on the activities workflow session
 
         :param key: str
         :param value: str
-        :return: bool
+        :return:
         """
         self.session.set(f'{self.workflow_id}_{key}', value)

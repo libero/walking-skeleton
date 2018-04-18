@@ -15,6 +15,7 @@ class CloneXMLActivity(BaseActivity):
         """
         print(self.__class__)
         # simulate some work
+        self.session_set('cloned_xml_path', 'foo')
         time.sleep(15)
 
         return self.SUCCEEDED
