@@ -11,10 +11,10 @@ CANCELLED = 'Cancelled'
 FINISHED = 'Finished'
 IN_PROGRESS = 'In Progress'
 PENDING = 'Pending'
-PERMANENT_FAILURE = 'PermanentFailure'
+PERMANENT_FAILURE = 'Permanent Failure'
 SCHEDULED = 'Scheduled'
 SUCCEEDED = 'Succeeded'
-TEMPORARY_FAILURE = 'TemporaryFailure'
+TEMPORARY_FAILURE = 'Temporary Failure'
 
 ACTIVITY_STATUSES = (
     (IN_PROGRESS, 'In Progress'),
