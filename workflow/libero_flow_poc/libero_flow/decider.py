@@ -1,8 +1,14 @@
 import json
+import logging
+import time
 from typing import Any, Dict
 
 import pika
-
+from pika.exceptions import (
+    ChannelClosed,
+    ConnectionClosed,
+    IncompatibleProtocolError
+)
 from libero_flow.conf import (
     DECISION_RESULT_EXCHANGE,
     DECISION_RESULT_QUEUE,
@@ -26,6 +32,11 @@ from libero_flow.event_utils import (
     DELIVERY_MODE_PERSISTENT,
 )
 from libero_flow.state_utils import get_workflow_state
+
+
+logger = logging.getLogger(__name__)
+fh = logging.FileHandler(f'{__name__}.log')
+logger.addHandler(fh)
 
 
 def send_decision_message(decision: Dict):
@@ -162,16 +173,23 @@ def decision_handler(data: Dict[str, Any]) -> None:
 
 @setup_exchanges_and_queues
 def main():
-    with get_channel() as channel:
-        print('Decider running...')
-        print('[*] Waiting for Messages. To exit press CTRL+C')
-
-        channel.basic_consume(message_handler(decision_handler), queue=SCHEDULED_DECISION_QUEUE, no_ack=False)
-
+    while True:
         try:
-            channel.start_consuming()
+            with get_channel() as channel:
+                print('Decider running...')
+                print('[*] Waiting for Messages. To exit press CTRL+C')
+
+                channel.basic_consume(message_handler(decision_handler), queue=SCHEDULED_DECISION_QUEUE, no_ack=False)
+
+                channel.start_consuming()
+
+        except (ChannelClosed, ConnectionClosed, IncompatibleProtocolError) as err:
+            # lost connection
+            logger.exception('Lost connection... waiting before retry')
+            time.sleep(5)
         except KeyboardInterrupt:
             channel.stop_consuming()
+            break
 
 
 if __name__ == '__main__':
