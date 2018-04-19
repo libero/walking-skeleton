@@ -140,8 +140,8 @@ def decide(workflow: Dict) -> Dict:
                     activities_to_schedule.append(activity)
 
             elif activity['status'] == TEMPORARY_FAILURE:
-                # TODO check required
-                pass
+                # TODO check max_retries
+                activities_to_schedule.append(activity)
 
             elif activity['status'] == PERMANENT_FAILURE:
                 # a required activity has failed permanently, fail the workflow

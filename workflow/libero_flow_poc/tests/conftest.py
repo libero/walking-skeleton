@@ -134,3 +134,21 @@ def workflow_with_perma_failed_required_activity(base_workflow_state):
     base_workflow_state['status'] = 'In Progress'
     base_workflow_state['activities'][0]['status'] = 'Permanent Failure'
     return base_workflow_state
+
+
+@pytest.fixture(name='wf_with_all_activities_complete')
+def workflow_with_all_succeeded_activities(base_workflow_state):
+    base_workflow_state['status'] = 'In Progress'
+
+    for activity in base_workflow_state['activities']:
+        activity['status'] = 'Succeeded'
+
+    return base_workflow_state
+
+
+@pytest.fixture
+def workflow_with_temp_failed_activity(base_workflow_state):
+    base_workflow_state['status'] = 'In Progress'
+    base_workflow_state['activities'][0]['status'] = 'Succeeded'
+    base_workflow_state['activities'][0]['status'] = 'Temporary Failure'
+    return base_workflow_state

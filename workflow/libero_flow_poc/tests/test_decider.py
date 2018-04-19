@@ -38,7 +38,14 @@ def test_will_schedule_multiple_independent_activities(wf_with_multi_independent
     assert len(decision['activities']) == 2
 
 
-# TODO will re schedule an activity with a temp failure
+def test_will_reschedule_a_temp_failed_activity(workflow_with_temp_failed_activity):
+    decision = decide(workflow_with_temp_failed_activity)
+    assert decision['decision'] == 'schedule-activities'
+    assert decision['workflow_id']
+    assert len(decision['activities']) == 1
 
-# TODO test_will_complete_workflow_if_all_activities_complete
+
+def test_will_complete_workflow_if_all_activities_complete(wf_with_all_activities_complete):
+    decision = decide(wf_with_all_activities_complete)
+    assert decision['decision'] == 'workflow-finished'
 
