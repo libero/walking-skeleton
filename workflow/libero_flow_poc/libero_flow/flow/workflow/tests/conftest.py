@@ -53,6 +53,14 @@ def valid_activity_data(workflow):
 
 
 @pytest.fixture
+def valid_event_data(workflow):
+    return {
+        "type": "TestEvent",
+        "workflow": workflow.instance_id
+    }
+
+
+@pytest.fixture
 def valid_workflow_data():
     return {
         "name": "TestWorkflow",

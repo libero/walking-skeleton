@@ -11,7 +11,7 @@ def test_can_create_workflow_via_post(admin_client, valid_workflow_data):
 
 
 @pytest.mark.django_db
-def test_can_get_workflow(admin_client, workflow):
+def test_can_get_workflows(admin_client, workflow):
     response = admin_client.get('/workflows/api/v1/workflows/')
     assert response.status_code == 200
     assert len(response.data) == 1
@@ -33,3 +33,19 @@ def test_can_update_workflow_via_patch(admin_rest_client, workflow):
 
     workflow = Workflow.objects.get(instance_id=workflow.instance_id)
     assert workflow.status == 'In Progress'
+
+
+@pytest.mark.django_db
+def test_workflow_response_contains_activities(admin_client, workflow, activity):
+    response = admin_client.get(f'/workflows/api/v1/workflows/{workflow.instance_id}/')
+    data = response.data
+    assert response.status_code == 200
+    assert len(data['activities']) == 1
+
+
+@pytest.mark.django_db
+def test_workflow_response_contains_events(admin_client, workflow, event):
+    response = admin_client.get(f'/workflows/api/v1/workflows/{workflow.instance_id}/')
+    data = response.data
+    assert response.status_code == 200
+    assert len(data['events']) == 1

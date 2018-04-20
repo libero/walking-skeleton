@@ -8,10 +8,12 @@ from workflow.utils import start_workflow
 
 from workflow.models import (
     Activity,
+    Event,
     Workflow,
 )
 from workflow.serializers import (
     ActivitySerializer,
+    EventSerializer,
     WorkflowSerializer,
     WorkflowStarterSerializer,
 )
@@ -21,6 +23,12 @@ class ActivityViewSet(viewsets.ModelViewSet):
     model = Activity
     queryset = Activity.objects.all()
     serializer_class = ActivitySerializer
+
+
+class EventViewSet(viewsets.ModelViewSet):
+    model = Event
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
 
 
 class WorkflowViewSet(viewsets.ModelViewSet):

@@ -11,7 +11,7 @@ def test_can_create_activity_via_post(admin_client, valid_activity_data):
 
 
 @pytest.mark.django_db
-def test_can_get_workflow(admin_client, activity):
+def test_can_get_activities(admin_client, activity):
     response = admin_client.get('/workflows/api/v1/activities/')
     assert response.status_code == 200
     assert len(response.data) == 1

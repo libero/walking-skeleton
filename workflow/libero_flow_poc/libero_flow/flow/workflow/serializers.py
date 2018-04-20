@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from workflow.models import (
     Activity,
+    Event,
     Workflow,
 )
 
@@ -13,8 +14,16 @@ class ActivitySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class EventSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Event
+        fields = '__all__'
+
+
 class WorkflowSerializer(serializers.ModelSerializer):
     activities = ActivitySerializer(many=True, read_only=True)
+    events = EventSerializer(many=True, read_only=True)
 
     class Meta:
         model = Workflow
@@ -28,6 +37,7 @@ class WorkflowSerializer(serializers.ModelSerializer):
             "config",
             "input_data",
             "activities",
+            "events",
         )
 
 
