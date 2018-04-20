@@ -16,9 +16,11 @@ API_HOST = CONF.get('api', 'host')
 API_PORT = CONF.get('api', 'port')
 
 ACTIVITY_API_ENDPOINT = CONF.get('api', 'activity_api_url')
+EVENT_API_ENDPOINT = CONF.get('api', 'event_api_url')
 WORKFLOW_API_ENDPOINT = CONF.get('api', 'workflow_api_url')
 
 ACTIVITY_API_URL = f'http://{API_HOST}:{API_PORT}/{ACTIVITY_API_ENDPOINT}/'
+EVENT_API_URL = f'http://{API_HOST}:{API_PORT}/{EVENT_API_ENDPOINT}/'
 WORKFLOW_API_URL = f'http://{API_HOST}:{API_PORT}/{WORKFLOW_API_ENDPOINT}/'
 
 

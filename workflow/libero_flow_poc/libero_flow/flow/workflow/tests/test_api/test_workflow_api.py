@@ -48,4 +48,4 @@ def test_workflow_response_contains_events(admin_client, workflow, event):
     response = admin_client.get(f'/workflows/api/v1/workflows/{workflow.instance_id}/')
     data = response.data
     assert response.status_code == 200
-    assert len(data['events']) == 1
+    assert len(data['events']) == 2

@@ -25,7 +25,10 @@ from libero_flow.event_utils import (
 from libero_flow.session_store import get_session
 from libero_flow.state_utils import (
     get_activity_state,
+    send_workflow_event,
     update_activity_status,
+    WORKFLOW_ACTIVITY_STARTED,
+    WORKFLOW_ACTIVITY_FINISHED,
 )
 
 
@@ -50,16 +53,21 @@ def run_activity(activity_id: str) -> Dict:
 
     loader = FlowLoader()
     activity_state = get_activity_state(activity_id=activity_id)
-
     activity_class = loader.get_activity(activity_state['name'])
 
     if activity_class:
+        send_workflow_event(workflow_id=activity_state['workflow'],
+                            event_type=WORKFLOW_ACTIVITY_STARTED)
+
         session = get_session()
 
         activity = activity_class(workflow_id=activity_state['workflow'],
                                   config=activity_state['config'],
                                   session=session)
         result['result'] = activity.do_activity()
+
+        send_workflow_event(workflow_id=activity_state['workflow'],
+                            event_type=WORKFLOW_ACTIVITY_FINISHED)
     else:
         result['result'] = 'no-activity-found'
 

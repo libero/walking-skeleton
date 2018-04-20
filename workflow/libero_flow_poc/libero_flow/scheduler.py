@@ -34,10 +34,13 @@ from libero_flow.event_utils import (
 from libero_flow.session_store import get_session
 from libero_flow.state_utils import (
     get_activity_state,
+    send_workflow_event,
     update_activity_status,
     update_workflow_status,
     FAILED,
     FINISHED,
+    WORKFLOW_ACTIVITY_SCHEDULED,
+    WORKFLOW_DECISION_SCHEDULED,
 )
 
 logger = logging.getLogger(__name__)
@@ -45,10 +48,11 @@ fh = logging.FileHandler(f'{__name__}.log')
 logger.addHandler(fh)
 
 
-def schedule_activity(activity_id: str) -> None:
+def schedule_activity(activity_id: str, workflow_id: str) -> None:
     """create and send schedule activity message.
 
     :param activity_id: str
+    :param workflow_id: str
     :return:
     """
     with get_channel() as channel:
@@ -66,7 +70,7 @@ def schedule_activity(activity_id: str) -> None:
 
         update_activity_status(activity_id, status='Scheduled')
 
-        # TODO send event message saying scheduled an activity
+        send_workflow_event(workflow_id=workflow_id, event_type=WORKFLOW_ACTIVITY_SCHEDULED)
 
 
 def schedule_decision(workflow_id: str) -> None:
@@ -89,6 +93,7 @@ def schedule_decision(workflow_id: str) -> None:
         print(f'[x] Schedule decision sent: {message}')
 
         # TODO send event message saying scheduled a decision
+        send_workflow_event(workflow_id=workflow_id, event_type=WORKFLOW_DECISION_SCHEDULED)
 
 
 def start_workflow(workflow_id: str) -> None:
@@ -168,7 +173,7 @@ def decision_result_handler(data: Dict[str, Any]) -> None:
     elif decision['decision'] == 'schedule-activities':
         for activity in decision['activities']:
             # TODO need to check activity does not currently have an active timeout
-            schedule_activity(activity['instance_id'])
+            schedule_activity(activity['instance_id'], decision['workflow_id'])
 
     elif decision['decision'] == 'workflow-finished':
         update_workflow_status(workflow_id=decision['workflow_id'], status=FINISHED)

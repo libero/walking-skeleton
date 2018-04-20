@@ -7,6 +7,10 @@ from django.db.models.signals import post_save
 from django.utils import timezone
 
 
+WORKFLOW_CREATED = 'WorkflowCreated'
+WORKFLOW_IN_PROGRESS = 'WorkflowInProgress'
+WORKFLOW_FINISHED = 'WorkflowFinished'
+
 CANCELLED = 'Cancelled'
 FAILED = 'Failed'
 FINISHED = 'Finished'
@@ -84,10 +88,18 @@ class Event(models.Model):
 
 
 @receiver(post_save, sender=Workflow)
+def create_workflow_start_event(sender, instance, created, **kwargs):
+    if created:
+        Event.objects.create(type=WORKFLOW_CREATED, workflow=instance)
+
+
+@receiver(post_save, sender=Workflow)
 def set_workflow_start_timestamp(sender, instance, created, **kwargs):
     if instance.status == IN_PROGRESS and not instance.start_timestamp:
         instance.start_timestamp = timezone.now()
         instance.save()
+
+        Event.objects.create(type=WORKFLOW_IN_PROGRESS, workflow=instance)
 
 
 @receiver(post_save, sender=Workflow)
@@ -95,3 +107,5 @@ def set_workflow_end_timestamp(sender, instance, created, **kwargs):
     if instance.status == FINISHED and not instance.end_timestamp:
         instance.end_timestamp = timezone.now()
         instance.save()
+
+        Event.objects.create(type=WORKFLOW_FINISHED, workflow=instance)

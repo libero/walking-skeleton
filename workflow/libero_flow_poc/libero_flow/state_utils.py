@@ -2,8 +2,17 @@ from typing import Dict
 
 import requests
 
-from libero_flow.conf import ACTIVITY_API_URL, WORKFLOW_API_URL
+from libero_flow.conf import (
+    ACTIVITY_API_URL,
+    EVENT_API_URL,
+    WORKFLOW_API_URL,
+)
 
+
+WORKFLOW_DECISION_SCHEDULED = 'WorkflowDecisionScheduled'
+WORKFLOW_ACTIVITY_SCHEDULED = 'WorkflowActivityScheduled'
+WORKFLOW_ACTIVITY_STARTED = 'WorkflowActivityStarted'
+WORKFLOW_ACTIVITY_FINISHED = 'WorkflowActivityFinished'
 
 CANCELLED = 'Cancelled'
 FAILED = 'Failed'
@@ -33,6 +42,24 @@ def get_workflow_state(workflow_id: str) -> Dict:
     :return: dict
     """
     response = requests.get(f'{WORKFLOW_API_URL}{workflow_id}/')
+    return response.json()
+
+
+def send_workflow_event(workflow_id: str, event_type: str, info='') -> Dict:
+    """Update activity status field via workflow API.
+
+    :param workflow_id: str
+    :param event_type: str
+    :param info: str
+    :return: dict
+    """
+    data = {
+        # "info": info,
+        "type": event_type,
+        "workflow": workflow_id
+    }
+
+    response = requests.post(f'{EVENT_API_URL}', data=data)
     return response.json()
 
 

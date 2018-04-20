@@ -36,8 +36,12 @@ class BaseActivity(Activity):
         :return:
         """
         value = self.session.get(f'{self.workflow_id}_{key}')
+
         if value:
-            return value.decode("utf-8")
+            try:
+                return value.decode("utf-8")
+            except AttributeError:
+                return value
 
     def session_set(self, key: str, value: str) -> None:
         """Set a value by key on the activities workflow session
