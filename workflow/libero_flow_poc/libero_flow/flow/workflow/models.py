@@ -46,7 +46,7 @@ class Workflow(models.Model):
     config = JSONField(null=True, blank=True)
 
     class Meta:
-        ordering = ('created',)
+        ordering = ('-created',)
 
     def __str__(self):
         return f'{self.name}: {self.instance_id}'
@@ -70,11 +70,17 @@ class Activity(models.Model):
         return f'{self.name}: {self.instance_id} - workflow: {self.workflow.instance_id}'
 
 
-# TODO Event
-# workflow: FK
-# id
-# timestamp
-# type
+class Event(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    created = models.DateTimeField(auto_now=False, auto_now_add=True)
+    type = models.CharField(max_length=250)
+    workflow = models.ForeignKey(Workflow, related_name='events', on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ('created',)
+
+    def __str__(self):
+        return f'{self.id}: {self.type}'
 
 
 @receiver(post_save, sender=Workflow)

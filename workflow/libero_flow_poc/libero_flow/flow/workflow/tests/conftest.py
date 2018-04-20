@@ -3,7 +3,11 @@ import json
 import pytest
 from rest_framework.test import APIClient
 
-from workflow.models import Activity, Workflow
+from workflow.models import (
+    Activity,
+    Event,
+    Workflow,
+)
 
 
 @pytest.fixture
@@ -18,6 +22,12 @@ def admin_rest_client(admin_user):
 @pytest.mark.django_db
 def workflow():
     return Workflow.objects.create(name='FooWorkflow', config={"foo": "bar"})
+
+
+@pytest.fixture
+@pytest.mark.django_db
+def event(workflow):
+    return Event.objects.create(type='TestEvent', workflow=workflow)
 
 
 @pytest.fixture

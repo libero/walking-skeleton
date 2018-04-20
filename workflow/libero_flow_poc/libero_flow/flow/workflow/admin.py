@@ -1,6 +1,10 @@
 from django.contrib import admin
 
-from .models import Activity, Workflow
+from .models import (
+    Activity,
+    Event,
+    Workflow,
+)
 
 
 class ActivityAdmin(admin.ModelAdmin):
@@ -25,6 +29,23 @@ class ActivityAdmin(admin.ModelAdmin):
 class ActivityInline(admin.TabularInline):
     model = Activity
     extra = 0
+
+
+class EventAdmin(admin.ModelAdmin):
+
+    list_filter = (
+        'id',
+        'type',
+        'created'
+    )
+
+    list_display = (
+        'id',
+        'type',
+        'created',
+    )
+
+    list_display_links = ['id']
 
 
 class WorkflowAdmin(admin.ModelAdmin):
@@ -53,4 +74,5 @@ class WorkflowAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Activity, ActivityAdmin)
+admin.site.register(Event, EventAdmin)
 admin.site.register(Workflow, WorkflowAdmin)
