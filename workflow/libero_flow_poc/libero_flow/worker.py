@@ -35,7 +35,7 @@ logger.addHandler(fh)
 
 
 def run_activity(activity_id: str) -> Dict:
-    """
+    """Execute target `Activity` class.
 
     :param activity_id: str
     :return: dict
@@ -66,8 +66,15 @@ def run_activity(activity_id: str) -> Dict:
     return result
 
 
-def send_result_message(result: Dict):
+def send_result_message(result: Dict) -> None:
     """create and send decision task message.
+
+    Example result value:
+
+    {
+        'activity_id': 'c580c481-ee0b-490f-887d-e03bfc9d4d18',
+        'result': 'Succeeded'
+    }
 
     :param result: dict
     :return:
@@ -83,16 +90,30 @@ def send_result_message(result: Dict):
                               routing_key=ACTIVITY_RESULT_QUEUE,
                               body=json.dumps(message),
                               properties=pika.BasicProperties(delivery_mode=DELIVERY_MODE_PERSISTENT))
-        print(f'[x] Schedule activity result sent: {message}\n')
+        print(f'[x] Activity result sent: {message}\n')
 
 
 def activity_handler(data: Dict[str, Any]) -> None:
+    """Handle scheduled activity message.
+
+    Example data value:
+    {
+        "eventId": "9052435a-3f06-11e8-95ff-8c85905818e6",
+        "happenedAt": "2018-04-13T10:36:45+00:00",
+        "aggregate": {
+                        "service": "flow-scheduler", "name":
+                        "schedule-workflow-activity",
+                        "identifier": "??"
+                     },
+        "type": "schedule-activity",
+        "data": {"activity_id": "1b53d475-3704-46d3-9763-6a60c161362d"}
+    }
+
+    :param data: dict
+    :return:
+    """
     print(f'[x] scheduled activity handler received: {data}')
 
-    """
-    '{"eventId": "9052435a-3f06-11e8-95ff-8c85905818e6", "happenedAt": "2018-04-13T10:36:45+00:00", "aggregate": {"service": "flow-scheduler", "name": "schedule-workflow-activity", "identifier": "??"}, "type": "schedule-activity", "data": {"activity_id": "1b53d475-3704-46d3-9763-6a60c161362d"}}'
-
-    """
     # TODO needs to be passed to celery here or launch thread/process
     result = run_activity(data['data']['activity_id'])
     send_result_message(result)
