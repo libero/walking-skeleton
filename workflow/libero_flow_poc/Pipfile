@@ -17,6 +17,7 @@ requests = "*"
 pika = "*"
 lxml = "*"
 "beautifulsoup4" = "*"
+django-cors-headers = "*"
 
 
 [dev-packages]
