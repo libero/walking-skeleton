@@ -1,5 +1,6 @@
 import json
 import os
+import time
 
 import requests
 
@@ -13,6 +14,8 @@ class DownloadArticleXMLActivity(BaseActivity):
 
         :return: str
         """
+
+        time.sleep(10)
 
         input_data = self.session_get('input_data')
 

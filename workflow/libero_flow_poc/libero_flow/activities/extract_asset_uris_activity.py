@@ -1,4 +1,5 @@
 import json
+import time
 
 from bs4 import BeautifulSoup
 import requests
@@ -13,6 +14,8 @@ class ExtractAssetURIsActivity(BaseActivity):
 
         :return: str
         """
+
+        time.sleep(10)
 
         input_data = self.session_get('input_data')
 

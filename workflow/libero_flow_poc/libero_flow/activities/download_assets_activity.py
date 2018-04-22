@@ -1,5 +1,7 @@
 import json
 import os
+import time
+
 import requests
 
 from libero_flow.activities.base_activity import BaseActivity
@@ -12,6 +14,8 @@ class DownloadAssetsActivity(BaseActivity):
 
         :return: str
         """
+
+        time.sleep(5)
 
         input_data = self.session_get('input_data')
         uris = self.session_get('uris')
