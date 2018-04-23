@@ -56,3 +56,31 @@ There are multiple ways to trigger a DAG manually.
 [UI](https://airflow.apache.org/ui.html#)
 
 On the DAGS view, you can locate a required DAG type and select `Trigger Dag` via the Links column.
+
+[API (experimental)](https://airflow.apache.org/api.html)
+
+Send a POST request to `/api/experimental/dags/<DAG_ID>/dag_runs` .
+
+This creates a `dag_run` for a given dag id (POST).
+
+Scheduled string format: https://airflow.apache.org/scheduler.html#dag-runs
+
+The below example would schedule the dag `example_bash_operator` to be scheduled immediately:
+
+POST: `http://localhost:8080/api/experimental/dags/example_bash_operator/dag_runs`
+
+PAYLOAD:
+```json
+{
+	"schedule": "None"
+}
+```
+
+For additional REST functionality there is also a 3rd party [REST API Plugin](https://github.com/teamclairvoyant/airflow-rest-api-plugin) .
+
+To trigger a dag with some initial value(s) you can use the following format:
+
+* note: "Support for passing such arguments will be dropped in Airflow 2.0."
+
+` pipenv run airflow trigger_dag ingest_article_xml --conf '{"input_data": {"data_dir": "article-data-public", "urls": ["https://s3.amazonaws.com/libero-workflow-test/00666/00666-body.xml", "https://s3.amazonaws.com/libero-workflow-test/00666/00666-front.xml"]}}'
+`
