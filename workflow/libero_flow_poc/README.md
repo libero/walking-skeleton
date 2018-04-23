@@ -87,6 +87,10 @@ class DoAnotherThingActivity(BaseActivity):
 
 ```
 
+You can place and retrieve values from the session store from within your activities using the `session_get` and `session_set` methods. 
+This is a way of passing data between activities.
+
+
 ## Installation
 
 `docker-compose up --build`
