@@ -6,57 +6,85 @@
 </nav>
 
 <div class="row">
-    <div class="col">
-        <div class="card">
+  <div class="col-6">
+
+    <ngb-tabset>
+
+      <ngb-tab title="Detail">
+        <ng-template ngbTabContent>
+          <br>
+
+          <div class="card">
             <div class="card-body">
-                <h5 class="card-title">{{ workflow.name }}</h5>
-                <h6 class="text-muted card-subtitle mb-2">{{ workflow.instance_id }}</h6>
-                <br>
-                <h6>Status: <span class="badge badge-secondary">{{ workflow.status }}</span></h6>
-                <h6>Created: {{ workflow.created | date:'yyyy-MM-dd HH:mm:ss' }}</h6>
-                <h6>Start: {{ workflow.start_timestamp | date:'yyyy-MM-dd HH:mm:ss' }}</h6>
-                <h6>End: {{ workflow.end_timestamp | date:'yyyy-MM-dd HH:mm:ss' }}</h6>
-                <br>
-                <h6>Configuration:</h6>
-                <pre class="text-muted">{{ workflow.config | json }}</pre>
-                <br>
-                <h6>Input Data:</h6>
-                <pre class="text-muted">{{ workflow.input_data | json }}</pre>
+              <h5 class="card-title">{{ workflow.name }}</h5>
+              <h6 class="text-muted card-subtitle mb-2">{{ workflow.instance_id }}</h6>
+              <br>
+              <h6>Status: <span class="badge badge-secondary">{{ workflow.status }}</span></h6>
+              <h6>Created: {{ workflow.created | date:'yyyy-MM-dd HH:mm:ss' }}</h6>
+              <h6>Start: {{ workflow.start_timestamp | date:'yyyy-MM-dd HH:mm:ss' }}</h6>
+              <h6>End: {{ workflow.end_timestamp | date:'yyyy-MM-dd HH:mm:ss' }}</h6>
+              <br>
+              <h6>Configuration:</h6>
+              <pre class="text-muted">{{ workflow.config | json }}</pre>
+              <br>
+              <h6>Input Data:</h6>
+              <pre class="text-muted">{{ workflow.input_data | json }}</pre>
             </div>
-        </div>
-
-        <br>
-
-        <div class="card border-success mb-3"
-             *ngFor="let activity of workflow.activities"
-             [ngClass]="{'border-success': activity.status === 'Succeeded',
-                         'border-warning': activity.status === 'In Progress',
-                         'border-danger': activity.status === 'Permanent Failure'}">
-          <div class="card-body"
-               [ngClass]="{'text-success': activity.status === 'Succeeded',
-                           'text-warning': activity.status === 'In Progress',
-                           'text-danger': activity.status === 'Permanent Failure'}">
-            <h5 class="card-title">{{ activity.name }}</h5>
-            <h6 class="text-muted card-subtitle mb-2">{{ activity.instance_id }}</h6>
-            <p class="card-text">Status: <span class="badge badge-secondary">{{ activity.status }}</span></p>
-            <p class="card-text">Created: {{ activity.created | date:'yyyy-MM-dd HH:mm:ss' }}</p>
-            <p class="card-text">Independent: {{ activity.independent }}</p>
-            <p class="card-text">Required: {{ activity.required }}</p>
-            <p class="card-text">Configuration:</p>
-            <pre class="text-muted">{{ activity.config | json }}</pre>
           </div>
-        </div>
 
-    </div>
-    <div class="col">
-        <h5>Events</h5>
-        <ul class="list-group">
-            <li class="list-group-item" *ngFor="let event of workflow.events">
-              <span class="text-left">{{ event.type }}</span>
-              <span class="text-muted">{{ event.created | date:'yyyy-MM-dd HH:mm:ss' }}</span>
-            </li>
-        </ul>
-    </div>
+        </ng-template>
+      </ngb-tab>
+
+      <ngb-tab title="Activities">
+        <ng-template ngbTabContent>
+          <br>
+
+          <div class="card border-success mb-3"
+               *ngFor="let activity of workflow.activities"
+               [ngClass]="{'border-success': activity.status === 'Succeeded',
+                       'border-warning': activity.status === 'In Progress',
+                       'border-danger': activity.status === 'Permanent Failure'}">
+            <div class="card-body"
+                 [ngClass]="{'text-success': activity.status === 'Succeeded',
+                         'text-warning': activity.status === 'In Progress',
+                         'text-danger': activity.status === 'Permanent Failure'}">
+              <h5 class="card-title">{{ activity.name }}</h5>
+              <h6 class="text-muted card-subtitle mb-2">{{ activity.instance_id }}</h6>
+              <p class="card-text">Status: <span class="badge badge-secondary">{{ activity.status }}</span></p>
+              <p class="card-text">Created: {{ activity.created | date:'yyyy-MM-dd HH:mm:ss' }}</p>
+              <p class="card-text">Independent: {{ activity.independent }}</p>
+              <p class="card-text">Required: {{ activity.required }}</p>
+              <p class="card-text">Configuration:</p>
+              <pre class="text-muted">{{ activity.config | json }}</pre>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-tab>
+
+    </ngb-tabset>
+
+
+  </div>
+  <div class="col-6">
+    <h5>Events</h5>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let event of workflow.events">
+        <div class="row">
+
+          <div class="col-3">
+            <span class="text-muted">{{ event.created | date:'yyyy-MM-dd HH:mm:ss' }}</span>
+          </div>
+          <div class="col-3">
+            <span>{{ event.type }}</span>
+          </div>
+          <div class="col-6 text-right text-muted">
+            <span>{{ event.id }}</span>
+          </div>
+
+        </div> <!-- ./row -->
+      </li>
+    </ul>
+  </div>
 </div>
 
 <pre>{{ workflow | json }}</pre>
