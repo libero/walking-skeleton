@@ -91,6 +91,32 @@ You can place and retrieve values from the session store from within your activi
 This is a way of passing data between activities.
 
 
+#### Default Workflows
+
+The default installation contains a default workflow.
+
+Ingest Article XML Workflow:
+- Downloads some xml into a publicly hosted directory
+- Parses the xml and finds any .tif files
+- Downloads the .tif assets into the publicly hosted directory
+- Changes the URIs in the xml to refer to the local files  
+
+To trigger this workflow on your local instance POST the below payload to http://localhost:8000/workflows/api/v1/start-workflow/
+
+```json
+{
+	"name": "IngestArticleXMLWorkflow",
+	"input_data": {
+		"data_dir": "/srv/app/article-data-public",
+		"urls": [
+			"https://s3.amazonaws.com/libero-workflow-test/00666/00666-body.xml", 
+			"https://s3.amazonaws.com/libero-workflow-test/00666/00666-front.xml"
+			]
+	}
+}
+```
+
+
 ## Installation
 
 `docker-compose up --build`
@@ -156,6 +182,7 @@ response = requests.post(url=url, data=payload)
 
 #### UI
 - A very basic web app to display a workflow list and allow you to view workflow details.
+- The UI is a vailable on http://localhost:4200
  
 #### Scheduler
 - Listens to x3 message queues on a target broker:
@@ -228,25 +255,3 @@ Example Event:
 
 ...
 
-## Workflows
-
-Ingest Article XML Workflow:
-- Downloads some xml into a publicly hosted directory
-- Parses the xml and finds any .tif files
-- Downloads the .tif assets into the publicly hosted directory
-- Changes the URIs in the xml to refer to the local files  
-
-To trigger this workflow on your local instance POST the below payload to http://localhost:8000/workflows/api/v1/start-workflow/
-
-```json
-{
-	"name": "IngestArticleXMLWorkflow",
-	"input_data": {
-		"data_dir": "/srv/app/article-data-public",
-		"urls": [
-			"https://s3.amazonaws.com/libero-workflow-test/00666/00666-body.xml", 
-			"https://s3.amazonaws.com/libero-workflow-test/00666/00666-front.xml"
-			]
-	}
-}
-```
