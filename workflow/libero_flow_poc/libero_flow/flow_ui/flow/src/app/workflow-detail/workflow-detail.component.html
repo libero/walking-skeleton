@@ -1,7 +1,7 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a [routerLink]="['workflows']">Workflows</a></li>
-    <li class="breadcrumb-item active" aria-current="page">{{ workflow.name }}: {{ workflow.instance_id }}</li>
+    <li class="breadcrumb-item active" aria-current="page">{{ workflow?.name }}: {{ workflow?.instance_id }}</li>
   </ol>
 </nav>
 
@@ -40,7 +40,7 @@
           <br>
 
           <div class="card border-success mb-3"
-               *ngFor="let activity of workflow.activities"
+               *ngFor="let activity of workflow?.activities"
                [ngClass]="{'border-success': activity.status === 'Succeeded',
                        'border-warning': activity.status === 'In Progress',
                        'border-danger': activity.status === 'Permanent Failure'}">
@@ -68,7 +68,7 @@
   <div class="col-6">
     <h5>Events</h5>
     <ul class="list-group">
-      <li class="list-group-item" *ngFor="let event of workflow.events">
+      <li class="list-group-item" *ngFor="let event of workflow?.events">
         <div class="row">
 
           <div class="col-3">
@@ -86,5 +86,3 @@
     </ul>
   </div>
 </div>
-
-<pre>{{ workflow | json }}</pre>
