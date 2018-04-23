@@ -232,14 +232,16 @@ Ingest Article XML Workflow:
 - Downloads the .tif assets into the publicly hosted directory
 - Changes the URIs in the xml to refer to the local files  
 
+To trigger this workflow on your local instance POST the below payload to http://localhost:8000/workflows/api/v1/start-workflow/
+
 ```json
 {
 	"name": "IngestArticleXMLWorkflow",
 	"input_data": {
-		"data_dir": "/Users/someuser/data-public",
+		"data_dir": "/srv/app/article-data-public",
 		"urls": [
-			"https://url_to_some_xml.co.uk/00666-body.xml", 
-			"https://url_to_some_xml.co.uk/00666-front.xml"
+			"https://s3.amazonaws.com/libero-workflow-test/00666/00666-body.xml", 
+			"https://s3.amazonaws.com/libero-workflow-test/00666/00666-front.xml"
 			]
 	}
 }
