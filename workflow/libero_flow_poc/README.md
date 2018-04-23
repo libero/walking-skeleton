@@ -94,6 +94,7 @@ class DoAnotherThingActivity(BaseActivity):
 This will spin up the following containers:
 
 - Workflow API (Django application)
+- Web UI
 - Scheduler process
 - Decider process
 - Worker process
@@ -148,6 +149,9 @@ response = requests.post(url=url, data=payload)
  
 #### API
 - Stores Workflow state, Activity state and Event history
+
+#### UI
+- A very basic web app to display a workflow list and allow you to view workflow details.
  
 #### Scheduler
 - Listens to x3 message queues on a target broker:
@@ -183,7 +187,29 @@ response = requests.post(url=url, data=payload)
  
 #### Events
 
-- ...
+Each Workflow contains a list of Events that have been captured throughout its lifetime. The types of events are currently:
+
+- `WorkflowCreated` 
+- `WorkflowInProgress` 
+- `WorkflowDecisionScheduled` 
+- `WorkflowActivityScheduled` 
+- `WorkflowActivityStarted` 
+- `WorkflowActivityFinished` 
+- `WorkflowFailed` 
+- `WorkflowFinished` 
+
+Each Event has an `id`, `type`, `created` timestamp and a reference to the workflow it belongs to. 
+
+Example Event:
+
+```json
+{
+    "id": "f049ca9b-8926-4c8f-ae49-bcba48ef1621",
+    "created": "2018-04-22T19:51:30.310756Z",
+    "type": "WorkflowCreated",
+    "workflow": "144b5d5e-0fa3-4f84-9943-b14d2ed8a2cd"
+}
+```
 
  
 ## Tests
@@ -197,3 +223,24 @@ response = requests.post(url=url, data=payload)
 ## Activity configuration options
 
 ...
+
+## Workflows
+
+Ingest Article XML Workflow:
+- Downloads some xml into a publicly hosted directory
+- Parses the xml and finds any .tif files
+- Downloads the .tif assets into the publicly hosted directory
+- Changes the URIs in the xml to refer to the local files  
+
+```json
+{
+	"name": "IngestArticleXMLWorkflow",
+	"input_data": {
+		"data_dir": "/Users/someuser/data-public",
+		"urls": [
+			"https://url_to_some_xml.co.uk/00666-body.xml", 
+			"https://url_to_some_xml.co.uk/00666-front.xml"
+			]
+	}
+}
+```
