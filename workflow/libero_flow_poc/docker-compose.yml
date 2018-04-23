@@ -1,6 +1,13 @@
 version: '3'
 
 services:
+  ui:
+    build:
+      context: .
+      dockerfile: Dockerfile.webui
+    ports:
+      - '4200:4200'
+
   web:
     build:
       context: .

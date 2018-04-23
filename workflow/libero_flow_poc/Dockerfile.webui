@@ -1,0 +1,10 @@
+FROM node:8.7-alpine
+
+ADD libero_flow/flow_ui/flow /srv/app
+
+WORKDIR /srv/app/
+
+RUN npm rebuild node-sass --force
+RUN npm install
+
+CMD $(npm bin)/ng serve --host 0.0.0.0
