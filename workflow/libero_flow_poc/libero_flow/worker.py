@@ -43,35 +43,40 @@ def run_activity(activity_id: str) -> Dict:
     :param activity_id: str
     :return: dict
     """
+    try:
+        result = {
+            'activity_id': activity_id,
+            'result': ''
+        }
 
-    update_activity_status(activity_id, status='In Progress')
+        update_activity_status(activity_id, status='In Progress')
 
-    result = {
-        'activity_id': activity_id,
-        'result': ''
-    }
+        loader = FlowLoader()
+        activity_state = get_activity_state(activity_id=activity_id)
+        activity_class = loader.get_activity(activity_state['name'])
 
-    loader = FlowLoader()
-    activity_state = get_activity_state(activity_id=activity_id)
-    activity_class = loader.get_activity(activity_state['name'])
+        if activity_class:
+            send_workflow_event(workflow_id=activity_state['workflow'],
+                                event_type=WORKFLOW_ACTIVITY_STARTED)
 
-    if activity_class:
-        send_workflow_event(workflow_id=activity_state['workflow'],
-                            event_type=WORKFLOW_ACTIVITY_STARTED)
+            session = get_session()
 
-        session = get_session()
+            activity = activity_class(workflow_id=activity_state['workflow'],
+                                      config=activity_state['config'],
+                                      session=session)
+            result['result'] = activity.do_activity()
 
-        activity = activity_class(workflow_id=activity_state['workflow'],
-                                  config=activity_state['config'],
-                                  session=session)
-        result['result'] = activity.do_activity()
+            send_workflow_event(workflow_id=activity_state['workflow'],
+                                event_type=WORKFLOW_ACTIVITY_FINISHED)
+        else:
+            result['result'] = 'no-activity-found'
 
-        send_workflow_event(workflow_id=activity_state['workflow'],
-                            event_type=WORKFLOW_ACTIVITY_FINISHED)
-    else:
-        result['result'] = 'no-activity-found'
+    except Exception as err:
+        logger.exception(err)
+        result['result'] = 'error-during-activity'
 
-    return result
+    finally:
+        return result
 
 
 def send_result_message(result: Dict) -> None:
