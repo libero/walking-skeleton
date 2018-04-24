@@ -1,12 +1,18 @@
 from datetime import timedelta
 import os
 import json
+import sys
 
 import airflow
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from bs4 import BeautifulSoup
 import requests
+
+# HACK for DAG example usage without creating a load of package structures
+# would break this out, outside of example usage
+sys.path.append('..')
+from airflow_libero.operators import EventEmittingPythonOperator
 
 DIR_PATH = 'data'
 
@@ -99,20 +105,20 @@ default_args = {
 dag = DAG('ingest_article_xml', default_args=default_args, schedule_interval=None)
 
 
-download_article_xml = PythonOperator(task_id='download_article_xml',
-                                      provide_context=True,
-                                      python_callable=_download_article_xml,
-                                      dag=dag)
+download_article_xml = EventEmittingPythonOperator(task_id='download_article_xml',
+                                                   provide_context=True,
+                                                   python_callable=_download_article_xml,
+                                                   dag=dag)
 
-extract_asset_uris = PythonOperator(task_id='extract_asset_uris',
-                                    provide_context=True,
-                                    python_callable=_extract_asset_uris,
-                                    dag=dag)
+extract_asset_uris = EventEmittingPythonOperator(task_id='extract_asset_uris',
+                                                 provide_context=True,
+                                                 python_callable=_extract_asset_uris,
+                                                 dag=dag)
 
-download_assets = PythonOperator(task_id='download_assets',
-                                 provide_context=True,
-                                 python_callable=_download_assets,
-                                 dag=dag)
+download_assets = EventEmittingPythonOperator(task_id='download_assets',
+                                              provide_context=True,
+                                              python_callable=_download_assets,
+                                              dag=dag)
 
 
 extract_asset_uris.set_upstream(download_article_xml)
