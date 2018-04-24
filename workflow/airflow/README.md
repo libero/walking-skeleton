@@ -53,6 +53,10 @@ There are multiple ways to trigger a DAG manually.
 
 `airflow trigger_dag foo_python_operator`
 
+To trigger a DAG with addtional data you can pass it a JSON string:
+
+`airflow trigger_dag foo_python_operator --conf '{"input_data": {"foo": "bar"}}'`
+
 [UI](https://airflow.apache.org/ui.html#)
 
 On the DAGS view, you can locate a required DAG type and select `Trigger Dag` via the Links column.
@@ -80,7 +84,4 @@ For additional REST functionality there is also a 3rd party [REST API Plugin](ht
 
 To trigger a dag with some initial value(s) you can use the following format:
 
-* note: "Support for passing such arguments will be dropped in Airflow 2.0."
-
-` pipenv run airflow trigger_dag ingest_article_xml --conf '{"input_data": {"data_dir": "article-data-public", "urls": ["https://s3.amazonaws.com/libero-workflow-test/00666/00666-body.xml", "https://s3.amazonaws.com/libero-workflow-test/00666/00666-front.xml"]}}'
-`
+note: "Support for passing such arguments will be dropped in Airflow 2.0."
