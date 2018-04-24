@@ -28,6 +28,7 @@ from libero_flow.state_utils import (
     send_workflow_event,
     update_activity_status,
     WORKFLOW_ACTIVITY_STARTED,
+    WORKFLOW_ACTIVITY_FAILED,
     WORKFLOW_ACTIVITY_FINISHED,
 )
 
@@ -73,6 +74,8 @@ def run_activity(activity_id: str) -> Dict:
 
     except Exception as err:
         logger.exception(err)
+        send_workflow_event(workflow_id=activity_state['workflow'],
+                            event_type=WORKFLOW_ACTIVITY_FAILED)
         result['result'] = 'error-during-activity'
 
     finally:

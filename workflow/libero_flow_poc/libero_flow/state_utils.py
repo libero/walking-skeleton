@@ -12,6 +12,7 @@ from libero_flow.conf import (
 WORKFLOW_DECISION_SCHEDULED = 'WorkflowDecisionScheduled'
 WORKFLOW_ACTIVITY_SCHEDULED = 'WorkflowActivityScheduled'
 WORKFLOW_ACTIVITY_STARTED = 'WorkflowActivityStarted'
+WORKFLOW_ACTIVITY_FAILED = 'WorkflowActivityFailed'
 WORKFLOW_ACTIVITY_FINISHED = 'WorkflowActivityFinished'
 
 CANCELLED = 'Cancelled'
