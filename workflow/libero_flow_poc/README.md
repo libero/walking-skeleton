@@ -223,6 +223,8 @@ Each Workflow contains a list of Events that have been captured throughout its l
 - `WorkflowCreated` 
 - `WorkflowInProgress` 
 - `WorkflowDecisionScheduled` 
+- `WorkflowDecisionStarted`
+- `WorkflowDecisionFinished`
 - `WorkflowActivityScheduled` 
 - `WorkflowActivityStarted` 
 - `WorkflowActivityFailed` 

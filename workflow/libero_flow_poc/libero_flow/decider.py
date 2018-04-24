@@ -15,6 +15,7 @@ from libero_flow.conf import (
     SCHEDULED_DECISION_QUEUE,
 )
 from libero_flow.state_utils import (
+    send_workflow_event,
     CANCELLED,
     FINISHED,
     IN_PROGRESS,
@@ -23,6 +24,9 @@ from libero_flow.state_utils import (
     SCHEDULED,
     SUCCEEDED,
     TEMPORARY_FAILURE,
+    WORKFLOW_DECISION_STARTED,
+    WORKFLOW_DECISION_FAILED,
+    WORKFLOW_DECISION_FINISHED,
 )
 from libero_flow.event_utils import (
     get_base_message,
@@ -106,55 +110,66 @@ def decide(workflow: Dict) -> Dict:
     :param workflow:
     :return: dict
     """
+
     decision = {
         'workflow_id': workflow['instance_id'],
         'decision': ''
     }
 
-    # TODO replace temp logic tree with more extendable methods?
-    # check current workflow state
-    if workflow['status'] == FINISHED:
-        decision['decision'] = 'do-nothing'
+    try:
+        send_workflow_event(workflow_id=workflow['instance_id'],
+                            event_type=WORKFLOW_DECISION_STARTED)
+        # TODO replace temp logic tree with more extendable methods?
+        # check current workflow state
+        if workflow['status'] == FINISHED:
+            decision['decision'] = 'do-nothing'
 
-    elif workflow['status'] == CANCELLED:
-        decision['decision'] = 'do-nothing'
+        elif workflow['status'] == CANCELLED:
+            decision['decision'] = 'do-nothing'
 
-    elif workflow['status'] == PENDING:
-        decision['decision'] = 'start-workflow'
+        elif workflow['status'] == PENDING:
+            decision['decision'] = 'start-workflow'
 
-    elif workflow['status'] == IN_PROGRESS:
-        # do some real work
-        activities_to_schedule = []
-        decision['decision'] = 'schedule-activities'
+        elif workflow['status'] == IN_PROGRESS:
+            # do some real work
+            activities_to_schedule = []
+            decision['decision'] = 'schedule-activities'
 
-        for activity in workflow['activities']:
+            for activity in workflow['activities']:
 
-            if activity['status'] in [SUCCEEDED, SCHEDULED]:
-                continue
+                if activity['status'] in [SUCCEEDED, SCHEDULED]:
+                    continue
 
-            elif activity['status'] == PENDING:
-                # check if pending activity should be listed to be started
-                if not activity['independent'] and not len(activities_to_schedule):
+                elif activity['status'] == PENDING:
+                    # check if pending activity should be listed to be started
+                    if not activity['independent'] and not len(activities_to_schedule):
+                        activities_to_schedule.append(activity)
+                    elif activity['independent']:
+                        activities_to_schedule.append(activity)
+
+                elif activity['status'] == TEMPORARY_FAILURE:
+                    # TODO check max_retries
                     activities_to_schedule.append(activity)
-                elif activity['independent']:
-                    activities_to_schedule.append(activity)
 
-            elif activity['status'] == TEMPORARY_FAILURE:
-                # TODO check max_retries
-                activities_to_schedule.append(activity)
+                elif activity['status'] == PERMANENT_FAILURE:
+                    # a required activity has failed permanently, fail the workflow
+                    if activity['required']:
+                        decision['decision'] = 'workflow-failure'
 
-            elif activity['status'] == PERMANENT_FAILURE:
-                # a required activity has failed permanently, fail the workflow
-                if activity['required']:
-                    decision['decision'] = 'workflow-failure'
+            decision['activities'] = activities_to_schedule
 
-        decision['activities'] = activities_to_schedule
+            if not decision['activities'] and decision['decision'] == 'schedule-activities':
+                # no activities outstanding and no failures? complete the workflow then...
+                decision['decision'] = 'workflow-finished'
 
-        if not decision['activities'] and decision['decision'] == 'schedule-activities':
-            # no activities outstanding and no failures? complete the workflow then...
-            decision['decision'] = 'workflow-finished'
-
-    return decision
+            send_workflow_event(workflow_id=workflow['instance_id'],
+                                event_type=WORKFLOW_DECISION_FINISHED)
+    except Exception as err:
+        logger.exception(err)
+        send_workflow_event(workflow_id=workflow['instance_id'],
+                            event_type=WORKFLOW_DECISION_FAILED)
+    finally:
+        return decision
 
 
 def decision_handler(data: Dict[str, Any]) -> None:
