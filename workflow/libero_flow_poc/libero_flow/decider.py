@@ -11,7 +11,6 @@ from pika.exceptions import (
 )
 from libero_flow.conf import (
     DECISION_RESULT_EXCHANGE,
-    DECISION_RESULT_QUEUE,
     SCHEDULED_DECISION_QUEUE,
 )
 from libero_flow.state_utils import (
@@ -57,7 +56,7 @@ def send_decision_message(decision: Dict):
         message['data'] = decision
 
         channel.basic_publish(exchange=DECISION_RESULT_EXCHANGE,
-                              routing_key=DECISION_RESULT_QUEUE,
+                              routing_key="",
                               body=json.dumps(message),
                               properties=pika.BasicProperties(delivery_mode=DELIVERY_MODE_PERSISTENT))
         print(f'[x] Schedule decision sent: {message}')

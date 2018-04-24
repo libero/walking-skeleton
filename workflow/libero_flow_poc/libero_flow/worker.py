@@ -11,7 +11,6 @@ from pika.exceptions import (
 )
 from libero_flow.conf import (
     ACTIVITY_RESULT_EXCHANGE,
-    ACTIVITY_RESULT_QUEUE,
     SCHEDULED_ACTIVITY_QUEUE,
 )
 from libero_flow.flow_loader import FlowLoader
@@ -103,7 +102,7 @@ def send_result_message(result: Dict) -> None:
         message['data'] = result
 
         channel.basic_publish(exchange=ACTIVITY_RESULT_EXCHANGE,
-                              routing_key=ACTIVITY_RESULT_QUEUE,
+                              routing_key="",
                               body=json.dumps(message),
                               properties=pika.BasicProperties(delivery_mode=DELIVERY_MODE_PERSISTENT))
         print(f'[x] Activity result sent: {message}\n')

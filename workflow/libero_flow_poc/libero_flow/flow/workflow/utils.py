@@ -18,6 +18,6 @@ def start_workflow(name: str, input_data: Dict[str, Any]) -> None:
         msg = json.dumps({'name': name, 'input_data': input_data})
 
         channel.basic_publish(exchange=settings.WORKFLOW_STARTER_EXCHANGE,
-                              routing_key=settings.WORKFLOW_STARTER_QUEUE,
+                              routing_key="",
                               body=msg,
                               properties=pika.BasicProperties(delivery_mode=2))

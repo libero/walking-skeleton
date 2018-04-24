@@ -19,8 +19,6 @@ from libero_flow.conf import (
     SCHEDULED_DECISION_EXCHANGE,
     ACTIVITY_RESULT_QUEUE,
     DECISION_RESULT_QUEUE,
-    SCHEDULED_ACTIVITY_QUEUE,
-    SCHEDULED_DECISION_QUEUE,
     WORKFLOW_STARTER_QUEUE,
 )
 from libero_flow.flow_loader import FlowLoader
@@ -63,7 +61,7 @@ def schedule_activity(activity_id: str, workflow_id: str) -> None:
         message['data'] = {'activity_id': activity_id}
 
         channel.basic_publish(exchange=SCHEDULED_ACTIVITY_EXCHANGE,
-                              routing_key=SCHEDULED_ACTIVITY_QUEUE,
+                              routing_key="",
                               body=json.dumps(message),
                               properties=pika.BasicProperties(delivery_mode=DELIVERY_MODE_PERSISTENT))
         print(f'[x] Schedule activity sent: {message}')
@@ -87,7 +85,7 @@ def schedule_decision(workflow_id: str) -> None:
         message['data'] = {'workflow_id': workflow_id}
 
         channel.basic_publish(exchange=SCHEDULED_DECISION_EXCHANGE,
-                              routing_key=SCHEDULED_DECISION_QUEUE,
+                              routing_key="",
                               body=json.dumps(message),
                               properties=pika.BasicProperties(delivery_mode=DELIVERY_MODE_PERSISTENT))
         print(f'[x] Schedule decision sent: {message}')
