@@ -12,9 +12,11 @@ This will setup your virtual environment and install the required dependencies:
 
 `pipenv --python 3.6.3 install`
 
-Set the `AIRFLOW_HOME` environment variable in the `.env` file to your absolute path:
+Set the `AIRFLOW_HOME` environment variable:
 
-e.g. `AIRFLOW_HOME=~/...../walking-skeleton/workflow/airflow`
+```
+export AIRFLOW_HOME=~/...../walking-skeleton/workflow/airflow
+```
 
 Activate your virtual environment:
 
