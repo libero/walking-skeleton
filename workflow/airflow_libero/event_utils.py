@@ -15,7 +15,7 @@ from pika.exceptions import ConnectionClosed
 from pika.adapters.blocking_connection import BlockingChannel
 
 
-BROKER_HOST = 'localhost'
+BROKER_HOST = 'rabbitmq'
 BROKER_PORT = 5672
 BROKER_PASSWORD = 'guest'
 BROKER_USER = 'guest'
