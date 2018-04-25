@@ -29,17 +29,21 @@ This step will setup an `airflow.db` `sqlite` file, your `airflow.cfg` file and 
 Usage
 -----
 
-Activate your virtual environment:
+Start up `rabbitmq`:
 
-`pipenv shell`
+`docker-compose up`
+
+Start the event listener:
+
+`pipenv run python run_event_bus_listener.py`
 
 Start a scheduler instance in it's own process:
 
-`airflow scheduler`
+`pipenv run airflow scheduler`
 
 Start a webserver instance in it's own process: (not required but provides a nice UI)
 
-`airflow webserver -p 8080`
+`pipenv run airflow webserver -p 8080`
 
 Browsing to [http://localhost:8080/](http://localhost:8080/) will now take you to the [admin console](https://airflow.apache.org/ui.html)foo_dag.py.
 
@@ -85,3 +89,28 @@ For additional REST functionality there is also a 3rd party [REST API Plugin](ht
 To trigger a dag with some initial value(s) you can use the following format:
 
 note: "Support for passing such arguments will be dropped in Airflow 2.0."
+
+Trigger Ingest Article XML DAG
+------------------------------
+
+- Follow `Usage` section steps to setup your environment.
+
+To DAG execute via the CLI:
+
+`pipenv run airflow trigger_dag ingest_article_xml --conf '{"input_data": {"data_dir": "article-data-public", "urls": ["https://s3.amazonaws.com/libero-workflow-test/00666/00666-body.xml", "https://s3.amazonaws.com/libero-workflow-test/00666/00666-front.xml"]}}'
+`
+
+or to DAG execute via http:
+
+POST: `http://localhost:8080/api/experimental/dags/ingest_article_xml/dag_runs`
+PAYLOAD:
+```json
+{
+	"schedule": "None",
+	"conf": "{\"input_data\": {\"data_dir\": \"article-data-public\", \"urls\": [\"https://s3.amazonaws.com/libero-workflow-test/00666/00666-body.xml\", \"https://s3.amazonaws.com/libero-workflow-test/00666/00666-front.xml\"]}}"
+}
+```
+
+
+- You should be able to see the DAG and task state(s) via the web UI on [http://localhost:8080/](http://localhost:8080/).
+- You should see emitted events for each task in your event listener console that you started.
