@@ -1,0 +1,20 @@
+{
+  "name": "FooBarWorkflow",
+  "config": {
+    "timeout": 300
+  },
+  "activities": [
+      {
+          "name": "PingWorker",
+          "independent": false,
+          "required": true,
+          "config": {"foo": "bar"}
+      },
+      {
+          "name": "SumValues",
+          "independent": false,
+          "required": true,
+          "config": {"foo": "bar"}
+      }
+  ]
+}

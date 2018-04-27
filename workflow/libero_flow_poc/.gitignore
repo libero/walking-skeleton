@@ -1,0 +1,6 @@
+/build/
+\.tox/
+.cache/
+__pycache__/
+.pytest_cache/
+/venv/

@@ -1,0 +1,31 @@
+[[source]]
+
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+
+[packages]
+
+django = "*"
+djangorestframework = "*"
+django-debug-toolbar = "*"
+redis = "*"
+"psycopg2" = "*"
+django-filter = "*"
+requests = "*"
+pika = "*"
+lxml = "*"
+"beautifulsoup4" = "*"
+django-cors-headers = "*"
+
+
+[dev-packages]
+
+pytest = "*"
+pytest-django = "*"
+
+
+[requires]
+
+python_version = "3.6"

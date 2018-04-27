@@ -1,0 +1,26 @@
+{
+  "name": "IngestArticleXMLWorkflow",
+  "config": {
+    "timeout": 300
+  },
+  "activities": [
+      {
+          "name": "DownloadArticleXMLActivity",
+          "independent": false,
+          "required": true,
+          "config": {}
+      },
+      {
+          "name": "ExtractAssetURIsActivity",
+          "independent": false,
+          "required": true,
+          "config": {}
+      },
+    {
+          "name": "DownloadAssetsActivity",
+          "independent": false,
+          "required": true,
+          "config": {}
+      }
+  ]
+}
