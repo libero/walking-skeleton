@@ -10,6 +10,8 @@ name = "pypi"
 apache-airflow = {extras = ["crypto"]}
 requests = "*"
 "boto3" = "*"
+"beautifulsoup4" = "*"
+pika = "*"
 
 
 [dev-packages]
