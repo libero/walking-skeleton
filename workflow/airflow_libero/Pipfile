@@ -7,12 +7,17 @@ name = "pypi"
 
 [packages]
 
-apache-airflow = {extras = ["crypto"]}
-requests = "*"
-"boto3" = "*"
-"beautifulsoup4" = "*"
+apache-airflow = {extras = ["crypto", "celery", "postgres", "hive", "jdbc", "mysql"], version = "==1.9.0"}
+beautifulsoup4 = "*"
+boto3 = "*"
+celery = {extras = ["redis"], version = "==4.0.2"}
+Cython = "*"
+ndg-httpsclient = "*"
 pika = "*"
-
+pyOpenSSL = "*"
+pyasn1 = "*"
+pytz = "*"
+requests = "*"
 
 [dev-packages]
 
