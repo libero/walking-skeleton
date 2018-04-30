@@ -22,8 +22,8 @@ architecture.
 The workflow solution should provide:
 
 - HTTP endpoint(s) to allow the triggering of workflows
-- A queue (AMQP 0.9.1) to allow the triggering of workflows
-- Publishing of workflow and activity state event messages via queues (AMQP 0.9.1)
+- A queue to allow the triggering of workflows
+- Publishing of workflow and activity state event messages via queues
 - Adhere to the [Libero event schema](https://github.com/libero/walking-skeleton/blob/master/events/schema.md)
 
 ## Consequences
