@@ -8,8 +8,8 @@ Proposed
 
 ## Context
 
-In order to maintain portability and avoid dependency on any one service provider we wanted to explore solutions that did
-not depend on a specific platform.
+In order to maintain portability and avoid dependency on any one service provider we wanted to explore 
+[workflow systems](https://en.wikipedia.org/wiki/Workflow_management_system) that did not depend on a specific platform.
 
 Although a Libero deployment should be workflow system agnostic, we want to provide a tried a tested solution as an option.
 
