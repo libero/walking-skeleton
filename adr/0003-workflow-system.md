@@ -49,7 +49,7 @@ Our choice was to use [Airflow](https://airflow.incubator.apache.org/project.htm
 
 Only have to manage the code base for the wrapper and custom workflows and activities, not the overall system.
 
-Access to many pre made integrations with common services. 
+Access to many pre made integrations with common services managed by the project. 
 
 Must track progress of the [Airflow](https://airflow.incubator.apache.org/project.html) project and keep up to date.
 
