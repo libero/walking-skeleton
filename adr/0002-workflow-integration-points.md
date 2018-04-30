@@ -22,7 +22,6 @@ and the rest of the Libero architecture.
 The workflow solution should provide:
 
 - HTTP endpoint(s) to allow the triggering of workflows
-- A queue to allow the triggering of workflows
 - Publishing of workflow and activity state event messages via queues
 - Adhere to the [Libero event schema](https://github.com/libero/walking-skeleton/blob/master/events/schema.md)
 
