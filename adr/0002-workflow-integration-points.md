@@ -9,7 +9,7 @@ Proposed
 ## Context
 
 A [workflow system](https://en.wikipedia.org/wiki/Workflow_management_system) to handle the creation, 
-processing and orchestration of customized workflows is a required component of Libero's currently proposed design.
+processing and orchestration of customized workflows is an optional component of Libero's currently proposed design.
 
 Users will each have their individual needs and requirements and therefore may decide to use their 
 workflow solution of choice. 
@@ -19,10 +19,10 @@ and the rest of the Libero architecture.
 
 ## Decision
 
-The workflow solution should provide:
+The workflow solution must provide:
 
 - HTTP endpoint(s) to allow the triggering of workflows
-- Publishing of workflow and activity state event messages via queues
+- Publishing of workflow and activity state event messages via the event bus
 - Adhere to the [Libero event schema](https://github.com/libero/walking-skeleton/blob/master/events/schema.md)
 
 ## Consequences
