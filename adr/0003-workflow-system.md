@@ -43,13 +43,13 @@ Libraries and frameworks that were considered:
 
 We also explored using a custom implementation consisting of the minimal components required to make up a lightweight workflow system written in pure Python.
 
-Our choice was to use [Airflow](https://airflow.incubator.apache.org/project.html) with a Libero wrapper to fulfil the required workflow integration points and manage the custom workflow and activities.
+Our proposed solution is to use [Airflow](https://airflow.incubator.apache.org/project.html) with a Libero wrapper to fulfil the required workflow integration points and manage the custom workflow and activities.
 
 ## Consequences
 
 Only have to manage the code base for the wrapper and custom workflows and activities, not the overall system.
 
-Access to many pre made integrations with common services managed by the project. 
+Access to many pre made integrations and plubins with common services managed by the project. 
 
 Must track progress of the [Airflow](https://airflow.incubator.apache.org/project.html) project and keep up to date.
 
