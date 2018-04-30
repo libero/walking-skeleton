@@ -13,8 +13,6 @@ In order to maintain portability and avoid dependency on any one service provide
 
 Although a Libero deployment should be workflow system agnostic, we want to provide a tried and tested solution as an option.
 
-## Decision
-
 There are many off the shelf solutions which offer vastly different levels of features and functionality.
 
 Each have their pros and cons, the key factors considered where:
@@ -41,7 +39,10 @@ Libraries and frameworks that were considered:
 - [Conductor](https://netflix.github.io/conductor/)
 - [Airflow](https://airflow.incubator.apache.org/project.html)
 
-We also explored using a custom implementation consisting of the minimal components required to make up a lightweight workflow system written in pure Python.
+We also explored using a custom implementation consisting of the minimal components required to make up a lightweight 
+workflow system written in pure Python.
+
+## Decision
 
 Our proposed solution is to use [Airflow](https://airflow.incubator.apache.org/project.html) with a Libero wrapper to fulfil the required workflow integration points and manage the custom workflow and activities.
 
