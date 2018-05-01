@@ -4,7 +4,6 @@ FROM python:3.6-slim
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
 
-# Airflow
 ARG AIRFLOW_VERSION=1.9.0
 ARG AIRFLOW_HOME=/usr/local/airflow
 
@@ -17,8 +16,8 @@ ENV LC_ALL en_US.UTF-8
 ENV LC_CTYPE en_US.UTF-8
 ENV LC_MESSAGES en_US.UTF-8
 
-COPY Pipfile ${AIRFLOW_HOME}/Pipfile
-COPY Pipfile.lock ${AIRFLOW_HOME}/Pipfile.lock
+COPY Pipfile ${AIRFLOW_HOME}
+COPY Pipfile.lock ${AIRFLOW_HOME}
 COPY script/entrypoint.sh /entrypoint.sh
 COPY config/airflow.cfg ${AIRFLOW_HOME}/airflow.cfg
 
@@ -54,7 +53,6 @@ RUN set -ex \
     && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 \
     && useradd -ms /bin/bash -d ${AIRFLOW_HOME} airflow \
     && pip install -U pipenv \
-    && ls -l \
     && pipenv install --system --deploy \
     && apt-get purge --auto-remove -yqq $buildDeps \
     && apt-get autoremove -yqq --purge \
