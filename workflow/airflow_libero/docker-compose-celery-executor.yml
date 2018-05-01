@@ -16,7 +16,6 @@ services:
     webserver:
         build:
           context: .
-        restart: always
         depends_on:
             - postgres
             - redis
@@ -38,7 +37,6 @@ services:
     flower:
         build:
           context: .
-        restart: always
         depends_on:
             - redis
         environment:
@@ -50,7 +48,6 @@ services:
     scheduler:
         build:
           context: .
-        restart: always
         depends_on:
             - webserver
         volumes:
@@ -66,7 +63,6 @@ services:
     worker:
         build:
           context: .
-        restart: always
         depends_on:
             - scheduler
         volumes:
