@@ -6,8 +6,23 @@ Dependencies
 * Python >=3.6
 * [pipenv](https://docs.pipenv.org/)
 
-Installation
-------------
+Docker Installation
+-------------------
+
+Depends on:
+* [docker](https://www.docker.com/)
+* [docker-compose](https://github.com/docker/compose)
+
+Celery Executor
+
+`docker-compose -f docker-compose-celery-executor.yml up --build`
+
+Local Executor
+
+`docker-compose -f docker-compose-local-executor.yml up --build`
+
+Manual Installation
+-------------------
 This will setup your virtual environment and install the required dependencies:
 
 `pipenv --python 3.6.3 install`
