@@ -1,6 +1,4 @@
-FROM python:3.6-slim
-
-ENV LANG=C.UTF-8
+FROM python:3.6-jessie
 
 ARG AIRFLOW_VERSION=1.9.0
 ARG AIRFLOW_HOME=/usr/local/airflow
@@ -24,8 +22,6 @@ RUN set -ex \
     && apt-get upgrade -yqq \
     && apt-get install -yqq --no-install-recommends \
         $buildDeps \
-        python3-pip \
-        python3-requests \
         libmysqlclient-dev \
         apt-utils \
         curl \
