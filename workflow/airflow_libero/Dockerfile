@@ -9,8 +9,6 @@ WORKDIR ${AIRFLOW_HOME}
 
 COPY Pipfile ${AIRFLOW_HOME}
 COPY Pipfile.lock ${AIRFLOW_HOME}
-COPY script/entrypoint.sh /entrypoint.sh
-COPY config/airflow.cfg ${AIRFLOW_HOME}/airflow.cfg
 
 RUN set -ex \
     && buildDeps=' \
@@ -44,6 +42,8 @@ RUN set -ex \
     && pip install -U pipenv \
     && pipenv install --system --deploy
 
+COPY script/entrypoint.sh /entrypoint.sh
+COPY config/airflow.cfg ${AIRFLOW_HOME}/airflow.cfg
 
 RUN chown -R airflow: ${AIRFLOW_HOME}
 
