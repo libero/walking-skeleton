@@ -7,9 +7,6 @@ ARG AIRFLOW_HOME=/usr/local/airflow
 
 WORKDIR ${AIRFLOW_HOME}
 
-COPY Pipfile ${AIRFLOW_HOME}
-COPY Pipfile.lock ${AIRFLOW_HOME}
-
 RUN set -ex \
     && buildDeps=' \
         python3-dev \
@@ -39,13 +36,16 @@ RUN set -ex \
     && locale-gen \
     && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 \
     && useradd -ms /bin/bash -d ${AIRFLOW_HOME} airflow \
-    && pip install -U pipenv \
-    && pipenv install --system --deploy
+    && pip install -U pipenv
 
-COPY script/entrypoint.sh /entrypoint.sh
-COPY config/airflow.cfg ${AIRFLOW_HOME}/airflow.cfg
+COPY Pipfile .
+COPY Pipfile.lock .
+RUN pipenv install --system --deploy
 
-RUN chown -R airflow: ${AIRFLOW_HOME}
+COPY script/entrypoint.sh /
+COPY config/airflow.cfg .
+
+RUN chown -R airflow: .
 
 EXPOSE 8080 5555 8793
 
