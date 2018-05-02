@@ -20,7 +20,18 @@ Celery Executor
 Local Executor
 
 `docker-compose -f docker-compose-local-executor.yml up --build`
- 
+
+Run Airflow CLI Commands
+--------------------
+
+To run any of Airflow's [CLI commands](https://airflow.apache.org/cli.html) you need to execute them from inside a running
+Airflow container. 
+
+For example to execute the [`airflow version`](https://airflow.apache.org/cli.html#version) command:
+
+`docker-compose -f docker-compose-celery-executor.yml exec scheduler airflow version`
+
+
 Usage
 -----
 
