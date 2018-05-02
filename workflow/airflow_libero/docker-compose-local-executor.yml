@@ -7,6 +7,14 @@ services:
             - POSTGRES_PASSWORD=airflow
             - POSTGRES_DB=airflow
 
+    rabbitmq: # ONLY USED AS A DUMMY EVENT BUS!
+        image: 'rabbitmq:3.7.3-management'
+        ports:
+            - '8090:15672'
+            - '5672:5672'
+        volumes:
+            - 'rabbitmq:/var/lib/rabbitmq'
+
     webserver:
         build:
           context: .
@@ -29,3 +37,4 @@ services:
             retries: 3
 volumes:
   postgres:
+  rabbitmq:
