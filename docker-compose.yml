@@ -32,8 +32,6 @@ services:
         environment:
             - APP_ENV=dev
             - APP_SECRET=f6a87c2e031ecadc0d7eb442729435c7
-        depends_on:
-            - api-dummy-nginx
     dashboard-nginx:
         image: nginx:1.13
         ports:
