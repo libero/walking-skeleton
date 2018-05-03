@@ -1,0 +1,7 @@
+app:
+    events: 'イベント'
+    home: 'トップ'
+    language_choice: '言語を選択してください：'
+    no_events: '利用可能なイベントはありません。'
+    title: 'Libero計器盤'
+direction: ltr

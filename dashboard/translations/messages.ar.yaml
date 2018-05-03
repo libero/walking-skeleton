@@ -1,0 +1,7 @@
+app:
+    events: 'أحداث'
+    home: 'رئيسية'
+    language_choice: 'اختار اللغة:'
+    no_events: 'لا توجد أحداث متاحة.'
+    title: 'Libero لوحة تحكّم'
+direction: rtl

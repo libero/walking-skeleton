@@ -1,0 +1,7 @@
+app:
+    events: 'Eventos'
+    home: 'Inicio'
+    language_choice: 'Elige un idioma:'
+    no_events: 'No hay eventos disponibles.'
+    title: 'Panel de Libero'
+direction: ltr

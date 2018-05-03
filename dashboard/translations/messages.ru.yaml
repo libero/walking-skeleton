@@ -1,0 +1,7 @@
+app:
+    events: 'События'
+    home: 'Главная'
+    language_choice: 'Выберите язык:'
+    no_events: 'Нет доступных событий.'
+    title: 'Личный кабинет Libero'
+direction: ltr
