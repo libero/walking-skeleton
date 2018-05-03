@@ -26,7 +26,7 @@ services:
             context: ./dashboard
         volumes:
             - ./dashboard:/srv/app
-            - /public/bundles
+            - /srv/app/public/bundles
             - /srv/app/var
             - /srv/app/vendor
         environment:
