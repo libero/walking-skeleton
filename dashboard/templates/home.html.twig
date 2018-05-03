@@ -6,6 +6,14 @@
 
     <h2>{% trans %}app.events{% endtrans %}</h2>
 
-    <p>{% trans %}app.no_events{% endtrans %}</p>
+    {% if events|length %}
+        <ol>
+            {% for event in events %}
+                <li>{{ event.text }}</li>
+            {% endfor %}
+        </ol>
+    {% else %}
+        <p>{% trans %}app.no_events{% endtrans %}</p>
+    {% endif %}
 
 {% endblock %}
