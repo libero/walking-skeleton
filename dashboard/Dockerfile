@@ -6,15 +6,18 @@ RUN mkdir -p /var/www && \
 RUN apt-get update && apt-get install -y \
     git-core \
     libicu-dev \
+    netcat-openbsd \
     zip
 
 RUN docker-php-ext-configure opcache --enable-opcache \
-    && docker-php-ext-install intl opcache
+    && docker-php-ext-install bcmath intl opcache
 
 COPY --from=composer:1.6 /usr/bin/composer /usr/bin/composer
 
 RUN mkdir -p /srv/app && \
     chown www-data:www-data /srv/app
+
+COPY .docker/utils/ /utils/
 
 USER www-data
 WORKDIR /srv/app
