@@ -9,7 +9,7 @@
     {% if events|length %}
         <ol>
             {% for event in events %}
-                <li>{{ event.text }}</li>
+                <li>{{ ('event.' ~ event.type)|trans }} <small>{{ event.dateTime|localizeddate }}</small></li>
             {% endfor %}
         </ol>
     {% else %}

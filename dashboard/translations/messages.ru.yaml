@@ -5,3 +5,6 @@ app:
     no_events: 'Нет доступных событий.'
     title: 'Личный кабинет Libero'
 direction: ltr
+event:
+    article:
+        published: 'Статья опубликована.'

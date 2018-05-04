@@ -2,6 +2,7 @@
 
 namespace Libero\Dashboard\Consumer;
 
+use DateTimeImmutable;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -9,6 +10,8 @@ use Libero\Dashboard\Entity\Event;
 use OldSound\RabbitMqBundle\RabbitMq\ConsumerInterface;
 use PhpAmqpLib\Message\AMQPMessage;
 use Throwable;
+use function TheTribe\JSON\decode;
+use const JSON_OBJECT_AS_ARRAY;
 
 final class EventsConsumer implements ConsumerInterface
 {
@@ -32,7 +35,13 @@ final class EventsConsumer implements ConsumerInterface
 
     private function doExecute(AMQPMessage $message) : void
     {
-        $event = new Event($message->body);
+        $json = decode($message->body, JSON_OBJECT_AS_ARRAY);
+
+        $event = new Event(
+            $json['eventId'],
+            new DateTimeImmutable($json['happenedAt']),
+            $json['type']
+        );
 
         $manager = $this->getManager();
 

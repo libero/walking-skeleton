@@ -2,6 +2,8 @@
 
 namespace Libero\Dashboard\Entity;
 
+use DateTimeImmutable;
+use DateTimeZone;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -11,24 +13,40 @@ use Doctrine\ORM\Mapping as ORM;
 final class Event
 {
     /**
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue
+     * @ORM\Column(type="datetime_immutable")
+     */
+    private $dateTime;
+
+    /**
+     * @ORM\Column(type="guid")
      * @ORM\Id
      */
     private $id;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string")
      */
-    private $text;
+    private $type;
 
-    public function __construct(string $text)
+    public function __construct(string $id, DateTimeImmutable $dateTime, string $type)
     {
-        $this->text = $text;
+        $this->id = $id;
+        $this->dateTime = $dateTime->setTimezone(new DateTimeZone('UTC'));
+        $this->type = $type;
     }
 
-    public function getText() : string
+    public function getId() : string
     {
-        return $this->text;
+        return $this->id;
+    }
+
+    public function getDateTime() : DateTimeImmutable
+    {
+        return $this->dateTime;
+    }
+
+    public function getType() : string
+    {
+        return $this->type;
     }
 }

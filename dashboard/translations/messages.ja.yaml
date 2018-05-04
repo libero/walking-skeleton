@@ -5,3 +5,6 @@ app:
     no_events: '利用可能なイベントはありません。'
     title: 'Libero計器盤'
 direction: ltr
+event:
+    article:
+        published: '記事が公開されました。'

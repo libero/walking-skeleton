@@ -24,6 +24,8 @@
         "symfony/translation": "^4.0",
         "symfony/twig-bundle": "^4.0",
         "symfony/yaml": "^4.0",
+        "thetribe/json": "^0.1",
+        "twig/extensions": "^1.5",
         "twig/twig": "^2.4"
     },
     "require-dev": {

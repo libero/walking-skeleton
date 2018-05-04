@@ -5,3 +5,6 @@ app:
     no_events: 'لا توجد أحداث متاحة.'
     title: 'Libero لوحة تحكّم'
 direction: rtl
+event:
+    article:
+        published: 'تم نشر المقال.'

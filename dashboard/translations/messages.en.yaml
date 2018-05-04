@@ -5,3 +5,6 @@ app:
     no_events: 'No events available.'
     title: 'Libero Dashboard'
 direction: ltr
+event:
+    article:
+        published: 'Article was published.'
