@@ -19,6 +19,7 @@
         "symfony/http-kernel": "^4.0",
         "symfony/intl": "^4.0",
         "symfony/monolog-bundle": "^3.2",
+        "symfony/proxy-manager-bridge": "^4.0",
         "symfony/routing": "^4.0",
         "symfony/translation": "^4.0",
         "symfony/twig-bundle": "^4.0",
