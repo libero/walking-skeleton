@@ -5,14 +5,13 @@ import sys
 
 import airflow
 from airflow import DAG
-from airflow.operators.python_operator import PythonOperator
 from bs4 import BeautifulSoup
 import requests
 
 # HACK for DAG example usage without creating a load of package structures
 # would break this out, outside of example usage
 sys.path.append('..')
-from airflow_libero.operators import EventEmittingPythonOperator
+from airflow.operators import EventEmittingPythonOperator
 
 DIR_PATH = 'data'
 

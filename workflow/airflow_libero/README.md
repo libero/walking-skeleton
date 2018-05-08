@@ -8,46 +8,38 @@ Dependencies
 
 Installation
 ------------
-This will setup your virtual environment and install the required dependencies:
 
-`pipenv --python 3.6.3 install`
+Depends on:
+* [docker](https://www.docker.com/)
+* [docker-compose](https://github.com/docker/compose)
 
-Set the `AIRFLOW_HOME` environment variable:
+Celery Executor
 
-```
-export AIRFLOW_HOME=~/...../walking-skeleton/workflow/airflow
-```
+`docker-compose -f docker-compose-celery-executor.yml up --build`
 
-Activate your virtual environment:
+Local Executor
 
-`pipenv shell`
+`docker-compose -f docker-compose-local-executor.yml up --build`
 
-Initialize the database:
+Run Airflow CLI Commands
+--------------------
 
-`airflow initdb`
+To run any of Airflow's [CLI commands](https://airflow.apache.org/cli.html) you need to execute them from inside a running
+Airflow container. 
 
-This step will setup an `airflow.db` `sqlite` file, your `airflow.cfg` file and your `unittests.cfg` file.
- 
+For example to execute the [`airflow version`](https://airflow.apache.org/cli.html#version) command:
+
+`docker-compose -f docker-compose-celery-executor.yml exec scheduler airflow version`
+
+
 Usage
 -----
-
-Start up `rabbitmq`:
-
-`docker-compose up`
 
 Start the event listener:
 
 `pipenv run python run_event_bus_listener.py`
 
-Start a scheduler instance in it's own process:
-
-`pipenv run airflow scheduler`
-
-Start a webserver instance in it's own process: (not required but provides a nice UI)
-
-`pipenv run airflow webserver -p 8080`
-
-Browsing to [http://localhost:8080/](http://localhost:8080/) will now take you to the [admin console](https://airflow.apache.org/ui.html)foo_dag.py.
+Browsing to [http://localhost:8080/](http://localhost:8080/) will now take you to the [admin console](https://airflow.apache.org/ui.html).
 
 
 Trigger a DAG
