@@ -6,7 +6,7 @@ services:
             context: ./api-dummy
         volumes:
             - ./api-dummy:/srv/app
-            - /public/bundles
+            - /srv/app/public/bundles
             - /srv/app/var
             - /srv/app/vendor
         environment:
@@ -88,7 +88,7 @@ services:
             context: ./journal
         volumes:
             - ./journal:/srv/app
-            - /public/bundles
+            - /srv/app/public/bundles
             - /srv/app/var
             - /srv/app/vendor
         environment:
