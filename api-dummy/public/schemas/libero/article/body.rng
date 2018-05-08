@@ -4,7 +4,7 @@
 
     <include href="../core.rng"/>
 
-    <start combine="choice">
+    <start>
 
         <element name="body">
             <ref name="libero.body.content"/>
