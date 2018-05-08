@@ -13,6 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 final class Event
 {
     /**
+     * @ORM\Embedded(class="Aggregate")
+     */
+    private $aggregate;
+
+    /**
      * @ORM\Column(type="datetime_immutable")
      */
     private $dateTime;
@@ -28,21 +33,27 @@ final class Event
      */
     private $type;
 
-    public function __construct(string $id, DateTimeImmutable $dateTime, string $type)
+    public function __construct(string $id, DateTimeImmutable $dateTime, string $type, Aggregate $aggregate)
     {
         $this->id = $id;
         $this->dateTime = $dateTime->setTimezone(new DateTimeZone('UTC'));
         $this->type = $type;
+        $this->aggregate = $aggregate;
     }
 
-    public function getId() : string
+    public function getAggregate() : Aggregate
     {
-        return $this->id;
+        return $this->aggregate;
     }
 
     public function getDateTime() : DateTimeImmutable
     {
         return $this->dateTime;
+    }
+
+    public function getId() : string
+    {
+        return $this->id;
     }
 
     public function getType() : string

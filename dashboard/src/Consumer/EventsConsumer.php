@@ -6,6 +6,7 @@ use DateTimeImmutable;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Libero\Dashboard\Entity\Aggregate;
 use Libero\Dashboard\Entity\Event;
 use OldSound\RabbitMqBundle\RabbitMq\ConsumerInterface;
 use PhpAmqpLib\Message\AMQPMessage;
@@ -40,7 +41,12 @@ final class EventsConsumer implements ConsumerInterface
         $event = new Event(
             $json['eventId'],
             new DateTimeImmutable($json['happenedAt']),
-            $json['type']
+            $json['type'],
+            new Aggregate(
+                $json['aggregate']['service'],
+                $json['aggregate']['name'],
+                $json['aggregate']['identifier']
+            )
         );
 
         $manager = $this->getManager();

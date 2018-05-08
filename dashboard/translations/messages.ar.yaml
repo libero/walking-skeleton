@@ -8,3 +8,5 @@ direction: rtl
 event:
     article:
         published: 'تم نشر المقال.'
+type:
+    article: 'المادة %identifier%'

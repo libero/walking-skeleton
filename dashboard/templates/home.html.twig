@@ -6,12 +6,19 @@
 
     <h2>{% trans %}app.events{% endtrans %}</h2>
 
-    {% if events|length %}
-        <ol>
-            {% for event in events %}
-                <li>{{ ('event.' ~ event.type)|trans }} <small>{{ event.dateTime|localizeddate }}</small></li>
+    {% if types|length %}
+        {% for type, identifiers in types %}
+            {% for identifier, events in identifiers %}
+                <h3>{{ ('type.' ~ type)|trans({'%identifier%': identifier}) }}</h3>
+                <ol>
+                    {% for event in events %}
+                        <li>{{ ('event.' ~ event.type)|trans }}
+                            <small>{{ event.dateTime|localizeddate }}, {{ event.aggregate.service }}</small>
+                        </li>
+                    {% endfor %}
+                </ol>
             {% endfor %}
-        </ol>
+        {% endfor %}
     {% else %}
         <p>{% trans %}app.no_events{% endtrans %}</p>
     {% endif %}

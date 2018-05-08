@@ -8,3 +8,5 @@ direction: ltr
 event:
     article:
         published: 'Статья опубликована.'
+type:
+    article: 'Статья %identifier%'

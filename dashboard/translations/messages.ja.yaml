@@ -8,3 +8,5 @@ direction: ltr
 event:
     article:
         published: '記事が公開されました。'
+type:
+    article: '第%identifier%条'
