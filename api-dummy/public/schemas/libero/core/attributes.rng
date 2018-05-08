@@ -1,37 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<grammar xmlns="http://relaxng.org/ns/structure/1.0"
-    datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+<grammar ns="http://libero.pub" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+    xmlns="http://relaxng.org/ns/structure/1.0"
+    xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">
 
-    <define name="libero.attrib.id">
-        <attribute name="id">
-            <ref name="libero.types.id"/>
-        </attribute>
-    </define>
+    <div>
+        <a:documentation>@id attribute</a:documentation>
 
-    <define name="libero.attrib.lang.optional">
-        <optional>
-            <ref name="libero.attrib.lang"/>
-        </optional>
-    </define>
-
-    <define name="libero.attrib.lang">
-        <attribute name="xml:lang">
-            <choice>
-                <data type="language"/>
-            </choice>
-        </attribute>
-    </define>
-
-    <define name="libero.attrib.space">
-        <optional>
-            <attribute name="xml:space">
-                <choice>
-                    <value>default</value>
-                    <value>preserve</value>
-                </choice>
+        <define name="libero.attributes.id">
+            <attribute name="id">
+                <ref name="libero.attributes.id.content"/>
             </attribute>
-        </optional>
-    </define>
+        </define>
+
+        <define name="libero.attributes.id.content">
+            <ref name="libero.types.id"/>
+        </define>
+
+    </div>
+
+    <div>
+        <a:documentation>@xml:lang attribute</a:documentation>
+
+        <define name="libero.attributes.lang">
+            <attribute name="xml:lang">
+                <ref name="libero.attributes.id.content"/>
+            </attribute>
+        </define>
+
+        <define name="libero.attributes.lang.content">
+            <data type="language"/>
+        </define>
+
+    </div>
+
+    <div>
+        <a:documentation>@xml:space attribute</a:documentation>
+
+        <define name="libero.attributes.space">
+            <attribute name="xml:space">
+                <ref name="libero.attributes.space.content"/>
+            </attribute>
+        </define>
+
+        <define name="libero.attributes.space.content">
+            <choice>
+                <value>default</value>
+                <value>preserve</value>
+            </choice>
+        </define>
+
+    </div>
 
 </grammar>

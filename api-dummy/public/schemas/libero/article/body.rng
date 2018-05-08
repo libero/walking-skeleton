@@ -20,7 +20,7 @@
         </define>
 
         <define name="libero.body.attributes">
-            <ref name="libero.attrib.lang"/>
+            <ref name="libero.attributes.lang"/>
         </define>
 
         <define name="libero.body.content">
