@@ -1,26 +1,75 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://libero.pub">
+<grammar ns="http://libero.pub" xmlns="http://relaxng.org/ns/structure/1.0"
+    xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">
 
     <include href="../core.rng"/>
 
     <start>
-
-        <element name="front">
-            <ref name="libero.front.content"/>
-        </element>
-
+        <ref name="libero.front"/>
     </start>
 
-    <define name="libero.front.content">
-        <ref name="libero.attrib.lang"/>
-        <element name="id">
+    <div>
+        <a:documentation>front element</a:documentation>
+
+        <define name="libero.front">
+            <element name="front">
+                <ref name="libero.front.attributes"/>
+                <ref name="libero.front.content"/>
+            </element>
+        </define>
+
+        <define name="libero.front.attributes">
+            <ref name="libero.attrib.lang"/>
+        </define>
+
+        <define name="libero.front.content">
+            <interleave>
+                <ref name="libero.front.content.id"/>
+                <ref name="libero.front.content.title"/>
+            </interleave>
+        </define>
+
+    </div>
+
+    <div>
+        <a:documentation>front/id element</a:documentation>
+
+        <define name="libero.front.content.id">
+            <element name="id">
+                <ref name="libero.front.content.id.attributes"/>
+                <ref name="libero.front.content.id.content"/>
+            </element>
+        </define>
+
+        <define name="libero.front.content.id.attributes">
+            <empty/>
+        </define>
+
+        <define name="libero.front.content.id.content">
             <ref name="libero.types.id"/>
-        </element>
-        <element name="title">
-            <ref name="libero.attrib.lang.optional"/>
+        </define>
+
+    </div>
+
+    <div>
+        <a:documentation>front/title element</a:documentation>
+
+        <define name="libero.front.content.title">
+            <element name="title">
+                <ref name="libero.front.content.title.attributes"/>
+                <ref name="libero.front.content.title.content"/>
+            </element>
+        </define>
+
+        <define name="libero.front.content.title.attributes">
+            <empty/>
+        </define>
+
+        <define name="libero.front.content.title.content">
             <ref name="libero.text.limited.model"/>
-        </element>
-    </define>
+        </define>
+
+    </div>
 
 </grammar>
