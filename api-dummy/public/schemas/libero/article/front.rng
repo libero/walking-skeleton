@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://libero.pub">
-    
+
     <include href="../core.rng"/>
-    
-    <start combine="choice">
+
+    <start>
 
         <element name="front">
             <ref name="libero.front.content"/>
