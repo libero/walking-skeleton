@@ -21,6 +21,68 @@ services:
             - ./api-dummy/public:/srv/app/public
         depends_on:
             - api-dummy-fpm
+    dashboard-events:
+        build:
+            context: ./dashboard
+        volumes:
+            - ./dashboard:/srv/app
+            - /srv/app/public/bundles
+            - /srv/app/var
+            - /srv/app/vendor
+        environment:
+            - APP_ENV=dev
+            - APP_SECRET=f6a87c2e031ecadc0d7eb442729435c7
+            - DATABASE_URL=pgsql://postgres:@dashboard-postgres:5432/postgres
+            - RABBITMQ_URL=amqp://guest:guest@event-bus:5672
+        command: bash -c 'wait-for-port event-bus 5672 && bin/console rabbitmq:consumer events'
+        depends_on:
+            - event-bus
+            - dashboard-postgres
+    dashboard-fpm:
+        build:
+            context: ./dashboard
+        volumes:
+            - ./dashboard:/srv/app
+            - /srv/app/public/bundles
+            - /srv/app/var
+            - /srv/app/vendor
+        environment:
+            - APP_ENV=dev
+            - APP_SECRET=f6a87c2e031ecadc0d7eb442729435c7
+            - DATABASE_URL=pgsql://postgres:@dashboard-postgres:5432/postgres
+        depends_on:
+            - dashboard-postgres
+    dashboard-nginx:
+        image: nginx:1.13
+        ports:
+            - '8082:80'
+        volumes:
+            - ./dashboard/.docker/nginx-server.conf:/etc/nginx/conf.d/default.conf
+            - ./dashboard/public:/srv/app/public
+        depends_on:
+            - dashboard-fpm
+    dashboard-postgres:
+        image: postgres:9.6.8-alpine
+    dashboard-postgres-schema:
+        build:
+            context: ./dashboard
+        volumes:
+            - ./dashboard:/srv/app
+            - /srv/app/public/bundles
+            - /srv/app/var
+            - /srv/app/vendor
+        environment:
+            - APP_ENV=dev
+            - APP_SECRET=f6a87c2e031ecadc0d7eb442729435c7
+            - DATABASE_URL=pgsql://postgres:@dashboard-postgres:5432/postgres
+        command: bash -c 'wait-for-port dashboard-postgres 5432 && bin/console doctrine:schema:update --force'
+        depends_on:
+            - dashboard-postgres
+    event-bus:
+        image: rabbitmq:3.7.4-management-alpine
+        ports:
+          - '8083:15672'
+          - '8084:5672'
     journal-fpm:
         build:
             context: ./journal
