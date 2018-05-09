@@ -1,0 +1,17 @@
+openapi: 3.0.1
+
+info:
+    title: Libero walking skeleton
+    license:
+        name: MIT
+
+servers:
+    - url: http://localhost:8081
+
+paths:
+
+    /articles:
+        $ref: articles.yaml#paths/~1
+
+    /articles/{id}/{version}/{part}:
+        $ref: articles.yaml#paths/~1{id}~1{version}~1{part}

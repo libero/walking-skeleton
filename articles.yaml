@@ -1,0 +1,59 @@
+openapi: 3.0.1
+
+info:
+    title: Libero walking skeleton articles
+    license:
+        name: MIT
+
+servers:
+    - url: http://localhost:8081/articles
+
+paths:
+
+    /:
+        get:
+            summary: List all articles
+            responses:
+                '200':
+                    description: List of articles
+                    content:
+                        application/xml:
+                default:
+                    $ref: errors.yaml#components/responses/error
+
+    /{id}/{version}/{part}:
+        get:
+            summary: Article version part
+            parameters:
+                - name: id
+                  in: path
+                  description: Article ID
+                  required: true
+                  schema:
+                      type: string
+                      pattern: ^[A-Za-z0-9\-._]+$
+                - name: version
+                  in: path
+                  description: Article version
+                  required: true
+                  schema:
+                      oneOf:
+                          - type: integer
+                            minimum: 1
+                          - type: string
+                            enum: [latest]
+                - name: part
+                  in: path
+                  description: Article part
+                  required: true
+                  schema:
+                      type: string
+                      pattern: ^[A-Za-z0-9\-._]+$
+
+            responses:
+                '200':
+                    description: Article version
+                    content:
+                        application/xml:
+                default:
+                    $ref: errors.yaml#components/responses/error

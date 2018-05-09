@@ -1,0 +1,13 @@
+openapi: 3.0.1
+
+info:
+    title: Libero walking skeleton errors
+    license:
+        name: MIT
+
+components:
+    responses:
+        error:
+            description: General error
+            content:
+                application/problem+xml:
