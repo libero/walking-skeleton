@@ -1,10 +1,19 @@
 import pytest
 
+from articles.models import (
+    Article,
+    ArticleVersion,
+)
+
 
 @pytest.mark.django_db
-def test_can_create_article(article):
+def test_can_create_article(article: Article):
     assert article
     assert article.id
-    assert article.status == 'Unpublished'
-    assert article.content
-    # assert article.version == 1
+
+
+@pytest.mark.django_db
+def test_can_get_latest_version(article: Article,
+                                article_version_2: ArticleVersion,
+                                article_version_3: ArticleVersion):
+    assert article.latest_version == 3
