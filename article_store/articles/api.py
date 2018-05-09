@@ -1,3 +1,9 @@
+from lxml.etree import (
+    Element,
+    SubElement,
+    tostring,
+)
+from django.db.models import QuerySet
 from django.http.response import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import status, viewsets
@@ -11,18 +17,53 @@ from articles.models import (
     ArticleVersion,
     Content,
 )
-from articles.serializers import (
-    ArticleSerializer,
-    ContentSerializer,
-)
+from articles.serializers import ArticleSerializer
 
 from articles.utils import parse_accept_language_header
+
+
+def article_list_xml_generator(articles: 'QuerySet[Article]') -> Element:
+    """Generate an xml representation of all `Article` objects.
+
+    :param articles: QuerySet[Article]
+    :return: class: `Element`
+    """
+    name_space = {'libero': 'http://libero.pub'}
+
+    root = Element('{%s}articles' % name_space['libero'], nsmap=name_space)
+
+    for article in articles:
+        child = SubElement(root, '{%s}article' % name_space['libero'])
+        child.text = str(article.id)
+
+    return root
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
     model = Article
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
+
+
+class ArticleListAPIView(APIView):
+
+    def get(self, request: Request) -> HttpResponse:
+        """Return xml article list.
+
+        example return value:
+
+        <?xml version='1.0' encoding='utf-8'?>
+        <libero:articles xmlns:libero="http://libero.pub">
+            <libero:article>cc1250b5-0855-4fc2-906f-a6a77e4c90f9</libero:article>
+        </libero:articles>
+        
+        :param request: 
+        :return: 
+        """
+        xml = article_list_xml_generator(articles=Article.objects.all())
+
+        return HttpResponse(tostring(xml, encoding='utf-8', xml_declaration=True),
+                            status=status.HTTP_200_OK, content_type="application/xml")
 
 
 class ArticleContentAPIView(APIView):
