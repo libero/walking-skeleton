@@ -8,14 +8,14 @@ from articles.models import (
 
 
 @pytest.mark.django_db
-def test_can_create_article_version(article_version: ArticleVersion):
-    assert article_version
-    assert article_version.version == 1
-    assert article_version.status == PREVIEW
+def test_can_create_article_version(article_version_1: ArticleVersion):
+    assert article_version_1
+    assert article_version_1.version == 1
+    assert article_version_1.status == PREVIEW
 
 
 @pytest.mark.django_db
-def test_can_change_status(article_version: ArticleVersion):
-    article_version.status = READY
-    article_version.save()
-    assert article_version.status == READY
+def test_can_change_status(article_version_1: ArticleVersion):
+    article_version_1.status = READY
+    article_version_1.save()
+    assert article_version_1.status == READY
