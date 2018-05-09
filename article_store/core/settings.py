@@ -17,6 +17,8 @@ SECRET_KEY = CONF.get('django', 'secret_key')
 
 DEBUG = CONF.get('django', 'debug', fallback=False)
 
+CI = CONF.get('django', 'ci', fallback=False)
+
 ALLOWED_HOSTS = CONF.get('django', 'allowed_hosts').split(',')
 
 INTERNAL_IPS = '127.0.0.1'
@@ -31,6 +33,7 @@ INSTALLED_APPS = [
     'django_filters',
     'debug_toolbar',
     'rest_framework',
+    'rest_framework_xml',
     'articles',
 ]
 
@@ -65,23 +68,25 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
-DATABASES = {
-    'default': {
-        'ENGINE': CONF.get('database', 'engine'),
-        'USER': CONF.get('database', 'user'),
-        'PASSWORD': CONF.get('database', 'password'),
-        'HOST': CONF.get('database', 'host'),
-        'PORT': CONF.get('database', 'port'),
-        'NAME': CONF.get('database', 'name'),
+if CI:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
-}
+
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': CONF.get('database', 'engine'),
+            'USER': CONF.get('database', 'user'),
+            'PASSWORD': CONF.get('database', 'password'),
+            'HOST': CONF.get('database', 'host'),
+            'PORT': CONF.get('database', 'port'),
+            'NAME': CONF.get('database', 'name'),
+        }
+    }
 
 
 AUTH_PASSWORD_VALIDATORS = [

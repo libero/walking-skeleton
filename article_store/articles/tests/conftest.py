@@ -13,6 +13,10 @@ from articles.models import (
 )
 
 
+def parse_fixture_file(file_name: str) -> str:
+    return Path.joinpath(FIXTURES_DIR, file_name).read_text()
+
+
 @pytest.fixture
 @pytest.mark.django_db
 def admin_rest_client(admin_user: Client) -> APIClient:
@@ -28,13 +32,23 @@ def article() -> Article:
 
 
 @pytest.fixture(scope='session')
-def article_00666_front_xml() -> str:
-    return Path.joinpath(FIXTURES_DIR, 'front.xml').read_text()
+def article_0065_en_front_xml() -> str:
+    return parse_fixture_file('0065_en_front.xml')
+
+
+@pytest.fixture(scope='session')
+def article_0065_es_front_xml() -> str:
+    return parse_fixture_file('0065_es_front.xml')
+
+
+@pytest.fixture(scope='session')
+def article_0065_pt_front_xml() -> str:
+    return parse_fixture_file('0065_pt_front.xml')
 
 
 @pytest.fixture
 @pytest.mark.django_db
-def article_version(article: Article) -> ArticleVersion:
+def article_version_1(article: Article) -> ArticleVersion:
     return ArticleVersion.objects.create(article=article, version=1)
 
 
@@ -52,9 +66,29 @@ def article_version_3(article: Article) -> ArticleVersion:
 
 @pytest.fixture
 @pytest.mark.django_db
-def content(article_version: ArticleVersion,
-            article_00666_front_xml: str) -> Content:
-    return Content.objects.create(article_version=article_version,
+def content_en_front(article_version_1: ArticleVersion,
+                     article_0065_en_front_xml: str) -> Content:
+    return Content.objects.create(article_version=article_version_1,
                                   language='en',
                                   name='front',
-                                  text=article_00666_front_xml)
+                                  text=article_0065_en_front_xml)
+
+
+@pytest.fixture
+@pytest.mark.django_db
+def content_es_front(article_version_1: ArticleVersion,
+                     article_0065_es_front_xml: str) -> Content:
+    return Content.objects.create(article_version=article_version_1,
+                                  language='es',
+                                  name='front',
+                                  text=article_0065_es_front_xml)
+
+
+@pytest.fixture
+@pytest.mark.django_db
+def content_pt_front(article_version_1: ArticleVersion,
+                     article_0065_pt_front_xml: str) -> Content:
+    return Content.objects.create(article_version=article_version_1,
+                                  language='pt',
+                                  name='front',
+                                  text=article_0065_pt_front_xml)
