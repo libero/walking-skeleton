@@ -1,0 +1,68 @@
+{
+    "type": "project",
+    "license": "MIT",
+    "require": {
+        "php": "^7.1.3",
+        "ext-iconv": "*",
+        "ext-intl": "*",
+        "ext-pdo_pgsql": "*",
+        "doctrine/doctrine-bundle": "^1.9",
+        "doctrine/doctrine-cache-bundle": "^1.3",
+        "doctrine/orm": "^2.6",
+        "php-amqplib/rabbitmq-bundle": "^1.14",
+        "symfony/config": "^4.0",
+        "symfony/console": "^4.0",
+        "symfony/dependency-injection": "^4.0",
+        "symfony/flex": "^1.0",
+        "symfony/framework-bundle": "^4.0",
+        "symfony/http-foundation": "^4.0",
+        "symfony/http-kernel": "^4.0",
+        "symfony/intl": "^4.0",
+        "symfony/monolog-bundle": "^3.2",
+        "symfony/proxy-manager-bridge": "^4.0",
+        "symfony/routing": "^4.0",
+        "symfony/translation": "^4.0",
+        "symfony/twig-bundle": "^4.0",
+        "symfony/yaml": "^4.0",
+        "thetribe/json": "^0.1",
+        "twig/extensions": "^1.5",
+        "twig/twig": "^2.4"
+    },
+    "require-dev": {
+        "symfony/debug": "^4.0",
+        "symfony/stopwatch": "^4.0",
+        "symfony/web-profiler-bundle": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Libero\\Dashboard\\": "src/"
+        }
+    },
+    "replace": {
+        "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-intl-icu": "*",
+        "symfony/polyfill-php71": "*",
+        "symfony/polyfill-php70": "*",
+        "symfony/polyfill-php56": "*"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "scripts": {
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+        },
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ]
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": "true"
+        }
+    }
+}
