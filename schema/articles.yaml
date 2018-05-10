@@ -21,9 +21,86 @@ paths:
                 default:
                     $ref: errors.yaml#components/responses/error
 
+    /{id}:
+        delete:
+            summary: Delete an article
+            parameters:
+                - name: id
+                  in: path
+                  description: Article ID
+                  required: true
+                  schema:
+                      type: string
+                      pattern: ^[A-Za-z0-9\-._]+$
+            responses:
+                '202':
+                    description: Deletion request accepted
+                default:
+                    $ref: errors.yaml#components/responses/error
+        post:
+            summary: Create an article version
+            parameters:
+                - name: id
+                  in: path
+                  description: Article ID
+                  required: true
+                  schema:
+                      type: string
+                      pattern: ^[A-Za-z0-9\-._]+$
+            requestBody:
+                content:
+                    application/xml:
+            responses:
+                '202':
+                    description: Creation request accepted
+                default:
+                    $ref: errors.yaml#components/responses/error
+
+    /{id}/{version}:
+        delete:
+            summary: Delete an article version
+            parameters:
+                - name: id
+                  in: path
+                  description: Article ID
+                  required: true
+                  schema:
+                      type: string
+                      pattern: ^[A-Za-z0-9\-._]+$
+            responses:
+                '202':
+                    description: Deletion request accepted
+                default:
+                    $ref: errors.yaml#components/responses/error
+        put:
+            summary: Replace an article version
+            parameters:
+                - name: id
+                  in: path
+                  description: Article ID
+                  required: true
+                  schema:
+                      type: string
+                      pattern: ^[A-Za-z0-9\-._]+$
+                - name: version
+                  in: path
+                  description: Article version
+                  required: true
+                  schema:
+                      type: integer
+                      minimum: 1
+            requestBody:
+                content:
+                    application/xml:
+            responses:
+                '202':
+                    description: Replace request accepted
+                default:
+                    $ref: errors.yaml#components/responses/error
+
     /{id}/{version}/{part}:
         get:
-            summary: Article version part
+            summary: Get an article version part
             parameters:
                 - name: id
                   in: path

@@ -13,5 +13,11 @@ paths:
     /articles:
         $ref: articles.yaml#paths/~1
 
+    /articles/{id}:
+        $ref: articles.yaml#paths/~1{id}
+
+    /articles/{id}/{version}:
+        $ref: articles.yaml#paths/~1{id}~1{version}
+
     /articles/{id}/{version}/{part}:
         $ref: articles.yaml#paths/~1{id}~1{version}~1{part}
