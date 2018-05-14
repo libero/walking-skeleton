@@ -5,7 +5,7 @@ from lxml.etree import (
 )
 from django.db.models import QuerySet
 from django.http.response import HttpResponse
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from rest_framework import status, viewsets
 from rest_framework.request import Request
 from rest_framework.response import Response
@@ -104,6 +104,9 @@ class ArticleContentAPIView(APIView):
                 content = content_items.first()
 
             return HttpResponse(content.text, status=status.HTTP_200_OK, content_type="application/xml")
+
+        except ValidationError as err:
+            return Response({'error': f'Invalid article ID - {err}'}, status=status.HTTP_406_NOT_ACCEPTABLE)
 
         except AttributeError as err:
             return Response({'error': f'Content does not exist - {err}'}, status=status.HTTP_406_NOT_ACCEPTABLE)
