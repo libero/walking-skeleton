@@ -69,9 +69,10 @@ class ArticleListAPIView(APIView):
 class ArticleContentAPIView(APIView):
     renderer_classes = (XMLRenderer,)
 
+    default_part_name = 'front'
     latest = 'latest'
 
-    def get(self, request: Request, article_id: str, version: str, part: str) -> HttpResponse:
+    def get(self, request: Request, article_id: str, version: str, part: str = default_part_name) -> HttpResponse:
         """Get article content based on version, language and content name.
 
         :param request: `Request`

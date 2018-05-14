@@ -72,3 +72,16 @@ def test_can_get_fallback_article_content(admin_client: Client,
     response = admin_client.get(url, HTTP_ACCEPT_LANGUAGE='foo')
     assert response.status_code == 200
     assert response.content.decode('utf-8') == article_0065_es_front_xml
+
+
+@pytest.mark.django_db
+def test_can_get_article_content_without_giving_part_name(admin_client: Client,
+                                                          article: Article,
+                                                          article_version_1: ArticleVersion,
+                                                          content_es_front: Content,
+                                                          article_0065_es_front_xml: str):
+
+    url = f'/articles/{article.id}/latest'
+    response = admin_client.get(url, HTTP_ACCEPT_LANGUAGE='es')
+    assert response.status_code == 200
+    assert response.content.decode('utf-8') == article_0065_es_front_xml
