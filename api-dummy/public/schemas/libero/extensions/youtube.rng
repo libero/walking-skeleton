@@ -1,30 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://libero.pub" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
-    
+<grammar ns="http://libero.pub" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+    xmlns="http://relaxng.org/ns/structure/1.0"
+    xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">
+
     <define name="libero.blocks.limited.class" combine="choice">
         <ref name="libero.blocks.youtube"/>
     </define>
-    
-    <define name="libero.blocks.youtube">
-        <element name="youtube">
-            <ref name="libero.blocks.object.model"/>
-            <ref name="libero.blocks.youtube.model"/>
-        </element>
-    </define>
-    
-    <define name="libero.blocks.youtube.model">
-        <attribute name="height">
+
+    <div>
+        <a:documentation>youtube element</a:documentation>
+
+        <define name="libero.blocks.youtube">
+            <element name="youtube">
+                <ref name="libero.blocks.object.model"/>
+                <ref name="libero.blocks.youtube.attributes"/>
+                <ref name="libero.blocks.youtube.content"/>
+            </element>
+        </define>
+
+        <define name="libero.blocks.youtube.attributes">
+            <ref name="libero.blocks.youtube.attributes.height"/>
+            <ref name="libero.blocks.youtube.attributes.width"/>
+        </define>
+
+        <define name="libero.blocks.youtube.content">
+            <ref name="libero.blocks.youtube.content.id"/>
+        </define>
+
+    </div>
+
+    <div>
+        <a:documentation>youtube/@height attribute</a:documentation>
+
+        <define name="libero.blocks.youtube.attributes.height">
+            <attribute name="height">
+                <ref name="libero.blocks.youtube.attributes.height.content"/>
+            </attribute>
+        </define>
+
+        <define name="libero.blocks.youtube.attributes.height.content">
             <data type="positiveInteger"/>
-        </attribute>
-        <attribute name="width">
+        </define>
+
+    </div>
+
+    <div>
+        <a:documentation>youtube/@width attribute</a:documentation>
+
+        <define name="libero.blocks.youtube.attributes.width">
+            <attribute name="width">
+                <ref name="libero.blocks.youtube.attributes.width.content"/>
+            </attribute>
+        </define>
+
+        <define name="libero.blocks.youtube.attributes.width.content">
             <data type="positiveInteger"/>
-        </attribute>
-        <element name="id">
-            <data type="string">
+        </define>
+
+    </div>
+
+    <div>
+        <a:documentation>youtube/id element</a:documentation>
+
+        <define name="libero.blocks.youtube.content.id">
+            <element name="id">
+                <ref name="libero.blocks.youtube.content.id.attributes"/>
+                <ref name="libero.blocks.youtube.content.id.content"/>
+            </element>
+        </define>
+
+        <define name="libero.blocks.youtube.content.id.attributes">
+            <empty/>
+        </define>
+
+        <define name="libero.blocks.youtube.content.id.content">
+            <data type="token">
                 <param name="pattern">[0-9A-Za-z_\-]{10}[048AEIMQUYcgkosw]</param>
             </data>
-        </element>
-    </define>
-    
+        </define>
+
+    </div>
+
 </grammar>

@@ -27,7 +27,7 @@
 
     <define name="libero.blocks.mathml.content">
         <optional>
-            <ref name="libero.attrib.id"/>
+            <ref name="libero.attributes.id"/>
             <element name="label">
                 <text/>
             </element>
