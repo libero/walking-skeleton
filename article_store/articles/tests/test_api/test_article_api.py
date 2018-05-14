@@ -23,6 +23,35 @@ def test_can_delete_article(admin_client: Client, article: Article,
 
 
 @pytest.mark.django_db
+def test_can_delete_article_version(admin_client: Client, article: Article,
+                                    article_version_1: ArticleVersion,
+                                    content_en_front: Content):
+    url = f'/articles/{article.id}/{article_version_1.version}'
+    response = admin_client.delete(url)
+    assert response.status_code == 204
+    assert Article.objects.count() == 1
+    assert ArticleVersion.objects.count() == 0
+    assert Content.objects.count() == 0
+
+
+@pytest.mark.django_db
+def test_it_deletes_version_and_greater_versions(admin_client: Client, article: Article,
+                                                 article_version_1: ArticleVersion,
+                                                 article_version_2: ArticleVersion,
+                                                 article_version_3: ArticleVersion,
+                                                 content_en_front: Content):
+
+    assert ArticleVersion.objects.count() == 3
+
+    url = f'/articles/{article.id}/{article_version_2.version}'
+    response = admin_client.delete(url)
+    assert response.status_code == 204
+    assert Article.objects.count() == 1
+    assert ArticleVersion.objects.count() == 1
+    assert Content.objects.count() == 1
+
+
+@pytest.mark.django_db
 def test_can_get_article_content(admin_client: Client,
                                  article: Article,
                                  article_version_1: ArticleVersion,
