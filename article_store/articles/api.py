@@ -75,16 +75,28 @@ class ArticleContentAPIView(APIView):
     default_part_name = 'front'
     latest = 'latest'
 
-    def delete(self, request: Request, article_id: str) -> HttpResponse:
+    def delete(self, request: Request, article_id: str, version: str = '') -> HttpResponse:
         """Delete an `Article`
 
         :param request: class: `Request`
         :param article_id: str
+        :param version: str
         :return: class: `HttpResponse`
         """
         try:
             article = Article.objects.get(id=article_id)
-            article.delete()
+
+            if not version:
+                article.delete()
+            else:
+                if version == self.latest:
+                    version = article.latest_version
+
+                article_versions = ArticleVersion.objects.filter(article_id=article_id)
+
+                for article_version in article_versions:
+                    if article_version.version >= int(version):
+                        article_version.delete()
 
             return HttpResponse(status=status.HTTP_204_NO_CONTENT, content_type="application/xml")
 
