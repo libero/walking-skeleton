@@ -85,3 +85,17 @@ def test_can_get_article_content_without_giving_part_name(admin_client: Client,
     response = admin_client.get(url, HTTP_ACCEPT_LANGUAGE='es')
     assert response.status_code == 200
     assert response.content.decode('utf-8') == article_0065_es_front_xml
+
+
+@pytest.mark.django_db
+def test_can_get_article_list_xml(admin_client: Client,
+                                  article: Article,
+                                  article_version_1: ArticleVersion,
+                                  content_es_front: Content):
+
+    response = admin_client.get('/articles/')
+    assert response.status_code == 200
+    assert response.content.decode('utf-8') == f'<?xml version=\'1.0\' encoding=\'utf-8\'?>\n' \
+                                               f'<libero:articles xmlns:libero="http://libero.pub">' \
+                                               f'<libero:article>{article.id}</libero:article>' \
+                                               f'</libero:articles>'
