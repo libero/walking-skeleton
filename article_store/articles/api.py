@@ -10,6 +10,7 @@ from rest_framework import status, viewsets
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework_xml.parsers import XMLParser
 from rest_framework_xml.renderers import XMLRenderer
 
 from articles.models import (
@@ -43,6 +44,8 @@ class ArticleViewSet(viewsets.ModelViewSet):
     model = Article
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
+    # parser_classes = (XMLParser,)
+    # renderer_classes = (XMLRenderer,)
 
 
 class ArticleListAPIView(APIView):
@@ -71,6 +74,25 @@ class ArticleContentAPIView(APIView):
 
     default_part_name = 'front'
     latest = 'latest'
+
+    def delete(self, request: Request, article_id: str) -> HttpResponse:
+        """Delete an `Article`
+
+        :param request: class: `Request`
+        :param article_id: str
+        :return: class: `HttpResponse`
+        """
+        try:
+            article = Article.objects.get(id=article_id)
+            article.delete()
+
+            return HttpResponse(status=status.HTTP_204_NO_CONTENT, content_type="application/xml")
+
+        except ValidationError as err:
+            return Response({'error': f'Invalid article ID - {err}'}, status=status.HTTP_406_NOT_ACCEPTABLE)
+
+        except ObjectDoesNotExist as err:
+            return Response({'error': f'{err}'}, status=status.HTTP_406_NOT_ACCEPTABLE)
 
     def get(self, request: Request, article_id: str, version: str, part: str = default_part_name) -> HttpResponse:
         """Get article content based on version, language and content name.
