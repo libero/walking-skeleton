@@ -99,3 +99,38 @@ def test_can_get_article_list_xml(admin_client: Client,
                                                f'<libero:articles xmlns:libero="http://libero.pub">' \
                                                f'<libero:article>{article.id}</libero:article>' \
                                                f'</libero:articles>'
+
+
+@pytest.mark.django_db
+def test_can_get_empty_article_list_xml(admin_client: Client):
+
+    response = admin_client.get('/articles/')
+    assert response.status_code == 200
+    assert response.content.decode('utf-8') == f'<?xml version=\'1.0\' encoding=\'utf-8\'?>\n' \
+                                               f'<libero:articles xmlns:libero="http://libero.pub"/>'
+
+
+@pytest.mark.django_db
+def test_can_handle_article_not_existing(admin_client: Client):
+    url = '/articles/foobar-article/latest'
+    response = admin_client.get(url)
+    assert response.status_code == 406
+    assert 'Invalid article ID' in response.content.decode('utf-8')
+
+
+@pytest.mark.django_db
+def test_can_handle_no_article_version_present(admin_client: Client, article: Article):
+    url = f'/articles/{article.id}/latest'
+    response = admin_client.get(url)
+    assert response.status_code == 406
+    assert 'Content does not exist' in response.content.decode('utf-8')
+
+
+@pytest.mark.django_db
+def test_can_handle_no_article_version_content_present(admin_client: Client,
+                                                       article: Article,
+                                                       article_version_1: ArticleVersion):
+    url = f'/articles/{article.id}/latest'
+    response = admin_client.get(url)
+    assert response.status_code == 406
+    assert 'Content does not exist' in response.content.decode('utf-8')
