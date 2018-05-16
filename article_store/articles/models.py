@@ -1,5 +1,6 @@
 import uuid
 
+from django.core.validators import RegexValidator
 from django.db import models
 
 
@@ -15,7 +16,8 @@ ARTICLE_STATUSES = (
 
 
 class Article(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.CharField(primary_key=True, max_length=250,
+                          validators=[RegexValidator(regex=r'^[A-Za-z0-9\-._]+$')])
 
     default_version = 0
 
@@ -34,6 +36,14 @@ class Article(models.Model):
             return max([version.version for version in versions ])
 
         return self.default_version
+
+    @property
+    def next_version(self) -> int:
+        """Finds the next version from the associated `ArticleVersion.version`.
+
+        :return: int
+        """
+        return self.latest_version + 1
 
 
 class ArticleVersion(models.Model):
