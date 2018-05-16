@@ -29,7 +29,7 @@ class Worker:
 
     def _message_handler(self, channel: pika.channel.Channel, method: pika.spec.Basic.Deliver,
                         properties: pika.spec.BasicProperties, body: str) -> None:
-        print("message_handler start")
-        self._work(json.loads(body))
+        message = json.loads(body)
+        print("Receiving: %s" % message)
+        self._work(message)
         channel.basic_ack(method.delivery_tag)
-        print("message_handler end")
