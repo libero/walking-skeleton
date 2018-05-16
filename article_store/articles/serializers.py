@@ -15,7 +15,8 @@ class ContentSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'language',
-            'text',
+            'model',
+            'content',
         )
 
 

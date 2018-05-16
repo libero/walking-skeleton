@@ -23,7 +23,6 @@ class ArticleAdmin(admin.ModelAdmin):
 
     list_filter = ['id']
     list_display = ['id']
-    readonly_fields = ['id']
     list_display_links = ['id']
     inlines = [ArticleVersionInline]
 
