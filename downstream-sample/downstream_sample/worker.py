@@ -8,13 +8,18 @@ from downstream_sample.settings import (
 
 class Worker:
     def __init__(self, queue_name, work):
+        """work will be passed a dictionary containing the message
+        
+        Possible results:
+            - return None
+            - raise an exception"""
         self._work = work
         self._queue_name = queue_name
 
     def start(self):
         with get_channel() as channel:
             get_queue()
-            channel.basic_consume(self._message_handler, queue=DOWNSTREAM_QUEUE_NAME, no_ack=False)
+            channel.basic_consume(self._message_handler, queue=self._queue_name, no_ack=False)
 
             try:
                 print('Consuming...')
