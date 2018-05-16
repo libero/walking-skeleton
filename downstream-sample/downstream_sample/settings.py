@@ -1,5 +1,6 @@
 from contextlib import contextmanager
 from typing import ContextManager
+import os
 
 import pika
 from pika.adapters.blocking_connection import BlockingChannel
@@ -7,11 +8,11 @@ from pika.adapters.blocking_connection import BlockingChannel
 
 DELIVERY_MODE_PERSISTENT = 2
 
-# TODO: extract as environment variables
-HOST = 'event-bus'
-PORT = 5672
-PASSWORD = 'guest'
-USER = 'guest'
+HOST = os.environ.get('RABBITMQ_HOST', 'localhost')
+PORT = os.environ.get('RABBITMQ_PORT', 5672)
+USER = os.environ.get('RABBITMQ_USER', 'guest')
+PASSWORD = os.environ.get('RABBITMQ_PASSWORD', 'guest')
+
 ARTICLE_EXCHANGE_NAME = 'articles'
 DOWNSTREAM_EXCHANGE_NAME = 'downstream-sample'
 DOWNSTREAM_QUEUE_NAME = 'downstream-sample'

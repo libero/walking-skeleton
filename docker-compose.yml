@@ -95,6 +95,11 @@ services:
         command: bash -c 'until echo > /dev/tcp/event-bus/5672; do sleep 1; done; exec pipenv run python -u manage.py worker'
         volumes:
             - ./downstream-sample:/srv/app
+        environment:
+            - RABBITMQ_HOST=event-bus
+            - RABBITMQ_PORT=5672
+            - RABBITMQ_USER=guest
+            - RABBITMQ_PASSWORD=guest
         depends_on:
             - event-bus
             # TODO: when calls are made
