@@ -31,13 +31,12 @@ def get_channel() -> ContextManager[BlockingChannel]:
     yield connection.channel()
     connection.close()
 
-# TODO: pass queue name as argument?
-def ensure_queue():
+def ensure_queue(queue_name):
     with get_channel() as channel:
         # create queue, will skip if exists
-        channel.queue_declare(queue=DOWNSTREAM_QUEUE_NAME, durable=True)
+        channel.queue_declare(queue=queue_name, durable=True)
         # bind queue to exchange, will skip if already bound
-        channel.queue_bind(exchange=ARTICLE_EXCHANGE_NAME, queue=DOWNSTREAM_QUEUE_NAME)
+        channel.queue_bind(exchange=ARTICLE_EXCHANGE_NAME, queue=queue_name)
 
 def ensure_exchange(exchange_name):
     with get_channel() as channel:
