@@ -1,4 +1,3 @@
-from django.core.exceptions import ValidationError
 import pytest
 
 from articles.models import (
@@ -21,6 +20,5 @@ def test_can_get_latest_version(article: Article,
 
 
 @pytest.mark.django_db
-def test_will_not_accept_invalid_id_format():
-    with pytest.raises(ValidationError):
-        Article.objects.create(id='[foo](bar)**')
+def test_can_check_id_is_valid_format():
+    assert not Article.id_is_valid('[foo](bar)**')

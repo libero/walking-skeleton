@@ -1,3 +1,4 @@
+import re
 import uuid
 
 from django.core.validators import RegexValidator
@@ -14,11 +15,14 @@ ARTICLE_STATUSES = (
     (READY, 'ready'),
 )
 
+ARTICLE_ID_FORMAT = r'^[A-Za-z0-9\-._]+$'
+
 
 class Article(models.Model):
     id = models.CharField(primary_key=True, max_length=250,
-                          validators=[RegexValidator(regex=r'^[A-Za-z0-9\-._]+$')])
+                          validators=[RegexValidator(regex=ARTICLE_ID_FORMAT)])
 
+    article_id_format = ARTICLE_ID_FORMAT
     default_version = 0
 
     def __str__(self):
@@ -44,6 +48,15 @@ class Article(models.Model):
         :return: int
         """
         return self.latest_version + 1
+
+    @classmethod
+    def id_is_valid(cls, article_id) -> bool:
+        """Check if a `str` value is valid against `article_id_format`
+
+        :param article_id: str
+        :return: bool
+        """
+        return True if re.match(cls.article_id_format, article_id) else False
 
 
 class ArticleVersion(models.Model):
