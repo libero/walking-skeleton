@@ -89,11 +89,24 @@ services:
         command: bash -c 'wait-for-port dashboard-postgres 5432 && bin/console doctrine:schema:update --force'
         depends_on:
             - dashboard-postgres
+    downstream-sample:
+        build:
+            context: ./downstream-sample
+        #command: bash -c 'until echo > /dev/tcp/event-bus/5672; do sleep 1; done; exec /root/.local/share/virtualenvs/app-MuJj66st/bin/python manage.py worker'
+        command: /root/.local/share/virtualenvs/app-MuJj66st/bin/python manage.py worker
+        volumes:
+            - ./downstream-sample:/srv/app
+        depends_on:
+            - event-bus
+            # TODO: when calls are made
+            #- api-gateway
     event-bus:
         image: rabbitmq:3.7.4-management-alpine
         ports:
           - '8083:15672'
           - '8084:5672'
+        volumes:
+            - event-bus:/var/lib/rabbitmq
     journal-fpm:
         build:
             context: ./journal
@@ -117,3 +130,6 @@ services:
             - ./journal/public:/srv/app/public
         depends_on:
             - journal-fpm
+
+volumes:
+    event-bus: 
