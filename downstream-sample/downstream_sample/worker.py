@@ -3,7 +3,7 @@ import pika
 
 from downstream_sample.settings import (
     get_channel,
-    get_queue
+    ensure_queue()
 )
 
 class Worker:
@@ -18,7 +18,7 @@ class Worker:
 
     def start(self):
         with get_channel() as channel:
-            get_queue()
+            ensure_queue()
             channel.basic_consume(self._message_handler, queue=self._queue_name, no_ack=False)
 
             try:
