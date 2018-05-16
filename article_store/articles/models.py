@@ -53,7 +53,8 @@ class Content(models.Model):
     article_version = models.ForeignKey(ArticleVersion, related_name='content_items', on_delete=models.CASCADE)
     language = models.CharField(max_length=50)
     name = models.CharField(max_length=250)  # TODO has to be unique per version ??
-    text = models.TextField(null=True, blank=True)
+    model = models.TextField(null=True, blank=True)
+    content = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return f'{self.id} - {self.name}'
