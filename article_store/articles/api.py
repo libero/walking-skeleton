@@ -183,6 +183,8 @@ class ArticleXMLAPIView(APIView):
 
 
 class ArticleListAPIView(APIView):
+    parser_classes = (ArticleXMLParser,)
+    renderer_classes = (XMLRenderer,)
 
     @staticmethod
     def get(request: Request) -> HttpResponse:
