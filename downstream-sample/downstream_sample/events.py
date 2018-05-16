@@ -1,3 +1,4 @@
+from datetime import datetime
 import json
 import pika
 import uuid
@@ -11,9 +12,8 @@ class Events():
     def publish(self, event):
         ensure_exchange(self._exchange_name)
         with get_channel() as channel:
-            # TODO add:
-            # "happenedAt": "2018-03-08T12:00:00+00:00",
             event['eventId'] = str(uuid.uuid1())
+            event['happenedAt'] = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S+00:00")
             print("Publishing: %s" % event)
             channel.basic_publish(exchange=self._exchange_name,
                                   routing_key='*',
