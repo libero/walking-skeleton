@@ -21,6 +21,30 @@ services:
             - ./api-dummy/public:/srv/app/public
         depends_on:
             - api-dummy-fpm
+    article-store:
+        build:
+            context: ./article_store
+        command: >
+                /bin/bash -c "
+                    until echo > /dev/tcp/postgres/5432; do sleep 1; done
+                    python manage.py migrate articles
+                    python manage.py migrate
+                    python manage.py runserver 0.0.0.0:8000
+                "
+        ports:
+          - '8000:8000'
+        depends_on:
+          - postgres
+    postgres:
+        image: postgres:9.6.8-alpine
+        environment:
+          - POSTGRES_USER=root
+          - POSTGRES_PASSWORD=rootpassword
+          - POSTGRES_DB=default
+        ports:
+          - '5432:5432'
+        volumes:
+          - 'postgres:/var/lib/postgresql/data'
     journal-fpm:
         build:
             context: ./journal
@@ -31,7 +55,7 @@ services:
             - /srv/app/vendor
         environment:
             - APP_ENV=dev
-            - APP_LIBERO_API=http://api-dummy-nginx
+            - APP_LIBERO_API=http://article-store:8000
             - APP_SECRET=f6a87c2e031ecadc0d7eb442729435c6
         depends_on:
             - api-dummy-nginx
@@ -44,3 +68,5 @@ services:
             - ./journal/public:/srv/app/public
         depends_on:
             - journal-fpm
+volumes:
+  postgres:
