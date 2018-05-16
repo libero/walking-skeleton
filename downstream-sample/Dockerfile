@@ -8,7 +8,7 @@ COPY Pipfile Pipfile.lock ./
 RUN pipenv install --deploy
 
 COPY downstream_sample/ /srv/app/downstream_sample/
-COPY manage.py test.py /srv/app/
+COPY manage.py /srv/app/
 
 CMD pipenv run python manage.py
 
