@@ -136,3 +136,9 @@ DEBUG_TOOLBAR_PANELS = [
 DEBUG_TOOLBAR_CONFIG = {
     'RESULTS_STORE_SIZE': 100,
 }
+
+# temp hack until the namespaces can be parsed and registered dynamically
+XML_NAMESPACES = (
+    ("", "http://libero.pub"),
+    ("mml", "http://www.w3.org/1998/Math/MathML")
+)
