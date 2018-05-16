@@ -108,7 +108,7 @@ class TestArticleList:
                                       article_version_1: ArticleVersion,
                                       content_es_front: Content):
 
-        response = admin_client.get('/articles/')
+        response = admin_client.get('/articles')
         assert response.status_code == 200
         assert response.content.decode('utf-8') == f'<?xml version=\'1.0\' encoding=\'utf-8\'?>\n' \
                                                    f'<libero:articles xmlns:libero="http://libero.pub">' \
@@ -117,7 +117,7 @@ class TestArticleList:
 
     @pytest.mark.django_db
     def test_can_get_empty_article_list_xml(self, admin_client: Client):
-        response = admin_client.get('/articles/')
+        response = admin_client.get('/articles')
         assert response.status_code == 200
         assert response.content.decode('utf-8') == f'<?xml version=\'1.0\' encoding=\'utf-8\'?>\n' \
                                                    f'<libero:articles xmlns:libero="http://libero.pub"/>'
