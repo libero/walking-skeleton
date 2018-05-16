@@ -92,8 +92,7 @@ services:
     downstream-sample:
         build:
             context: ./downstream-sample
-        #command: bash -c 'until echo > /dev/tcp/event-bus/5672; do sleep 1; done; exec /root/.local/share/virtualenvs/app-MuJj66st/bin/python manage.py worker'
-        command: /root/.local/share/virtualenvs/app-MuJj66st/bin/python manage.py worker
+        command: bash -c 'until echo > /dev/tcp/event-bus/5672; do sleep 1; done; exec pipenv run python -u manage.py worker'
         volumes:
             - ./downstream-sample:/srv/app
         depends_on:
