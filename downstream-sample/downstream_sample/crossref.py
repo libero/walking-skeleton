@@ -7,11 +7,9 @@ class FakeCrossref:
         self._events.publish({
             "aggregate": {
                 "service": "downstream-sample",
-                # TODO: rename into how "getting an article into Crossref" is called, delivery?
-                "name": "article-push",
-                # TODO: should probably be an internal identifier
-                # e.g. article id plus an incremental number or UUID to identify the attempt
-                "identifier": "10627-1",
+                "name": "article-delivery",
+                # TODO: make article id dynamic
+                "identifier": "10627-crossref-1",
             },
             "type": "downstream-crossref-started",
             "data": {
