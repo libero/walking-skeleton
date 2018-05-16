@@ -8,6 +8,52 @@ from articles.models import (
     Content,
 )
 
+ARTICLES_URL = '/articles'  # TODO refactor using this const!
+
+
+class TestCreateArticleVersion:
+
+    @pytest.mark.django_db
+    def test_can_create_article_version(self, admin_client: Client, article: Article):
+        response = admin_client.post(f'{ARTICLES_URL}/{article.id}',
+                                     data='', content_type='application/xml')
+        assert response.status_code == 201
+        assert ArticleVersion.objects.count() == 1
+
+    @pytest.mark.django_db
+    def test_will_not_accept_invalid_article_id_format(self, admin_client: Client):
+        invalid_id = '[foo](bar)**'
+        response = admin_client.post(f'{ARTICLES_URL}/{invalid_id}',
+                                     data='', content_type='application/xml')
+        assert response.status_code == 406
+
+    @pytest.mark.django_db
+    def test_can_create_article_version_with_content(self, admin_client: Client,
+                                                     article: Article,
+                                                     content_xml_data: str):
+        response = admin_client.post(f'{ARTICLES_URL}/{article.id}',
+                                     data=content_xml_data,
+                                     content_type='application/xml')
+        assert response.status_code == 201
+        assert ArticleVersion.objects.count() == 1
+        assert Content.objects.count() == 1
+
+
+class TestUpdateArticleVersion:
+
+    @pytest.mark.django_db
+    def test_can_update_article_version_with_content(self, admin_client: Client,
+                                                     article: Article,
+                                                     article_version_1: ArticleVersion,
+                                                     content_en_front: Content,
+                                                     content_xml_data: str):
+        response = admin_client.put(f'{ARTICLES_URL}/{article.id}/{article_version_1.version}',
+                                    data=content_xml_data,
+                                    content_type='application/xml')
+        assert response.status_code == 201
+        assert ArticleVersion.objects.count() == 1
+        assert Content.objects.count() == 1
+
 
 class TestDeleteArticles:
 
@@ -18,7 +64,7 @@ class TestDeleteArticles:
                                         content_en_front: Content):
         url = f'/articles/{article.id}/{article_version_1.version}'
         response = admin_client.delete(url)
-        assert response.status_code == 204
+        assert response.status_code == 202
         assert Article.objects.count() == 1
         assert ArticleVersion.objects.count() == 0
         assert Content.objects.count() == 0
@@ -34,7 +80,7 @@ class TestDeleteArticles:
 
         url = f'/articles/{article.id}/{article_version_2.version}'
         response = admin_client.delete(url)
-        assert response.status_code == 204
+        assert response.status_code == 202
         assert Article.objects.count() == 1
         assert ArticleVersion.objects.count() == 1
         assert Content.objects.count() == 1
@@ -47,7 +93,7 @@ class TestDeleteArticles:
 
         url = f'/articles/{article.id}'
         response = admin_client.delete(url)
-        assert response.status_code == 204
+        assert response.status_code == 202
         assert Article.objects.count() == 0
         assert ArticleVersion.objects.count() == 0
         assert Content.objects.count() == 0
@@ -81,10 +127,10 @@ class TestArticleErrors:
 
     @pytest.mark.django_db
     def test_can_handle_article_not_existing(self, admin_client: Client):
-        url = '/articles/foobar-article/latest'
+        url = '/articles/cc1250b5-0855-4fc2-906f-a6a77e4c90f5/latest'
         response = admin_client.get(url)
         assert response.status_code == 406
-        assert 'Invalid article ID' in response.content.decode('utf-8')
+        assert 'Article matching query does not exist' in response.content.decode('utf-8')
 
     @pytest.mark.django_db
     def test_can_handle_no_article_version_present(self,
@@ -118,7 +164,8 @@ class TestArticleContent:
         url = f'/articles/{article.id}/{article_version_1.version}/{content_en_front.name}'
         response = admin_client.get(url)
         assert response.status_code == 200
-        assert response.content.decode('utf-8') == article_0065_en_front_xml
+        xml_payload = response.content.decode('utf-8')
+        assert xml_payload == article_0065_en_front_xml
 
     @pytest.mark.django_db
     def test_can_get_content_using_latest_keyword_for_version(self,
