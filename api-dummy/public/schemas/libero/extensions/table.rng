@@ -126,7 +126,9 @@
     </define>
 
     <define name="libero.blocks.table.cell.base">
-        <ref name="libero.attrib.lang.optional"/>
+        <optional>
+            <ref name="libero.attributes.lang"/>
+        </optional>
         <optional>
             <attribute name="align">
                 <choice>
