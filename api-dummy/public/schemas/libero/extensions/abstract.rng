@@ -11,7 +11,7 @@
     </define>
 
     <define name="libero.abstract.content">
-        <ref name="libero.attrib.id"/>
+        <ref name="libero.attributes.id"/>
         <ref name="libero.blocks.limited.model"/>
     </define>
 

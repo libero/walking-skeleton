@@ -10,7 +10,7 @@
         <ref name="libero.doi.model"/>
     </define>
 
-    <define name="libero.attrib.id" combine="interleave">
+    <define name="libero.attributes.id" combine="interleave">
         <optional>
             <attribute name="doi">
                 <ref name="libero.types.doi"/>

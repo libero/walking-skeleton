@@ -2,7 +2,7 @@ import os
 import configparser
 
 
-PROJECT_NAME = 'article_store'
+PROJECT_NAME = 'article-store'
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 

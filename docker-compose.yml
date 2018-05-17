@@ -21,12 +21,23 @@ services:
             - ./api-dummy/public:/srv/app/public
         depends_on:
             - api-dummy-fpm
+    api-gateway:
+        image: nginx:1.13
+        ports:
+            - '8085:80'
+        volumes:
+            - ./api-gateway/.docker/nginx-server.conf.template:/etc/nginx/conf.d/default.conf.template
+        command: sh -c "envsubst \"`env | awk -F = '{printf \" $$%s\", $$1}'`\" < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && cat /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+        environment:
+            - ARTICLES=http://article-store:8000
+        depends_on:
+            - article-store
     article-store:
         build:
-            context: ./article_store
+            context: ./article-store
         command: >
                 /bin/bash -c "
-                    until echo > /dev/tcp/postgres/5432; do sleep 1; done
+                    until echo > /dev/tcp/article-store-postgres/5432; do sleep 1; done
                     pipenv run python manage.py migrate articles
                     pipenv run python manage.py migrate
                     pipenv run python manage.py runserver 0.0.0.0:8000
@@ -34,8 +45,8 @@ services:
         ports:
           - '8000:8000'
         depends_on:
-          - postgres
-    postgres:
+          - article-store-postgres
+    article-store-postgres:
         image: postgres:9.6.8-alpine
         environment:
           - POSTGRES_USER=root
@@ -44,7 +55,69 @@ services:
         ports:
           - '5432:5432'
         volumes:
-          - 'postgres:/var/lib/postgresql/data'
+          - 'article-store-postgres:/var/lib/postgresql/data'
+    dashboard-events:
+        build:
+            context: ./dashboard
+        volumes:
+            - ./dashboard:/srv/app
+            - /srv/app/public/bundles
+            - /srv/app/var
+            - /srv/app/vendor
+        environment:
+            - APP_ENV=dev
+            - APP_SECRET=f6a87c2e031ecadc0d7eb442729435c7
+            - DATABASE_URL=pgsql://postgres:@dashboard-postgres:5432/postgres
+            - RABBITMQ_URL=amqp://guest:guest@event-bus:5672
+        command: bash -c 'wait-for-port event-bus 5672 && bin/console rabbitmq:consumer events'
+        depends_on:
+            - event-bus
+            - dashboard-postgres
+    dashboard-fpm:
+        build:
+            context: ./dashboard
+        volumes:
+            - ./dashboard:/srv/app
+            - /srv/app/public/bundles
+            - /srv/app/var
+            - /srv/app/vendor
+        environment:
+            - APP_ENV=dev
+            - APP_SECRET=f6a87c2e031ecadc0d7eb442729435c7
+            - DATABASE_URL=pgsql://postgres:@dashboard-postgres:5432/postgres
+        depends_on:
+            - dashboard-postgres
+    dashboard-nginx:
+        image: nginx:1.13
+        ports:
+            - '8082:80'
+        volumes:
+            - ./dashboard/.docker/nginx-server.conf:/etc/nginx/conf.d/default.conf
+            - ./dashboard/public:/srv/app/public
+        depends_on:
+            - dashboard-fpm
+    dashboard-postgres:
+        image: postgres:9.6.8-alpine
+    dashboard-postgres-schema:
+        build:
+            context: ./dashboard
+        volumes:
+            - ./dashboard:/srv/app
+            - /srv/app/public/bundles
+            - /srv/app/var
+            - /srv/app/vendor
+        environment:
+            - APP_ENV=dev
+            - APP_SECRET=f6a87c2e031ecadc0d7eb442729435c7
+            - DATABASE_URL=pgsql://postgres:@dashboard-postgres:5432/postgres
+        command: bash -c 'wait-for-port dashboard-postgres 5432 && bin/console doctrine:schema:update --force'
+        depends_on:
+            - dashboard-postgres
+    event-bus:
+        image: rabbitmq:3.7.4-management-alpine
+        ports:
+          - '8083:15672'
+          - '8084:5672'
     journal-fpm:
         build:
             context: ./journal
@@ -55,10 +128,10 @@ services:
             - /srv/app/vendor
         environment:
             - APP_ENV=dev
-            - APP_LIBERO_API=http://article-store:8000
+            - APP_LIBERO_API=http://api-gateway
             - APP_SECRET=f6a87c2e031ecadc0d7eb442729435c6
         depends_on:
-            - api-dummy-nginx
+            - api-gateway
     journal-nginx:
         image: nginx:1.13
         ports:
@@ -68,5 +141,6 @@ services:
             - ./journal/public:/srv/app/public
         depends_on:
             - journal-fpm
+
 volumes:
-  postgres:
+    article-store-postgres:

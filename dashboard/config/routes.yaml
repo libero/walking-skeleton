@@ -1,0 +1,3 @@
+home:
+    path: /
+    controller: Libero\Dashboard\Controller\HomeController
