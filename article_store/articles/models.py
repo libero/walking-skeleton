@@ -11,7 +11,7 @@ READY = 'ready'
 
 ARTICLE_STATUSES = (
     (PREVIEW, 'preview'),
-    (PUBLISHED, 'Published'),
+    (PUBLISHED, 'published'),
     (READY, 'ready'),
 )
 
