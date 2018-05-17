@@ -104,7 +104,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-APPEND_SLASH = True
+APPEND_SLASH = False
 
 LANGUAGE_CODE = 'en-us'
 
