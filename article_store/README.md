@@ -118,3 +118,13 @@ Examples:
 `curl -v http://localhost:8000/articles/0065/latest/body -X GET`
 
 
+## Admin Interface
+
+#### Create an admin user
+To create the first user for the admin interface run the following command:
+
+`docker-compose run article-store pipenv run python manage.py createsuperuser`
+
+Then enter your desired username, email and password.
+
+You can then access: `/admin` to log in.
