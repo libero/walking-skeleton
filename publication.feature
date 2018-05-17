@@ -33,11 +33,11 @@ Feature: Publication of an article
     And I should see the article X in pr on journal
 
   @future
-  Scenario: Figures versions
+  Scenario: Figures
     Given an article X with 2 figures
     When I ingest and publish article X
-    Then I should see version 2 of article X on the dashboard in published state
-    And I should see version 2 of article X on journal
+    Then I should see article X on the dashboard in published state
+    And I should see article X on journal
 
   @future
   Scenario: Input formats
