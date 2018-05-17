@@ -60,7 +60,6 @@ class Article(models.Model):
 
 
 class ArticleVersion(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     article = models.ForeignKey(Article, related_name='versions', on_delete=models.CASCADE)
     status = models.CharField(max_length=50, choices=ARTICLE_VERSION_STATUSES, default=PREVIEW)
     version = models.IntegerField(default=1)
@@ -72,7 +71,7 @@ class ArticleVersion(models.Model):
 
 
 class Content(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid1, editable=False)
     article_version = models.ForeignKey(ArticleVersion, related_name='content_items', on_delete=models.CASCADE)
     language = models.CharField(max_length=50)
     name = models.CharField(max_length=250)  # TODO has to be unique per version ??
