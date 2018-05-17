@@ -1,25 +1,36 @@
 import os
-import configparser
+import dj_database_url
 
 
 PROJECT_NAME = 'article-store'
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-CFG_PATH = os.path.join(BASE_DIR, '.')
-CFG_NAME = 'app.cfg'
-CONF = configparser.ConfigParser()
-CONF.read(os.path.join(CFG_PATH, CFG_NAME))
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler'
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    },
+}
 
-DEFAULT_LOG_DIR = CONF.get('logging', 'path')
+ENVIRONMENT = os.environ.get('APP_ENV', 'dev')
 
-SECRET_KEY = CONF.get('django', 'secret_key')
+SECRET_KEY = os.environ.get('APP_SECRET', 'secret')
 
-DEBUG = CONF.getboolean('django', 'debug', fallback=False)
+DEBUG = ENVIRONMENT in ['ci', 'dev']
 
-CI = CONF.getboolean('django', 'ci', fallback=False)
+CI = ENVIRONMENT == 'ci'
 
-ALLOWED_HOSTS = CONF.get('django', 'allowed_hosts').split(',')
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost').split(',')
 
 INTERNAL_IPS = '127.0.0.1'
 
@@ -78,14 +89,7 @@ if CI:
 
 else:
     DATABASES = {
-        'default': {
-            'ENGINE': CONF.get('database', 'engine'),
-            'USER': CONF.get('database', 'user'),
-            'PASSWORD': CONF.get('database', 'password'),
-            'HOST': CONF.get('database', 'host'),
-            'PORT': CONF.get('database', 'port'),
-            'NAME': CONF.get('database', 'name'),
-        }
+        'default': dj_database_url.config(),
     }
 
 

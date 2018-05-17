@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "14ee02683d96e15234513b04912966987a2c8857ee8a9e1e9604508517c3286a"
+            "sha256": "3d536bb33c56758bbaadee6ab0e58c61b0592226e19f190769dee0f169e4fc69"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -34,6 +34,13 @@
             "hashes": [
                 "sha256:24d7f2f94f7f3cb6061acb215685e5125fbcdc40a857eff9de22518820b0a4f4",
                 "sha256:702a91ade2968a82beb0db1e0766a6a273f33d4616a6ce8cde475d8e09853b20"
+            ],
+            "version": "==0.5.0"
+        },
+        "dj-database-url": {
+            "hashes": [
+                "sha256:4aeaeb1f573c74835b0686a2b46b85990571159ffc21aa57ecd4d1e1cb334163",
+                "sha256:851785365761ebe4994a921b433062309eb882fedd318e1b0fcecc607ed02da9"
             ],
             "version": "==0.5.0"
         },
