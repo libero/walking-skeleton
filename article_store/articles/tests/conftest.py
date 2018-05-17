@@ -5,7 +5,7 @@ from django.test.client import Client
 import pytest
 from rest_framework.test import APIClient
 
-from articles.fixtures import FIXTURES_DIR
+from articles.tests.fixtures import FIXTURES_DIR
 from articles.models import (
     Article,
     ArticleVersion,
