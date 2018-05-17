@@ -3,6 +3,7 @@ from lxml.etree import (
     SubElement,
     tostring,
 )
+from django.db import transaction
 from django.db.models import QuerySet
 from django.http.response import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
@@ -69,14 +70,15 @@ class ArticleXMLAPIView(APIView):
         if not article_id or not Article.id_is_valid(article_id):
             return Response({'error': 'Please provide a valid article id'}, status=status.HTTP_406_NOT_ACCEPTABLE)
 
-        article, created = Article.objects.get_or_create(id=article_id)
-        article_version = ArticleVersion.objects.create(version=article.next_version,
-                                                        article=article)
+        with transaction.atomic():
+            article, created = Article.objects.get_or_create(id=article_id)
+            article_version = ArticleVersion.objects.create(version=article.next_version,
+                                                            article=article)
 
-        for content_item in request.data.get('content-list', []):
-            Content.objects.create(article_version=article_version, **content_item)
+            for content_item in request.data.get('content-list', []):
+                Content.objects.create(article_version=article_version, **content_item)
 
-        serializer = ArticleVersionSerializer(article_version)
+            serializer = ArticleVersionSerializer(article_version)
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
@@ -92,13 +94,14 @@ class ArticleXMLAPIView(APIView):
         if article_id and version:
             article_version = ArticleVersion.objects.get(version=version, article_id=article_id)
 
-            old_content = Content.objects.filter(article_version=article_version)
-            old_content.delete()
+            with transaction.atomic():
+                old_content = Content.objects.filter(article_version=article_version)
+                old_content.delete()
 
-            for content_item in request.data.get('content-list', []):
-                Content.objects.create(article_version=article_version, **content_item)
+                for content_item in request.data.get('content-list', []):
+                    Content.objects.create(article_version=article_version, **content_item)
 
-            serializer = ArticleVersionSerializer(article_version)
+                serializer = ArticleVersionSerializer(article_version)
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
