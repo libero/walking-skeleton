@@ -14,9 +14,10 @@ def test_can_create_article(article: Article):
 
 @pytest.mark.django_db
 def test_can_get_latest_version(article: Article,
+                                article_version_1: ArticleVersion,
                                 article_version_2: ArticleVersion,
                                 article_version_3: ArticleVersion):
-    assert article.latest_version == 3
+    assert article.version_count == 3
 
 
 @pytest.mark.django_db

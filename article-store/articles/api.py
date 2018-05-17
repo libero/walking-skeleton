@@ -123,7 +123,7 @@ class ArticleXMLAPIView(APIView):
                 article.delete()
             else:
                 if version == self.latest:
-                    version = article.latest_version
+                    version = article.version_count
 
                 article_versions = ArticleVersion.objects.filter(article_id=article_id)
 
@@ -154,7 +154,7 @@ class ArticleXMLAPIView(APIView):
             article = Article.objects.get(id=article_id)
 
             if version == self.latest:
-                version = article.latest_version
+                version = article.version_count
 
             article_version = ArticleVersion.objects\
                 .filter(article_id=article_id)\
