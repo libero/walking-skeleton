@@ -23,23 +23,23 @@ class Article(models.Model):
                           validators=[RegexValidator(regex=ARTICLE_ID_FORMAT)])
 
     article_id_format = ARTICLE_ID_FORMAT
-    default_version = 0
+    default_version_count = 0
 
     def __str__(self):
         return f'{self.id}'
 
     @property
-    def latest_version(self) -> int:
-        """Finds the latest associated `ArticleVersion.version`.
+    def version_count(self) -> int:
+        """Count the associated `ArticleVersion.version`.
 
         :return: int
         """
         versions = self.versions.all()
 
         if versions:
-            return max([version.version for version in versions])
+            return versions.count()
 
-        return self.default_version
+        return self.default_version_count
 
     @property
     def next_version(self) -> int:
@@ -47,7 +47,7 @@ class Article(models.Model):
 
         :return: int
         """
-        return self.latest_version + 1
+        return self.version_count + 1
 
     @classmethod
     def id_is_valid(cls, article_id) -> bool:
