@@ -1,0 +1,13 @@
+services:
+    _defaults:
+        autoconfigure: true
+        autowire: true
+        public: false
+
+    Libero\Dashboard\:
+        resource: '../src/*'
+        exclude: '../src/{Kernel.php}'
+
+    Libero\Dashboard\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']

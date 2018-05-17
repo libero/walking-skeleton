@@ -1,20 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://libero.pub">
+<grammar ns="http://libero.pub" xmlns="http://relaxng.org/ns/structure/1.0"
+    xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">
 
     <include href="../core.rng"/>
 
-    <start combine="choice">
-
-        <element name="body">
-            <ref name="libero.body.content"/>
-        </element>
-
+    <start>
+        <ref name="libero.body"/>
     </start>
 
-    <define name="libero.body.content">
-        <ref name="libero.attrib.lang"/>
-        <ref name="libero.blocks.full.model"/>
-    </define>
+    <div>
+        <a:documentation>body element</a:documentation>
+
+        <define name="libero.body">
+            <element name="body">
+                <ref name="libero.body.attributes"/>
+                <ref name="libero.body.content"/>
+            </element>
+        </define>
+
+        <define name="libero.body.attributes">
+            <ref name="libero.attributes.lang"/>
+        </define>
+
+        <define name="libero.body.content">
+            <ref name="libero.blocks.full.model"/>
+        </define>
+
+    </div>
 
 </grammar>
