@@ -8,7 +8,7 @@
 
     <define name="libero.blocks.code">
         <element name="code">
-            <ref name="libero.attrib.space"/>
+            <ref name="libero.attributes.space"/>
             <text/>
         </element>
     </define>

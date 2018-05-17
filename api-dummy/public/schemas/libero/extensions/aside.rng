@@ -5,7 +5,7 @@
     <define name="libero.blocks.full.class" combine="choice">
         <ref name="libero.blocks.aside"/>
     </define>
-    
+
     <define name="libero.blocks.aside">
         <element name="aside">
             <ref name="libero.blocks.aside.model"/>
@@ -13,11 +13,15 @@
     </define>
 
     <define name="libero.blocks.aside.model">
-        <ref name="libero.attrib.lang.optional"/>
+        <optional>
+            <ref name="libero.attributes.lang"/>
+        </optional>
         <interleave>
             <ref name="libero.blocks.object.model"/>
             <element name="label">
-                <ref name="libero.attrib.lang.optional"/>
+                <optional>
+                    <ref name="libero.attributes.lang"/>
+                </optional>
                 <ref name="libero.text.limited.model"/>
             </element>
             <element name="content">
@@ -25,5 +29,5 @@
             </element>
         </interleave>
     </define>
-    
+
 </grammar>

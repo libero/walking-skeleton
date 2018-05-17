@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<?xml-model href="http://localhost:8081/schemas/wikipedia/article/front.rng"?>
+
+<front xmlns="http://libero.pub" xmlns:wiki="http://wikipedia.org" xml:lang="zh">
+
+    <!-- https://zh.wikipedia.org/wiki/维基百科 -->
+
+    <id>wikipedia</id>
+    <title>维基百科</title>
+    <abstract id="abstract">
+        <p><b>维基百科</b>（英语：<foreign xml:lang="en">Wikipedia</foreign>）是一個网络百科全书项目，特点是自由內容、自由编辑。它目前是全球網絡上最大且最受大眾歡迎的参考工具书，名列全球十大最受歡迎的網站。維基百科目前由非營利組織維基媒體基金會負責營運。Wikipedia是一个混成詞，分别取自於網站核心技術「Wiki」以及英文中百科全書之意的「encyclopedia」。</p>
+    </abstract>
+
+</front>

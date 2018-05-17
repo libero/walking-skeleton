@@ -6,11 +6,13 @@
     <define name="libero.blocks.object.model">
         <interleave>
             <optional>
-                <ref name="libero.attrib.id"/>
+                <ref name="libero.attributes.id"/>
             </optional>
             <optional>
                 <element name="title">
-                    <ref name="libero.attrib.lang.optional"/>
+                    <optional>
+                        <ref name="libero.attributes.lang"/>
+                    </optional>
                     <ref name="libero.text.limited.model"/>
                 </element>
             </optional>
@@ -48,7 +50,9 @@
     <define name="libero.blocks.figure.asset.model">
         <interleave>
             <element name="label">
-                <ref name="libero.attrib.lang.optional"/>
+                <optional>
+                    <ref name="libero.attributes.lang"/>
+                </optional>
                 <ref name="libero.text.limited.model"/>
             </element>
             <ref name="libero.blocks.figure.asset.class"/>
@@ -118,7 +122,9 @@
         <interleave>
             <ref name="libero.blocks.object.model"/>
             <element name="label">
-                <ref name="libero.attrib.lang.optional"/>
+                <optional>
+                    <ref name="libero.attributes.lang"/>
+                </optional>
                 <ref name="libero.text.limited.model"/>
             </element>
             <element name="source">
@@ -194,7 +200,9 @@
     </define>
 
     <define name="libero.blocks.paragraph.model">
-        <ref name="libero.attrib.lang.optional"/>
+        <optional>
+            <ref name="libero.attributes.lang"/>
+        </optional>
         <ref name="libero.text.full.model"/>
     </define>
 

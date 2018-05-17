@@ -16,55 +16,69 @@
                 <ref name="libero.types.uri.fragment"/>
             </choice>
         </attribute>
-        <ref name="libero.attrib.lang.optional"/>
+        <optional>
+            <ref name="libero.attributes.lang"/>
+        </optional>
         <ref name="libero.text.full.model"/>
     </define>
 
     <define name="libero.text.b">
         <element name="b">
-            <ref name="libero.attrib.lang.optional"/>
+            <optional>
+                <ref name="libero.attributes.lang"/>
+            </optional>
             <ref name="libero.text.full.model"/>
         </element>
     </define>
 
     <define name="libero.text.foreign">
         <element name="foreign">
-            <ref name="libero.attrib.lang"/>
+            <ref name="libero.attributes.lang"/>
             <ref name="libero.text.limited.model"/>
         </element>
     </define>
 
     <define name="libero.text.i">
         <element name="i">
-            <ref name="libero.attrib.lang.optional"/>
+            <optional>
+                <ref name="libero.attributes.lang"/>
+            </optional>
             <ref name="libero.text.full.model"/>
         </element>
     </define>
-    
+
     <define name="libero.text.monospace">
         <element name="monospace">
-            <ref name="libero.attrib.lang.optional"/>
+            <optional>
+                <ref name="libero.attributes.lang"/>
+            </optional>
             <ref name="libero.text.limited.model"/>
         </element>
     </define>
-    
+
     <define name="libero.text.sc">
         <element name="sc">
-            <ref name="libero.attrib.lang.optional"/>
+            <optional>
+                <ref name="libero.attributes.lang"/>
+            </optional>
             <ref name="libero.text.limited.model"/>
         </element>
     </define>
 
     <define name="libero.text.sub">
         <element name="sub">
-            <ref name="libero.attrib.lang.optional"/>
+            <optional>
+                <ref name="libero.attributes.lang"/>
+            </optional>
             <ref name="libero.text.limited.model"/>
         </element>
     </define>
 
     <define name="libero.text.sup">
         <element name="sup">
-            <ref name="libero.attrib.lang.optional"/>
+            <optional>
+                <ref name="libero.attributes.lang"/>
+            </optional>
             <ref name="libero.text.limited.model"/>
         </element>
     </define>
@@ -77,7 +91,7 @@
             </choice>
         </oneOrMore>
     </define>
-    
+
     <define name="libero.text.limited.class">
         <choice>
             <ref name="libero.text.b"/>
@@ -87,7 +101,7 @@
             <ref name="libero.text.sup"/>
         </choice>
     </define>
-    
+
     <define name="libero.text.full.model">
         <oneOrMore>
             <choice>
@@ -96,7 +110,7 @@
             </choice>
         </oneOrMore>
     </define>
-    
+
     <define name="libero.text.full.class">
         <choice>
             <ref name="libero.text.a"/>

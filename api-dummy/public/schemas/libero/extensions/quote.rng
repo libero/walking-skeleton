@@ -18,7 +18,9 @@
         </element>
         <optional>
             <element name="cite">
-                <ref name="libero.attrib.lang.optional"/>
+                <optional>
+                    <ref name="libero.attributes.lang"/>
+                </optional>
                 <ref name="libero.text.limited.model"/>
             </element>
         </optional>

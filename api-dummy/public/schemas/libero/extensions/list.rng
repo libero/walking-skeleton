@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://libero.pub">
-    
+
     <define name="libero.blocks.limited.class" combine="choice">
         <ref name="libero.blocks.list"/>
     </define>
-    
+
     <define name="libero.blocks.list">
         <element name="list">
             <optional>
@@ -16,13 +16,13 @@
             <ref name="libero.blocks.list.model"/>
         </element>
     </define>
-    
+
     <define name="libero.blocks.list.model">
         <oneOrMore>
             <ref name="libero.blocks.list.item"/>
         </oneOrMore>
     </define>
-    
+
     <define name="libero.blocks.list.prefix">
         <choice>
             <value>alpha-lower</value>
@@ -33,15 +33,17 @@
             <value>roman-upper</value>
         </choice>
     </define>
-    
+
     <define name="libero.blocks.list.item">
         <element name="item">
             <ref name="libero.blocks.list.item.model"/>
         </element>
     </define>
-    
+
     <define name="libero.blocks.list.item.model">
-        <ref name="libero.attrib.lang.optional"/>
+        <optional>
+            <ref name="libero.attributes.lang"/>
+        </optional>
         <choice>
             <ref name="libero.text.full.model"/>
             <ref name="libero.blocks.limited.model"/>

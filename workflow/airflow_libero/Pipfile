@@ -1,0 +1,30 @@
+[[source]]
+
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+
+[packages]
+
+apache-airflow = {extras = ["crypto", "celery", "postgres", "hive", "jdbc", "mysql"], version = "~=1.9.0"}
+beautifulsoup4 = "~=4.6.0"
+boto3 = "~=1.7.10"
+celery = {extras = ["redis"], version = "~=4.0.2"}
+Cython = "~=0.28.2"
+flower = "~=0.7.3"
+ndg-httpsclient = "~=0.5.0"
+pika = "~=0.11.2"
+psycopg2 = "~=2.7.4"
+pyOpenSSL = "~=17.5.0"
+pyasn1 = "~=0.4.2"
+pytz = "~=2018.4"
+requests = "~=2.18.4"
+
+[dev-packages]
+
+
+
+[requires]
+
+python_version = "3.6"
