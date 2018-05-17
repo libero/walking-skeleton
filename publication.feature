@@ -1,40 +1,48 @@
 Feature: Publication of an article
 
-  Scenario: Ingest an article
-    Given a new article X
-    When I ingest article X
-    Then I should see article X on the dashboard in ready-to-publish state
+  Scenario: Make an article version ready to publish
+    Given version 1 of article 1234 is in English
+    And I can publish articles
+    When version 1 of article 1234 is sent to the Article Store
+    Then I can see version 1 of article 1234 on the Dashboard
+    And I can publish version 1 of article 1234
 
-  Scenario: Publish an article
-    Given an ingested article X
-    #When I publish article X from the dashboard
-    When I publish article X
-    Then I should see article X on the dashboard in published state
-    And I should see article X on journal
-
-  @future
-  Scenario: Preview an article
-    Given a new article X
-    When I ingest article X
-    Then I should see a preview of article X on journal
+  Scenario: Update an article version
+    Given version 1 of article 1234 is in English
+    And version 1 of article 1234 is in the Article Store
+    When version 1 of article 1234 is updated
+    And version 1 of article 1234 is sent to the Article Store
+    Then I can see the update to version 1 of article 1234 on the Dashboard
 
   @future
-  Scenario: Multiple versions
-    Given a published article X
-    When I ingest and publish version 2 of article X from the dashboard
-    Then I should see version 2 of article X on the dashboard in published state
-    And I should see version 2 of article X on journal
+  Scenario: Preview an article version
+    Given version 1 of article 1234 is in English
+    And I can preview articles on Journal
+    When version 1 of article 1234 is sent to the Article Store
+    Then I can preview version 1 of article 1234 on Journal
 
   @future
-  Scenario: Multilingual articles
-    Given an ingested article X in languages en and pr
-    When I ingest and publish article X
-    Then I should see article X on journal
-    And I should see the article X in pr on journal
+  Scenario: Publish an article version
+    Given version 1 of article 1234 is in English
+    And version 1 of article 1234 is in the Article Store
+    When I publish version 1 of article 1234
+    Then I can see that version 1 of article 1234 has been published on the Dashboard
+    And I can read version 1 of article 1234 on Journal
 
   @future
-  Scenario: Figures
-    Given an article X with 2 figures
-    When I ingest and publish article X
-    Then I should see article X on the dashboard in published state
-    And I should see article X on journal
+  Scenario: Publish multiple versions of an article
+    Given version 1 of article 1234 is in English
+    And version 1 of article 1234 has been published
+    And version 2 of article 1234 is in English
+    And version 2 of article 1234 is in the Article Store
+    When I publish version 2 of article 1234
+    Then I can see version 2 of article 1234 has been published on the Dashboard
+    And I can read version 2 of article 1234 on Journal
+
+  @future
+  Scenario: Publish an article version in multiple languages
+    Given version 1 of article 1234 is in English and Portuguese
+    And version 1 of article 1234 is in the Article Store
+    When I publish version 1 of article 1234
+    Then I can read version 1 of article 1234 in English on Journal
+    And I can read version 1 of article 1234 in Portuguese on Journal
