@@ -5,8 +5,8 @@ RUN pip install pipenv
 ADD . /srv/app/
 WORKDIR /srv/app/
 
-RUN pipenv install --system
+RUN pipenv install --deploy
 
 WORKDIR /srv/app/
 
-CMD python manage.py migrate && python manage.py runserver 0.0.0.0:8000
+CMD pipenv run python manage.py migrate && pipenv run python manage.py runserver 0.0.0.0:8000
