@@ -9,7 +9,7 @@ PREVIEW = 'preview'
 PUBLISHED = 'published'
 READY = 'ready'
 
-ARTICLE_STATUSES = (
+ARTICLE_VERSION_STATUSES = (
     (PREVIEW, 'preview'),
     (PUBLISHED, 'published'),
     (READY, 'ready'),
@@ -37,7 +37,7 @@ class Article(models.Model):
         versions = self.versions.all()
 
         if versions:
-            return max([version.version for version in versions ])
+            return max([version.version for version in versions])
 
         return self.default_version
 
@@ -62,7 +62,7 @@ class Article(models.Model):
 class ArticleVersion(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     article = models.ForeignKey(Article, related_name='versions', on_delete=models.CASCADE)
-    status = models.CharField(max_length=50, choices=ARTICLE_STATUSES, default=PREVIEW)
+    status = models.CharField(max_length=50, choices=ARTICLE_VERSION_STATUSES, default=PREVIEW)
     version = models.IntegerField(default=1)
 
     # TODO needs check on version number unique, e.g. can't save x2 version 1's
