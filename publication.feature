@@ -38,9 +38,3 @@ Feature: Publication of an article
     When I ingest and publish article X
     Then I should see article X on the dashboard in published state
     And I should see article X on journal
-
-  @future
-  Scenario: Input formats
-    Given an article X in JATS format
-    When I ingest and publish article X
-    Then I should see article X on journal
