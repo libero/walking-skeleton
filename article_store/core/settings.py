@@ -15,9 +15,9 @@ DEFAULT_LOG_DIR = CONF.get('logging', 'path')
 
 SECRET_KEY = CONF.get('django', 'secret_key')
 
-DEBUG = CONF.get('django', 'debug', fallback=False)
+DEBUG = CONF.getboolean('django', 'debug', fallback=False)
 
-CI = CONF.get('django', 'ci', fallback=False)
+CI = CONF.getboolean('django', 'ci', fallback=False)
 
 ALLOWED_HOSTS = CONF.get('django', 'allowed_hosts').split(',')
 
