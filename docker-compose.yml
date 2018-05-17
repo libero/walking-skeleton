@@ -34,10 +34,10 @@ services:
             - article-store
     article-store:
         build:
-            context: ./article_store
+            context: ./article-store
         command: >
                 /bin/bash -c "
-                    until echo > /dev/tcp/postgres/5432; do sleep 1; done
+                    until echo > /dev/tcp/article-store-postgres/5432; do sleep 1; done
                     pipenv run python manage.py migrate articles
                     pipenv run python manage.py migrate
                     pipenv run python manage.py runserver 0.0.0.0:8000
@@ -45,8 +45,8 @@ services:
         ports:
           - '8000:8000'
         depends_on:
-          - postgres
-    postgres:
+          - article-store-postgres
+    article-store-postgres:
         image: postgres:9.6.8-alpine
         environment:
           - POSTGRES_USER=root
@@ -55,7 +55,7 @@ services:
         ports:
           - '5432:5432'
         volumes:
-          - 'postgres:/var/lib/postgresql/data'
+          - 'article-store-postgres:/var/lib/postgresql/data'
     dashboard-events:
         build:
             context: ./dashboard
@@ -141,5 +141,6 @@ services:
             - ./journal/public:/srv/app/public
         depends_on:
             - journal-fpm
+
 volumes:
-  postgres:
+    article-store-postgres:
