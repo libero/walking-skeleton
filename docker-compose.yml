@@ -38,7 +38,6 @@ services:
         command: >
                 /bin/bash -c "
                     until echo > /dev/tcp/article-store-postgres/5432; do sleep 1; done
-                    pipenv run python manage.py migrate articles
                     pipenv run python manage.py migrate
                     pipenv run python manage.py runserver 0.0.0.0:8000
                 "
