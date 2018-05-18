@@ -18,9 +18,11 @@ Some services may require a generic binding to many other exchanges in the inter
 
 ## Decision
 
-Create an `exchange` for each data type, as part of a service publishing events.
+Create an `exchange` for each data type or activity, as part of a service publishing events.
 
 Create one `queue` as part of a service consuming events.
+
+Bind each `queue` to as many exchanges as needed, using correlation ids to aggregate events relating to the same data type.
 
 A service may have optional binds, which will only subscribe its `queue` to another service's `exchange` if enabled or dynamically configured as a plugin.
 
