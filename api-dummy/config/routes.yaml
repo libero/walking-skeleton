@@ -1,5 +1,5 @@
 article:
-    path: /articles/{id}/{version}/{part}
+    path: /articles/{id}/versions/{version}/{part}
     controller: Libero\ApiDummy\Controller\ArticleController
     requirements:
         id: '[A-Za-z0-9\-._]+'

@@ -32,7 +32,7 @@ final class HomeController
             ->then(function (Document $articles) use ($request) : PromiseInterface {
                 $promises = [];
                 foreach ($articles->find('libero:articles/libero:article') as $article) {
-                    $promises[] = $this->apiClient->requestAsync('GET', "articles/{$article->toText()}/latest", ['headers' => ['Accept-Language' => $request->getLocale()]]);
+                    $promises[] = $this->apiClient->requestAsync('GET', "articles/{$article->toText()}/versions/latest", ['headers' => ['Accept-Language' => $request->getLocale()]]);
                 }
 
                 return all($promises);
