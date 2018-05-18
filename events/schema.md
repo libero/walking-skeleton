@@ -126,8 +126,8 @@ For clarity, the example data is included with JS syntax (e.g. allowing comments
 ## Fields
 
 - `eventId` is unique for all events. It is a UUID version 1 generated with time and a node identifier.
-- `happenedAt` identifies when the event has happened (then it can get published, consumed, etc).
-- `aggregate` identifies the unit of consistency that has produced the event: article run in the bot, article version in the articles, store podcast episode in journal-cms, an article's set of metrics in metrics, a single profile in profiles. All three information are required to uniquely identify it: `service`, `name`, `identifier`.
-- `type` describes what the event is about so that they can be grouped or recognized.
+- `happenedAt` identifies when the event has happened (then it can get published, consumed, etc). It follows the `yyyy-mm-ddTHH:MM:SS+00:00` ISO 8601 format, and is expressed in UTC.
+- `aggregate` identifies the unit of consistency that has produced the event: article run in the bot, article version in the articles store, podcast episode in journal-cms, an article's set of metrics in metrics, a single profile in profiles. All three information are required to uniquely identify it: `service`, `name`, `identifier`.
+- `type` describes what the event is about so that they can be grouped or recognized. It follows the `[a-z\-\.]+` regular expression, with `.` separating hierarchical levels and `-` separating words in a single level (if there are multiple words).
 - `data` is opaque here, and can contain anything as long as it follows naming conventions. Events with the same `type` should usually follow the same schema.
-- `correlationIds` can be used to track events across services, grouping them by the kind of session that originated them or the data type they refer to. Could be an article run during ingestion, or a journal page creating a profile. It is optional at this time.
+- `correlationIds` can be used to track events across services, grouping them by the kind of session that originated them or the data type they refer to. Could be an article run during ingestion, or a journal page creating a profile. It is optional at this time. Services should normally add correlation ids from events they have triggered them to the new events being produced.
