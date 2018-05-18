@@ -35,10 +35,12 @@ services:
     article-store:
         build:
             context: ./article-store
+        ports:
+            - '8000:8000'
         volumes:
             - ./article-store:/srv/app
         environment:
-            - ALLOWED_HOSTS=article-store
+            - ALLOWED_HOSTS=article-store,localhost
             - APP_ENV=dev
             - APP_SECRET=f6a87c2e031ecadc0d7eb442729435c8
             - DATABASE_URL=postgres://postgres:@article-store-postgres:5432/postgres
