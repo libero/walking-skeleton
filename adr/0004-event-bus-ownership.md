@@ -24,13 +24,15 @@ Create one `queue` as part of a service consuming events.
 
 Bind each `queue` to as many exchanges as needed, using correlation ids to aggregate events relating to the same data type.
 
+The consuming-events-from relationship between services is unidirectional and must be acyclic.
+
 A service may have optional binds, which will only subscribe its `queue` to another service's `exchange` if enabled or dynamically configured as a plugin.
 
 ## Consequences
 
 Service have a [partial order](https://en.wikipedia.org/wiki/Partially_ordered_set) to follow for setup.
 
-The consuming-events-from relationship between services is unidirectional and must be acyclic:
+The acyclic event consumption implies that:
 
 - service B, consuming events from A, cannot publish events for A to consume
 - service C, consuming events from B, also cannot publish events for A to consume
