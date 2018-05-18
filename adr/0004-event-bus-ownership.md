@@ -22,8 +22,6 @@ Create an `exchange` for each data type, as part of a service publishing events.
 
 Create one `queue` as part of a service consuming events.
 
-Create more than one `queue` in a service if specialized behavior is required, in opposition to a generic type of consumer process.
-
 A service may have optional binds, which will only subscribe its `queue` to another service's `exchange` if enabled or dynamically configured as a plugin.
 
 ## Consequences
