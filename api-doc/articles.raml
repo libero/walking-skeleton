@@ -1,0 +1,130 @@
+#%RAML 1.0 ResourceType
+title: Libero walking skeleton articles
+
+uses:
+    base: base.raml
+
+types:
+    ArticleID:
+        type: string
+        pattern: ^[A-Za-z0-9\-._]+$
+    ArticleVersionFront:
+        type: !include http://schemas:80/article/front.rng
+    ArticleVersionBody:
+        type: !include http://schemas:80/article/body.rng
+    Version:
+        type: LatestVersion | NumberVersion
+    LatestVersion:
+        type: string
+        enum: [latest]
+    NumberVersion:
+        type: integer
+        minimum: 1
+
+type: base.collection
+description: |
+    List all articles
+get:
+    description: |
+        Get a list of articles.
+    responses:
+        200:
+            description: |
+                List of articles.
+            body:
+                application/xml:
+
+/{id}:
+    type:
+        base.item:
+            resource: Article
+    description: |
+        Single article.
+    uriParameters:
+        id:
+            description: |
+                Article ID.
+            type: ArticleID
+    delete:
+        description: |
+            Delete an article.
+        responses:
+            202:
+                description: |
+                    Deletion request accepted.
+
+    /versions:
+        description: |
+            Versions of an article.
+
+        post:
+            description: |
+                Create an article version.
+            responses:
+                202:
+                    description: |
+                        Creation request accepted.
+
+        /{version}:
+            type:
+                base.item:
+                    resource: Article version
+            description: |
+                Article version.
+            uriParameters:
+                version:
+                    description: |
+                        Article version number.
+                    type: Version
+            delete:
+                description: |
+                    Delete an article version.
+                responses:
+                    202:
+                        description: |
+                            Deletion request accepted.
+            put:
+                description: |
+                    Update an article version.
+                responses:
+                    202:
+                        description: |
+                            Update request accepted.
+
+            /front:
+                type:
+                    base.item:
+                        resource: Article version front
+                description: |
+                    Article version front.
+                get:
+                    description: |
+                        Get article version front.
+                    is:
+                        - base.hasLanguage
+                    responses:
+                        200:
+                            description: |
+                                Article version front.
+                            body:
+                                application/xml:
+                                    type: ArticleVersionFront
+
+            /body:
+                type:
+                    base.item:
+                        resource: Article version body
+                description: |
+                    Article version body.
+                get:
+                    description: |
+                        Get article version body.
+                    is:
+                        - base.hasLanguage
+                    responses:
+                        200:
+                            description: |
+                                Article version body.
+                            body:
+                                application/xml:
+                                    type: ArticleVersionBody

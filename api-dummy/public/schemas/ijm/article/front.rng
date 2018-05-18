@@ -2,9 +2,9 @@
 
 <grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://microsimulation.org">
 
-    <include href="../../libero/article/front.rng"/>
+    <include href="http://localhost:8086/article/front.rng"/>
 
-    <include href="../../libero/extensions/abstract.rng"/>
+    <include href="http://localhost:8086/extensions/abstract.rng"/>
 
     <define name="libero.front.content" combine="interleave">
         <optional>

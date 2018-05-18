@@ -1,0 +1,48 @@
+#%RAML 1.0 Library
+usage: Use to define some basic constructs.
+
+resourceTypes:
+    base:
+        get?: &common
+    item:
+        type: base
+        usage: This resource type should be used for any single item.
+        get?:
+            responses:
+                404:
+                    description: |
+                        <<resource>> is not found.
+                    body:
+                        application/problem+xml:
+                            type: !include http://schemas:80/rfc7807.rng
+                            example: !include samples/errors/not-found.xml
+                410:
+                    description: |
+                        <<resource>> has been removed.
+                    body:
+                        application/problem+xml:
+                            type: !include http://schemas:80/rfc7807.rng
+                            example: !include samples/errors/removed.xml
+    collection:
+        type: base
+        usage: This resourceType should be used for any collection of items.
+        get?:
+
+traits:
+    hasLanguage:
+        headers:
+            Accept-Language:
+                required: false
+                type: string
+                pattern: /\*|[A-Z]{1,8}(-[A-Z0-9]{1,8})*/i
+                default: '*'
+                examples:
+                    any:
+                        displayName: Any language
+                        value: '*'
+                    one:
+                        displayName: One language
+                        value: en
+                    many:
+                        displayName: Multiple languages
+                        value: fr-CH, fr;q=0.9, en;q=0.8, de;q=0.7, *;q=0.5

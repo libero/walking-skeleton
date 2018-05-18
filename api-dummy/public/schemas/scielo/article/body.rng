@@ -2,13 +2,13 @@
 
 <grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://scielo.org">
 
-    <include href="../../libero/article/body.rng"/>
+    <include href="http://localhost:8086/article/body.rng"/>
     
-    <include href="../../libero/extensions/aside.rng"/>
-    <include href="../../libero/extensions/list.rng"/>
-    <include href="../../libero/extensions/mathml.rng"/>
-    <include href="../../libero/extensions/quote.rng"/>
-    <include href="../../libero/extensions/section.rng"/>
-    <include href="../../libero/extensions/table.rng"/>
+    <include href="http://localhost:8086/extensions/aside.rng"/>
+    <include href="http://localhost:8086/extensions/list.rng"/>
+    <include href="http://localhost:8086/extensions/mathml.rng"/>
+    <include href="http://localhost:8086/extensions/quote.rng"/>
+    <include href="http://localhost:8086/extensions/section.rng"/>
+    <include href="http://localhost:8086/extensions/table.rng"/>
 
 </grammar>
