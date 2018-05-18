@@ -51,7 +51,7 @@ def article_list_xml_generator(articles: 'QuerySet[Article]') -> Element:
     return root
 
 
-class ArticleXMLAPIView(APIView):
+class ArticleItemAPIView(APIView):
     parser_classes = (ArticleXMLParser,)
     renderer_classes = (XMLRenderer,)
 
@@ -60,7 +60,7 @@ class ArticleXMLAPIView(APIView):
     style_element = '<?xml version="1.0" ?>\n'
 
     def post(self, request: Request, article_id: str) -> HttpResponse:
-        """
+        """Create an `ArticleVersion`.
 
         :param request: class: `Request`
         :param article_id: str
