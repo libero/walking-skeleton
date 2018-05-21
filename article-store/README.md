@@ -25,7 +25,7 @@ Example:
 
 `DELETE`
 
-`/articles/<article_id>`
+`/articles/<article_id>/versions`
 
 Deletes an entire article including all versions and content.
 
@@ -37,7 +37,7 @@ Example:
 
 `POST`
 
-`/articles/<article_id>`
+`/articles/<article_id>/versions`
 
 Creates an article version, can include content items. If an article does
 not yet exist, it will be created.
@@ -85,7 +85,7 @@ Payload:
 ---------------------
 `PUT` `DELETE`
 
-`/articles/<article_id>/<version>`
+`/articles/<article_id>/versions/<version>`
 
 `PUT` Update an article version, can include content items. Same payload
 structure as the create but it will overwrite all existing content for
@@ -104,7 +104,7 @@ Example:
 ---------------------
 `GET`
 
-`/articles/<article_id>/<version>/<part>`
+`/articles/<article_id>/versions/<version>/<part>`
 
 Return a specific `part` (e.g. front or body) of article content for a specified version.
 
