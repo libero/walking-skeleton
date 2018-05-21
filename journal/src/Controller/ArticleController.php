@@ -29,8 +29,8 @@ final class ArticleController
     public function __invoke(Request $request, string $id) : Response
     {
         $article = (all([
-            'front' => $this->apiClient->requestAsync('GET', "articles/{$id}/latest/front", ['headers' => ['Accept-Language' => $request->getLocale()]]),
-            'body' => $this->apiClient->requestAsync('GET', "articles/{$id}/latest/body", ['headers' => ['Accept-Language' => $request->getLocale()]])->otherwise(function () { return null; }),
+            'front' => $this->apiClient->requestAsync('GET', "articles/{$id}/versions/latest/front", ['headers' => ['Accept-Language' => $request->getLocale()]]),
+            'body' => $this->apiClient->requestAsync('GET', "articles/{$id}/versions/latest/body", ['headers' => ['Accept-Language' => $request->getLocale()]])->otherwise(function () { return null; }),
         ]))
             ->then(function (array $parts) : array {
                 return array_map([$this, 'toDocument'], $parts);

@@ -29,9 +29,41 @@ services:
             - ./api-gateway/.docker/nginx-server.conf.template:/etc/nginx/conf.d/default.conf.template
         command: sh -c "envsubst \"`env | awk -F = '{printf \" $$%s\", $$1}'`\" < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && cat /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
         environment:
-            - ARTICLES=http://api-dummy-nginx:80
+            - ARTICLES=http://article-store:8000
         depends_on:
-            - api-dummy-nginx
+            - article-store
+    article-store:
+        build:
+            context: ./article-store
+        ports:
+            - '8000:8000'
+        volumes:
+            - ./article-store:/srv/app
+        environment:
+            - ALLOWED_HOSTS=article-store,localhost
+            - APP_ENV=dev
+            - APP_SECRET=f6a87c2e031ecadc0d7eb442729435c8
+            - DATABASE_URL=postgres://postgres:@article-store-postgres:5432/postgres
+        depends_on:
+          - article-store-postgres
+    article-store-postgres:
+        image: postgres:9.6.8-alpine
+        volumes:
+          - 'article-store-postgres:/var/lib/postgresql/data'
+    article-store-postgres-schema:
+        build:
+            context: ./article-store
+        volumes:
+            - ./article-store:/srv/app
+        environment:
+            - DATABASE_URL=postgres://postgres:@article-store-postgres:5432/postgres
+        command: >
+                /bin/bash -c '
+                    until echo > /dev/tcp/article-store-postgres/5432; do sleep 1; done
+                    pipenv run python manage.py migrate
+                '
+        depends_on:
+            - article-store-postgres
     dashboard-events:
         build:
             context: ./dashboard
@@ -117,3 +149,6 @@ services:
             - ./journal/public:/srv/app/public
         depends_on:
             - journal-fpm
+
+volumes:
+    article-store-postgres:

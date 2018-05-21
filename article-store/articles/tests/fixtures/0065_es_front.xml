@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<?xml-model href="http://localhost:8081/schemas/scielo/article/front.rng"?>
+
+<front xmlns="http://libero.pub" xmlns:scielo="http://scielo.org" xml:lang="es">
+
+    <id>0065-1737-azm-31-03-0367</id>
+    <title>Evaluación Del Daño Por Retinia Arizonensis (Heinrich) (Lepidoptera:
+        Tortricidae), Parámetros Estructurales Y Regeneración Natural En Pinus Nelsonii
+        (Shaw) Y P. Cembroides (Zucc.) En Miquihuana, Tamaulipas, México</title>
+    <abstract id="abstract">
+        <p>El presente trabajo tuvo como objetivo determinar la intensidad del daño de
+            Retinia arizonensis y su posible relación con algunos parámetros estructurales:
+            diámetro de tallo, altura y cobertura, así como con la regeneración natural de
+            los pinos piñoneros Pinus cembroides y P. nelsonii. Para su evaluación se
+            ubicaron sitios de 2,500 m<sup>2</sup> de cada especie; en P. cembroides se
+            contabilizaron 136 individuos de los cuales 135 presentaron un daño promedio de
+            10.5% (±8.1 D.E.) en brotes terminales. En P. nelsonii de un total de 47
+            individuos encontrados, 46 exhibieron daños por R. arizonensis, con un promedio
+            de 4.8% (±4.5 D.E.), ca 2 veces menos que en P. cembroides. Al realizar
+            la prueba de Kruskal-Wallis (H-Chi<sup>2</sup>) del porcentaje de daño de R.
+            arizonensis entre las especies, se observó marcada diferencia significativa (p
+            &lt; 0.001). Referente a la estructura, P. cembroides presentó los siguientes
+            valores promedio: diámetro del tallo = 10.7 cm (±8.0 D.E.), altura = 2.9
+            m (±1.0 D.E.) y cobertura = 3.0 m<sup>2</sup> (±1.8 D.E.). En
+            relación a P. nelsonii, los valores promedio fueron: diámetro del tallo = 10.7
+            cm (±4.3), altura = 3.6 m (±0.8) y cobertura = 4.2 m<sup>2</sup>
+            (±1.8), estas variables mostraron una amplia diferencia estadística (p
+            &lt; 0.001). Al medir la asociación del daño por R. arizonensis con las
+            variables estructurales, P. cembroides mostró correlación positiva marginal con
+            las variables altura, diámetro y cobertura con r<sup>2</sup> = 0.12, 0.16 y
+            0.18, respectivamente (p &lt; 0.001). Sin embargo, P. nelsonii no manifestó
+            correlación significativa entre el daño por R. arizonensis con los parámetros
+            estructurales. La influencia conjunta de las tres variables estructurales
+            (correlación múltiple r<sup>2</sup>) en el daño de R. arizonensis, quedó
+            mayormente explicada en P. cembroides con valor de r<sup>2</sup> de 0.19 como
+            altamente significativa (p &lt; 0.001). Para P. nelsonii la influencia de las
+            variables estructurales sobre el porcentaje de daño de R. arizonensis no fue
+            significativa (p = 0.128). La regeneración presentó una participación porcentual
+            (con respecto a los adultos) de 20.6% para P. cembroides y de 42.5% para P.
+            nelsonii, con altura promedio de 13.9 cm (±12.6) y 28.4 cm (±20.0)
+            en P. cembroides y P. nelsonii, respectivamente.</p>
+    </abstract>
+
+</front>
