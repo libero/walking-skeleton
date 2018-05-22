@@ -1,4 +1,5 @@
 import pytest
+from unittest.mock import patch
 
 from django.test.client import Client
 
@@ -12,6 +13,13 @@ ARTICLES_URL = '/articles'  # TODO refactor using this const!
 
 
 class TestCreateArticleVersion:
+
+    def setup(self):
+        self.mock_publisher = patch('articles.api.message_publisher')
+        self.mock_publisher.start()
+
+    def tearDown(self):
+        self.mock_publisher.stop()
 
     @pytest.mark.django_db
     def test_can_create_article_version(self, admin_client: Client, article: Article):
