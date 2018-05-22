@@ -8,6 +8,6 @@ old_sound_rabbit_mq:
             enable_logger: true
             exchange_options:
                 name: 'dashboard'
-                type: direct
+                type: fanout
             queue_options:
-                name: 'dashboard'
+                name: 'articles'
