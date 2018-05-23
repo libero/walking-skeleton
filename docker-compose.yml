@@ -44,10 +44,7 @@ services:
             - APP_ENV=dev
             - APP_SECRET=f6a87c2e031ecadc0d7eb442729435c8
             - DATABASE_URL=postgres://postgres:@article-store-postgres:5432/postgres
-            - RABBITMQ_HOST=event-bus
-            - RABBITMQ_PORT=5672
-            - RABBITMQ_USER=guest
-            - RABBITMQ_PASSWORD=guest
+            - RABBITMQ_URL=amqp://guest:guest@event-bus:5672
         depends_on:
           - article-store-postgres
     article-store-postgres:

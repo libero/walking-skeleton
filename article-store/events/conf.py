@@ -3,13 +3,9 @@ import os
 import pika
 
 
-RABBITMQ_HOST = os.environ.get('RABBITMQ_HOST', 'rabbitmq')  # event-bus
-RABBITMQ_PORT = os.environ.get('RABBITMQ_PORT', 5672)
-RABBITMQ_PASSWORD = os.environ.get('RABBITMQ_PASSWORD')
-RABBITMQ_USER = os.environ.get('RABBITMQ_USER')
+RABBITMQ_URL = os.environ.get('RABBITMQ_URL')
 
-BROKER_CREDENTIALS = pika.PlainCredentials(RABBITMQ_USER, RABBITMQ_PASSWORD)
-BROKER_PARAMS = pika.ConnectionParameters(host=RABBITMQ_HOST, credentials=BROKER_CREDENTIALS)
+BROKER_PARAMS = pika.connection.URLParameters(RABBITMQ_URL)
 
 ARTICLES_QUEUE = os.environ.get('ARTICLES_QUEUE', 'articles')
 ARTICLES_EXCHANGE = os.environ.get('ARTICLES_EXCHANGE', 'articles')
