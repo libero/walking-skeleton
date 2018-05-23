@@ -1,6 +1,73 @@
 version: '3'
 
 services:
+    airflow-flower:
+        build:
+          context: ./workflow/airflow_libero
+        depends_on:
+            - airflow-redis
+        environment:
+            - EXECUTOR=Celery
+        ports:
+            - "5555:5555"
+        command: flower
+    airflow-postgres:
+        image: postgres:9.6
+        environment:
+            - POSTGRES_USER=airflow
+            - POSTGRES_PASSWORD=airflow
+            - POSTGRES_DB=airflow
+            - PGDATA=/var/lib/postgresql/data
+        volumes:
+            - 'airflow-postgres:/var/lib/postgresql/data'
+    airflow-redis:
+        image: 'redis:3.2.7'
+    airflow-scheduler:
+        build:
+          context: ./workflow/airflow_libero
+        depends_on:
+            - airflow-webserver
+        volumes:
+            - './workflow/airflow_libero/dags:/usr/local/airflow/dags'
+            - './workflow/airflow_libero/plugins:/usr/local/airflow/plugins'
+        environment:
+            - LOAD_EX=n
+            - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
+            - EXECUTOR=Celery
+        command: scheduler
+    airflow-webserver:
+        build:
+          context: ./workflow/airflow_libero
+        depends_on:
+            - airflow-postgres
+            - airflow-redis
+        environment:
+            - LOAD_EX=n
+            - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
+            - EXECUTOR=Celery
+        volumes:
+            - './workflow/airflow_libero/dags:/usr/local/airflow/dags'
+            - './workflow/airflow_libero/plugins:/usr/local/airflow/plugins'
+        ports:
+            - "8086:8080"
+        command: webserver
+        healthcheck:
+            test: ["CMD-SHELL", "[ -f /usr/local/airflow/airflow-webserver.pid ]"]
+            interval: 30s
+            timeout: 30s
+            retries: 3
+    airflow-worker:
+        build:
+          context: ./workflow/airflow_libero
+        depends_on:
+            - airflow-scheduler
+        volumes:
+            - './workflow/airflow_libero/dags:/usr/local/airflow/dags'
+            - './workflow/airflow_libero/plugins:/usr/local/airflow/plugins'
+        environment:
+            - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
+            - EXECUTOR=Celery
+        command: worker
     api-dummy-fpm:
         build:
             context: ./api-dummy
@@ -151,4 +218,5 @@ services:
             - journal-fpm
 
 volumes:
+    airflow-postgres:
     article-store-postgres:
