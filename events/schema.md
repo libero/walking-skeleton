@@ -14,7 +14,7 @@ For clarity, the example data is included with JS syntax (e.g. allowing comments
 {
     "eventId": "448278c4-22d6-11e8-b467-0ed5f89f718b",
     "happenedAt": "2018-03-08T12:00:00+00:00",
-    "aggregate": {
+    "entity": {
         "service": "article-store",
         "name": "article-run",
         "identifier": "6551f09a-bd23-4f12-a039-f8fa78ef776a",
@@ -49,7 +49,7 @@ For clarity, the example data is included with JS syntax (e.g. allowing comments
 {
     "eventId": "448278c4-22d6-11e8-b467-0ed5f89f718b",
     "happenedAt": "2018-03-08T12:00:00+00:00",
-    "aggregate": {
+    "entity": {
         "service": "search",
         "name": "indexing",
         "identifier": "18b21fea-5a87-11e8-9c2d-fa7ae01bbebc",
@@ -89,7 +89,7 @@ For clarity, the example data is included with JS syntax (e.g. allowing comments
 {
     "eventId": "448278c4-22d6-11e8-b467-0ed5f89f718b",
     "happenedAt": "2018-03-08T12:00:00+00:00",
-    "aggregate": {
+    "entity": {
         "service": "downstream-sample",
         "name": "deposit",
         "identifier": "2018-03-08/1", # daily attempts
@@ -133,7 +133,7 @@ Unique for all events. It is a UUID version 1 generated with time and a node ide
 
 Identifies when the event has happened (then it can get published, consumed, etc). It follows the `yyyy-mm-ddTHH:MM:SS+00:00` ISO 8601 format, and is expressed in UTC.
 
-### `aggregate`
+### `entity`
 
 Identifies the unit of consistency that has produced the event: article run in the bot, article version in the articles store, podcast episode in journal-cms, an article's set of metrics in metrics, a single profile in profiles.
 
@@ -155,6 +155,6 @@ Is opaque here, and can contain anything as long as it follows naming convention
 
 Can be used to track events across services, grouping them by the kind of session that originated them or the data type they refer to. Could be an article run during ingestion, or a journal page creating a profile.
 
-Represents an array of dictionaries, each following the format of `aggregate`.
+Represents an array of dictionaries, each following the format of `entity`.
 
 Services should normally add correlation ids from events they have triggered them to the new events being produced.
