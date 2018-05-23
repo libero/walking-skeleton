@@ -2,11 +2,11 @@
 
 TRY_LOOP="20"
 
-: "${REDIS_HOST:="airflow-redis"}"
+: "${REDIS_HOST:="article-store-airflow-redis"}"
 : "${REDIS_PORT:="6379"}"
 : "${REDIS_PASSWORD:=""}"
 
-: "${POSTGRES_HOST:="airflow-postgres"}"
+: "${POSTGRES_HOST:="article-store-airflow-postgres"}"
 : "${POSTGRES_PORT:="5432"}"
 : "${POSTGRES_USER:="airflow"}"
 : "${POSTGRES_PASSWORD:="airflow"}"
