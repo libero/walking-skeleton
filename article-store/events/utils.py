@@ -17,7 +17,7 @@ from pika.adapters.blocking_connection import BlockingChannel
 from .conf import (
     ARTICLES_EXCHANGE,
     BROKER_PARAMS,
-    DEFAULT_QUEUES
+    DEFAULT_EXCHANGES
 )
 
 
@@ -57,8 +57,8 @@ def get_channel() -> ContextManager[BlockingChannel]:
         raise
 
 
-def setup_exchanges_and_queues(func) -> Callable[..., None]:
-    """Setup required queues and exchanges on target broker.
+def setup_exchanges(func) -> Callable[..., None]:
+    """Setup required exchanges on target broker.
 
     If they exist already they will be skipped.
 
@@ -67,19 +67,15 @@ def setup_exchanges_and_queues(func) -> Callable[..., None]:
     @wraps(func)
     def wrapper(*args, **kwargs):
         with get_channel() as channel:
-            for queue_name in DEFAULT_QUEUES:
-                channel.queue_declare(queue=queue_name, durable=True)
-
-                for exchange in DEFAULT_QUEUES[queue_name]:
-                    channel.exchange_declare(exchange=exchange, exchange_type='fanout', durable=True)
-                    channel.queue_bind(exchange=exchange, queue=queue_name)
+            for exchange in DEFAULT_EXCHANGES:
+                channel.exchange_declare(exchange=exchange, exchange_type='fanout', durable=True)
 
         return func(*args, **kwargs)
 
     return wrapper
 
 
-@setup_exchanges_and_queues
+@setup_exchanges
 def send_article_message(msg_type: str, article_id: str, article_version: int = None) -> None:
     """Create and send article event message.
 

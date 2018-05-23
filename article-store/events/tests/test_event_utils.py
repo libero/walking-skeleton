@@ -4,7 +4,7 @@ from events.utils import (
     create_message,
     get_channel,
     send_article_message,
-    setup_exchanges_and_queues,
+    setup_exchanges,
 )
 
 
@@ -26,7 +26,7 @@ def test_can_get_channel():
 
 @patch('events.utils.get_channel')
 def test_setup_exchanges_and_queues(mock_get_channel: MagicMock):
-    wrapped = setup_exchanges_and_queues(MagicMock())
+    wrapped = setup_exchanges(MagicMock())
     wrapped()
 
     assert mock_get_channel.call_count == 1
