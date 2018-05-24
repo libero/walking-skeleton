@@ -112,6 +112,7 @@ def message_publisher(msg_type: str, article_id: str, article_version: int = Non
         send_message(f'{msg_type}.completed')
     except Exception:
         send_message(f'{msg_type}.failed')
+        raise
 
 
 if __name__ == '__main__':
