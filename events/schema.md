@@ -155,8 +155,11 @@ Is opaque here, and can contain anything as long as it follows naming convention
 
 ### `correlationIds` (optional)
 
-Can be used to track events across services, grouping them by the kind of session that originated them or the data type they refer to. Could be an article run during ingestion, or a journal page creating a profile.
+Can be used to track events across services, linking them to:
 
-Represents an array of dictionaries, each following the format of `entity`.
+- the service and transaction that originated them (`article-run` or `search-indexing` or `deposit`)
+- a real world entity they refer to (`article` or `article-version`)
 
-Services should normally add correlation ids from events they have triggered them to the new events being produced.
+Modelled as an array of dictionaries, each following the format of `entity`. Order is not important.
+
+Services may add correlation ids from events they have triggered them to the new events being produced.
