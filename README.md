@@ -6,7 +6,7 @@ It contains:
 
 ## Applications
 
-These can be run using `docker-compose up`.
+These can be run using `docker-compose up -V`.
 
 - `api-dummy`: A dummy implementation of the API, containing sample XML content in multiple languages from eLife, Hindawi, SciELO, International Journal of Microsimulation and Wikipedia, and corresponding RELAX NG schemas for each source. Can be viewed at http://localhost:8081/articles.
   - XML content is stored in `data`
