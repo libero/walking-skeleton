@@ -75,7 +75,7 @@ services:
             - "5555:5555"
         command: flower
     article-store-airflow-postgres:
-        image: postgres:9.6
+        image: postgres:9.6.8-alpine
         environment:
             - POSTGRES_USER=airflow
             - POSTGRES_PASSWORD=airflow
