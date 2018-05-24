@@ -149,6 +149,12 @@ This identifier may or may not correspond to a REST resource accessible through 
 
 Describes what the event is about so that they can be grouped or recognized. It follows the `[a-z\-\.]+` regular expression, with `.` separating hierarchical levels and `-` separating words in a single level (if there are multiple words).
 
+A consistent pattern for types describing a transaction is
+
+- `...-started` 
+- `...-completed` 
+- `...-failed` 
+
 ### `data` (optional)
 
 Is opaque here, and can contain anything as long as it follows naming conventions. Events with the same `type` should usually follow the same schema.
