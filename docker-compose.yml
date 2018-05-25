@@ -196,10 +196,7 @@ services:
         volumes:
             - ./downstream-sample:/srv/app
         environment:
-            - RABBITMQ_HOST=event-bus
-            - RABBITMQ_PORT=5672
-            - RABBITMQ_USER=guest
-            - RABBITMQ_PASSWORD=guest
+            - RABBITMQ_URL=amqp://guest:guest@event-bus:5672
         depends_on:
             - event-bus
             # TODO: when calls are made

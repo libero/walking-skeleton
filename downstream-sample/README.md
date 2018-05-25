@@ -19,9 +19,6 @@ Planned:
 
 ## Configuration
 
-Provide access to RabbitMQ using the environment variables:
+Provide access to RabbitMQ using the environment variable:
 
-- `RABBITMQ_HOST` (default: `localhost`)
-- `RABBITMQ_PORT` (default: `5672`)
-- `RABBITMQ_USER` (default: `guest`)
-- `RABBITMQ_PASSWORD` (default: `guest`)
+- `RABBITMQ_URL` (example: `amqp://username:password@localhost:5672`)

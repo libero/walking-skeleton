@@ -8,17 +8,12 @@ from pika.adapters.blocking_connection import BlockingChannel
 
 DELIVERY_MODE_PERSISTENT = 2
 
-HOST = os.environ.get('RABBITMQ_HOST', 'localhost')
-PORT = os.environ.get('RABBITMQ_PORT', 5672)
-USER = os.environ.get('RABBITMQ_USER', 'guest')
-PASSWORD = os.environ.get('RABBITMQ_PASSWORD', 'guest')
+BUS_PARAMS = pika.connection.URLParameters(os.environ['RABBITMQ_URL'])
 
 ARTICLE_EXCHANGE_NAME = 'articles'
 DOWNSTREAM_EXCHANGE_NAME = 'downstream-sample'
 DOWNSTREAM_QUEUE_NAME = 'downstream-sample'
 
-CREDENTIALS = pika.PlainCredentials(USER, PASSWORD)
-PARAMS = pika.ConnectionParameters(host=HOST, credentials=CREDENTIALS)
 
 
 @contextmanager
@@ -27,7 +22,7 @@ def get_channel() -> ContextManager[BlockingChannel]:
     giving the caller a connection channel to use.
     :return: class: `BlockingChannel`
     """
-    connection = pika.BlockingConnection(parameters=PARAMS)
+    connection = pika.BlockingConnection(parameters=BUS_PARAMS)
     yield connection.channel()
     connection.close()
 
