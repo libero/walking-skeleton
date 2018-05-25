@@ -47,6 +47,16 @@ services:
             - RABBITMQ_URL=amqp://guest:guest@event-bus:5672
         depends_on:
           - article-store-postgres
+    article-store-exchange-setup:
+        build:
+            context: ./article-store
+        volumes:
+            - ./article-store:/srv/app
+        environment:
+            - RABBITMQ_URL=amqp://guest:guest@event-bus:5672
+        command: pipenv run python manage.py setup_exchanges
+        depends_on:
+            - event-bus
     article-store-postgres:
         image: postgres:9.6.8-alpine
         volumes:
