@@ -2,6 +2,8 @@ server {
     server_name localhost;
     listen 80;
 
+    location = /favicon.ico { access_log off; log_not_found off; }
+
     location /articles {
         proxy_pass ${ARTICLES};
         proxy_buffering off;
