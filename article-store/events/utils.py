@@ -42,6 +42,16 @@ def create_message(msg_type: str, identifier: str, data: Dict) -> Dict:
     }
 
 
+def declare_exchanges() -> None:
+    """Declare all default exchanges.
+
+    :return:
+    """
+    with get_channel() as channel:
+        for exchange in DEFAULT_EXCHANGES:
+            channel.exchange_declare(exchange=exchange, exchange_type='fanout', durable=True)
+
+
 @contextmanager
 def get_channel() -> ContextManager[BlockingChannel]:
     """Handles the creation and clean up of a connection,
@@ -66,10 +76,7 @@ def setup_exchanges(func) -> Callable[..., None]:
     """
     @wraps(func)
     def wrapper(*args, **kwargs):
-        with get_channel() as channel:
-            for exchange in DEFAULT_EXCHANGES:
-                channel.exchange_declare(exchange=exchange, exchange_type='fanout', durable=True)
-
+        declare_exchanges()
         return func(*args, **kwargs)
 
     return wrapper
