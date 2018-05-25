@@ -22,7 +22,7 @@ Create an `exchange` for each data type or activity, as part of a service publis
 
 Create one `queue` as part of a service consuming events.
 
-Bind each `queue` to as many exchanges as needed, using correlation ids to aggregate events relating to the same data type.
+Bind each `queue` to as many exchanges as needed.
 
 If an `exchange` from an upstream service is missing, wait and poll until it's present when bootstrapping a service process that wants to bind to it.
 
