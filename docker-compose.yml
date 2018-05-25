@@ -145,7 +145,11 @@ services:
             - APP_SECRET=f6a87c2e031ecadc0d7eb442729435c7
             - DATABASE_URL=pgsql://postgres:@dashboard-postgres:5432/postgres
             - RABBITMQ_URL=amqp://guest:guest@event-bus:5672
-        command: bash -c 'wait-for-port event-bus 5672 && bin/console rabbitmq:consumer events'
+        command: >
+                /bin/bash -c '
+                    until bin/console rabbitmq:setup-fabric; do sleep 1; done
+                    bin/console rabbitmq:consumer events
+                '
         depends_on:
             - event-bus
             - dashboard-postgres
