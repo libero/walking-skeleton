@@ -24,9 +24,11 @@ Create one `queue` as part of a service consuming events.
 
 Bind each `queue` to as many exchanges as needed, using correlation ids to aggregate events relating to the same data type.
 
-The consuming-events-from relationship between services is unidirectional and must be acyclic.
+If an `exchange` from an upstream service is missing, wait and poll until it's present when bootstrapping a service process that wants to bind to it.
 
 A service may have optional binds, which will only subscribe its `queue` to another service's `exchange` if enabled or dynamically configured as a plugin.
+
+The consuming-events-from relationship between services is unidirectional and must be acyclic.
 
 ## Consequences
 
