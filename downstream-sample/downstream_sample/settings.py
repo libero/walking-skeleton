@@ -33,7 +33,6 @@ def ensure_queue(queue_name):
         # bind queue to exchange, will skip if already bound
         channel.queue_bind(exchange=ARTICLE_EXCHANGE_NAME, queue=queue_name)
 
-# TODO: wait for exchange to be present
 def ensure_exchange(exchange_name):
     with get_channel() as channel:
         # create an exchange of type `fanout`, will skip if already exists
