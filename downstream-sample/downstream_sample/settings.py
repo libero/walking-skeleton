@@ -1,8 +1,11 @@
 from contextlib import contextmanager
-from typing import ContextManager
+from functools import wraps
 import os
+import time
+from typing import ContextManager
 
 import pika
+import pika.exceptions
 from pika.adapters.blocking_connection import BlockingChannel
 
 
@@ -14,8 +17,6 @@ ARTICLE_EXCHANGE_NAME = 'articles'
 DOWNSTREAM_EXCHANGE_NAME = 'downstream-sample'
 DOWNSTREAM_QUEUE_NAME = 'downstream-sample'
 
-
-
 @contextmanager
 def get_channel() -> ContextManager[BlockingChannel]:
     """Handles the creation and clean up of a connection,
@@ -26,6 +27,27 @@ def get_channel() -> ContextManager[BlockingChannel]:
     yield connection.channel()
     connection.close()
 
+
+def wait_exchange(func):
+    EXCHANGE_NOT_FOUND = 404
+
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        while True:
+            try:
+                return func(*args, **kwargs)
+            except pika.exceptions.ChannelClosed as e:
+                # pika.exceptions.ChannelClosed: 404, "NOT_FOUND - no exchange 'articles' in vhost '/'"
+                if e.args[0] == EXCHANGE_NOT_FOUND:
+                    print("Exchange not ready: %s" % e.args[1])
+                    time.sleep(1)
+                    continue
+                else:
+                    raise
+
+    return wrapper
+
+@wait_exchange
 def ensure_queue(queue_name):
     with get_channel() as channel:
         # create queue, will skip if exists
