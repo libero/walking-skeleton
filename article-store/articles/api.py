@@ -26,6 +26,7 @@ from articles.serializers import (
 )
 
 from articles.utils import parse_accept_language_header
+from events.utils import message_publisher
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
@@ -72,13 +73,15 @@ class ArticleItemAPIView(APIView):
 
         with transaction.atomic():
             article, created = Article.objects.get_or_create(id=article_id)
-            article_version = ArticleVersion.objects.create(version=article.next_version,
-                                                            article=article)
 
-            for content_item in request.data.get('content-list', []):
-                Content.objects.create(article_version=article_version, **content_item)
+            with message_publisher('article.version.post', article_id, article.next_version):
+                article_version = ArticleVersion.objects.create(version=article.next_version,
+                                                                article=article)
 
-            serializer = ArticleVersionSerializer(article_version)
+                for content_item in request.data.get('content-list', []):
+                    Content.objects.create(article_version=article_version, **content_item)
+
+                serializer = ArticleVersionSerializer(article_version)
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
@@ -92,18 +95,19 @@ class ArticleItemAPIView(APIView):
         :return: class: `HttpResponse`
         """
         if article_id and version:
-            article_version = ArticleVersion.objects.get(version=version, article_id=article_id)
+            with message_publisher('article.version.put', article_id, version):
+                article_version = ArticleVersion.objects.get(version=version, article_id=article_id)
 
-            with transaction.atomic():
-                old_content = Content.objects.filter(article_version=article_version)
-                old_content.delete()
+                with transaction.atomic():
+                    old_content = Content.objects.filter(article_version=article_version)
+                    old_content.delete()
 
-                for content_item in request.data.get('content-list', []):
-                    Content.objects.create(article_version=article_version, **content_item)
+                    for content_item in request.data.get('content-list', []):
+                        Content.objects.create(article_version=article_version, **content_item)
 
-                serializer = ArticleVersionSerializer(article_version)
+                    serializer = ArticleVersionSerializer(article_version)
 
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         return Response({'error': 'Please provide a valid article id and version number'},
                         status=status.HTTP_406_NOT_ACCEPTABLE)
@@ -120,16 +124,18 @@ class ArticleItemAPIView(APIView):
             article = Article.objects.get(id=article_id)
 
             if not version:
-                article.delete()
+                with message_publisher('article.delete', article_id):
+                    article.delete()
             else:
                 if version == self.latest:
                     version = article.version_count
 
-                article_versions = ArticleVersion.objects.filter(article_id=article_id)
+                with message_publisher('article.version.delete', article_id, version):
+                    article_versions = ArticleVersion.objects.filter(article_id=article_id)
 
-                for article_version in article_versions:
-                    if article_version.version >= int(version):
-                        article_version.delete()
+                    for article_version in article_versions:
+                        if article_version.version >= int(version):
+                            article_version.delete()
 
             return HttpResponse(status=status.HTTP_202_ACCEPTED, content_type="application/xml")
 

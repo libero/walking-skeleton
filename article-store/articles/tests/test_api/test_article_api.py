@@ -1,4 +1,5 @@
 import pytest
+from unittest.mock import patch
 
 from django.test.client import Client
 
@@ -13,9 +14,16 @@ ARTICLES_URL = '/articles'  # TODO refactor using this const!
 
 class TestCreateArticleVersion:
 
+    def setup(self):
+        self.mock_publisher = patch('articles.api.message_publisher')
+        self.mock_publisher.start()
+
+    def tearDown(self):
+        self.mock_publisher.stop()
+
     @pytest.mark.django_db
     def test_can_create_article_version(self, admin_client: Client, article: Article):
-        response = admin_client.post(f'{ARTICLES_URL}/{article.id}',
+        response = admin_client.post(f'{ARTICLES_URL}/{article.id}/versions',
                                      data='', content_type='application/xml')
         assert response.status_code == 201
         assert ArticleVersion.objects.count() == 1
@@ -23,7 +31,7 @@ class TestCreateArticleVersion:
     @pytest.mark.django_db
     def test_will_not_accept_invalid_article_id_format(self, admin_client: Client):
         invalid_id = '[foo](bar)**'
-        response = admin_client.post(f'{ARTICLES_URL}/{invalid_id}',
+        response = admin_client.post(f'{ARTICLES_URL}/{invalid_id}/versions',
                                      data='', content_type='application/xml')
         assert response.status_code == 406
 
@@ -31,7 +39,7 @@ class TestCreateArticleVersion:
     def test_can_create_article_version_with_content(self, admin_client: Client,
                                                      article: Article,
                                                      content_xml_data: str):
-        response = admin_client.post(f'{ARTICLES_URL}/{article.id}',
+        response = admin_client.post(f'{ARTICLES_URL}/{article.id}/versions',
                                      data=content_xml_data,
                                      content_type='application/xml')
         assert response.status_code == 201
@@ -47,7 +55,7 @@ class TestUpdateArticleVersion:
                                                      article_version_1: ArticleVersion,
                                                      content_en_front: Content,
                                                      content_xml_data: str):
-        response = admin_client.put(f'{ARTICLES_URL}/{article.id}/{article_version_1.version}',
+        response = admin_client.put(f'{ARTICLES_URL}/{article.id}/versions/{article_version_1.version}',
                                     data=content_xml_data,
                                     content_type='application/xml')
         assert response.status_code == 201
@@ -62,7 +70,7 @@ class TestDeleteArticles:
                                         admin_client: Client, article: Article,
                                         article_version_1: ArticleVersion,
                                         content_en_front: Content):
-        url = f'/articles/{article.id}/{article_version_1.version}'
+        url = f'/articles/{article.id}/versions/{article_version_1.version}'
         response = admin_client.delete(url)
         assert response.status_code == 202
         assert Article.objects.count() == 1
@@ -78,7 +86,7 @@ class TestDeleteArticles:
                                                      content_en_front: Content):
         assert ArticleVersion.objects.count() == 3
 
-        url = f'/articles/{article.id}/{article_version_2.version}'
+        url = f'/articles/{article.id}/versions/{article_version_2.version}'
         response = admin_client.delete(url)
         assert response.status_code == 202
         assert Article.objects.count() == 1
@@ -127,7 +135,7 @@ class TestArticleErrors:
 
     @pytest.mark.django_db
     def test_can_handle_article_not_existing(self, admin_client: Client):
-        url = '/articles/cc1250b5-0855-4fc2-906f-a6a77e4c90f5/latest'
+        url = '/articles/cc1250b5-0855-4fc2-906f-a6a77e4c90f5/versions/latest'
         response = admin_client.get(url)
         assert response.status_code == 406
         assert 'Article matching query does not exist' in response.content.decode('utf-8')
@@ -136,7 +144,7 @@ class TestArticleErrors:
     def test_can_handle_no_article_version_present(self,
                                                    admin_client: Client,
                                                    article: Article):
-        url = f'/articles/{article.id}/latest'
+        url = f'/articles/{article.id}/versions/latest'
         response = admin_client.get(url)
         assert response.status_code == 406
         assert 'Content does not exist' in response.content.decode('utf-8')
@@ -146,7 +154,7 @@ class TestArticleErrors:
                                                            admin_client: Client,
                                                            article: Article,
                                                            article_version_1: ArticleVersion):
-        url = f'/articles/{article.id}/latest'
+        url = f'/articles/{article.id}/versions/latest'
         response = admin_client.get(url)
         assert response.status_code == 406
         assert 'Content does not exist' in response.content.decode('utf-8')
@@ -161,7 +169,7 @@ class TestArticleContent:
                                      article_version_1: ArticleVersion,
                                      content_en_front: Content,
                                      article_0065_en_front_xml: str):
-        url = f'/articles/{article.id}/{article_version_1.version}/{content_en_front.name}'
+        url = f'/articles/{article.id}/versions/{article_version_1.version}/{content_en_front.name}'
         response = admin_client.get(url)
         assert response.status_code == 200
         xml_payload = response.content.decode('utf-8')
@@ -175,7 +183,7 @@ class TestArticleContent:
                                                               content_en_front: Content,
                                                               article_0065_en_front_xml: str):
 
-        url = f'/articles/{article.id}/latest/{content_en_front.name}'
+        url = f'/articles/{article.id}/versions/latest/{content_en_front.name}'
         response = admin_client.get(url)
         assert response.status_code == 200
         assert response.content.decode('utf-8') == article_0065_en_front_xml
@@ -188,7 +196,7 @@ class TestArticleContent:
                                              content_es_front: Content,
                                              article_0065_es_front_xml: str):
 
-        url = f'/articles/{article.id}/{article_version_1.version}/{content_es_front.name}'
+        url = f'/articles/{article.id}/versions/{article_version_1.version}/{content_es_front.name}'
         response = admin_client.get(url, HTTP_ACCEPT_LANGUAGE='es')
         assert response.status_code == 200
         assert response.content.decode('utf-8') == article_0065_es_front_xml
@@ -201,7 +209,7 @@ class TestArticleContent:
                                                 content_pt_front: Content,
                                                 article_0065_pt_front_xml: str):
 
-        url = f'/articles/{article.id}/{article_version_1.version}/{content_pt_front.name}'
+        url = f'/articles/{article.id}/versions/{article_version_1.version}/{content_pt_front.name}'
         response = admin_client.get(url, HTTP_ACCEPT_LANGUAGE='pt')
         assert response.status_code == 200
         assert response.content.decode('utf-8') == article_0065_pt_front_xml
@@ -214,7 +222,7 @@ class TestArticleContent:
                                               content_es_front: Content,
                                               article_0065_es_front_xml: str):
 
-        url = f'/articles/{article.id}/{article_version_1.version}/{content_es_front.name}'
+        url = f'/articles/{article.id}/versions/{article_version_1.version}/{content_es_front.name}'
         response = admin_client.get(url, HTTP_ACCEPT_LANGUAGE='foo')
         assert response.status_code == 200
         assert response.content.decode('utf-8') == article_0065_es_front_xml
@@ -227,7 +235,7 @@ class TestArticleContent:
                                                               content_es_front: Content,
                                                               article_0065_es_front_xml: str):
 
-        url = f'/articles/{article.id}/latest'
+        url = f'/articles/{article.id}/versions/latest'
         response = admin_client.get(url, HTTP_ACCEPT_LANGUAGE='es')
         assert response.status_code == 200
         assert response.content.decode('utf-8') == article_0065_es_front_xml

@@ -1,6 +1,5 @@
 from pathlib import Path
 
-
 from django.test.client import Client
 import pytest
 from rest_framework.test import APIClient
