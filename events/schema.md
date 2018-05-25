@@ -13,33 +13,10 @@ For clarity, the example data is included with JS syntax (e.g. allowing comments
 ```
 {
     "eventId": "448278c4-22d6-11e8-b467-0ed5f89f718b",
+    "runId": "0509e8c3-4dee-4a3a-800a-3fa9fb43f2e8",
     "happenedAt": "2018-03-08T12:00:00+00:00",
-    "entity": {
-        "service": "article-store",
-        "name": "article-run",
-        "identifier": "6551f09a-bd23-4f12-a039-f8fa78ef776a",
-    },
     "type": "deposit-assets-started",
-    "data": {
-        ... 
-    },
-    "correlationIds": [
-        {
-            "service": "article-store",
-            "name": "article",
-            "identifier": "10627",
-        },
-        {
-            "service": "article-store",
-            "name": "article-version",
-            "identifier": "1",
-        },
-        {
-            "service": "article-store",
-            "name": "article-run",
-            "identifier": "6551f09a-bd23-4f12-a039-f8fa78ef776a",
-        },
-    ],
+    "message": "Article 10627 figure archival completed",
 }
 ```
 
@@ -47,39 +24,11 @@ For clarity, the example data is included with JS syntax (e.g. allowing comments
 
 ```
 {
+    "runId": "0509e8c3-4dee-4a3a-800a-3fa9fb43f2e8",
     "eventId": "448278c4-22d6-11e8-b467-0ed5f89f718b",
     "happenedAt": "2018-03-08T12:00:00+00:00",
-    "entity": {
-        "service": "search",
-        "name": "indexing",
-        "identifier": "18b21fea-5a87-11e8-9c2d-fa7ae01bbebc",
-    },
     "type": "search-indexing-started",
-    "data": {
-        ... 
-    },
-    "correlationIds": [
-        {
-            "service": "article-store",
-            "name": "article",
-            "identifier": "10627",
-        },
-        {
-            "service": "article-store",
-            "name": "article-version",
-            "identifier": "1",
-        },
-        {
-            "service": "article-store",
-            "name": "article-run",
-            "identifier": "6551f09a-bd23-4f12-a039-f8fa78ef776a",
-        },
-        {
-            "service": "search",
-            "name": "indexing",
-            "identifier": "18b21fea-5a87-11e8-9c2d-fa7ae01bbebc",
-        },
-    ],
+    "message": "Article keywords parsing started",
 }
 ```
 
@@ -87,43 +36,19 @@ For clarity, the example data is included with JS syntax (e.g. allowing comments
 
 ```
 {
+    "runId": "0509e8c3-4dee-4a3a-800a-3fa9fb43f2e8",
     "eventId": "448278c4-22d6-11e8-b467-0ed5f89f718b",
     "happenedAt": "2018-03-08T12:00:00+00:00",
-    "entity": {
-        "service": "downstream-sample",
-        "name": "deposit",
-        "identifier": "2018-03-08/1", # daily attempts
-    },
     "type": "downstream-crossref-started",
-    "data": {
-        ... 
-    },
-    "correlationIds": [
-        {
-            "service": "article-store",
-            "name": "article",
-            "identifier": "10627",
-        },
-        {
-            "service": "article-store",
-            "name": "article-version",
-            "identifier": "1",
-        },
-        {
-            "service": "article-store",
-            "name": "article-run",
-            "identifier": "6551f09a-bd23-4f12-a039-f8fa78ef776a",
-        },
-        {
-            "service": "downstream-sample",
-            "name": "deposit",
-            "identifier": "2018-03-08/1",
-        },
-    ],
+    "message": "Article being pushed to crossref.org",
 }
 ```
 
 ## Fields
+
+### `runId`
+
+Ties together a single ingestion of an article or other content type across multiple systems. It's an implementation of a correlation id for events across multiple services.
 
 ### `eventId`
 
@@ -132,18 +57,6 @@ Unique for all events. It is a UUID version 1 generated with time and a node ide
 ### `happenedAt` 
 
 Identifies when the event has happened (then it can get published, consumed, etc). It follows the `yyyy-mm-ddTHH:MM:SS+00:00` ISO 8601 format, and is expressed in UTC.
-
-### `entity`
-
-Identifies the unit of consistency that has produced the event: article run in the bot, article version in the articles store, podcast episode in journal-cms, an article's set of metrics in metrics, a single profile in profiles.
-
-All three information are required to uniquely identify it:
-
-- `service`: `[a-z\-]+`
-- `name`: `[a-z\-]+`
-- `identifier`: `.+` (possibly URL-friendly)
-
-This identifier may or may not correspond to a REST resource accessible through the API of the originating service.
 
 ### `type`
 
@@ -155,17 +68,8 @@ A consistent pattern for types describing a transaction is
 - `...-completed` 
 - `...-failed` 
 
-### `data` (optional)
+### `message`
 
-Is opaque here, and can contain anything as long as it follows naming conventions. Events with the same `type` should usually follow the same schema.
+A string containing useful information to log about the event, or diagnostic information to help make sense of errors.
 
-### `correlationIds` (optional)
-
-Can be used to track events across services, linking them to:
-
-- the service and transaction that originated them (`article-run` or `search-indexing` or `deposit`)
-- a real world entity they refer to (`article` or `article-version`)
-
-Modelled as an array of dictionaries, each following the format of `entity`. Order is not important.
-
-Services may add correlation ids from events they have triggered them to the new events being produced.
+For the time being, contains also identifiers that can map a run to a particular content item, such as an article id and version.
