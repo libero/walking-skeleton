@@ -38,10 +38,7 @@ def ensure_queue(queue_name):
         # bind queue to exchange, will skip if already bound
         channel.queue_bind(exchange=ARTICLE_EXCHANGE_NAME, queue=queue_name)
 
-# TODO: the complexity of having other applications (which should not depend on this) discover this topic may not be worth it
-# Could be substituted with a core exchange
-# or with the article exchange itself
-# to avoid the dashboard->downstream dependency?
+# TODO: wait for exchange to be present
 def ensure_exchange(exchange_name):
     with get_channel() as channel:
         # create an exchange of type `fanout`, will skip if already exists
