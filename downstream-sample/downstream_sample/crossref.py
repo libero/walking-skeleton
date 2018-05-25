@@ -3,17 +3,10 @@ class FakeCrossref:
     def __init__(self, events):
         self._events = events
 
-    def push(self, article):
+    def push(self, article_event):
+        runId = article_event['runId']
         self._events.publish({
-            "aggregate": {
-                "service": "downstream-sample",
-                "name": "article-delivery",
-                # TODO: make article id dynamic
-                "identifier": "10627-crossref-1",
-            },
+            "runId": runId,
             "type": "downstream-crossref-started",
-            "data": {
-                "crossref_output": "We are happy to receive this paper and have put it into a queue",
-            },
-            # TODO: insert article id for correlation
+            "message": "We are happy to receive this paper and have put it into a queue",
         })
