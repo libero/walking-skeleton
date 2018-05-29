@@ -1,12 +1,11 @@
 app:
-    events: 'Eventos'
+    run: 'Ejecución %indentifier%'
+    runs: 'Ejecuciónes'
     home: 'Inicio'
     language_choice: 'Elige un idioma:'
-    no_events: 'No hay eventos disponibles.'
+    no_runs: 'No hay ejecuciónes disponibles.'
     title: 'Panel de Libero'
 direction: ltr
 event:
     article:
         published: 'El artículo fue publicado.'
-type:
-    article: 'Artículo %identifier%'
