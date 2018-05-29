@@ -8,6 +8,6 @@ class FakeCrossref:
         runId = article_event.get('runId', None)
         self._events.publish({
             "runId": runId,
-            "type": "downstream-crossref-started",
+            "type": "downstream.crossref.started",
             "message": "We are happy to receive this paper and have put it into a queue",
         })
