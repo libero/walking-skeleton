@@ -4,30 +4,72 @@ Events published to the bus have a standard schema that allows SDKs and services
 
 The schema is based on JSON (and can be modelled with JSON Schema if necessary).
 
+## Examples
+
+For clarity, the example data is included with JS syntax (e.g. allowing comments) rather than JSON syntax.
+
+### Example: article ingestion from the article store
+
 ```
 {
     "eventId": "448278c4-22d6-11e8-b467-0ed5f89f718b",
+    "runId": "0509e8c3-4dee-4a3a-800a-3fa9fb43f2e8",
     "happenedAt": "2018-03-08T12:00:00+00:00",
-    "aggregate": {
-        "service": "bot",
-        "name": "article-run",
-        "identifier": "6551f09a-bd23-4f12-a039-f8fa78ef776a",
-    },
     "type": "deposit-assets-started",
-    "data": {
-        ... 
-    },
-    #"correlationId": {
-    #    "service": "journal",
-    #    "name": "page",
-    #    "identifier": "e4c1829b8249fee0e201bec4589b2aa1b394960f",
-    #},
+    "message": "Article 10627 figure archival completed",
 }
 ```
 
-- `eventId` is unique for all events. It is a UUID version 1 generated with time and a node identifier.
-- `happenedAt` identifies when the event has happened (then it can get published, consumed, etc).
-- `aggregate` identifies the unit of consistency that has produced the event: article run in the bot, article version in the articles, store podcast episode in journal-cms, an article's set of metrics in metrics, a single profile in profiles. All three information are required to uniquely identify it: `service`, `name`, `identifier`.
-- `type` describes what the event is about so that they can be grouped or recognized.
-- `data` is opaque here, and can contain anything as long as it follows naming conventions. Events with the same `type` should usually follow the same schema.
-- `correlationId` can be used to track events across services, grouping them by the kind of session that originated them. Could be an article run during ingestion, or a journal page creating a profile. It is optional at this time.
+### Example: downstream search service indexing an article
+
+```
+{
+    "runId": "0509e8c3-4dee-4a3a-800a-3fa9fb43f2e8",
+    "eventId": "448278c4-22d6-11e8-b467-0ed5f89f718b",
+    "happenedAt": "2018-03-08T12:00:00+00:00",
+    "type": "search-indexing-started",
+    "message": "Article keywords parsing started",
+}
+```
+
+### Example: downstream deposit service pushing an article to Crossref
+
+```
+{
+    "runId": "0509e8c3-4dee-4a3a-800a-3fa9fb43f2e8",
+    "eventId": "448278c4-22d6-11e8-b467-0ed5f89f718b",
+    "happenedAt": "2018-03-08T12:00:00+00:00",
+    "type": "downstream-crossref-started",
+    "message": "Article being pushed to crossref.org",
+}
+```
+
+## Fields
+
+### `runId`
+
+Ties together a single ingestion of an article or other content type across multiple systems. It's an implementation of a correlation id for events across multiple services.
+
+### `eventId`
+
+Unique for all events. It is a UUID version 1 generated with time and a node identifier.
+
+### `happenedAt` 
+
+Identifies when the event has happened (then it can get published, consumed, etc). It follows the `yyyy-mm-ddTHH:MM:SS+00:00` ISO 8601 format, and is expressed in UTC.
+
+### `type`
+
+Describes what the event is about so that they can be grouped or recognized. It follows the `[a-z\-\.]+` regular expression, with `.` separating hierarchical levels and `-` separating words in a single level (if there are multiple words).
+
+A consistent pattern for types describing a transaction is
+
+- `...-started` 
+- `...-completed` 
+- `...-failed` 
+
+### `message`
+
+A string containing useful information to log about the event, or diagnostic information to help make sense of errors.
+
+For the time being, contains also identifiers that can map a run to a particular content item, such as an article id and version.
