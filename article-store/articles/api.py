@@ -3,6 +3,7 @@ from lxml.etree import (
     SubElement,
     tostring,
 )
+from django.conf import settings
 from django.db import transaction
 from django.db.models import QuerySet
 from django.http.response import HttpResponse
@@ -74,7 +75,7 @@ class ArticleItemAPIView(APIView):
         with transaction.atomic():
             article, created = Article.objects.get_or_create(id=article_id)
 
-            with message_publisher('article.version.post', article_id, article.next_version):
+            with message_publisher('article.version.post', request.META.get(settings.RUN_ID_HEADER)):
                 article_version = ArticleVersion.objects.create(version=article.next_version,
                                                                 article=article)
 
@@ -95,7 +96,7 @@ class ArticleItemAPIView(APIView):
         :return: class: `HttpResponse`
         """
         if article_id and version:
-            with message_publisher('article.version.put', article_id, version):
+            with message_publisher('article.version.put', request.META.get(settings.RUN_ID_HEADER)):
                 article_version = ArticleVersion.objects.get(version=version, article_id=article_id)
 
                 with transaction.atomic():
@@ -124,13 +125,13 @@ class ArticleItemAPIView(APIView):
             article = Article.objects.get(id=article_id)
 
             if not version:
-                with message_publisher('article.delete', article_id):
+                with message_publisher('article.delete', request.META.get(settings.RUN_ID_HEADER)):
                     article.delete()
             else:
                 if version == self.latest:
                     version = article.version_count
 
-                with message_publisher('article.version.delete', article_id, version):
+                with message_publisher('article.version.delete', request.META.get(settings.RUN_ID_HEADER)):
                     article_versions = ArticleVersion.objects.filter(article_id=article_id)
 
                     for article_version in article_versions:
