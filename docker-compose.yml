@@ -47,6 +47,19 @@ services:
             - RABBITMQ_URL=amqp://guest:guest@event-bus:5672
         depends_on:
           - article-store-postgres
+    article-store-exchange-setup:
+        build:
+            context: ./article-store
+        volumes:
+            - ./article-store:/srv/app
+        environment:
+            - RABBITMQ_URL=amqp://guest:guest@event-bus:5672
+        command: >
+                /bin/bash -c '
+                    until pipenv run python manage.py setup_exchanges; do sleep 1; done
+                '
+        depends_on:
+            - event-bus
     article-store-postgres:
         image: postgres:9.6.8-alpine
         volumes:
@@ -72,6 +85,7 @@ services:
             - article-store-airflow-redis
         environment:
             - EXECUTOR=Celery
+            - REDIS_HOST=article-store-airflow-redis
         ports:
             - "5555:5555"
         command: flower
@@ -98,6 +112,8 @@ services:
             - LOAD_EX=n
             - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
             - EXECUTOR=Celery
+            - POSTGRES_HOST=article-store-airflow-postgres
+            - REDIS_HOST=article-store-airflow-redis
         command: scheduler
     article-store-airflow-webserver:
         build:
@@ -109,6 +125,8 @@ services:
             - LOAD_EX=n
             - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
             - EXECUTOR=Celery
+            - POSTGRES_HOST=article-store-airflow-postgres
+            - REDIS_HOST=article-store-airflow-redis
         volumes:
             - './workflow/airflow_libero/dags:/usr/local/airflow/dags'
             - './workflow/airflow_libero/plugins:/usr/local/airflow/plugins'
@@ -131,6 +149,8 @@ services:
         environment:
             - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
             - EXECUTOR=Celery
+            - POSTGRES_HOST=article-store-airflow-postgres
+            - REDIS_HOST=article-store-airflow-redis
         command: worker
     dashboard-events:
         build:
