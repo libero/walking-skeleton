@@ -54,7 +54,10 @@ services:
             - ./article-store:/srv/app
         environment:
             - RABBITMQ_URL=amqp://guest:guest@event-bus:5672
-        command: pipenv run python manage.py setup_exchanges
+        command: >
+                /bin/bash -c '
+                    until pipenv run python manage.py setup_exchanges; do sleep 1; done
+                '
         depends_on:
             - event-bus
     article-store-postgres:
