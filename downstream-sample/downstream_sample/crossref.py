@@ -4,7 +4,8 @@ class FakeCrossref:
         self._events = events
 
     def push(self, article_event):
-        runId = article_event['runId']
+        # TODO: consider runId mandatory
+        runId = article_event.get('runId', None)
         self._events.publish({
             "runId": runId,
             "type": "downstream-crossref-started",
