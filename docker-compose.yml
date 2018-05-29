@@ -1,6 +1,157 @@
 version: '3'
 
 services:
+    api-dummy-fpm:
+        build:
+            context: ./api-dummy
+        volumes:
+            - ./api-dummy:/srv/app
+            - /srv/app/public/bundles
+            - /srv/app/var
+            - /srv/app/vendor
+        environment:
+            - APP_ENV=dev
+            - APP_SECRET=f6a87c2e031ecadc0d7eb442729435c5
+    api-dummy-nginx:
+        image: nginx:1.13
+        ports:
+            - '8081:80'
+        volumes:
+            - ./api-dummy/.docker/nginx-server.conf:/etc/nginx/conf.d/default.conf
+            - ./api-dummy/public:/srv/app/public
+        depends_on:
+            - api-dummy-fpm
+    api-gateway:
+        image: nginx:1.13
+        ports:
+            - '8085:80'
+        volumes:
+            - ./api-gateway/.docker/nginx-server.conf.template:/etc/nginx/conf.d/default.conf.template
+        command: sh -c "envsubst \"`env | awk -F = '{printf \" $$%s\", $$1}'`\" < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && cat /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+        environment:
+            - ARTICLES=http://article-store:8000
+        depends_on:
+            - article-store
+    article-store:
+        build:
+            context: ./article-store
+        ports:
+            - '8000:8000'
+        volumes:
+            - ./article-store:/srv/app
+        environment:
+            - ALLOWED_HOSTS=article-store,localhost
+            - APP_ENV=dev
+            - APP_SECRET=f6a87c2e031ecadc0d7eb442729435c8
+            - DATABASE_URL=postgres://postgres:@article-store-postgres:5432/postgres
+            - RABBITMQ_URL=amqp://guest:guest@event-bus:5672
+        depends_on:
+          - article-store-postgres
+    article-store-exchange-setup:
+        build:
+            context: ./article-store
+        volumes:
+            - ./article-store:/srv/app
+        environment:
+            - RABBITMQ_URL=amqp://guest:guest@event-bus:5672
+        command: >
+                /bin/bash -c '
+                    until pipenv run python manage.py setup_exchanges; do sleep 1; done
+                '
+        depends_on:
+            - event-bus
+    article-store-postgres:
+        image: postgres:9.6.8-alpine
+        volumes:
+          - 'article-store-postgres:/var/lib/postgresql/data'
+    article-store-postgres-schema:
+        build:
+            context: ./article-store
+        volumes:
+            - ./article-store:/srv/app
+        environment:
+            - DATABASE_URL=postgres://postgres:@article-store-postgres:5432/postgres
+        command: >
+                /bin/bash -c '
+                    until echo > /dev/tcp/article-store-postgres/5432; do sleep 1; done
+                    pipenv run python manage.py migrate
+                '
+        depends_on:
+            - article-store-postgres
+    article-store-airflow-flower:
+        build:
+          context: ./workflow/airflow_libero
+        depends_on:
+            - article-store-airflow-redis
+        environment:
+            - EXECUTOR=Celery
+            - REDIS_HOST=article-store-airflow-redis
+        ports:
+            - "5555:5555"
+        command: flower
+    article-store-airflow-postgres:
+        image: postgres:9.6.8-alpine
+        environment:
+            - POSTGRES_USER=airflow
+            - POSTGRES_PASSWORD=airflow
+            - POSTGRES_DB=airflow
+            - PGDATA=/var/lib/postgresql/data
+        volumes:
+            - 'article-store-airflow-postgres:/var/lib/postgresql/data'
+    article-store-airflow-redis:
+        image: 'redis:3.2.7'
+    article-store-airflow-scheduler:
+        build:
+          context: ./workflow/airflow_libero
+        depends_on:
+            - article-store-airflow-webserver
+        volumes:
+            - './workflow/airflow_libero/dags:/usr/local/airflow/dags'
+            - './workflow/airflow_libero/plugins:/usr/local/airflow/plugins'
+        environment:
+            - LOAD_EX=n
+            - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
+            - EXECUTOR=Celery
+            - POSTGRES_HOST=article-store-airflow-postgres
+            - REDIS_HOST=article-store-airflow-redis
+        command: scheduler
+    article-store-airflow-webserver:
+        build:
+          context: ./workflow/airflow_libero
+        depends_on:
+            - article-store-airflow-postgres
+            - article-store-airflow-redis
+        environment:
+            - LOAD_EX=n
+            - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
+            - EXECUTOR=Celery
+            - POSTGRES_HOST=article-store-airflow-postgres
+            - REDIS_HOST=article-store-airflow-redis
+        volumes:
+            - './workflow/airflow_libero/dags:/usr/local/airflow/dags'
+            - './workflow/airflow_libero/plugins:/usr/local/airflow/plugins'
+        ports:
+            - "8086:8080"
+        command: webserver
+        healthcheck:
+            test: ["CMD-SHELL", "[ -f /usr/local/airflow/airflow-webserver.pid ]"]
+            interval: 30s
+            timeout: 30s
+            retries: 3
+    article-store-airflow-worker:
+        build:
+          context: ./workflow/airflow_libero
+        depends_on:
+            - article-store-airflow-scheduler
+        volumes:
+            - './workflow/airflow_libero/dags:/usr/local/airflow/dags'
+            - './workflow/airflow_libero/plugins:/usr/local/airflow/plugins'
+        environment:
+            - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
+            - EXECUTOR=Celery
+            - POSTGRES_HOST=article-store-airflow-postgres
+            - REDIS_HOST=article-store-airflow-redis
+        command: worker
     dashboard-events:
         build:
             context: ./dashboard
@@ -63,6 +214,29 @@ services:
         ports:
           - '8083:15672'
           - '8084:5672'
+    journal-fpm:
+        build:
+            context: ./journal
+        volumes:
+            - ./journal:/srv/app
+            - /srv/app/public/bundles
+            - /srv/app/var
+            - /srv/app/vendor
+        environment:
+            - APP_ENV=dev
+            - APP_LIBERO_API=http://api-gateway
+            - APP_SECRET=f6a87c2e031ecadc0d7eb442729435c6
+        depends_on:
+            - api-gateway
+    journal-nginx:
+        image: nginx:1.13
+        ports:
+            - '8080:80'
+        volumes:
+            - ./journal/.docker/nginx-server.conf:/etc/nginx/conf.d/default.conf
+            - ./journal/public:/srv/app/public
+        depends_on:
+            - journal-fpm
 
 volumes:
     article-store-airflow-postgres:
