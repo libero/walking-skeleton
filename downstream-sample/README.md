@@ -8,14 +8,14 @@ Being a sample, this service does not interact with the real crossref service.
 
 Implemented:
 
-- emit an `article-delivery` event upon successful receival of the `article` event
+- emit a `downstream.crossref.started` event upon successful receival of the `article` event
+- add `runId` correlation data to emitted `downstream.crossref.*` events to link them to the article
 
 Planned:
 
 - retrieve an `article` from the Libero API for further processing
-- add correlation data to emitted `article-delivery` events to link them to the article
-- add delayed `article-delivery` events representing an asynchronous process coming to an end
-- add random and realistic `article-delivery` failure events
+- add delayed `downstream.crossref.completed` events representing an asynchronous process coming to an end
+- add random and realistic `downstream.crossref.failed` events
 
 ## Configuration
 
