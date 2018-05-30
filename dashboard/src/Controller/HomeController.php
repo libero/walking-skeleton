@@ -22,17 +22,17 @@ final class HomeController
 
     public function __invoke(Request $request) : Response
     {
-        $types = array_reduce(
+        $runs = array_reduce(
             $this->doctrine->getRepository(Event::class)
-                ->findBy([], ['aggregate.name' => 'ASC', 'aggregate.identifier' => 'ASC', 'dateTime' => 'ASC']),
+                ->findBy([], ['dateTime' => 'ASC']),
             function (array $carry, Event $event) {
-                $carry[$event->getAggregate()->getName()][$event->getAggregate()->getIdentifier()][] = $event;
+                $carry[$event->getRun()][] = $event;
 
                 return $carry;
             },
             []
         );
 
-        return new Response($this->twig->render('home.html.twig', ['types' => $types]));
+        return new Response($this->twig->render('home.html.twig', ['runs' => $runs]));
     }
 }

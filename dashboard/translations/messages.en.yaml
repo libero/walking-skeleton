@@ -1,12 +1,11 @@
 app:
-    events: 'Events'
+    run: 'Run %id%'
+    runs: 'Runs'
     home: 'Home'
     language_choice: 'Choose a language:'
-    no_events: 'No events available.'
+    no_runs: 'No runs available.'
     title: 'Libero Dashboard'
 direction: ltr
 event:
     article:
         published: 'Article was published.'
-type:
-    article: 'Article %identifier%'
