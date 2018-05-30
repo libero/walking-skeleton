@@ -28,3 +28,32 @@ resourceTypes:
         List all Wikipedia articles.
 
         This is an example of having a second article store
+    get:
+        queryParameters:
+            offset:
+                description: |
+                    This is an example of adding a custom query parameter.
+                type: integer
+                required: false
+                example: 20
+                default: 0
+    /{id}:
+        /versions:
+            /{version}:
+                /references:
+                    type:
+                        base.item:
+                            resource: Article version references
+                    description: |
+                        Article version references.
+
+                        This is an example of adding a custom part.
+                    get:
+                        description: |
+                            Get article version references.
+                        responses:
+                            200:
+                                description: |
+                                    Article version references.
+                                body:
+                                    application/xml:
