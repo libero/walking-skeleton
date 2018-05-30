@@ -43,6 +43,9 @@ services:
             - ALLOWED_HOSTS=article-store,localhost
             - APP_ENV=dev
             - APP_SECRET=f6a87c2e031ecadc0d7eb442729435c8
+            - AIRFLOW_ACTIVE=true
+            - AIRFLOW_API_HOST=article-store-airflow-webserver
+            - AIRFLOW_API_PORT=8080
             - DATABASE_URL=postgres://postgres:@article-store-postgres:5432/postgres
             - RABBITMQ_URL=amqp://guest:guest@event-bus:5672
         depends_on:
