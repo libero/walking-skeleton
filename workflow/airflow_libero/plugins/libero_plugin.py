@@ -1,11 +1,9 @@
 from contextlib import contextmanager
-from functools import wraps
+from functools import partial
 import json
 import os
 from time import gmtime, strftime
 from typing import (
-    Any,
-    Callable,
     ContextManager,
     Dict,
     Optional,
@@ -22,11 +20,9 @@ from pika.adapters.blocking_connection import BlockingChannel
 RABBITMQ_URL = os.environ.get('RABBITMQ_URL', '')
 BROKER_PARAMS = pika.connection.URLParameters(RABBITMQ_URL)
 ARTICLES_EXCHANGE = 'articles'
-DEFAULT_EXCHANGES = [ARTICLES_EXCHANGE]
-DELIVERY_MODE_PERSISTENT = 2
 
 
-def create_message(msg_type: str, run_id: str, message: Optional[str] = '') -> Dict:
+def create_message(msg_type: str, run_id: str, message: Optional[str] = None) -> Dict:
     """Create a message `dict` based on a standard schema.
     :return: Dict
     """
@@ -54,31 +50,6 @@ def get_channel() -> ContextManager[BlockingChannel]:
         raise
 
 
-def declare_exchanges() -> None:
-    """Declare all default exchanges.
-
-    :return:
-    """
-    with get_channel() as channel:
-        for exchange in DEFAULT_EXCHANGES:
-            channel.exchange_declare(exchange=exchange, exchange_type='fanout', durable=True)
-
-
-def setup_exchanges(func) -> Callable[..., None]:
-    """Setup required exchanges on target broker.
-
-    If they exist already they will be skipped.
-
-    :return:
-    """
-    @wraps(func)
-    def wrapper(*args, **kwargs):
-        declare_exchanges()
-        return func(*args, **kwargs)
-
-    return wrapper
-
-
 class EventEmittingPythonOperator(PythonOperator):
 
     def __init__(self, *args, **kwargs):
@@ -87,19 +58,21 @@ class EventEmittingPythonOperator(PythonOperator):
     def execute_callable(self):
         try:
             result = None
+            run_id = self.op_kwargs['dag_run'].conf.get('input_data')['run_id']
+            send_message = partial(self.send_message, run_id=run_id)
 
-            self.publish_event(f'{self.python_callable.__name__}.started')
+            send_message(f'{self.task_id}.started')
             result = self.python_callable(*self.op_args, **self.op_kwargs)
-            self.publish_event(f'{self.python_callable.__name__}.completed')
+            send_message(f'{self.task_id}.completed')
         except Exception:
-            self.publish_event(f'{self.python_callable.__name__}.failed')
+            send_message(f'{self.task_id}.failed')
             raise
         finally:
             return result
 
-    def publish_event(self, msg_type: str):
+    def send_message(self, msg_type: str, run_id: str, message: Optional[str] = None) -> None:
         with get_channel() as channel:
-            message = create_message(msg_type=msg_type, run_id='2753d3ee-63de-11e8-9add-0242ac130008')
+            message = create_message(msg_type=msg_type, run_id=run_id, message=message)
 
             channel.basic_publish(exchange=ARTICLES_EXCHANGE,
                                   routing_key="",
