@@ -25,7 +25,7 @@ from .conf import (
 DELIVERY_MODE_PERSISTENT = 2
 
 
-def create_message(msg_type: str, run_id: str, message: Optional[str] = '') -> Dict:
+def create_message(msg_type: str, run_id: str, message: Optional[str] = None) -> Dict:
     """Create a message `dict` based on a standard schema.
 
     :return: Dict
@@ -80,7 +80,7 @@ def setup_exchanges(func) -> Callable[..., None]:
 
 
 @setup_exchanges
-def send_article_message(msg_type: str, run_id: str, message: Optional[str] = '') -> None:
+def send_article_message(msg_type: str, run_id: str, message: Optional[str] = None) -> None:
     """Create and send article event message.
 
     :param msg_type: str
