@@ -22,6 +22,10 @@ LOGGING = {
     },
 }
 
+AIRFLOW_ACTIVE = os.environ.get('AIRFLOW_ACTIVE', False)
+AIRFLOW_API_HOST = os.environ.get('AIRFLOW_API_HOST')
+AIRFLOW_API_PORT = os.environ.get('AIRFLOW_API_PORT')
+
 ENVIRONMENT = os.environ.get('APP_ENV', 'dev')
 
 SECRET_KEY = os.environ.get('APP_SECRET', 'secret')
