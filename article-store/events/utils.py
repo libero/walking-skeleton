@@ -25,7 +25,7 @@ from .conf import (
 DELIVERY_MODE_PERSISTENT = 2
 
 
-def create_message(msg_type: str, run_id: str, message: Optional[str]) -> Dict:
+def create_message(msg_type: str, run_id: str, message: Optional[str] = '') -> Dict:
     """Create a message `dict` based on a standard schema.
 
     :return: Dict
