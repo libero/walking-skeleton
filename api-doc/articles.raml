@@ -8,10 +8,6 @@ types:
     ArticleID:
         type: string
         pattern: ^[A-Za-z0-9\-._]+$
-    ArticleVersionFront:
-        type: !include http://schemas:80/article/front.rng
-    ArticleVersionBody:
-        type: !include http://schemas:80/article/body.rng
     Version:
         type: LatestVersion | NumberVersion
     LatestVersion:
@@ -108,7 +104,7 @@ get:
                                 Article version front.
                             body:
                                 application/xml:
-                                    type: ArticleVersionFront
+                                    type: !include http://schemas:80/article/front.rng
 
             /body:
                 type:
@@ -127,4 +123,4 @@ get:
                                 Article version body.
                             body:
                                 application/xml:
-                                    type: ArticleVersionBody
+                                    type: !include http://schemas:80/article/body.rng
