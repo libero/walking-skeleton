@@ -2,11 +2,11 @@
 
 <grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://elifesciences.org">
 
-    <include href="http://localhost:8087/article/front.rng"/>
+    <include href="http://localhost:8087/data/article/front.rng"/>
 
-    <include href="http://localhost:8087/extensions/abstract.rng"/>
-    <include href="http://localhost:8087/extensions/doi.rng"/>
-    <include href="http://localhost:8087/extensions/mathml.rng"/>
+    <include href="http://localhost:8087/data/extensions/abstract.rng"/>
+    <include href="http://localhost:8087/data/extensions/doi.rng"/>
+    <include href="http://localhost:8087/data/extensions/mathml.rng"/>
 
     <define name="libero.front.content" combine="interleave">
         <optional>

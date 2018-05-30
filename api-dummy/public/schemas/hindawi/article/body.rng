@@ -2,12 +2,12 @@
 
 <grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://hindawi.com">
 
-    <include href="http://localhost:8087/article/body.rng"/>
+    <include href="http://localhost:8087/data/article/body.rng"/>
     
-    <include href="http://localhost:8087/extensions/image-group.rng"/>
-    <include href="http://localhost:8087/extensions/list.rng"/>
-    <include href="http://localhost:8087/extensions/mathml.rng"/>
-    <include href="http://localhost:8087/extensions/section.rng"/>
-    <include href="http://localhost:8087/extensions/table.rng"/>
+    <include href="http://localhost:8087/data/extensions/image-group.rng"/>
+    <include href="http://localhost:8087/data/extensions/list.rng"/>
+    <include href="http://localhost:8087/data/extensions/mathml.rng"/>
+    <include href="http://localhost:8087/data/extensions/section.rng"/>
+    <include href="http://localhost:8087/data/extensions/table.rng"/>
 
 </grammar>

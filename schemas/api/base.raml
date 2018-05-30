@@ -14,15 +14,15 @@ resourceTypes:
                         <<resource>> is not found.
                     body:
                         application/problem+xml:
-                            type: !include http://schemas:80/rfc7807.rng
-                            example: !include samples/errors/not-found.xml
+                            type: !include ../data/rfc7807.rng
+                            example: !include ../data/samples/errors/not-found.xml
                 410:
                     description: |
                         <<resource>> has been removed.
                     body:
                         application/problem+xml:
-                            type: !include http://schemas:80/rfc7807.rng
-                            example: !include samples/errors/removed.xml
+                            type: !include ../data/rfc7807.rng
+                            example: !include ../data/samples/errors/removed.xml
     collection:
         type: base
         usage: This resourceType should be used for any collection of items.
