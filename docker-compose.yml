@@ -114,6 +114,7 @@ services:
             - EXECUTOR=Celery
             - POSTGRES_HOST=article-store-airflow-postgres
             - REDIS_HOST=article-store-airflow-redis
+            - RABBITMQ_URL=amqp://guest:guest@event-bus:5672
         command: scheduler
     article-store-airflow-webserver:
         build:
@@ -127,6 +128,7 @@ services:
             - EXECUTOR=Celery
             - POSTGRES_HOST=article-store-airflow-postgres
             - REDIS_HOST=article-store-airflow-redis
+            - RABBITMQ_URL=amqp://guest:guest@event-bus:5672
         volumes:
             - './workflow/airflow_libero/dags:/usr/local/airflow/dags'
             - './workflow/airflow_libero/plugins:/usr/local/airflow/plugins'
@@ -151,6 +153,7 @@ services:
             - EXECUTOR=Celery
             - POSTGRES_HOST=article-store-airflow-postgres
             - REDIS_HOST=article-store-airflow-redis
+            - RABBITMQ_URL=amqp://guest:guest@event-bus:5672
         command: worker
     dashboard-events:
         build:
