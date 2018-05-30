@@ -70,7 +70,8 @@ class EventEmittingPythonOperator(PythonOperator):
         finally:
             return result
 
-    def send_message(self, msg_type: str, run_id: str, message: Optional[str] = None) -> None:
+    @staticmethod
+    def send_message(msg_type: str, run_id: str, message: Optional[str] = None) -> None:
         with get_channel() as channel:
             message = create_message(msg_type=msg_type, run_id=run_id, message=message)
 
