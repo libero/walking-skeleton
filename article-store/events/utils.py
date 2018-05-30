@@ -25,7 +25,7 @@ from .conf import (
 DELIVERY_MODE_PERSISTENT = 2
 
 
-def create_message(msg_type: str, run_id: str, message: Optional[str]) -> Dict:
+def create_message(msg_type: str, run_id: str, message: Optional[str] = None) -> Dict:
     """Create a message `dict` based on a standard schema.
 
     :return: Dict
@@ -80,7 +80,7 @@ def setup_exchanges(func) -> Callable[..., None]:
 
 
 @setup_exchanges
-def send_article_message(msg_type: str, run_id: str, message: Optional[str]) -> None:
+def send_article_message(msg_type: str, run_id: str, message: Optional[str] = None) -> None:
     """Create and send article event message.
 
     :param msg_type: str
@@ -89,11 +89,11 @@ def send_article_message(msg_type: str, run_id: str, message: Optional[str]) -> 
     :return:
     """
     with get_channel() as channel:
-        message = create_message(msg_type=msg_type, run_id=run_id, message=message)
+        article_message = create_message(msg_type=msg_type, run_id=run_id, message=message)
 
         channel.basic_publish(exchange=ARTICLES_EXCHANGE,
                               routing_key="",
-                              body=json.dumps(message),
+                              body=json.dumps(article_message),
                               properties=pika.BasicProperties(delivery_mode=DELIVERY_MODE_PERSISTENT))
 
 
