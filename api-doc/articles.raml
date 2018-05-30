@@ -104,7 +104,8 @@ get:
                                 Article version front.
                             body:
                                 application/xml:
-                                    type: !include http://schemas:80/article/front.rng
+                                    type: <<frontType>>
+                                    example: <<frontExample>>
 
             /body:
                 type:
@@ -123,4 +124,5 @@ get:
                                 Article version body.
                             body:
                                 application/xml:
-                                    type: !include http://schemas:80/article/body.rng
+                                    type: <<bodyType>>
+                                    example: <<bodyExample>>
