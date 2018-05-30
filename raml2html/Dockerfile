@@ -11,4 +11,4 @@ RUN npm install && \
 
 EXPOSE 8080
 
-CMD rm -rf /public && cp --recursive /api /public/ && (node_modules/.bin/http-server -p 8086 --proxy=http://schemas:80/ &) && node_modules/.bin/raml2html /public/api.raml > /public/index.html && node_modules/.bin/http-server /public
+CMD rm -rf /public && cp --recursive /api /public/ && (node_modules/.bin/http-server -p 8087 --proxy=http://schemas:80/ &) && node_modules/.bin/raml2html /public/api.raml > /public/index.html && node_modules/.bin/http-server /public

@@ -2,8 +2,8 @@
 
 <grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://scielo.org">
 
-    <include href="http://localhost:8086/article/front.rng"/>
+    <include href="http://localhost:8087/article/front.rng"/>
 
-    <include href="http://localhost:8086/extensions/abstract.rng"/>
+    <include href="http://localhost:8087/extensions/abstract.rng"/>
 
 </grammar>

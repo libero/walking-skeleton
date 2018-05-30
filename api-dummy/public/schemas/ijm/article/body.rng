@@ -2,9 +2,9 @@
 
 <grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://microsimulation.org">
 
-    <include href="http://localhost:8086/article/body.rng"/>
+    <include href="http://localhost:8087/article/body.rng"/>
     
-    <include href="http://localhost:8086/extensions/mathml.rng"/>
-    <include href="http://localhost:8086/extensions/section.rng"/>
+    <include href="http://localhost:8087/extensions/mathml.rng"/>
+    <include href="http://localhost:8087/extensions/section.rng"/>
 
 </grammar>
