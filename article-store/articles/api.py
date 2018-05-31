@@ -14,6 +14,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_xml.renderers import XMLRenderer
 
+from articles.airflow_adapter import start_article_dag
 from articles.xml_parser import ArticleXMLParser
 
 from articles.models import (
@@ -34,6 +35,12 @@ class ArticleViewSet(viewsets.ModelViewSet):
     model = Article
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
+
+
+class ArticleVersionViewSet(viewsets.ModelViewSet):
+    model = ArticleVersion
+    queryset = ArticleVersion.objects.all()
+    serializer_class = ArticleVersionSerializer
 
 
 def article_list_xml_generator(articles: 'QuerySet[Article]') -> Element:
@@ -72,10 +79,12 @@ class ArticleItemAPIView(APIView):
         if not article_id or not Article.id_is_valid(article_id):
             return Response({'error': 'Please provide a valid article id'}, status=status.HTTP_406_NOT_ACCEPTABLE)
 
+        run_id = request.META.get(settings.RUN_ID_HEADER)
+
         with transaction.atomic():
             article, created = Article.objects.get_or_create(id=article_id)
 
-            with message_publisher('article.version.post', request.META.get(settings.RUN_ID_HEADER)):
+            with message_publisher('article.version.post', run_id=run_id):
                 article_version = ArticleVersion.objects.create(version=article.next_version,
                                                                 article=article)
 
@@ -83,6 +92,12 @@ class ArticleItemAPIView(APIView):
                     Content.objects.create(article_version=article_version, **content_item)
 
                 serializer = ArticleVersionSerializer(article_version)
+
+        if settings.AIRFLOW_ACTIVE:
+            start_article_dag(run_id=run_id,
+                              article_id=article_id,
+                              article_version=article_version.version,
+                              article_version_id=article_version.id)
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
@@ -103,8 +118,9 @@ class ArticleItemAPIView(APIView):
                     old_content = Content.objects.filter(article_version=article_version)
                     old_content.delete()
 
-                    for content_item in request.data.get('content-list', []):
-                        Content.objects.create(article_version=article_version, **content_item)
+                    if request.data:
+                        for content_item in request.data.get('content-list', []):
+                            Content.objects.create(article_version=article_version, **content_item)
 
                     serializer = ArticleVersionSerializer(article_version)
 
