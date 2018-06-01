@@ -23,7 +23,7 @@ SUCCESS = True
 FAILURE = False
 
 
-def convert_to_xml(article_content: Dict):
+def convert_to_xml(article_content: Dict[str, Dict]) -> str:
     """
     <root>
         <content-list>
@@ -84,6 +84,26 @@ def fetch_article_content(*args, **kwargs) -> bool:
     return SUCCESS, response.json()
 
 
+def extract_asset_uris(*args, **kwargs):
+    """Download some article xml and extract asset URIs from XML.
+
+    :return: str
+    """
+
+    article_content = kwargs['ti'].xcom_pull(task_ids=None, key='article_content')
+
+    if article_content:
+        asset_uris = []
+
+        for content_item in article_content['content_items']:
+            xml = BeautifulSoup(content_item['content'], 'lxml-xml')
+            asset_uris += [var.contents[0] for var in xml.find_all('source')
+                           if var.attrs['media-type'] == 'image/tiff']
+
+        kwargs['ti'].xcom_push('asset_uris', json.dumps({'asset_uris': asset_uris}))
+        return SUCCESS
+
+
 def deposit_to_article_store(*args, **kwargs) -> bool:
     run_id = kwargs['ti'].xcom_pull(task_ids=None, key='run_id')
     article_id = kwargs['ti'].xcom_pull(task_ids=None, key='article_id')
@@ -128,6 +148,10 @@ _fetch_article_content = EventEmittingPythonOperator(task_id='fetch_article_cont
                                                      python_callable=fetch_article_content,
                                                      dag=dag)
 
+_extract_asset_uris = EventEmittingPythonOperator(task_id='extract_asset_uris',
+                                                  provide_context=True,
+                                                  python_callable=extract_asset_uris,
+                                                  dag=dag)
 
 _deposit_to_article_store = EventEmittingPythonOperator(task_id='deposit_to_article_store',
                                                         provide_context=True,
@@ -136,10 +160,10 @@ _deposit_to_article_store = EventEmittingPythonOperator(task_id='deposit_to_arti
 
 
 _fetch_article_content.set_upstream(_store_article_data)
-_deposit_to_article_store.set_upstream(_fetch_article_content)
+_extract_asset_uris.set_upstream(_fetch_article_content)
+_deposit_to_article_store.set_upstream(_extract_asset_uris)
 
-# TODO extract uris
 
-# TODO download assets
+# TODO deposit_assets
 
-# TODO update uris
+# TODO update_asset_uris
