@@ -64,8 +64,8 @@ class EventEmittingPythonOperator(PythonOperator):
             send_message(f'{self.task_id}.started')
             result = self.python_callable(*self.op_args, **self.op_kwargs)
             send_message(f'{self.task_id}.completed')
-        except Exception:
-            send_message(f'{self.task_id}.failed')
+        except Exception as exception:
+            send_message(f'{self.task_id}.failed', message=str(exception))
             raise
         finally:
             return result
