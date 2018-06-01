@@ -2,6 +2,8 @@
 
 This repo contains experiments that will comprise a walking skeleton of the Libero publishing system.
 
+Execute `./example.sh` in your terminal to follow a demo.
+
 It contains:
 
 ## Applications
