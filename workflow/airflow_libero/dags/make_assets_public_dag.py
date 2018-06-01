@@ -2,7 +2,6 @@ from datetime import timedelta
 import os
 import json
 from typing import Dict
-import sys
 
 import airflow
 from airflow import DAG
@@ -124,7 +123,7 @@ def download_assets(*args, **kwargs) -> bool:
 
     data_dir = os.path.join(PUBLIC_DATA_DIR, article_id)
     if not os.path.isdir(data_dir):
-        os.mkdir(data_dir)
+        os.makedirs(data_dir)
 
     if asset_uris:
         uris = json.loads(asset_uris.replace("'", '"'))
