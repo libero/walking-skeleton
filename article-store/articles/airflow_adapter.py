@@ -5,12 +5,12 @@ import requests
 
 
 DAG_NAME = 'make_assets_public'
-AIRFLOW_DAGS_URL = f'http://{settings.AIRFLOW_API_HOST}:{settings.AIRFLOW_API_PORT}/api/experimental/dags'
+AIRFLOW_DAGS_URL = f'{settings.AIRFLOW_URL}/api/experimental/dags'
 TRIGGER_DAG_URL = f'{AIRFLOW_DAGS_URL}/{DAG_NAME}/dag_runs'
 
 
 def start_article_dag(run_id: str, article_id: str, article_version_id: str, article_version: str) -> bool:
-    """
+    """Trigger `DAG_NAME` dag using target airflow instance.
 
     :param run_id: str
     :param article_id: str
