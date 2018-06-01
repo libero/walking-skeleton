@@ -17,10 +17,11 @@ import requests
 
 from airflow.operators import EventEmittingPythonOperator
 
-DIR_PATH = 'data'
+PUBLIC_DATA_DIR = '/usr/local/airflow/public'
 
 SUCCESS = True
 FAILURE = False
+SUPPORT_MEDIA_TYPES = ['image/tiff', "image/jpeg"]
 
 
 def convert_to_xml(article_content: Dict[str, Dict]) -> str:
@@ -84,7 +85,7 @@ def fetch_article_content(*args, **kwargs) -> bool:
     return SUCCESS, response.json()
 
 
-def extract_asset_uris(*args, **kwargs):
+def extract_asset_uris(*args, **kwargs) -> bool:
     """Download some article xml and extract asset URIs from XML.
 
     :return: str
@@ -98,10 +99,29 @@ def extract_asset_uris(*args, **kwargs):
         for content_item in article_content['content_items']:
             xml = BeautifulSoup(content_item['content'], 'lxml-xml')
             asset_uris += [var.contents[0] for var in xml.find_all('source')
-                           if var.attrs['media-type'] == 'image/tiff']
+                           if var.attrs['media-type'] in SUPPORT_MEDIA_TYPES]
 
         kwargs['ti'].xcom_push('asset_uris', json.dumps({'asset_uris': asset_uris}))
         return SUCCESS
+    return FAILURE
+
+
+def download_assets(*args, **kwargs) -> bool:
+    """Download some static assets.
+
+    :return: str
+    """
+    asset_uris = kwargs['ti'].xcom_pull(task_ids=None, key='asset_uris')
+
+    if asset_uris:
+        uris = json.loads(asset_uris.replace("'", '"'))
+
+        for uri in uris['asset_uris']:
+            response = requests.get(url=uri)
+            file_name = uri.split('/')[-1]
+
+            with open(os.path.join(PUBLIC_DATA_DIR, file_name), 'wb') as asset_file:
+                asset_file.write(response.content)
 
 
 def deposit_to_article_store(*args, **kwargs) -> bool:
@@ -153,6 +173,11 @@ _extract_asset_uris = EventEmittingPythonOperator(task_id='extract_asset_uris',
                                                   python_callable=extract_asset_uris,
                                                   dag=dag)
 
+_download_assets = EventEmittingPythonOperator(task_id='download_assets',
+                                               provide_context=True,
+                                               python_callable=download_assets,
+                                               dag=dag)
+
 _deposit_to_article_store = EventEmittingPythonOperator(task_id='deposit_to_article_store',
                                                         provide_context=True,
                                                         python_callable=deposit_to_article_store,
@@ -161,7 +186,8 @@ _deposit_to_article_store = EventEmittingPythonOperator(task_id='deposit_to_arti
 
 _fetch_article_content.set_upstream(_store_article_data)
 _extract_asset_uris.set_upstream(_fetch_article_content)
-_deposit_to_article_store.set_upstream(_extract_asset_uris)
+_download_assets.set_upstream(_extract_asset_uris)
+_deposit_to_article_store.set_upstream(_download_assets)
 
 
 # TODO deposit_assets
