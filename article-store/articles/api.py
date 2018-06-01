@@ -76,7 +76,7 @@ class ArticleItemAPIView(APIView):
         :return: class: `HttpResponse`
         """
         if not article_id or not Article.id_is_valid(article_id):
-            return Response({'error': 'Please provide a valid article id'}, status=status.HTTP_406_NOT_ACCEPTABLE)
+            return Response({'error': 'Please provide a valid article id'}, status=status.HTTP_400_BAD_REQUEST)
 
         run_id = request.META.get(settings.RUN_ID_HEADER)
 
@@ -133,7 +133,7 @@ class ArticleItemAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         return Response({'error': 'Please provide a valid article id and version number'},
-                        status=status.HTTP_406_NOT_ACCEPTABLE)
+                        status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request: Request, article_id: str, version: str = '') -> HttpResponse:
         """Delete an `Article` or a all versions including and > a specified `ArticleVersion`
@@ -163,10 +163,10 @@ class ArticleItemAPIView(APIView):
             return HttpResponse(status=status.HTTP_202_ACCEPTED, content_type="application/xml")
 
         except ValidationError as err:
-            return Response({'error': f'Invalid article ID - {err}'}, status=status.HTTP_406_NOT_ACCEPTABLE)
+            return Response({'error': f'Invalid article ID - {err}'}, status=status.HTTP_400_BAD_REQUEST)
 
         except ObjectDoesNotExist as err:
-            return Response({'error': f'{err}'}, status=status.HTTP_406_NOT_ACCEPTABLE)
+            return Response({'error': f'{err}'}, status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request: Request, article_id: str, version: str, part: str = default_part_name) -> HttpResponse:
         """Get article content based on version, language and content name.
@@ -205,13 +205,13 @@ class ArticleItemAPIView(APIView):
             return HttpResponse(payload, status=status.HTTP_200_OK, content_type="application/xml")
 
         except ValidationError as err:
-            return Response({'error': f'Invalid article ID - {err}'}, status=status.HTTP_406_NOT_ACCEPTABLE)
+            return Response({'error': f'Invalid article ID - {err}'}, status=status.HTTP_400_BAD_REQUEST)
 
         except AttributeError as err:
-            return Response({'error': f'Content does not exist - {err}'}, status=status.HTTP_406_NOT_ACCEPTABLE)
+            return Response({'error': f'Content does not exist - {err}'}, status=status.HTTP_400_BAD_REQUEST)
 
         except ObjectDoesNotExist as err:
-            return Response({'error': f'{err}'}, status=status.HTTP_406_NOT_ACCEPTABLE)
+            return Response({'error': f'{err}'}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ArticleListAPIView(APIView):
