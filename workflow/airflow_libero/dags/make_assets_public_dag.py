@@ -15,12 +15,12 @@ from lxml.etree import (
 )
 import requests
 
-# HACK for DAG example usage without creating a load of package structures
-# would break this out, outside of example usage
-sys.path.append('..')
 from airflow.operators import EventEmittingPythonOperator
 
 DIR_PATH = 'data'
+
+SUCCESS = True
+FAILURE = False
 
 
 def convert_to_xml(article_content: Dict):
@@ -69,9 +69,9 @@ def store_article_data(*args, **kwargs) -> bool:
         kwargs['ti'].xcom_push('article_id', input_data.get('article_id'))
         kwargs['ti'].xcom_push('article_version', input_data.get('article_version'))
         kwargs['ti'].xcom_push('article_version_id', input_data.get('article_version_id'))
-        return True
+        return SUCCESS
 
-    return False
+    return FAILURE
 
 
 def fetch_article_content(*args, **kwargs) -> bool:
@@ -81,7 +81,7 @@ def fetch_article_content(*args, **kwargs) -> bool:
     response = requests.get(url)
 
     kwargs['ti'].xcom_push('article_content', response.json())
-    return True
+    return SUCCESS, response.json()
 
 
 def deposit_to_article_store(*args, **kwargs) -> bool:
@@ -93,7 +93,11 @@ def deposit_to_article_store(*args, **kwargs) -> bool:
     url = f'http://article-store:8000/articles/{article_id}/versions/{article_version}'
     payload = convert_to_xml(article_content)
 
-    headers = {'X-LIBERO-RUN-ID': run_id, 'Content-Type': 'application/xml'}
+    headers = {
+        'X-LIBERO-RUN-ID': run_id,
+        'X-LIBERO-AIRFLOW': 'true',
+        'Content-Type': 'application/xml'
+    }
     response = requests.put(url, data=payload, headers=headers)
     return response.status_code == 201
 
@@ -132,7 +136,6 @@ _deposit_to_article_store = EventEmittingPythonOperator(task_id='deposit_to_arti
 
 
 _fetch_article_content.set_upstream(_store_article_data)
-
 _deposit_to_article_store.set_upstream(_fetch_article_content)
 
 # TODO extract uris

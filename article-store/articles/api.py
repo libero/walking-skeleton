@@ -75,7 +75,6 @@ class ArticleItemAPIView(APIView):
         :param article_id: str
         :return: class: `HttpResponse`
         """
-
         if not article_id or not Article.id_is_valid(article_id):
             return Response({'error': 'Please provide a valid article id'}, status=status.HTTP_406_NOT_ACCEPTABLE)
 
@@ -111,10 +110,11 @@ class ArticleItemAPIView(APIView):
         :return: class: `HttpResponse`
         """
         if article_id and version:
-            with message_publisher('article.version.put', request.META.get(settings.RUN_ID_HEADER)):
-                article_version = ArticleVersion.objects.get(version=version, article_id=article_id)
+            run_id = request.META.get(settings.RUN_ID_HEADER)
 
-                with transaction.atomic():
+            with transaction.atomic():
+                with message_publisher('article.version.put', run_id):
+                    article_version = ArticleVersion.objects.get(version=version, article_id=article_id)
                     old_content = Content.objects.filter(article_version=article_version)
                     old_content.delete()
 
@@ -124,7 +124,13 @@ class ArticleItemAPIView(APIView):
 
                     serializer = ArticleVersionSerializer(article_version)
 
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            if settings.AIRFLOW_ACTIVE and not request.META.get(settings.AIRFLOW_REQUEST_HEADER):
+                start_article_dag(run_id=run_id,
+                                  article_id=article_id,
+                                  article_version=article_version.version,
+                                  article_version_id=article_version.id)
+
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         return Response({'error': 'Please provide a valid article id and version number'},
                         status=status.HTTP_406_NOT_ACCEPTABLE)
