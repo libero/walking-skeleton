@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'core.middleware.ensure_run_id',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -146,3 +147,5 @@ XML_NAMESPACES = (
     ("", "http://libero.pub"),
     ("mml", "http://www.w3.org/1998/Math/MathML")
 )
+
+RUN_ID_HEADER = 'HTTP_X_LIBERO_RUN_ID'

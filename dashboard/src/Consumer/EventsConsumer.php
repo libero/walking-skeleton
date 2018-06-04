@@ -40,13 +40,10 @@ final class EventsConsumer implements ConsumerInterface
 
         $event = new Event(
             $json['eventId'],
+            $json['runId'],
             new DateTimeImmutable($json['happenedAt']),
             $json['type'],
-            new Aggregate(
-                $json['aggregate']['service'],
-                $json['aggregate']['name'],
-                $json['aggregate']['identifier']
-            )
+            $json['message'] ?? null
         );
 
         $manager = $this->getManager();

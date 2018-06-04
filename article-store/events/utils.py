@@ -6,7 +6,8 @@ from typing import (
     Any,
     Callable,
     ContextManager,
-    Dict
+    Dict,
+    Optional,
 )
 import uuid
 
@@ -24,21 +25,17 @@ from .conf import (
 DELIVERY_MODE_PERSISTENT = 2
 
 
-def create_message(msg_type: str, identifier: str, data: Dict) -> Dict:
+def create_message(msg_type: str, run_id: str, message: Optional[str] = None) -> Dict:
     """Create a message `dict` based on a standard schema.
 
     :return: Dict
     """
     return {
         "eventId": str(uuid.uuid1()),
+        "runId": run_id,
         "happenedAt": strftime("%Y-%m-%dT%H:%M:%S+00:00", gmtime()),
-        "aggregate": {
-            "service": "article-store",
-            "name": "article-version",
-            "identifier": identifier,
-        },
         "type": msg_type,
-        "data": data or {}
+        "message": message
     }
 
 
@@ -83,26 +80,25 @@ def setup_exchanges(func) -> Callable[..., None]:
 
 
 @setup_exchanges
-def send_article_message(msg_type: str, article_id: str, article_version: int = None) -> None:
+def send_article_message(msg_type: str, run_id: str, message: Optional[str] = None) -> None:
     """Create and send article event message.
 
     :param msg_type: str
-    :param article_id: str
-    :param article_version: int
+    :param run_id: str
+    :param message: str
     :return:
     """
     with get_channel() as channel:
-        message = create_message(msg_type=msg_type, identifier=article_id,
-                                 data={'article_version': article_version})
+        article_message = create_message(msg_type=msg_type, run_id=run_id, message=message)
 
         channel.basic_publish(exchange=ARTICLES_EXCHANGE,
                               routing_key="",
-                              body=json.dumps(message),
+                              body=json.dumps(article_message),
                               properties=pika.BasicProperties(delivery_mode=DELIVERY_MODE_PERSISTENT))
 
 
 @contextmanager
-def message_publisher(msg_type: str, article_id: str, article_version: int = None) -> ContextManager[None]:
+def message_publisher(msg_type: str, run_id: str) -> ContextManager[None]:
     """Wrapper to send started/completed/failed messages for a given article `msg_type`.
 
     :param msg_type: str
@@ -111,14 +107,14 @@ def message_publisher(msg_type: str, article_id: str, article_version: int = Non
     :return:
     """
 
-    send_message = partial(send_article_message, article_id=article_id, article_version=article_version)
+    send_message = partial(send_article_message, run_id=run_id, message=None)
 
     try:
         send_message(f'{msg_type}.started')
         yield
         send_message(f'{msg_type}.completed')
-    except Exception:
-        send_message(f'{msg_type}.failed')
+    except Exception as exception:
+        send_message(f'{msg_type}.failed', message=str(exception))
         raise
 
 
