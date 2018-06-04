@@ -45,6 +45,11 @@ services:
             - APP_SECRET=f6a87c2e031ecadc0d7eb442729435c8
             - DATABASE_URL=postgres://postgres:@article-store-postgres:5432/postgres
             - RABBITMQ_URL=amqp://guest:guest@event-bus:5672
+        command: >
+                /bin/bash -c '
+                    until echo > /dev/tcp/article-store-postgres/5432; do sleep 1; done
+                    pipenv run python -u manage.py runserver 0.0.0.0:8000
+                '
         depends_on:
           - article-store-postgres
     article-store-exchange-setup:
