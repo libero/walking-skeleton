@@ -2,9 +2,9 @@
 
 <grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://hindawi.com">
 
-    <include href="../../libero/article/front.rng"/>
+    <include href="http://localhost:8087/data/article/front.rng"/>
 
-    <include href="../../libero/extensions/abstract.rng"/>
-    <include href="../../libero/extensions/doi.rng"/>
+    <include href="http://localhost:8087/data/extensions/abstract.rng"/>
+    <include href="http://localhost:8087/data/extensions/doi.rng"/>
 
 </grammar>
