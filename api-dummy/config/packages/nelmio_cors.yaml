@@ -1,0 +1,3 @@
+nelmio_cors:
+    defaults:
+        forced_allow_origin_value: '*'
