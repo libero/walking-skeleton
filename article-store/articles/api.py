@@ -1,3 +1,5 @@
+from typing import Dict
+
 from lxml.etree import (
     Element,
     SubElement,
@@ -68,6 +70,23 @@ class ArticleItemAPIView(APIView):
     latest = 'latest'
     style_element = '<?xml version="1.0" ?>\n'
 
+    @staticmethod
+    def get_run_id(request: Request) -> str:
+        """Extract `run_id` from target request.
+
+        :param request: class: Request
+        :return: str
+        """
+        return request.META.get(settings.RUN_ID_HEADER)
+
+    def response_headers(self, request: Request) -> Dict[str, str]:
+        """Assign values to custom response headers.
+
+        :param request: class: Request
+        :return: Dict
+        """
+        return {'X-LIBERO-RUN-ID': self.get_run_id(request)}
+
     def post(self, request: Request, article_id: str) -> HttpResponse:
         """Create an `ArticleVersion`.
 
@@ -78,7 +97,7 @@ class ArticleItemAPIView(APIView):
         if not article_id or not Article.id_is_valid(article_id):
             return Response({'error': 'Please provide a valid article id'}, status=status.HTTP_400_BAD_REQUEST)
 
-        run_id = request.META.get(settings.RUN_ID_HEADER)
+        run_id = self.get_run_id(request)
 
         with transaction.atomic():
             article, created = Article.objects.get_or_create(id=article_id)
@@ -90,18 +109,15 @@ class ArticleItemAPIView(APIView):
                 for content_item in request.data.get('content-list', []):
                     Content.objects.create(article_version=article_version, **content_item)
 
-                serializer = ArticleVersionSerializer(article_version)
-
         if settings.AIRFLOW_ACTIVE:
             start_article_dag(run_id=run_id,
                               article_id=article_id,
                               article_version=article_version.version,
                               article_version_id=article_version.id)
 
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(status=status.HTTP_201_CREATED, headers=self.response_headers(request))
 
-    @staticmethod
-    def put(request: Request, article_id: str, version: str) -> HttpResponse:
+    def put(self, request: Request, article_id: str, version: str) -> HttpResponse:
         """Update an `ArticleVersion`
 
         :param request:
@@ -110,7 +126,7 @@ class ArticleItemAPIView(APIView):
         :return: class: `HttpResponse`
         """
         if article_id and version:
-            run_id = request.META.get(settings.RUN_ID_HEADER)
+            run_id = self.get_run_id(request)
 
             with transaction.atomic():
                 with message_publisher('article.version.put', run_id):
@@ -122,15 +138,13 @@ class ArticleItemAPIView(APIView):
                         for content_item in request.data.get('content-list', []):
                             Content.objects.create(article_version=article_version, **content_item)
 
-                    serializer = ArticleVersionSerializer(article_version)
-
             if settings.AIRFLOW_ACTIVE and not request.META.get(settings.AIRFLOW_REQUEST_HEADER):
                 start_article_dag(run_id=run_id,
                                   article_id=article_id,
                                   article_version=article_version.version,
                                   article_version_id=article_version.id)
 
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(status=status.HTTP_201_CREATED, headers=self.response_headers(request))
 
         return Response({'error': 'Please provide a valid article id and version number'},
                         status=status.HTTP_400_BAD_REQUEST)
