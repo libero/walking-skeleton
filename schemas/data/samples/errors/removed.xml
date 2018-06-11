@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<?xml-model href="http://localhost:8086/rfc7807.rng"?>
+
+<problem xmlns="urn:ietf:rfc:7807">
+   <title>Resource requested is no longer available and will not be available again.</title>
+   <status>410</status>
+</problem>

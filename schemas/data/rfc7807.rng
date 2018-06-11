@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<grammar ns="urn:ietf:rfc:7807" xmlns="http://relaxng.org/ns/structure/1.0"
+    datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+
+    <start>
+        <ref name="problem"/>
+    </start>
+
+    <define name="problem">
+        <element name="problem">
+            <interleave>
+                <optional>
+                    <element name="type">
+                        <data type="anyURI"/>
+                    </element>
+                </optional>
+                <optional>
+                    <element name="title">
+                        <data type="string"/>
+                    </element>
+                </optional>
+                <optional>
+                    <element name="detail">
+                        <data type="string"/>
+                    </element>
+                </optional>
+                <optional>
+                    <element name="status">
+                        <data type="positiveInteger"/>
+                    </element>
+                </optional>
+                <optional>
+                    <element name="instance">
+                        <data type="anyURI"/>
+                    </element>
+                </optional>
+            </interleave>
+            <ref name="anyNsElement"/>
+        </element>
+    </define>
+
+    <define name="anyNsElement">
+        <zeroOrMore>
+            <choice>
+                <element>
+                    <nsName/>
+                    <choice>
+                        <ref name="anyNsElement"/>
+                        <text/>
+                    </choice>
+                </element>
+                <attribute>
+                    <anyName/>
+                </attribute>
+            </choice>
+        </zeroOrMore>
+    </define>
+
+</grammar>

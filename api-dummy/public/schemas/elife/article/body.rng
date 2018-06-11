@@ -2,19 +2,19 @@
 
 <grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://elifesciences.org">
 
-    <include href="../../libero/article/body.rng"/>
+    <include href="http://localhost:8087/data/article/body.rng"/>
     
-    <include href="../../libero/extensions/aside.rng"/>
-    <include href="../../libero/extensions/code.rng"/>
-    <include href="../../libero/extensions/doi.rng"/>
-    <include href="../../libero/extensions/iiif.rng"/>
-    <include href="../../libero/extensions/list.rng"/>
-    <include href="../../libero/extensions/mathml.rng"/>
-    <include href="../../libero/extensions/quote.rng"/>
-    <include href="../../libero/extensions/section.rng"/>
-    <include href="../../libero/extensions/table.rng"/>
-    <include href="../../libero/extensions/table-group.rng"/>
-    <include href="../../libero/extensions/youtube.rng"/>
+    <include href="http://localhost:8087/data/extensions/aside.rng"/>
+    <include href="http://localhost:8087/data/extensions/code.rng"/>
+    <include href="http://localhost:8087/data/extensions/doi.rng"/>
+    <include href="http://localhost:8087/data/extensions/iiif.rng"/>
+    <include href="http://localhost:8087/data/extensions/list.rng"/>
+    <include href="http://localhost:8087/data/extensions/mathml.rng"/>
+    <include href="http://localhost:8087/data/extensions/quote.rng"/>
+    <include href="http://localhost:8087/data/extensions/section.rng"/>
+    <include href="http://localhost:8087/data/extensions/table.rng"/>
+    <include href="http://localhost:8087/data/extensions/table-group.rng"/>
+    <include href="http://localhost:8087/data/extensions/youtube.rng"/>
 
     <define name="libero.blocks.table.cell.base" combine="choice">
         <attribute name="background-color" ns="http://elifesciences.org">
