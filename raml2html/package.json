@@ -1,0 +1,7 @@
+{
+    "private": true,
+    "dependencies": {
+        "http-server": "^0.11.1",
+        "raml2html": "^7.1.0"
+    }
+}

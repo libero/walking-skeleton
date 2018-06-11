@@ -1,0 +1,59 @@
+#%RAML 1.0
+title: eLife's Libero walking skeleton
+
+description: |
+    Example of a composed Libero API schema.
+
+baseUri: http://localhost:8085
+
+resourceTypes:
+    articles: !include http://schemas:80/api/articles.raml
+
+/articles:
+    type:
+        articles:
+            frontType: !include http://api-dummy-nginx:80/schemas/elife/article/front.rng
+            frontExample: !include http://api-dummy-nginx:80/articles/00666/versions/latest/front
+            bodyType: !include http://api-dummy-nginx:80/schemas/elife/article/body.rng
+            bodyExample: !include http://api-dummy-nginx:80/articles/00666/versions/latest/body
+
+/wikipedia-articles:
+    type:
+        articles:
+            frontType: !include http://api-dummy-nginx:80/schemas/wikipedia/article/front.rng
+            frontExample: !include http://api-dummy-nginx:80/articles/wikipedia/versions/latest/front
+            bodyType: !include http://api-dummy-nginx:80/schemas/wikipedia/article/body.rng
+            bodyExample: !include http://api-dummy-nginx:80/articles/wikipedia/versions/latest/body
+    description: |
+        List all Wikipedia articles.
+
+        This is an example of having a second article store
+    get:
+        queryParameters:
+            offset:
+                description: |
+                    This is an example of adding a custom query parameter.
+                type: integer
+                required: false
+                example: 20
+                default: 0
+    /{id}:
+        /versions:
+            /{version}:
+                /references:
+                    type:
+                        base.item:
+                            resource: Article version references
+                    description: |
+                        Article version references.
+
+                        This is an example of adding a custom part.
+                    get:
+                        description: |
+                            Get article version references.
+                        responses:
+                            200:
+                                description: |
+                                    Article version references.
+                                body:
+                                    application/xml:

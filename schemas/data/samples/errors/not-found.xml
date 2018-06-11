@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<?xml-model href="http://localhost:8086/rfc7807.rng"?>
+
+<problem xmlns="urn:ietf:rfc:7807">
+   <title>Requested resource could not be found but may be available in the future.</title>
+   <status>404</status>
+</problem>
