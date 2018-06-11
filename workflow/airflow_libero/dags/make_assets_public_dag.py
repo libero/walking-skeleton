@@ -231,8 +231,3 @@ _extract_asset_uris.set_upstream(_fetch_article_content)
 _download_assets.set_upstream(_extract_asset_uris)
 _update_asset_uris.set_upstream(_download_assets)
 _deposit_to_article_store.set_upstream(_update_asset_uris)
-
-
-# TODO deposit_assets
-
-# TODO update_asset_uris
