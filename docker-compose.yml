@@ -170,6 +170,8 @@ services:
             - POSTGRES_HOST=article-store-airflow-postgres
             - REDIS_HOST=article-store-airflow-redis
             - RABBITMQ_URL=amqp://guest:guest@event-bus:5672
+            - ARTICLE_STORE_URL=http://article-store:8000
+            - STATIC_ASSETS_URL=http://localhost:8089
         command: worker
     dashboard-events:
         build:

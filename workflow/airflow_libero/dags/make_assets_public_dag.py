@@ -20,9 +20,13 @@ PUBLIC_DATA_DIR = '/usr/local/airflow/public/articles'
 
 SUCCESS = True
 FAILURE = False
-STATIC_ASSETS_URL = 'http://localhost:8089'
 SUPPORTED_MEDIA_TYPES = ['image/tiff', "image/jpeg"]
 ASSET_ELEMENTS = ['source', 'variant']
+
+STATIC_ASSETS_URL = os.environ.get('STATIC_ASSETS_URL')
+ARTICLE_STORE_URL = os.environ.get('ARTICLE_STORE_URL')
+
+ARTICLES_URL = f'{ARTICLE_STORE_URL}/articles/api/v1/article-versions'
 
 
 def convert_to_xml(article_content: Dict[str, Dict]) -> str:
@@ -78,7 +82,7 @@ def store_article_data(*args, **kwargs) -> bool:
 
 def fetch_article_content(*args, **kwargs) -> bool:
     article_version_id = kwargs['ti'].xcom_pull(task_ids=None, key='article_version_id')
-    url = f'http://article-store:8000/articles/api/v1/article-versions/{article_version_id}/'
+    url = f'{ARTICLES_URL}/{article_version_id}/'
 
     response = requests.get(url)
 
