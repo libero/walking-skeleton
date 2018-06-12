@@ -33,7 +33,7 @@ class TestCreateArticleVersion:
         invalid_id = '[foo](bar)**'
         response = admin_client.post(f'{ARTICLES_URL}/{invalid_id}/versions',
                                      data='', content_type='application/xml')
-        assert response.status_code == 406
+        assert response.status_code == 400
 
     @pytest.mark.django_db
     def test_can_create_article_version_with_content(self, admin_client: Client,
@@ -137,7 +137,7 @@ class TestArticleErrors:
     def test_can_handle_article_not_existing(self, admin_client: Client):
         url = '/articles/cc1250b5-0855-4fc2-906f-a6a77e4c90f5/versions/latest'
         response = admin_client.get(url)
-        assert response.status_code == 406
+        assert response.status_code == 400
         assert 'Article matching query does not exist' in response.content.decode('utf-8')
 
     @pytest.mark.django_db
@@ -146,7 +146,7 @@ class TestArticleErrors:
                                                    article: Article):
         url = f'/articles/{article.id}/versions/latest'
         response = admin_client.get(url)
-        assert response.status_code == 406
+        assert response.status_code == 400
         assert 'Content does not exist' in response.content.decode('utf-8')
 
     @pytest.mark.django_db
@@ -156,7 +156,7 @@ class TestArticleErrors:
                                                            article_version_1: ArticleVersion):
         url = f'/articles/{article.id}/versions/latest'
         response = admin_client.get(url)
-        assert response.status_code == 406
+        assert response.status_code == 400
         assert 'Content does not exist' in response.content.decode('utf-8')
 
 

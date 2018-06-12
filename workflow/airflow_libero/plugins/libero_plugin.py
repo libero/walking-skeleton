@@ -1,8 +1,53 @@
+from contextlib import contextmanager
+from functools import partial
 import json
-from typing import Any, Dict
+import os
+from time import gmtime, strftime
+from typing import (
+    ContextManager,
+    Dict,
+    Optional,
+)
+import uuid
 
 from airflow.plugins_manager import AirflowPlugin
 from airflow.operators.python_operator import PythonOperator
+import pika
+from pika.exceptions import ConnectionClosed
+from pika.adapters.blocking_connection import BlockingChannel
+
+
+RABBITMQ_URL = os.environ.get('RABBITMQ_URL', '')
+BROKER_PARAMS = pika.connection.URLParameters(RABBITMQ_URL)
+ARTICLES_EXCHANGE = 'articles'
+
+
+def create_message(msg_type: str, run_id: str, message: Optional[str] = None) -> Dict:
+    """Create a message `dict` based on a standard schema.
+    :return: Dict
+    """
+    return {
+        "eventId": str(uuid.uuid1()),
+        "runId": run_id,
+        "happenedAt": strftime("%Y-%m-%dT%H:%M:%S+00:00", gmtime()),
+        "type": f'article.version.{msg_type}',
+        "message": message
+    }
+
+
+@contextmanager
+def get_channel() -> ContextManager[BlockingChannel]:
+    """Handles the creation and clean up of a connection,
+    giving the caller a connection channel to use.
+    :return: class: `BlockingChannel`
+    """
+    try:
+        connection = pika.BlockingConnection(parameters=BROKER_PARAMS)
+        yield connection.channel()
+        connection.close()
+    except ConnectionClosed as err:
+        print(err)
+        raise
 
 
 class EventEmittingPythonOperator(PythonOperator):
@@ -13,44 +58,33 @@ class EventEmittingPythonOperator(PythonOperator):
     def execute_callable(self):
         try:
             result = None
+            run_id = self.op_kwargs['dag_run'].conf.get('input_data')['run_id']
+            send_message = partial(self.send_message, run_id=run_id)
 
-            self.publish_event({'message': f'Starting {self.python_callable.__name__}'})
+            send_message(f'{self.task_id}.started')
             result = self.python_callable(*self.op_args, **self.op_kwargs)
-            self.publish_event({'message': f'Finished {self.python_callable.__name__}'})
-        except Exception:
-            self.publish_event({'message': f'Failed {self.python_callable.__name__}'})
-        finally:
+            send_message(f'{self.task_id}.completed')
             return result
+        except Exception as exception:
+            send_message(f'{self.task_id}.failed', message=str(exception))
+            raise
 
-    def publish_event(self, data: Dict[str, Any]):
-        pass
-        # with get_channel() as channel:
-        #     message = get_base_message()
-        #     message['aggregate']['service'] = 'airflow'
-        #     message['aggregate']['name'] = f'{self.python_callable.__name__}'
-        #     message['type'] = 'event-emitting-python-operator'
-        #     message['data'] = data
-        #
-        #     channel.basic_publish(exchange=TASK_EVENT_EXCHANGE,
-        #                           routing_key=message['type'],
-        #                           body=json.dumps(message))
+    @staticmethod
+    def send_message(msg_type: str, run_id: str, message: Optional[str] = None) -> None:
+        with get_channel() as channel:
+            message = create_message(msg_type=msg_type, run_id=run_id, message=message)
+
+            channel.basic_publish(exchange=ARTICLES_EXCHANGE,
+                                  routing_key=message['type'],
+                                  body=json.dumps(message))
 
 
 class LiberoPlugin(AirflowPlugin):
-    # The name of your plugin (str)
     name = "libero_plugin"
-    # A list of class(es) derived from BaseOperator
     operators = [EventEmittingPythonOperator]
-    # A list of class(es) derived from BaseHook
     hooks = []
-    # A list of class(es) derived from BaseExecutor
     executors = []
-    # A list of references to inject into the macros namespace
     macros = []
-    # A list of objects created from a class derived
-    # from flask_admin.BaseView
     admin_views = []
-    # A list of Blueprint object created from flask.Blueprint
     flask_blueprints = []
-    # A list of menu links (flask_admin.base.MenuLink)
     menu_links = []

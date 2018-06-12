@@ -14,7 +14,7 @@ DELIVERY_MODE_PERSISTENT = 2
 BUS_PARAMS = pika.connection.URLParameters(os.environ['RABBITMQ_URL'])
 
 ARTICLE_EXCHANGE_NAME = 'articles'
-ARTICLE_EXCHANGE_ROUTING_KEY = 'article.version.*.completed'
+ARTICLE_EXCHANGE_ROUTING_KEY = 'article.version.deposit_to_article_store.completed'
 DOWNSTREAM_EXCHANGE_NAME = 'downstream-sample'
 DOWNSTREAM_QUEUE_NAME = 'downstream-sample'
 

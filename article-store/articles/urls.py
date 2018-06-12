@@ -4,6 +4,7 @@ from rest_framework import routers
 
 from articles.api import (
     ArticleViewSet,
+    ArticleVersionViewSet,
     ArticleItemAPIView,
     ArticleListAPIView,
 )
@@ -11,6 +12,7 @@ from articles.api import (
 
 router_v1 = routers.DefaultRouter()
 router_v1.register('articles', ArticleViewSet, base_name='article')
+router_v1.register('article-versions', ArticleVersionViewSet, base_name='article-version')
 
 
 urlpatterns = [

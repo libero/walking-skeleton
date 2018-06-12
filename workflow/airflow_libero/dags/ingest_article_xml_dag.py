@@ -16,7 +16,7 @@ from airflow.operators import EventEmittingPythonOperator
 DIR_PATH = 'data'
 
 
-def _download_article_xml(*args, **kwargs):
+def download_article_xml(*args, **kwargs):
     """Download some article xml and store in a public location
 
     :return: str
@@ -41,7 +41,7 @@ def _download_article_xml(*args, **kwargs):
                     xml_file.write(response.text)
 
 
-def _extract_asset_uris(*args, **kwargs):
+def extract_asset_uris(*args, **kwargs):
     """Download some article xml and extract asset URIs from XML.
 
     :return: str
@@ -66,7 +66,7 @@ def _extract_asset_uris(*args, **kwargs):
         kwargs['ti'].xcom_push('uris', json.dumps({'uris': uris}))
 
 
-def _download_assets(*args, **kwargs):
+def download_assets(*args, **kwargs):
     """Download some static assets.
 
     :return: str
@@ -104,21 +104,21 @@ default_args = {
 dag = DAG('ingest_article_xml', default_args=default_args, schedule_interval=None)
 
 
-download_article_xml = EventEmittingPythonOperator(task_id='download_article_xml',
-                                                   provide_context=True,
-                                                   python_callable=_download_article_xml,
-                                                   dag=dag)
+_download_article_xml = EventEmittingPythonOperator(task_id='download_article_xml',
+                                                    provide_context=True,
+                                                    python_callable=download_article_xml,
+                                                    dag=dag)
 
-extract_asset_uris = EventEmittingPythonOperator(task_id='extract_asset_uris',
-                                                 provide_context=True,
-                                                 python_callable=_extract_asset_uris,
-                                                 dag=dag)
+_extract_asset_uris = EventEmittingPythonOperator(task_id='extract_asset_uris',
+                                                  provide_context=True,
+                                                  python_callable=extract_asset_uris,
+                                                  dag=dag)
 
-download_assets = EventEmittingPythonOperator(task_id='download_assets',
-                                              provide_context=True,
-                                              python_callable=_download_assets,
-                                              dag=dag)
+_download_assets = EventEmittingPythonOperator(task_id='download_assets',
+                                               provide_context=True,
+                                               python_callable=download_assets,
+                                               dag=dag)
 
 
-extract_asset_uris.set_upstream(download_article_xml)
-download_assets.set_upstream(extract_asset_uris)
+_extract_asset_uris.set_upstream(_download_article_xml)
+_download_assets.set_upstream(_extract_asset_uris)
