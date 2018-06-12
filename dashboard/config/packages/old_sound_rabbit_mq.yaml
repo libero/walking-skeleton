@@ -6,9 +6,8 @@ old_sound_rabbit_mq:
         events:
             callback: Libero\Dashboard\Consumer\EventsConsumer
             enable_logger: true
-            exchange_options:
-                name: 'articles'
-                type: fanout
-                declare: false
             queue_options:
                 name: 'dashboard'
+    bindings:
+        - {exchange: 'articles', destination: 'dashboard', routing_key: '#'}
+        - {exchange: 'downstream-sample', destination: 'dashboard', routing_key: '#'}

@@ -75,7 +75,7 @@ class EventEmittingPythonOperator(PythonOperator):
             message = create_message(msg_type=msg_type, run_id=run_id, message=message)
 
             channel.basic_publish(exchange=ARTICLES_EXCHANGE,
-                                  routing_key="",
+                                  routing_key=message['type'],
                                   body=json.dumps(message))
 
 

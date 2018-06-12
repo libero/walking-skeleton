@@ -59,6 +59,11 @@ services:
             - AIRFLOW_URL=http://article-store-airflow-webserver:8080
             - DATABASE_URL=postgres://postgres:@article-store-postgres:5432/postgres
             - RABBITMQ_URL=amqp://guest:guest@event-bus:5672
+        command: >
+                /bin/bash -c '
+                    until echo > /dev/tcp/article-store-postgres/5432; do sleep 1; done
+                    pipenv run python -u manage.py runserver 0.0.0.0:8000
+                '
         depends_on:
           - article-store-postgres
     article-store-exchange-setup:
@@ -234,11 +239,25 @@ services:
         command: bash -c 'wait-for-port dashboard-postgres 5432 && bin/console doctrine:schema:update --force'
         depends_on:
             - dashboard-postgres
+    downstream-sample:
+        build:
+            context: ./downstream-sample
+        command: bash -c 'until echo > /dev/tcp/event-bus/5672; do sleep 1; done; exec pipenv run python -u manage.py worker'
+        volumes:
+            - ./downstream-sample:/srv/app
+        environment:
+            - RABBITMQ_URL=amqp://guest:guest@event-bus:5672
+        depends_on:
+            - event-bus
+            # TODO: when calls are made
+            #- api-gateway
     event-bus:
         image: rabbitmq:3.7.4-management-alpine
         ports:
           - '8083:15672'
           - '8084:5672'
+        volumes:
+            - event-bus:/var/lib/rabbitmq
     journal-fpm:
         build:
             context: ./journal
@@ -278,5 +297,6 @@ services:
             - ./schemas:/srv/app
 
 volumes:
+    event-bus: 
     article-store-airflow-postgres:
     article-store-postgres:

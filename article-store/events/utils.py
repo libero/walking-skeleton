@@ -46,7 +46,7 @@ def declare_exchanges() -> None:
     """
     with get_channel() as channel:
         for exchange in DEFAULT_EXCHANGES:
-            channel.exchange_declare(exchange=exchange, exchange_type='fanout', durable=True)
+            channel.exchange_declare(exchange=exchange, exchange_type='topic', durable=True)
 
 
 @contextmanager
@@ -92,7 +92,7 @@ def send_article_message(msg_type: str, run_id: str, message: Optional[str] = No
         article_message = create_message(msg_type=msg_type, run_id=run_id, message=message)
 
         channel.basic_publish(exchange=ARTICLES_EXCHANGE,
-                              routing_key="",
+                              routing_key=msg_type,
                               body=json.dumps(article_message),
                               properties=pika.BasicProperties(delivery_mode=DELIVERY_MODE_PERSISTENT))
 
