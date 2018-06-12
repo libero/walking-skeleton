@@ -102,8 +102,7 @@ def message_publisher(msg_type: str, run_id: str) -> ContextManager[None]:
     """Wrapper to send started/completed/failed messages for a given article `msg_type`.
 
     :param msg_type: str
-    :param article_id: str
-    :param article_version: int
+    :param run_id: str
     :return:
     """
 

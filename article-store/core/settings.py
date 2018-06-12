@@ -22,6 +22,9 @@ LOGGING = {
     },
 }
 
+AIRFLOW_ACTIVE = os.environ.get('AIRFLOW_ACTIVE', False)
+AIRFLOW_URL = os.environ.get('AIRFLOW_URL')
+
 ENVIRONMENT = os.environ.get('APP_ENV', 'dev')
 
 SECRET_KEY = os.environ.get('APP_SECRET', 'secret')
@@ -149,3 +152,4 @@ XML_NAMESPACES = (
 )
 
 RUN_ID_HEADER = 'HTTP_X_LIBERO_RUN_ID'
+AIRFLOW_REQUEST_HEADER = 'HTTP_X_LIBERO_AIRFLOW'
