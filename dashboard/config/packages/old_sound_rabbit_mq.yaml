@@ -9,5 +9,5 @@ old_sound_rabbit_mq:
             queue_options:
                 name: 'dashboard'
     bindings:
-        - {exchange: 'articles', destination: 'dashboard'}
-        - {exchange: 'downstream-sample', destination: 'dashboard'}
+        - {exchange: 'articles', destination: 'dashboard', routing_key: '#'}
+        - {exchange: 'downstream-sample', destination: 'dashboard', routing_key: '#'}

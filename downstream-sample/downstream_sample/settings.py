@@ -14,6 +14,7 @@ DELIVERY_MODE_PERSISTENT = 2
 BUS_PARAMS = pika.connection.URLParameters(os.environ['RABBITMQ_URL'])
 
 ARTICLE_EXCHANGE_NAME = 'articles'
+ARTICLE_EXCHANGE_ROUTING_KEY = 'article.version.*.completed'
 DOWNSTREAM_EXCHANGE_NAME = 'downstream-sample'
 DOWNSTREAM_QUEUE_NAME = 'downstream-sample'
 
@@ -53,11 +54,11 @@ def ensure_queue(queue_name):
         # create queue, will skip if exists
         channel.queue_declare(queue=queue_name, durable=True)
         # bind queue to exchange, will skip if already bound
-        channel.queue_bind(exchange=ARTICLE_EXCHANGE_NAME, queue=queue_name)
+        channel.queue_bind(exchange=ARTICLE_EXCHANGE_NAME, queue=queue_name, routing_key=ARTICLE_EXCHANGE_ROUTING_KEY)
 
 def ensure_exchange(exchange_name):
     with get_channel() as channel:
-        # create an exchange of type `fanout`, will skip if already exists
+        # create an exchange of type `topic`, will skip if already exists
         channel.exchange_declare(exchange=exchange_name,
-                                 exchange_type='fanout',
+                                 exchange_type='topic',
                                  durable=True)

@@ -16,6 +16,6 @@ class Events():
             event['happenedAt'] = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S+00:00")
             print("Publishing: %s" % event)
             channel.basic_publish(exchange=self._exchange_name,
-                                  routing_key='*',
+                                  routing_key=event['type'],
                                   body=json.dumps(event),
                                   properties=pika.BasicProperties(delivery_mode=DELIVERY_MODE_PERSISTENT))

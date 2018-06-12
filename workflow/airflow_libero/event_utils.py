@@ -105,7 +105,7 @@ def setup_exchanges_and_queues(func) -> Callable[..., None]:
                 channel.queue_declare(queue=queue_name, durable=True)
 
                 for exchange in DEFAULT_QUEUES[queue_name]:
-                    channel.exchange_declare(exchange=exchange, exchange_type='fanout', durable=True)
+                    channel.exchange_declare(exchange=exchange, exchange_type='topic', durable=True)
                     channel.queue_bind(exchange=exchange, queue=queue_name)
 
         return func()

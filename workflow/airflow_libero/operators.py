@@ -36,5 +36,5 @@ class EventEmittingPythonOperator(PythonOperator):
             message['data'] = data
 
             channel.basic_publish(exchange=TASK_EVENT_EXCHANGE,
-                                  routing_key="",
+                                  routing_key=message['type'],
                                   body=json.dumps(message))
