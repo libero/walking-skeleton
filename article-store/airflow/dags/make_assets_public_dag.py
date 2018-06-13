@@ -27,6 +27,7 @@ STATIC_ASSETS_URL = os.environ.get('STATIC_ASSETS_URL')
 ARTICLE_STORE_URL = os.environ.get('ARTICLE_STORE_URL')
 
 ARTICLES_URL = f'{ARTICLE_STORE_URL}/articles/api/v1/article-versions'
+ARTICLES_EXCHANGE = 'articles'
 
 
 def convert_to_xml(article_content: Dict[str, Dict]) -> str:
@@ -198,33 +199,39 @@ default_args = {
 dag = DAG('make_assets_public', default_args=default_args, schedule_interval=None)
 
 
-_store_article_data = EventEmittingPythonOperator(task_id='store_article_data',
+_store_article_data = EventEmittingPythonOperator(exchange=ARTICLES_EXCHANGE,
+                                                  task_id='article.version.store_article_data',
                                                   provide_context=True,
                                                   python_callable=store_article_data,
                                                   dag=dag)
 
 
-_fetch_article_content = EventEmittingPythonOperator(task_id='fetch_article_content',
+_fetch_article_content = EventEmittingPythonOperator(exchange=ARTICLES_EXCHANGE,
+                                                     task_id='article.version.fetch_article_content',
                                                      provide_context=True,
                                                      python_callable=fetch_article_content,
                                                      dag=dag)
 
-_extract_asset_uris = EventEmittingPythonOperator(task_id='extract_asset_uris',
+_extract_asset_uris = EventEmittingPythonOperator(exchange=ARTICLES_EXCHANGE,
+                                                  task_id='article.version.extract_asset_uris',
                                                   provide_context=True,
                                                   python_callable=extract_asset_uris,
                                                   dag=dag)
 
-_download_assets = EventEmittingPythonOperator(task_id='download_assets',
+_download_assets = EventEmittingPythonOperator(exchange=ARTICLES_EXCHANGE,
+                                               task_id='article.version.download_assets',
                                                provide_context=True,
                                                python_callable=download_assets,
                                                dag=dag)
 
-_update_asset_uris = EventEmittingPythonOperator(task_id='update_asset_uris',
+_update_asset_uris = EventEmittingPythonOperator(exchange=ARTICLES_EXCHANGE,
+                                                 task_id='article.version.update_asset_uris',
                                                  provide_context=True,
                                                  python_callable=update_asset_uris,
                                                  dag=dag)
 
-_deposit_to_article_store = EventEmittingPythonOperator(task_id='deposit_to_article_store',
+_deposit_to_article_store = EventEmittingPythonOperator(exchange=ARTICLES_EXCHANGE,
+                                                        task_id='article.version.deposit_to_article_store',
                                                         provide_context=True,
                                                         python_callable=deposit_to_article_store,
                                                         dag=dag)
