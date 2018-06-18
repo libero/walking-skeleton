@@ -1,6 +1,11 @@
 version: '3'
 
 services:
+    airflow:
+        build:
+            context: ./airflow
+        command: 'true'
+        image: libero/airflow:latest
     api-doc:
         build:
             context: ./raml2html
@@ -101,8 +106,9 @@ services:
             - article-store-postgres
     article-store-airflow-flower:
         build:
-          context: ./airflow
+            context: ./article-store-airflow
         depends_on:
+            - airflow
             - article-store-airflow-redis
         environment:
             - EXECUTOR=Celery
@@ -123,11 +129,10 @@ services:
         image: 'redis:3.2.7'
     article-store-airflow-scheduler:
         build:
-          context: ./airflow
+            context: ./article-store-airflow
         depends_on:
+            - airflow
             - article-store-airflow-webserver
-        volumes:
-            - ./article-store/airflow/dags:/usr/local/airflow/dags
         environment:
             - LOAD_EX=n
             - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
@@ -138,8 +143,9 @@ services:
         command: scheduler
     article-store-airflow-webserver:
         build:
-          context: ./airflow
+            context: ./article-store-airflow
         depends_on:
+            - airflow
             - article-store-airflow-postgres
             - article-store-airflow-redis
         environment:
@@ -150,7 +156,6 @@ services:
             - REDIS_HOST=article-store-airflow-redis
             - RABBITMQ_URL=amqp://guest:guest@event-bus:5672
         volumes:
-            - ./article-store/airflow/dags:/usr/local/airflow/dags
             - ./static-assets-store/static:/usr/local/airflow/public
         ports:
             - "8086:8080"
@@ -162,11 +167,11 @@ services:
             retries: 3
     article-store-airflow-worker:
         build:
-          context: ./airflow
+            context: ./article-store-airflow
         depends_on:
+            - airflow
             - article-store-airflow-scheduler
         volumes:
-            - ./article-store/airflow/dags:/usr/local/airflow/dags
             - ./static-assets-store/static:/usr/local/airflow/public
         environment:
             - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
