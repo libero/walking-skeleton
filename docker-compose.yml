@@ -8,11 +8,7 @@ services:
         image: libero/airflow:latest
     api-doc:
         build:
-            context: ./raml2html
-        volumes:
-            - ./api-doc:/api
-            - ./raml2html:/raml2html
-            - /raml2html/node_modules
+            context: ./api-doc
         depends_on:
             - api-dummy-nginx
             - schemas
