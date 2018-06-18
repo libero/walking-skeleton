@@ -20,7 +20,23 @@ final class ImageConverter implements ViewConverter
      */
     public function convert($object, array $context = []) : string
     {
-        return '<p>[Image]</p>';
+        $image = "<img src=\"{$object->get('libero:source')->toText()}\">";
+
+        $caption = '';
+        if ($object->get('libero:title')) {
+            $caption .= '<figcaption>';
+            foreach ($object->get('libero:title') as $child) {
+                $caption .= $this->converter->convert($child, $context);
+            }
+            $caption .= '</figcaption>';
+        }
+
+        return <<<EOT
+<figure>
+{$image}
+{$caption}
+</figure>
+EOT;
     }
 
     public function supports($object, array $context = []) : bool

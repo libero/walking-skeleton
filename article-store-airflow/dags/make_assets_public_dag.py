@@ -20,7 +20,7 @@ PUBLIC_DATA_DIR = '/usr/local/airflow/public/articles'
 
 SUCCESS = True
 FAILURE = False
-SUPPORTED_MEDIA_TYPES = ['image/tiff', "image/jpeg"]
+SUPPORTED_MEDIA_TYPES = ['image/tiff', 'image/jpeg', 'image/png']
 ASSET_ELEMENTS = ['source', 'variant']
 
 STATIC_ASSETS_URL = os.environ.get('STATIC_ASSETS_URL')

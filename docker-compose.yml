@@ -142,6 +142,7 @@ services:
             - airflow
             - article-store-airflow-postgres
             - article-store-airflow-redis
+            - static-assets-store
         environment:
             - LOAD_EX=n
             - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
@@ -150,7 +151,7 @@ services:
             - REDIS_HOST=article-store-airflow-redis
             - RABBITMQ_URL=amqp://guest:guest@event-bus:5672
         volumes:
-            - ./static-assets-store/static:/usr/local/airflow/public
+            - static-assets:/usr/local/airflow/public
         ports:
             - "8086:8080"
         command: webserver
@@ -165,8 +166,9 @@ services:
         depends_on:
             - airflow
             - article-store-airflow-scheduler
+            - static-assets-store
         volumes:
-            - ./static-assets-store/static:/usr/local/airflow/public
+            - static-assets:/usr/local/airflow/public
         environment:
             - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
             - EXECUTOR=Celery
@@ -279,13 +281,14 @@ services:
             - ./journal/public:/srv/app/public
         depends_on:
             - journal-fpm
-    static-assets-store-nginx:
-        image: nginx:1.13
+    static-assets-store:
+        build:
+            context: ./static-assets-store
         ports:
             - '8089:80'
         volumes:
             - ./static-assets-store/.docker/nginx-server.conf:/etc/nginx/conf.d/default.conf
-            - ./static-assets-store/static:/srv/app/public
+            - static-assets:/assets
     schemas:
         image: nginx:1.13
         ports:
@@ -298,3 +301,4 @@ volumes:
     event-bus: 
     article-store-airflow-postgres:
     article-store-postgres:
+    static-assets:
