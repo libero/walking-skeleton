@@ -62,10 +62,12 @@ services:
         command: >
                 /bin/bash -c '
                     until echo > /dev/tcp/article-store-postgres/5432; do sleep 1; done
+                    until echo > /dev/tcp/event-bus/5672; do sleep 1; done
                     pipenv run python -u manage.py runserver 0.0.0.0:8000
                 '
         depends_on:
           - article-store-postgres
+          - event-bus
     article-store-exchange-setup:
         build:
             context: ./article-store
@@ -99,7 +101,7 @@ services:
             - article-store-postgres
     article-store-airflow-flower:
         build:
-          context: ./workflow/airflow_libero
+          context: ./airflow
         depends_on:
             - article-store-airflow-redis
         environment:
@@ -121,12 +123,11 @@ services:
         image: 'redis:3.2.7'
     article-store-airflow-scheduler:
         build:
-          context: ./workflow/airflow_libero
+          context: ./airflow
         depends_on:
             - article-store-airflow-webserver
         volumes:
-            - ./workflow/airflow_libero/dags:/usr/local/airflow/dags
-            - ./workflow/airflow_libero/plugins:/usr/local/airflow/plugins
+            - ./article-store/airflow/dags:/usr/local/airflow/dags
         environment:
             - LOAD_EX=n
             - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
@@ -137,7 +138,7 @@ services:
         command: scheduler
     article-store-airflow-webserver:
         build:
-          context: ./workflow/airflow_libero
+          context: ./airflow
         depends_on:
             - article-store-airflow-postgres
             - article-store-airflow-redis
@@ -149,8 +150,7 @@ services:
             - REDIS_HOST=article-store-airflow-redis
             - RABBITMQ_URL=amqp://guest:guest@event-bus:5672
         volumes:
-            - ./workflow/airflow_libero/dags:/usr/local/airflow/dags
-            - ./workflow/airflow_libero/plugins:/usr/local/airflow/plugins
+            - ./article-store/airflow/dags:/usr/local/airflow/dags
             - ./static-assets-store/static:/usr/local/airflow/public
         ports:
             - "8086:8080"
@@ -162,12 +162,11 @@ services:
             retries: 3
     article-store-airflow-worker:
         build:
-          context: ./workflow/airflow_libero
+          context: ./airflow
         depends_on:
             - article-store-airflow-scheduler
         volumes:
-            - ./workflow/airflow_libero/dags:/usr/local/airflow/dags
-            - ./workflow/airflow_libero/plugins:/usr/local/airflow/plugins
+            - ./article-store/airflow/dags:/usr/local/airflow/dags
             - ./static-assets-store/static:/usr/local/airflow/public
         environment:
             - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=

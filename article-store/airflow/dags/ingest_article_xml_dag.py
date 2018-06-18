@@ -14,6 +14,7 @@ sys.path.append('..')
 from airflow.operators import EventEmittingPythonOperator
 
 DIR_PATH = 'data'
+ARTICLES_EXCHANGE = 'articles'
 
 
 def download_article_xml(*args, **kwargs):
@@ -104,17 +105,20 @@ default_args = {
 dag = DAG('ingest_article_xml', default_args=default_args, schedule_interval=None)
 
 
-_download_article_xml = EventEmittingPythonOperator(task_id='download_article_xml',
+_download_article_xml = EventEmittingPythonOperator(exchange=ARTICLES_EXCHANGE,
+                                                    task_id='article.version.download_article_xml',
                                                     provide_context=True,
                                                     python_callable=download_article_xml,
                                                     dag=dag)
 
-_extract_asset_uris = EventEmittingPythonOperator(task_id='extract_asset_uris',
+_extract_asset_uris = EventEmittingPythonOperator(exchange=ARTICLES_EXCHANGE,
+                                                  task_id='article.version.extract_asset_uris',
                                                   provide_context=True,
                                                   python_callable=extract_asset_uris,
                                                   dag=dag)
 
-_download_assets = EventEmittingPythonOperator(task_id='download_assets',
+_download_assets = EventEmittingPythonOperator(exchange=ARTICLES_EXCHANGE,
+                                               task_id='article.version.download_assets',
                                                provide_context=True,
                                                python_callable=download_assets,
                                                dag=dag)

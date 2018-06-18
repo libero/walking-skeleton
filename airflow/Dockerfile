@@ -16,12 +16,11 @@ COPY Pipfile .
 COPY Pipfile.lock .
 RUN pipenv install --system --deploy
 
-COPY script/entrypoint.sh /
-COPY config/airflow.cfg .
+COPY . ./
 
 RUN chown -R airflow: .
 
 EXPOSE 8080 5555 8793
 
 USER airflow
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT [".docker/entrypoint.sh"]

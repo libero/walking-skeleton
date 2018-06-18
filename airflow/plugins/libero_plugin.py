@@ -19,7 +19,6 @@ from pika.adapters.blocking_connection import BlockingChannel
 
 RABBITMQ_URL = os.environ.get('RABBITMQ_URL', '')
 BROKER_PARAMS = pika.connection.URLParameters(RABBITMQ_URL)
-ARTICLES_EXCHANGE = 'articles'
 
 
 def create_message(msg_type: str, run_id: str, message: Optional[str] = None) -> Dict:
@@ -30,7 +29,7 @@ def create_message(msg_type: str, run_id: str, message: Optional[str] = None) ->
         "eventId": str(uuid.uuid1()),
         "runId": run_id,
         "happenedAt": strftime("%Y-%m-%dT%H:%M:%S+00:00", gmtime()),
-        "type": f'article.version.{msg_type}',
+        "type": msg_type,
         "message": message
     }
 
@@ -52,14 +51,15 @@ def get_channel() -> ContextManager[BlockingChannel]:
 
 class EventEmittingPythonOperator(PythonOperator):
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, exchange: str, *args, **kwargs):
         super(EventEmittingPythonOperator, self).__init__(*args, **kwargs)
+        self.exchange = exchange
 
     def execute_callable(self):
         try:
             result = None
             run_id = self.op_kwargs['dag_run'].conf.get('input_data')['run_id']
-            send_message = partial(self.send_message, run_id=run_id)
+            send_message = partial(self.send_message, exchange=self.exchange, run_id=run_id)
 
             send_message(f'{self.task_id}.started')
             result = self.python_callable(*self.op_args, **self.op_kwargs)
@@ -70,11 +70,11 @@ class EventEmittingPythonOperator(PythonOperator):
             raise
 
     @staticmethod
-    def send_message(msg_type: str, run_id: str, message: Optional[str] = None) -> None:
+    def send_message(msg_type: str, exchange: str, run_id: str, message: Optional[str] = None) -> None:
         with get_channel() as channel:
             message = create_message(msg_type=msg_type, run_id=run_id, message=message)
 
-            channel.basic_publish(exchange=ARTICLES_EXCHANGE,
+            channel.basic_publish(exchange=exchange,
                                   routing_key=message['type'],
                                   body=json.dumps(message))
 
