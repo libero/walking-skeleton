@@ -48,8 +48,6 @@ services:
     article-store:
         build:
             context: ./article-store
-        ports:
-            - '8000:8000'
         volumes:
             - ./article-store:/srv/app
         environment:
