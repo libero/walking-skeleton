@@ -1,0 +1,43 @@
+article:
+    delete:
+        started: Started deleting article
+        completed: Completed deleting article
+        failed: Failed to delete article
+    version:
+        deposit_to_article_store:
+            started: Started depositing updated article version
+            completed: Completed depositing updated article version
+            failed: Failed to deposit updated article version
+        download_assets:
+            started: Started downloading assets
+            completed: Completed downloading assets
+            failed: Failed to download assets
+        extract_asset_uris:
+            started: Started extracting asset URIs
+            completed: Completed extracting asset URIs
+            failed: Failed to extract asset URIs
+        fetch_article_content:
+            started: Started fetching submitted article version
+            completed: Completed fetching submitted article version
+            failed: Failed to fetch submitted article version
+        post:
+            started: Started storing submitted article version
+            completed: Completed storing submitted article version
+            failed: Failed to store submitted article version
+        put:
+            started: Started storing updated article version
+            completed: Completed storing updated article version
+            failed: Failed to store updated article version
+        store_article_data:
+            started: Started storing article data in Airflow
+            completed: Completed storing article data in Airflow
+            failed: Failed to store article data in Airflow
+        update_asset_uris:
+            started: Started updating asset URIs
+            completed: Completed updating asset URIs
+            failed: Failed to update asset URIs
+downstream:
+    crossref:
+        started: Started Crossref deposit
+        completed: Completed Crossref deposit
+        failed: Failed to deposit in Crossref

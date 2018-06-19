@@ -1,11 +1,8 @@
 app:
-    run: 'Ejecución %indentifier%'
+    run: 'Ejecución %id%'
     runs: 'Ejecuciónes'
     home: 'Inicio'
     language_choice: 'Elige un idioma:'
     no_runs: 'No hay ejecuciónes disponibles.'
     title: 'Panel de Libero'
 direction: ltr
-event:
-    article:
-        published: 'El artículo fue publicado.'
