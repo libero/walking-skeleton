@@ -87,4 +87,6 @@ A dummy implementation of the API, containing sample XML content in multiple lan
 - `journal` does not convert all content to HTML
 - `dashboard` is missing some event name translations
 - `article-store` persists article versions before the workflows are run
+- `article-store` doesn't validate input
+- Change requests can conflict in the `article-store` (eg running through `./example.sh` quickly will see failures - useful to see failures however!)
 - `api-doc` (deliberately) describes endpoints that don't exists
