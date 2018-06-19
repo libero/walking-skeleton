@@ -94,3 +94,4 @@ A dummy implementation of the API, containing sample XML content in multiple lan
 - `article-store` doesn't validate input
 - Change requests can conflict in the `article-store` (eg running through `./example.sh` quickly will see failures - useful to see failures however!)
 - `api-doc` (deliberately) describes endpoints that don't exists
+- The structure of API request bodies (eg no schema) and event messages (eg JSON, minimal data) will need to be changed
