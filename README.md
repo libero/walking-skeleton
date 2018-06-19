@@ -44,6 +44,10 @@ Can be viewed at http://localhost:8082/.
 
 A basic implementation of the dashboard in Symfony, that lists all events passed on the event bus (grouped by run ID) in multiple languages. 
 
+### `downstream-sample`
+
+A small Python application that listens for article creation/update events, and emits its own in response (simulating a Crossref deposit). This represents a standalone service integrated through the event bus.
+
 ### `event-bus`
 
 This is http://localhost:8083/ (using `guest`/`guest`).
