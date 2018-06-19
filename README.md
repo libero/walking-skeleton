@@ -30,7 +30,7 @@ Contains a simple Nginx API gateway.
 
 Can be viewed through the `api-gateway` at http://localhost:8085/articles.
 
-Contains an article store 
+A basic implementation of the article store in Django, that stores and serves articles through the API. It uses the `article-store-airflow` to run a workflow when creating/updating an article version.
 
 ### `article-store-airflow`
 
