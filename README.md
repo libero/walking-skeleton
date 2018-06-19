@@ -1,6 +1,6 @@
 # Libero walking skeleton
 
-This repo contains experiments that will comprise a walking skeleton of the Libero publishing system.
+This repo contains a walking skeleton of the Libero publishing system. It does not contain production-ready/polished code, but is a representation of how Libero can work.
 
 Execute `./example.sh` in your terminal to follow a demo. This shows:
 
@@ -81,3 +81,10 @@ This represents a base install of Airflow with basic Libero integration. Applica
 A dummy implementation of the API, containing sample XML content in multiple languages from eLife, Hindawi, SciELO, International Journal of Microsimulation and Wikipedia, and corresponding RELAX NG schemas for each source. Can be viewed at http://localhost:8081/articles.
   - XML content is stored in `data`
   - Schemas are stored in `public/schemas`
+
+## Known issues
+
+- `journal` does not convert all content to HTML
+- `dashboard` is missing some event name translations
+- `article-store` persists article versions before the workflows are run
+- `api-doc` (deliberately) describes endpoints that don't exists
