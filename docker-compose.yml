@@ -281,6 +281,9 @@ services:
             - ./journal/public:/srv/app/public
         depends_on:
             - journal-fpm
+    private-assets-store:
+        build:
+            context: ./private-assets-store
     static-assets-store:
         build:
             context: ./static-assets-store

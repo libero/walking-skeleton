@@ -55,7 +55,7 @@ curl --verbose http://localhost:8085/articles/1234 -X POST --header 'Content-Typ
                         <p>This is the body of the article.</p>
                         <image>
                             <title>An image</title>
-                            <source height="497" width="620" media-type="image/png">https://pantheon.io/sites/default/files/field/image/png_base645c62dc6a5fd93e4e.png</source>
+                            <source height="497" width="620" media-type="image/png">http://private-assets-store/decoupled-architecture.png</source>
                         </image>
                     </body>
                 </content>
