@@ -9,6 +9,10 @@ Execute `./example.sh` in your terminal to follow a demo. This shows:
 3. Updating a version
 4. Deleting an article
 
+## Architecture
+
+![](architecture.svg)
+
 ## Applications
 
 These can be run using `docker-compose up -V`.
