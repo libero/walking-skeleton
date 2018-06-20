@@ -3,6 +3,3 @@ app:
     language_choice: 'اختار اللغة:'
     title: 'Libero لوحة تحكّم'
 direction: rtl
-event:
-    article:
-        published: 'تم نشر المقال.'

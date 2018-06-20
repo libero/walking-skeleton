@@ -3,6 +3,3 @@ app:
     language_choice: '言語を選択してください：'
     title: 'Libero計器盤'
 direction: ltr
-event:
-    article:
-        published: '記事が公開されました。'

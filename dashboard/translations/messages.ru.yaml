@@ -3,6 +3,3 @@ app:
     language_choice: 'Выберите язык:'
     title: 'Личный кабинет Libero'
 direction: ltr
-event:
-    article:
-        published: 'Статья опубликована.'

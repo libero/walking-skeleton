@@ -6,6 +6,3 @@ app:
     no_runs: 'No runs available.'
     title: 'Libero Dashboard'
 direction: ltr
-event:
-    article:
-        published: 'Article was published.'

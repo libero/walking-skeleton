@@ -8,10 +8,10 @@
 
     {% if runs|length %}
         {% for run, events in runs %}
-            <h3>{{ ('app.run')|trans({'%id%': run}) }}</h3>
+            <h3>{% trans with {'%id%': run} %}app.run{% endtrans %}</h3>
             <ol>
                 {% for event in events %}
-                    <li>{{ ('event.' ~ event.type)|trans }}
+                    <li>{{ event.type|trans({}, 'events') }}
                         <small>
                             {% if event.message %}
                                 <br>{{ event.message }}
