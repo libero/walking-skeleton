@@ -10,10 +10,25 @@ function line {
     echo -e "\n"
 }
 
+function wait_for_services {
+    TIMEOUT="${2:-30}"
+    echo "Waiting for services..."
+
+    for ((i=1;i<=TIMEOUT;i++)); do
+        STATUS_CODE=$(curl -o /dev/null --silent --head --write-out '%{http_code}' 'http://localhost:8085/articles')
+        if [ "$STATUS_CODE" = "200" ]
+        then
+            break
+        fi
+        sleep 1
+    done
+}
+
 function start {
     echo "Starting containers..."
     finish &> /dev/null
     docker-compose up --detach --renew-anon-volumes &> /dev/null
+    wait_for_services
     echo "Done"
 }
 
