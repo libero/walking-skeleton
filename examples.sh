@@ -13,7 +13,7 @@ function line {
 function wait_for_services {
     echo "Waiting for services..."
     while true; do
-        STATUS_CODE=$(curl -o /dev/null --silent --head --write-out '%{http_code}\n' 'http://localhost:8085/articles')
+        STATUS_CODE=$(curl -o /dev/null --silent --head --write-out '%{http_code}' 'http://localhost:8085/articles')
         if [ "$STATUS_CODE" = "200" ]
         then
             break
