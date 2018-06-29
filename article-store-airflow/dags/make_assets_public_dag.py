@@ -86,6 +86,7 @@ def fetch_article_content(*args, **kwargs) -> bool:
     url = f'{ARTICLES_URL}/{article_version_id}/'
 
     response = requests.get(url)
+    response.raise_for_status()
 
     kwargs['ti'].xcom_push('article_content', response.json())
     return SUCCESS, response.json()
@@ -135,6 +136,8 @@ def download_assets(*args, **kwargs) -> bool:
 
         for uri in uris['asset_uris']:
             response = requests.get(url=uri)
+            response.raise_for_status()
+
             file_name = uri.split('/')[-1]
 
             with open(os.path.join(data_dir, file_name), 'wb') as asset_file:
