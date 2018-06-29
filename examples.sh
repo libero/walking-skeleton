@@ -120,6 +120,10 @@ curl --verbose http://localhost:8085/articles/1234/versions -X POST --header 'Co
                 <content>
                     <body xmlns="http://libero.pub" xml:lang="en">
                         <p>This is the body of the article (version 2).</p>
+                        <image>
+                            <title>An image</title>
+                            <source height="497" width="620" media-type="image/png">http://private-assets-store/decoupled-architecture.png</source>
+                        </image>
                     </body>
                 </content>
             </list-item>
@@ -168,6 +172,10 @@ curl --verbose http://localhost:8085/articles/1234/versions/2 -X PUT --header 'C
                 <content>
                     <body xmlns="http://libero.pub" xml:lang="en">
                         <p>This is the updated body of the article (version 2).</p>
+                        <image>
+                            <title>A different image</title>
+                            <source height="500" width="750" media-type="image/jpeg">http://private-assets-store/distracted.jpg</source>
+                        </image>
                     </body>
                 </content>
             </list-item>
