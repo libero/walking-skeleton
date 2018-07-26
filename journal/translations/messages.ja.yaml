@@ -13,4 +13,3 @@ app:
     language_choice: '言語を選択してください：'
     no_articles: '利用可能な記事はありません。'
     title: 'Liberoデモ'
-direction: ltr

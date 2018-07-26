@@ -2,94 +2,82 @@
 
 namespace Libero\Journal\Controller;
 
-use GuzzleHttp\ClientInterface;
-use Libero\Journal\Dom\Document;
-use Libero\Journal\View\Converter\ViewConverter;
-use Psr\Http\Message\ResponseInterface;
+use Libero\ApiClient\ArticlesClient;
+use Libero\Dom\Element;
+use Libero\Views\View;
+use Libero\Views\ViewConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
-use function extract;
+use function Functional\const_function;
+use function Functional\map;
 use function GuzzleHttp\Promise\all;
-use function Libero\Journal\will_convert_all;
+use function Libero\PatternsBundle\locale_direction;
 
 final class ArticleController
 {
     private $twig;
-    private $apiClient;
+    private $articlesClient;
     private $converter;
 
-    public function __construct(Environment $twig, ClientInterface $apiClient, ViewConverter $converter)
+    public function __construct(ArticlesClient $articlesClient, Environment $twig, ViewConverter $converter)
     {
+        $this->articlesClient = $articlesClient;
         $this->twig = $twig;
-        $this->apiClient = $apiClient;
         $this->converter = $converter;
     }
 
     public function __invoke(Request $request, string $id) : Response
     {
-        $article = (all([
-            'front' => $this->apiClient->requestAsync('GET', "articles/{$id}/versions/latest/front", ['headers' => ['Accept-Language' => $request->getLocale()]]),
-            'body' => $this->apiClient->requestAsync('GET', "articles/{$id}/versions/latest/body", ['headers' => ['Accept-Language' => $request->getLocale()]])->otherwise(function () { return null; }),
-        ]))
-            ->then(function (array $parts) : array {
-                return array_map([$this, 'toDocument'], $parts);
-            })
-            ->then(function (array $parts) : array {
-                /** @var Document $front */
-                /** @var Document|null $body */
-                extract($parts);
+        $article = all(
+            [
+                'front' => $this->articlesClient->part($id, null, 'front', ['Accept-Language' => $request->getLocale()]),
+                'body' => $this->articlesClient->part($id, null, 'body', ['Accept-Language' => $request->getLocale()])->otherwise(const_function(null)),
+            ]
+        )
+            ->then(
+                function (array $parts) use ($request) : array {
+                    /** @var Element $front */
+                    $front = $parts['front']->getDocument()->get('libero:front');
+                    /** @var Element|null $body */
+                    $body = $parts['body'] ? $parts['body']->getDocument()->get('libero:body') : null;
 
-                $front = $front->get('libero:front');
-                if ($body) {
-                    $body = $body->get('libero:body');
-                }
-
-                $context = [
-                    'front' => [
-                        'id' => $front->get('libero:id')->toText(),
-                        'doi' => $front->get('libero:doi') ? $front->get('libero:doi')->toText() : null,
+                    $context = [
                         'title' => $front->get('libero:title')->toText(),
-                        'language' => $front->getAttribute('lang')->toText(),
-                        'abstract' => [],
-                        'digest' => [],
-                    ],
-                    'body' => [],
-                ];
-
-                if ($abstract = $front->get('libero:abstract')) {
-                    $context['front']['abstract'] += [
-                        'id' => $abstract->getAttribute('id')->toText(),
-                        'doi' => $abstract->getAttribute('doi') ? $abstract->getAttribute('doi')->toText() : null,
-                        'text' => implode('', will_convert_all($this->converter, ['lang' => $context['front']['language'], 'level' => 3])($abstract)),
+                        'top' => [],
+                        'main' => [],
+                        'bottom' => [],
                     ];
-                }
 
-                if ($digest = $front->get('elife:digest')) {
-                    $context['front']['digest'] += [
-                        'id' => $digest->getAttribute('id')->toText(),
-                        'doi' => $digest->getAttribute('doi') ? $digest->getAttribute('doi')->toText() : null,
-                        'text' => implode('', will_convert_all($this->converter, ['lang' => $context['front']['language'], 'level' => 3])($digest)),
-                    ];
-                }
+                    $mainContext = ['lang' => $request->getLocale(), 'dir' => locale_direction($request->getLocale())];
 
-                if ($body) {
-                    $context['body'] += [
-                        'text' => implode('', will_convert_all($this->converter, ['lang' => $body->getAttribute('lang')->toText(), 'level' => 2])($body)),
-                        'language' => $body->getAttribute('lang')->toText(),
-                    ];
-                }
+                    $frontContext = $mainContext + ['root' => $front];
 
-                return $context;
-            });
+                    $context['top'][] = $this->converter->convert($front, '@LiberoPatterns/patterns/content-header.html.twig', $frontContext);
+
+                    if ($abstract = $front->get('libero:abstract')) {
+                        $context['top'][] = $this->converter->convert($abstract, '@LiberoPatterns/patterns/section.html.twig', $frontContext + ['level' => 2]);
+                    }
+
+                    if ($body instanceof Element) {
+                        $bodyContext = $mainContext + ['root' => $body];
+
+                        $context['main'] = $context['main'] + array_filter(
+                                map(
+                                    $body,
+                                    function (Element $element) use ($bodyContext) : ?View {
+                                        return $this->converter->convert($element, null, $bodyContext);
+                                    }
+                                )
+                            );
+                    }
+
+                    return $context;
+                }
+            );
 
         $context = $article->wait();
 
-        return new Response($this->twig->render('article.html.twig', $context));
-    }
-
-    public function toDocument(ResponseInterface $response) : Document
-    {
-        return new Document((string) $response->getBody(), 'libero');
+        return new Response($this->twig->render('@LiberoPatterns/layouts/one-col.html.twig', $context));
     }
 }

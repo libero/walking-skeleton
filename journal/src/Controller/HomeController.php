@@ -2,61 +2,74 @@
 
 namespace Libero\Journal\Controller;
 
-use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Promise\PromiseInterface;
-use Libero\Journal\Dom\Document;
-use Libero\Journal\Dom\Element;
-use Psr\Http\Message\ResponseInterface;
+use Libero\ApiClient\ArticlesClient;
+use Libero\ApiClient\XmlResponse;
+use Libero\Dom\Element;
+use Libero\Views\View;
+use Libero\Views\ViewConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Translation\TranslatorInterface;
 use Twig\Environment;
-use function Functional\compose;
-use function Functional\invoker;
+use function Functional\map;
 use function GuzzleHttp\Promise\all;
+use function Libero\PatternsBundle\locale_direction;
 
 final class HomeController
 {
+    private $articlesClient;
+    private $converter;
+    private $translator;
     private $twig;
-    private $apiClient;
 
-    public function __construct(Environment $twig, ClientInterface $apiClient)
+    public function __construct(ArticlesClient $articlesClient, Environment $twig, ViewConverter $converter, TranslatorInterface $translator)
     {
+        $this->articlesClient = $articlesClient;
         $this->twig = $twig;
-        $this->apiClient = $apiClient;
+        $this->converter = $converter;
+        $this->translator = $translator;
     }
 
     public function __invoke(Request $request) : Response
     {
-        $articles = $this->apiClient->requestAsync('GET', 'articles')
-            ->then([$this, 'toDocument'])
-            ->then(function (Document $articles) use ($request) : PromiseInterface {
-                $promises = [];
-                foreach ($articles->find('libero:articles/libero:article') as $article) {
-                    $promises[] = $this->apiClient->requestAsync('GET', "articles/{$article->toText()}/versions/latest", ['headers' => ['Accept-Language' => $request->getLocale()]]);
+        $articles = $this->articlesClient->list()
+            ->then(
+                function (XmlResponse $list) use ($request) : PromiseInterface {
+                    return all(
+                        map(
+                            $list->getDocument()->find('libero:articles/libero:article'),
+                            function (Element $article) use ($request) : PromiseInterface {
+                                return $this->articlesClient->part($article->toText(), null, 'front', ['Accept-Language' => $request->getLocale()]);
+                            }
+                        )
+                    );
                 }
-
-                return all($promises);
-            })
-            ->then(function (array $articles) : array {
-                return array_map(compose([$this, 'toDocument'], invoker('get', ['libero:front'])), $articles);
-            })
-            ->then(function (array $articles) : array {
-                return array_map(function (Element $article) : array {
-                    return [
-                        'id' => $article->get('libero:id')->toText(),
-                        'title' => $article->get('libero:title')->toText(),
-                        'language' => $article->getAttribute('lang')->toText(),
-                    ];
-                }, $articles);
-            });
+            );
 
         $articles = $articles->wait();
 
-        return new Response($this->twig->render('home.html.twig', ['articles' => $articles]));
-    }
+        $mainContext = ['lang' => $request->getLocale(), 'dir' => locale_direction($request->getLocale())];
 
-    public function toDocument(ResponseInterface $response) : Document
-    {
-        return new Document((string) $response->getBody(), 'libero');
+        $context = [
+            'title' => $this->translator->trans('app.home'),
+            'top' => [
+                new View('@LiberoPatterns/patterns/content-header.html.twig', ['title' => ['text' => [$this->translator->trans('app.articles')]]]),
+            ],
+            'main' => array_filter(
+                map(
+                    $articles,
+                    function (XmlResponse $article) use ($mainContext) : ?View {
+                        $front = $article->getDocument()->getRootElement();
+
+                        $frontContext = $mainContext + ['root' => $front];
+
+                        return $this->converter->convert($front, '@LiberoPatterns/patterns/teaser.html.twig', $frontContext);
+                    }
+                )
+            ),
+        ];
+
+        return new Response($this->twig->render('@LiberoPatterns/layouts/one-col.html.twig', $context));
     }
 }

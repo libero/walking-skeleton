@@ -1,0 +1,13 @@
+<div{% include '@LiberoPatterns/attributes.html.twig' %}>
+
+    {% block content %}
+
+        {% include '@LiberoPatterns/patterns/heading.html.twig' with title only %}
+
+        {% if doi|default(null) %}
+            {% include '@LiberoPatterns/patterns/doi.html.twig' with {doi: doi} only %}
+        {% endif %}
+
+    {% endblock %}
+
+</div>

@@ -1,0 +1,3 @@
+<h{{ level|default(1) }}{% include '@LiberoPatterns/attributes.html.twig' %}>
+    {%- include '@LiberoPatterns/views.html.twig' with {views: text} only -%}
+</h{{ level|default(1) }}>

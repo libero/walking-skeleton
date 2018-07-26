@@ -1,0 +1,9 @@
+{% if attributes is defined %}
+    {%- for name, value in attributes -%}
+        {%- if value is same as(true) -%}
+            {{- ' ' ~ name }}
+        {%- elseif value is not same as(false) -%}
+            {{- ' ' ~ name }}="{{ value }}"
+        {%- endif -%}
+    {%- endfor -%}
+{% endif %}

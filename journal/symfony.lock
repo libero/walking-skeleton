@@ -38,6 +38,9 @@
     "psr/simple-cache": {
         "version": "1.0.1"
     },
+    "punic/punic": {
+        "version": "3.1.0"
+    },
     "symfony/asset": {
         "version": "v4.0.6"
     },

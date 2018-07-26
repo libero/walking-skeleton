@@ -8,6 +8,7 @@
         "ext-intl": "*",
         "eightpoints/guzzle-bundle": "^7.3",
         "lstrojny/functional-php": "^1.7",
+        "punic/punic": "^3.1",
         "symfony/asset": "^4.0",
         "symfony/config": "^4.0",
         "symfony/console": "^4.0",
@@ -31,10 +32,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Libero\\Journal\\": "src/"
+            "Libero\\Journal\\": "src/",
+            "Libero\\": "vendor-extra/"
         },
         "files": [
-            "src/functions.php"
+            "src/namespaces.php",
+            "vendor-extra/PatternsBundle/functions.php",
+            "vendor-extra/PatternsBundle/namespaces.php"
         ]
     },
     "replace": {

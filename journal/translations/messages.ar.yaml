@@ -13,4 +13,3 @@ app:
     language_choice: 'اختار اللغة:'
     no_articles: 'لا توجد مقالات متاحة.'
     title: 'عرض Libero'
-direction: rtl

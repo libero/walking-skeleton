@@ -1,0 +1,11 @@
+<section{% include '@LiberoPatterns/attributes.html.twig' %}>
+
+    {% include '@LiberoPatterns/patterns/heading.html.twig' with title only %}
+
+    {% include '@LiberoPatterns/text.html.twig' with body only %}
+
+    {% if doi|default(null) %}
+        {% include '@LiberoPatterns/patterns/doi.html.twig' with {doi: doi} only %}
+    {% endif %}
+
+</section>
