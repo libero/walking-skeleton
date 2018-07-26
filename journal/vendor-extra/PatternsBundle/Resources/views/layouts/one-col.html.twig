@@ -1,35 +1,29 @@
-{% extends '@LiberoPatterns/base.html.twig' %}
+<div style="text-align: center">
 
-{% block body %}
+    {% block top %}
 
-    <div style="text-align: center">
+        {% include '@LiberoPatterns/views.html.twig' with {views: top|default([])} only %}
 
-        {% block top %}
+    {% endblock %}
 
-            {% include '@LiberoPatterns/views.html.twig' with {views: top|default([])} only %}
+</div>
 
-        {% endblock %}
+<div style="width: 85%; margin: 0 auto;">
 
-    </div>
+    {% block main %}
 
-    <div style="width: 85%; margin: 0 auto;">
+        {% include '@LiberoPatterns/views.html.twig' with {views: main|default([])} only %}
 
-        {% block main %}
+    {% endblock %}
 
-            {% include '@LiberoPatterns/views.html.twig' with {views: main|default([])} only %}
+</div>
 
-        {% endblock %}
+<div style="text-align: center">
 
-    </div>
+    {% block bottom %}
 
-    <div style="text-align: center">
+        {% include '@LiberoPatterns/views.html.twig' with {views: bottom|default([])} only %}
 
-        {% block bottom %}
+    {% endblock %}
 
-            {% include '@LiberoPatterns/views.html.twig' with {views: bottom|default([])} only %}
-
-        {% endblock %}
-
-    </div>
-
-{% endblock %}
+</div>

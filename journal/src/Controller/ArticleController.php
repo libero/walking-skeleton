@@ -78,6 +78,6 @@ final class ArticleController
 
         $context = $article->wait();
 
-        return new Response($this->twig->render('@LiberoPatterns/layouts/one-col.html.twig', $context));
+        return new Response($this->twig->render('article.html.twig', $context));
     }
 }

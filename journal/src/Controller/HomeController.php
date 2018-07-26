@@ -70,6 +70,6 @@ final class HomeController
             ),
         ];
 
-        return new Response($this->twig->render('@LiberoPatterns/layouts/one-col.html.twig', $context));
+        return new Response($this->twig->render('home.html.twig', $context));
     }
 }
