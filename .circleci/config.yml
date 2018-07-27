@@ -7,6 +7,11 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
+      - run:
+        name: Install dependencies
+        command: |
+          pip install \
+            docker-compose==1.12.0 
       #- restore_cache:
       #    keys:
       #      - v1-{{ .Branch }}
