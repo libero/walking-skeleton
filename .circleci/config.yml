@@ -30,6 +30,10 @@ jobs:
           command: |
             docker-compose build
       - run:
+          name: Start
+          command: |
+            docker-compose up -d
+      - run:
           name: Save Docker image layer cache
           command: |
             mkdir -p /caches
