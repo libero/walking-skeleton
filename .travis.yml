@@ -1,0 +1,12 @@
+sudo: required
+
+# not just that, but we need to pick one
+language: python
+
+services: docker
+
+before_install:
+    - docker-compose build
+
+script:
+    - docker-compose ps
