@@ -1,7 +1,6 @@
 sudo: required
 
-# not just that, but we need to pick one
-language: python
+language: minimal
 
 services: docker
 
