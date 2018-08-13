@@ -2,7 +2,7 @@
 
 This repo contains a walking skeleton of the Libero publishing system. It does not contain production-ready/polished code, but is a representation of how Libero can work.
 
-Execute `./example.sh` in your terminal to follow a demo. This shows:
+Execute `./examples.sh` in your terminal to follow a demo. This shows:
 
 1. Creating an article
 2. Adding a new version
@@ -100,6 +100,6 @@ A dummy implementation of the API, containing sample XML content in multiple lan
 - `dashboard` is missing some event name translations
 - `article-store` persists article versions before the workflows are run (viewing it on Journal sees the source image URIs, before they've been moved to `static-assets-store`)
 - `article-store` doesn't validate input
-- Change requests can conflict in the `article-store` (eg running through `./example.sh` quickly will see failures - useful to see failures however!)
+- Change requests can conflict in the `article-store` (eg running through `./examples.sh` quickly will see failures - useful to see failures however!)
 - `api-doc` (deliberately) describes endpoints that don't exists
 - The structure of API request bodies (eg no schema) and event messages (eg JSON, minimal data) will need to be changed
