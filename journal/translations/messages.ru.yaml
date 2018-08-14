@@ -13,4 +13,3 @@ app:
     language_choice: 'Выберите язык:'
     no_articles: 'Нет доступных статей.'
     title: 'Демонстрация Libero'
-direction: ltr

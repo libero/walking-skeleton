@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <defaults public="false"/>
+
+        <service id="libero.views.view_converter.registry" class="Libero\Views\ViewConverter\ViewConverterRegistry"/>
+
+        <service id="Libero\Views\ViewConverter" alias="libero.views.view_converter.registry"/>
+
+        <service id="libero.views.view_converter.stopwatch" class="Libero\Views\ViewConverter\StopwatchViewConverter"
+                 decorates="libero.views.view_converter.registry" decoration-priority="-10">
+            <argument type="service" id="debug.stopwatch"/>
+            <argument type="service" id="libero.views.view_converter.stopwatch.inner"/>
+        </service>
+
+        <service id="Libero\PatternsBundle\Views\ViewConverter\Blocks\AbstractSectionConverter">
+            <argument type="service" id="Libero\Views\ViewConverter"/>
+            <argument type="service" id="translator"/>
+            <tag name="libero.views.view_converter"/>
+        </service>
+
+        <service id="Libero\PatternsBundle\Views\ViewConverter\Blocks\FrontContentHeaderConverter">
+            <argument type="service" id="Libero\Views\ViewConverter"/>
+            <tag name="libero.views.view_converter"/>
+        </service>
+
+        <service id="Libero\PatternsBundle\Views\ViewConverter\Blocks\FrontTeaserConverter">
+            <argument type="service" id="Libero\Views\ViewConverter"/>
+            <argument type="service" id="router"/>
+            <tag name="libero.views.view_converter"/>
+        </service>
+
+        <service id="Libero\PatternsBundle\Views\ViewConverter\Blocks\ParagraphConverter">
+            <argument type="service" id="Libero\Views\ViewConverter"/>
+            <tag name="libero.views.view_converter"/>
+        </service>
+
+        <service id="Libero\PatternsBundle\Views\ViewConverter\Blocks\SectionConverter">
+            <argument type="service" id="Libero\Views\ViewConverter"/>
+            <tag name="libero.views.view_converter"/>
+        </service>
+
+        <service id="Libero\PatternsBundle\Views\ViewConverter\Inline\IConverter">
+            <argument type="service" id="Libero\Views\ViewConverter"/>
+            <tag name="libero.views.view_converter"/>
+        </service>
+
+        <service id="Libero\PatternsBundle\Views\ViewConverter\Inline\MathConverter">
+            <tag name="libero.views.view_converter"/>
+        </service>
+
+    </services>
+
+</container>

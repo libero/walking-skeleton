@@ -1,0 +1,11 @@
+{% extends '@!LiberoPatterns/patterns/content-header.html.twig' %}
+
+{% block content %}
+
+    {{ parent() }}
+
+    {% if digest|default(null) %}
+        {% include '@LiberoPatterns/patterns/section.html.twig' with digest only %}
+    {% endif %}
+
+{% endblock %}

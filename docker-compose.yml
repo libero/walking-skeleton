@@ -40,11 +40,11 @@ services:
             - ./api-gateway/.docker/nginx-server.conf.template:/etc/nginx/conf.d/default.conf.template
         command: sh -c "envsubst \"`env | awk -F = '{printf \" $$%s\", $$1}'`\" < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
         environment:
-            - ARTICLES=http://article-store:8000
+            - ARTICLES=http://api-dummy-nginx:80
             - DOCUMENTATION=http://api-doc:8080
         depends_on:
             - api-doc
-            - article-store
+            - api-dummy-nginx
     article-store:
         build:
             context: ./article-store

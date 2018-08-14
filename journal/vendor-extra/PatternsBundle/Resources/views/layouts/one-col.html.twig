@@ -1,0 +1,29 @@
+<div style="text-align: center">
+
+    {% block top %}
+
+        {% include '@LiberoPatterns/views.html.twig' with {views: top|default([])} only %}
+
+    {% endblock %}
+
+</div>
+
+<div style="width: 85%; margin: 0 auto;">
+
+    {% block main %}
+
+        {% include '@LiberoPatterns/views.html.twig' with {views: main|default([])} only %}
+
+    {% endblock %}
+
+</div>
+
+<div style="text-align: center">
+
+    {% block bottom %}
+
+        {% include '@LiberoPatterns/views.html.twig' with {views: bottom|default([])} only %}
+
+    {% endblock %}
+
+</div>

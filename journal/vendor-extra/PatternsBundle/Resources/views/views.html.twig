@@ -1,0 +1,10 @@
+{% for view in views -%}
+
+    {% if view.template is defined %}
+        {%- include view.template with view.arguments only -%}
+    {% else %}
+        {#- Assuming plain string -#}
+        {{- view -}}
+    {% endif %}
+
+{%- endfor -%}

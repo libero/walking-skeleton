@@ -1,6 +1,9 @@
+{% set lang = app.request.locale %}
+{% set dir = lang|locale_direction %}
+
 <!doctype html>
 
-<html lang="{{ app.request.locale }}" dir="{% trans %}direction{% endtrans %}">
+<html lang="{{ lang }}" dir="{{ dir }}">
 
 <head>
 
@@ -24,9 +27,9 @@
     <li>
         {% if '/' != app.request.pathInfo %}
         <a href="{{ path('home') }}">
-            {% endif %}
-            {% trans %}app.home{% endtrans %}
-            {% if '/' != app.request.pathInfo %}
+            {%- endif %}
+            {%- trans %}app.home{% endtrans -%}
+            {% if '/' != app.request.pathInfo -%}
         </a>
         {% endif %}
     </li>
@@ -47,7 +50,7 @@
                 {{ locale|locale_name }}
                 {% if app.request.locale != app.request.defaultLocale %}
                     <small lang="{{ app.request.defaultLocale }}"
-                           dir="{% trans into app.request.defaultLocale %}direction{% endtrans %}">
+                            {%- if app.request.defaultLocale|locale_direction != dir %} dir="{{ app.request.defaultLocale|locale_direction }}"{% endif %}>
                         ({{ locale|locale_name(app.request.defaultLocale) }})
                     </small>
                 {% endif %}
@@ -58,7 +61,14 @@
     {% endfor %}
 </ul>
 
-{% block end %}{% endblock %}
+{% block end %}
+
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=MML_CHTML"
+            integrity="sha384-Ra6zh6uYMmH5ydwCqqMoykyf1T/+ZcnOQfFPhDrp2kI4OIxadnhsvvA2vv9A7xYv"
+            crossorigin="anonymous"></script>
+
+{% endblock %}
 
 </body>
 

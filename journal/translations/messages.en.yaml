@@ -13,4 +13,3 @@ app:
     language_choice: 'Choose a language:'
     no_articles: 'No articles available.'
     title: 'Libero Demo'
-direction: ltr

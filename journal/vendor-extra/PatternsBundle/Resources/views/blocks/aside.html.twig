@@ -1,0 +1,17 @@
+<aside{% include '@LiberoPatterns/attributes.html.twig' %}>
+
+    {% if label is defined and label %}
+        {% include '@LiberoPatterns/heading.html.twig' with label only %}
+    {% endif %}
+
+    {% if title is defined and title %}
+        {% include '@LiberoPatterns/heading.html.twig' with title only %}
+    {% endif %}
+
+    {% if caption is defined and caption %}
+        <div>{{ caption|raw }}</div>
+    {% endif %}
+
+    {{ body|raw }}
+
+</aside>
